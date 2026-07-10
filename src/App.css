@@ -11,19 +11,20 @@
 
 .member-page { min-height: 100svh; padding: 20px 0; color: #050505; background: linear-gradient(135deg,#eaf8ff,#fff8d9); }
 .member-shell { position: relative; width: min(100%,430px); min-height: 100svh; margin: 0 auto; overflow: hidden; background: #fffdf6; box-shadow: 0 20px 70px rgba(28,91,131,.2); }
-.member-header { display: flex; align-items: center; justify-content: space-between; min-height: 137px; padding: 28px 29px 24px; background: #fff; }
-.brand-button { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 0; border: 0; color: #075adf; background: transparent; text-align: left; cursor: pointer; }
+.member-header { display: flex; align-items: center; justify-content: space-between; min-height: 120px; padding: 20px 29px 18px; background: #fff; }
+.brand-button { display: flex; align-items: center; gap: 13px; min-width: 0; padding: 0; border: 0; color: #075adf; background: transparent; text-align: left; cursor: pointer; }
 .brand-mark { display: block; flex: 0 0 auto; width: 55px; height: 55px; overflow: hidden; border-radius: 13px; box-shadow: 0 5px 14px rgba(0,105,200,.18); }
 .brand-mark img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .brand-copy { display: grid; max-width: 185px; }
-.brand-copy strong { font-size: 31px; line-height: .95; }
-.brand-copy small { margin-top: 9px; color: #535a67; font-size: 16px; font-weight: 700; line-height: 1.35; }
-.sos-button { display: grid; width: 72px; height: 72px; place-items: center; border: 6px solid #ffd9dd; border-radius: 50%; color: #fff; background: #f20b17; box-shadow: 0 0 0 3px #ffecef,0 5px 13px rgba(215,7,32,.24); cursor: pointer; line-height: .85; }
-.sos-button svg { width: 27px; height: 27px; fill: currentColor; transform: translateY(4px) rotate(-5deg); }
+.brand-copy strong { font-size: 33px; line-height: .95; }
+.brand-copy small { display: none; }
+.sos-button { display: grid; width: 72px; height: 72px; place-items: center; border: 5px solid #fff; border-radius: 50%; color: #fff; background: #f20b17; box-shadow: 0 0 0 2px #f04453,0 0 0 7px #ffe6e9; cursor: pointer; line-height: .85; }
+.sos-button svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 3.6; transform: translateY(3px) rotate(-7deg); }
+.sos-button svg path { fill: none; stroke: currentColor; stroke-linejoin: round; }
 .sos-button strong { font-size: 18px; }
 .welcome-card { position: relative; min-height: 720px; overflow: hidden; border: 1px solid rgba(196,196,196,.8); border-radius: 17px 17px 0 0; background-image: linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.76) 46%,rgba(255,255,255,.13) 100%),var(--home-bg); background-position: center top,60% bottom; background-size: cover,auto 100%; }
 .care-row { position: relative; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 28px 28px 0; }
-.elder-icon { position: relative; display: block; flex: 0 0 auto; width: 73px; height: 61px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.14)); }
+.elder-icon { position: relative; display: block; flex: 0 0 auto; width: 76px; height: 61px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.14)); }
 .elder { position: absolute; bottom: 0; width: 38px; height: 58px; }
 .elder-woman { left: 0; }
 .elder-man { right: 0; }
@@ -48,16 +49,16 @@
 .welcome-copy p { margin: 0; color: #18223e; font-size: 22px; font-weight: 800; line-height: 1.72; }
 .quick-section { min-height: 143px; padding: 31px 23px 16px; background: linear-gradient(rgba(255,255,255,.65),#fff 45%); }
 .quick-section h2 { display: grid; grid-template-columns: 48px 1fr; align-items: start; gap: 18px; margin: 0; color: #050505; font-size: 30px; font-weight: 900; line-height: 1.2; }
-.phone-menu-icon { display: grid; grid-template-columns: repeat(3,4px); gap: 3px; width: 27px; height: 41px; align-content: center; justify-content: center; border: 3px solid #1b1b1b; border-radius: 4px; background: #101010; box-shadow: inset 0 -4px 0 #dfa32e; }
+.phone-menu-icon { display: grid; grid-template-columns: repeat(3,4px); gap: 3px; width: 26px; height: 42px; align-content: center; justify-content: center; border: 3px solid #1b1b1b; border-radius: 4px; background: #101010; box-shadow: inset 0 -4px 0 #dfa32e; }
 .phone-menu-icon i { width: 4px; height: 4px; border-radius: 50%; background: #28a8ff; }
 .phone-menu-icon i:nth-child(2n) { background: #27df70; }
 .phone-menu-icon i:nth-child(3n) { background: #ff4d6d; }
 .phone-menu-icon i:nth-child(5n) { background: #fff; }
 .phone-menu-icon i:nth-child(7n) { background: #ffd232; }
-.bottom-nav { position: relative; z-index: 8; display: grid; grid-template-columns: repeat(5,1fr); margin: 0 7px 8px; padding: 16px 5px 14px; border: 1px solid #e2e2e2; border-radius: 22px; background: rgba(255,255,255,.98); box-shadow: 0 -2px 22px rgba(15,98,172,.08); }
-.bottom-nav button { display: grid; min-width: 0; place-items: center; gap: 7px; border: 0; color: #1d43a2; background: transparent; cursor: pointer; }
-.bottom-nav button>span { display: grid; width: 52px; height: 52px; place-items: center; border-radius: 50%; background: #edf6ff; line-height: 1; }
-.bottom-nav button svg { width: 36px; height: 36px; color: #075adf; fill: currentColor; }
+.bottom-nav { position: relative; z-index: 8; display: grid; grid-template-columns: repeat(5,1fr); margin: 0; padding: 20px 7px 30px; border-top: 1px solid #e9e9e9; border-radius: 0; background: #fff; box-shadow: none; }
+.bottom-nav button { display: grid; min-width: 0; place-items: center; gap: 8px; border: 0; color: #1d43a2; background: transparent; cursor: pointer; }
+.bottom-nav button>span { display: grid; width: 58px; height: 58px; place-items: center; border-radius: 50%; background: #edf6ff; line-height: 1; }
+.bottom-nav button svg { width: 39px; height: 39px; color: #075adf; fill: currentColor; }
 .bottom-nav button small { color: #101010; font-size: 13px; font-weight: 900; line-height: 1.15; text-align: center; white-space: normal; }
 .bottom-nav button.active { color: #075adf; }
 .bottom-nav button.active small { color: #075adf; }
