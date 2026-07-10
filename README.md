@@ -17,7 +17,7 @@ pnpm preview
 ```
 
 เว็บไซต์เผยแพร่ผ่าน GitHub Pages ที่
-[https://nompeawex-maker.github.io/mybuddy-carelog-live/](https://nompeawex-maker.github.io/mybuddy-carelog-live/)
+[https://nompeawex-maker.github.io/mybuddy/](https://nompeawex-maker.github.io/mybuddy/)
 
 <!-- Original Vite template notes retained below. -->
 
