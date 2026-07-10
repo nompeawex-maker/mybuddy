@@ -28,16 +28,8 @@ function BrandIcon() {
 function ElderIcon() {
   return (
     <span className="elder-icon" aria-hidden="true">
-      <span className="elder elder-woman">
-        <span className="elder-hair" />
-        <span className="elder-face"><i /><b /></span>
-        <span className="elder-body" />
-      </span>
-      <span className="elder elder-man">
-        <span className="elder-hair" />
-        <span className="elder-face"><i /><b /></span>
-        <span className="elder-body" />
-      </span>
+      <span className="elder elder-woman"><span className="elder-hair" /><span className="elder-face"><i /><b /></span><span className="elder-body" /></span>
+      <span className="elder elder-man"><span className="elder-hair" /><span className="elder-face"><i /><b /></span><span className="elder-body" /></span>
     </span>
   )
 }
@@ -51,11 +43,7 @@ function PhoneMenuIcon() {
 }
 
 function HomeIcon() {
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M6 24.6 24 9l18 15.6v17.2a2.2 2.2 0 0 1-2.2 2.2H29V31H19v13H8.2A2.2 2.2 0 0 1 6 41.8V24.6z" />
-    </svg>
-  )
+  return <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24.6 24 9l18 15.6v17.2a2.2 2.2 0 0 1-2.2 2.2H29V31H19v13H8.2A2.2 2.2 0 0 1 6 41.8V24.6z" /></svg>
 }
 
 function LocationIcon() {
@@ -105,8 +93,14 @@ const navItems = [
   { icon: <HomeIcon />, label: 'หน้าหลัก', active: true },
   { icon: <LocationIcon />, label: 'ติดตามพิกัด' },
   { icon: <CalendarIcon />, label: 'หมอนัด' },
-  { icon: <UsersIcon />, label: 'กิจกรรมร่วมกลุ่ม' },
+  { icon: <UsersIcon />, label: 'กิจกรรมร่วมกลุ่ม', route: 'activities' },
   { icon: <StethoscopeIcon />, label: 'ปรึกษาแพทย์' },
+]
+
+const activityImages = [
+  { src: 'activity-yoga.png', alt: 'กิจกรรมฝึกสมาธิและโยคะ' },
+  { src: 'activity-cooking.png', alt: 'กิจกรรมห้องเรียนทำอาหารคลีน' },
+  { src: 'activity-nature.png', alt: 'กิจกรรมทริปเดินชมธรรมชาติศึกษาพรรณไม้' },
 ]
 
 function MemberHome() {
@@ -118,16 +112,21 @@ function MemberHome() {
     window.setTimeout(() => setNotice(''), 1800)
   }
 
+  const handleNav = (item) => {
+    if (item.route) {
+      window.location.hash = item.route
+      return
+    }
+    notify(item.label)
+  }
+
   return (
     <main className="member-page">
       <section className="member-shell" aria-label="หน้าหลัก MyBuddy+">
         <header className="member-header">
           <button className="brand-button" type="button" onClick={() => { window.location.hash = '' }} aria-label="กลับหน้าต้อนรับ">
             <BrandIcon />
-            <span className="brand-copy">
-              <strong>MyBuddy+</strong>
-              <small>เพื่อนที่เข้าใจ...วัยที่มีความหมาย</small>
-            </span>
+            <span className="brand-copy"><strong>MyBuddy+</strong><small>เพื่อนที่เข้าใจ...วัยที่มีความหมาย</small></span>
           </button>
           <button className="sos-button" type="button" onClick={() => notify('กำลังเตรียมโทรฉุกเฉิน')} aria-label="โทรฉุกเฉิน SOS">
             <IconPhone /><strong>SOS</strong>
@@ -139,7 +138,6 @@ function MemberHome() {
             <ElderIcon />
             <div className="care-pill">พอร์ทัลดูแลส่วนบุคคลเพื่อผู้สูงอายุ</div>
           </div>
-
           <div className="welcome-copy">
             <h1>สวัสดีค่ะ</h1>
             <p>วันนี้อากาศสดใส สุขภาพร่างกายแข็งแรงดีนะคะ หากรู้สึกไม่สบายตัว ปรึกษาหมอหรือเลือกใช้งานเมนูด้านล่างได้เลยค่ะ</p>
@@ -152,7 +150,7 @@ function MemberHome() {
 
         <nav className="bottom-nav" aria-label="เมนูหลัก">
           {navItems.map((item) => (
-            <button className={item.active ? 'active' : ''} type="button" key={item.label} onClick={() => notify(item.label)}>
+            <button className={item.active ? 'active' : ''} type="button" key={item.label} onClick={() => handleNav(item)}>
               <span>{item.icon}</span><small>{item.label}</small>
             </button>
           ))}
@@ -164,8 +162,32 @@ function MemberHome() {
   )
 }
 
+function ActivitiesPage() {
+  return (
+    <main className="activities-page">
+      <section className="activities-shell" aria-label="กิจกรรมร่วมกลุ่ม">
+        <header className="activities-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>กิจกรรมร่วมกลุ่ม</strong>
+            <small>เลื่อนเลือกกิจกรรมที่สนใจได้เลย</small>
+          </div>
+        </header>
+        <div className="activity-list">
+          {activityImages.map((activity) => (
+            <article className="activity-card" key={activity.src}>
+              <img src={`${import.meta.env.BASE_URL}${activity.src}`} alt={activity.alt} />
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function LoginPage() {
   const loginImage = `${import.meta.env.BASE_URL}mybuddy-login.png`
+  const goHome = () => { window.location.hash = 'home' }
 
   return (
     <main className="login-page" style={{ '--login-image': `url(${loginImage})` }}>
@@ -174,9 +196,14 @@ function LoginPage() {
         <button className="login-back-hotspot" type="button" onClick={() => { window.location.hash = '' }}>
           <span className="sr-only">กลับหน้าต้อนรับ</span>
         </button>
-        <button className="login-submit-hotspot" type="button" onClick={() => { window.location.hash = 'home' }}>
-          <span className="sr-only">เข้าสู่ระบบ</span>
-        </button>
+        <form className="login-form-overlay" onSubmit={(event) => { event.preventDefault(); goHome() }}>
+          <label className="sr-only" htmlFor="login-user">ชื่อผู้ใช้หรืออีเมล</label>
+          <input id="login-user" className="login-input login-user-input" type="text" name="username" autoComplete="username" placeholder="กรอกชื่อผู้ใช้หรืออีเมล" />
+          <label className="sr-only" htmlFor="login-password">รหัสผ่าน</label>
+          <input id="login-password" className="login-input login-password-input" type="password" name="password" autoComplete="current-password" placeholder="กรอกรหัสผ่าน" />
+          <button className="login-submit-hotspot" type="submit"><span className="sr-only">เข้าสู่ระบบ</span></button>
+          <button className="login-line-hotspot" type="button" onClick={goHome}><span className="sr-only">เข้าสู่ระบบด้วย LINE</span></button>
+        </form>
       </section>
     </main>
   )
@@ -216,6 +243,7 @@ function App() {
 
   if (route === '#home') return <MemberHome />
   if (route === '#login') return <LoginPage />
+  if (route === '#activities') return <ActivitiesPage />
   return <LandingPage />
 }
 
