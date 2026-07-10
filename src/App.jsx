@@ -16,14 +16,11 @@ function IconPhone() {
 }
 
 function BrandIcon() {
+  const logo = `${import.meta.env.BASE_URL}mybuddy-logo.png`
+
   return (
-    <span className="brand-mark" aria-hidden="true">
-      <svg viewBox="0 0 56 56">
-        <path d="M17 15.5h16.5c6.8 0 11.3 4.1 11.3 10.3 0 4.2-2.1 7.4-5.6 8.9 2.3 1.2 3.4 3.4 3.4 6.7v2.9h-8.4v-2.4c0-3-1.6-4.5-4.7-4.5H25v6.9h-8V15.5zm8 7.2v7.6h8c2.3 0 3.7-1.5 3.7-3.8 0-2.4-1.4-3.8-3.8-3.8H25z" />
-        <path d="M11.3 22.8c0-9 7.3-16.3 16.3-16.3H34v7.2h-6.4c-5 0-9.1 4.1-9.1 9.1v10.7c0 5 4.1 9.1 9.1 9.1h4.2v7.2h-4.2c-9 0-16.3-7.3-16.3-16.3V22.8z" />
-        <path d="M42.2 8.7h4.3v5h4.9v4.2h-4.9v5h-4.3v-5h-4.9v-4.2h4.9v-5z" />
-      </svg>
-      <small>MyBuddy+</small>
+    <span className="brand-mark">
+      <img src={logo} alt="" aria-hidden="true" />
     </span>
   )
 }
