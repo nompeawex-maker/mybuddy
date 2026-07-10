@@ -2,21 +2,22 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 const actions = {
-  signup: 'เปิดหน้าสร้างบัญชี',
-  family: 'เปิดหน้าสำหรับครอบครัว',
-  menu: 'เปิดเมนูหลัก',
+  signup: 'Open sign up',
+  family: 'Open family page',
+  menu: 'Open main menu',
 }
 
 const navItems = [
-  { icon: '⌂', label: 'หน้าหลัก', active: true },
-  { icon: '⌖', label: 'ติดตามพิกัด' },
-  { icon: '17', label: 'พบแพทย์' },
-  { icon: '♧', label: 'กิจกรรมร่วมกลุ่ม' },
-  { icon: '♩', label: 'ปรึกษาแพทย์' },
+  { label: 'Home' },
+  { label: 'Location' },
+  { label: 'Appointment' },
+  { label: 'Activities' },
+  { label: 'Consult doctor' },
 ]
 
 function MemberHome() {
   const [notice, setNotice] = useState('')
+  const homeImage = `${import.meta.env.BASE_URL}mybuddy-home.png`
 
   const notify = (text) => {
     setNotice(text)
@@ -24,51 +25,25 @@ function MemberHome() {
   }
 
   return (
-    <main className="member-page">
-      <section className="member-shell" aria-label="หน้าหลัก MyBuddy+">
-        <header className="member-header">
-          <button className="brand-button" type="button" onClick={() => { window.location.hash = '' }} aria-label="กลับหน้าต้อนรับ">
-            <span className="brand-mark">B⁺</span>
-            <span className="brand-copy"><strong>MyBuddy+</strong><small>เพื่อนที่เข้าใจ...สิ่งที่มีความหมาย</small></span>
+    <main className="member-page" style={{ '--member-image': `url(${homeImage})` }}>
+      <section className="member-poster" aria-label="MyBuddy+ home">
+        <img src={homeImage} alt="MyBuddy+ home screen" />
+        <button className="member-hotspot member-brand" type="button" onClick={() => { window.location.hash = '' }}>
+          <span className="sr-only">Back to landing</span>
+        </button>
+        <button className="member-hotspot member-sos" type="button" onClick={() => notify('SOS')}>
+          <span className="sr-only">SOS</span>
+        </button>
+        {navItems.map((item, index) => (
+          <button
+            className={`member-hotspot member-nav member-nav-${index + 1}`}
+            type="button"
+            key={item.label}
+            onClick={() => notify(item.label)}
+          >
+            <span className="sr-only">{item.label}</span>
           </button>
-          <button className="sos-button" type="button" onClick={() => notify('กำลังเตรียมโทรฉุกเฉิน')} aria-label="โทรฉุกเฉิน SOS">
-            <span>☎</span><strong>SOS</strong>
-          </button>
-        </header>
-
-        <section className="welcome-card">
-          <div className="care-pill"><span>👵👴</span> พอร์ทัลดูแลส่วนบุคคลเพื่อผู้สูงอายุ</div>
-          <div className="flower-field" aria-hidden="true">
-            <span className="flower flower-one">🌼</span>
-            <span className="flower flower-two">🌻</span>
-            <span className="flower flower-three">🌼</span>
-            <span className="flower flower-four">🌻</span>
-            <span className="flower flower-five">🌼</span>
-          </div>
-          <div className="welcome-copy">
-            <h1>สวัสดีค่ะ</h1>
-            <p>วันนี้อากาศสดใส สุขภาพร่างกายแข็งแรงดีนะคะ หากรู้สึกไม่สบายตัว ปรึกษาหมอหรือเลือกใช้งานเมนูด้านล่างได้เลยค่ะ</p>
-          </div>
-        </section>
-
-        <section className="quick-section" aria-labelledby="quick-title">
-          <h2 id="quick-title"><span>📱</span> เมนูการใช้งานด่วน <small>(ขนาดใหญ่ เข้าใจง่าย)</small></h2>
-          <div className="quick-grid">
-            <button type="button" onClick={() => notify('เปิดติดตามพิกัด')}>📍<span>ติดตามพิกัด</span></button>
-            <button type="button" onClick={() => notify('เปิดนัดหมายแพทย์')}>📅<span>นัดหมายแพทย์</span></button>
-            <button type="button" onClick={() => notify('เปิดกิจกรรม')}>🫂<span>กิจกรรม</span></button>
-            <button type="button" onClick={() => notify('เปิดปรึกษาแพทย์')}>🩺<span>ปรึกษาแพทย์</span></button>
-          </div>
-        </section>
-
-        <nav className="bottom-nav" aria-label="เมนูหลัก">
-          {navItems.map((item) => (
-            <button className={item.active ? 'active' : ''} type="button" key={item.label} onClick={() => notify(item.label)}>
-              <span>{item.icon}</span><small>{item.label}</small>
-            </button>
-          ))}
-        </nav>
-
+        ))}
         <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
       </section>
     </main>
@@ -86,12 +61,12 @@ function LandingPage() {
 
   return (
     <main className="landing-page" style={{ '--landing-image': `url(${landingImage})` }}>
-      <section className="poster" aria-label="MyBuddy+ แอปสำหรับผู้สูงอายุ">
-        <img src={landingImage} alt="MyBuddy+ เพื่อนวัยเดียวกันไม่เหงาอีกต่อไป" />
-        <button className="hotspot menu" type="button" onClick={() => activate('menu')}><span className="sr-only">เปิดเมนูหลัก</span></button>
-        <button className="hotspot login" type="button" onClick={() => { window.location.hash = 'home' }}><span className="sr-only">เข้าสู่ระบบ</span></button>
-        <button className="hotspot signup" type="button" onClick={() => activate('signup')}><span className="sr-only">สร้างบัญชี</span></button>
-        <button className="hotspot family" type="button" onClick={() => activate('family')}><span className="sr-only">สำหรับครอบครัว</span></button>
+      <section className="poster" aria-label="MyBuddy+ app for older adults">
+        <img src={landingImage} alt="MyBuddy+ landing screen" />
+        <button className="hotspot menu" type="button" onClick={() => activate('menu')}><span className="sr-only">Open main menu</span></button>
+        <button className="hotspot login" type="button" onClick={() => { window.location.hash = 'home' }}><span className="sr-only">Log in</span></button>
+        <button className="hotspot signup" type="button" onClick={() => activate('signup')}><span className="sr-only">Sign up</span></button>
+        <button className="hotspot family" type="button" onClick={() => activate('family')}><span className="sr-only">Family page</span></button>
         <p className={`toast ${message ? 'show' : ''}`} role="status" aria-live="polite">{message}</p>
       </section>
     </main>
