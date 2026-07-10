@@ -164,6 +164,24 @@ function MemberHome() {
   )
 }
 
+function LoginPage() {
+  const loginImage = `${import.meta.env.BASE_URL}mybuddy-login.png`
+
+  return (
+    <main className="login-page" style={{ '--login-image': `url(${loginImage})` }}>
+      <section className="login-poster" aria-label="เข้าสู่ระบบ MyBuddy+">
+        <img src={loginImage} alt="หน้าเข้าสู่ระบบ MyBuddy+" />
+        <button className="login-back-hotspot" type="button" onClick={() => { window.location.hash = '' }}>
+          <span className="sr-only">กลับหน้าต้อนรับ</span>
+        </button>
+        <button className="login-submit-hotspot" type="button" onClick={() => { window.location.hash = 'home' }}>
+          <span className="sr-only">เข้าสู่ระบบ</span>
+        </button>
+      </section>
+    </main>
+  )
+}
+
 function LandingPage() {
   const [message, setMessage] = useState('')
   const landingImage = `${import.meta.env.BASE_URL}mybuddy-landing.png`
@@ -178,7 +196,7 @@ function LandingPage() {
       <section className="poster" aria-label="MyBuddy+ แอปสำหรับผู้สูงอายุ">
         <img src={landingImage} alt="MyBuddy+ เพื่อนวัยเดียวกันไม่เหงาอีกต่อไป" />
         <button className="hotspot menu" type="button" onClick={() => activate('menu')}><span className="sr-only">เปิดเมนูหลัก</span></button>
-        <button className="hotspot login" type="button" onClick={() => { window.location.hash = 'home' }}><span className="sr-only">เข้าสู่ระบบ</span></button>
+        <button className="hotspot login" type="button" onClick={() => { window.location.hash = 'login' }}><span className="sr-only">เข้าสู่ระบบ</span></button>
         <button className="hotspot signup" type="button" onClick={() => activate('signup')}><span className="sr-only">สร้างบัญชี</span></button>
         <button className="hotspot family" type="button" onClick={() => activate('family')}><span className="sr-only">สำหรับครอบครัว</span></button>
         <p className={`toast ${message ? 'show' : ''}`} role="status" aria-live="polite">{message}</p>
@@ -196,7 +214,9 @@ function App() {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  return route === '#home' ? <MemberHome /> : <LandingPage />
+  if (route === '#home') return <MemberHome />
+  if (route === '#login') return <LoginPage />
+  return <LandingPage />
 }
 
 export default App
