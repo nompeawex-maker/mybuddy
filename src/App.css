@@ -1,0 +1,120 @@
+.landing-page {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: start center;
+  overflow: hidden;
+  background: #75b5e5;
+}
+
+.landing-page::before {
+  position: fixed;
+  inset: -30px;
+  content: '';
+  background: linear-gradient(rgba(93, 170, 226, .35), rgba(93, 170, 226, .35)),
+    var(--landing-image) center / cover;
+  filter: blur(26px) saturate(.8);
+  transform: scale(1.08);
+}
+
+.poster {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 912px);
+  overflow: hidden;
+  background: #75b5e5;
+  box-shadow: 0 0 70px rgba(17, 74, 123, .3);
+}
+
+.poster > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.hotspot {
+  position: absolute;
+  z-index: 2;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hotspot:focus-visible {
+  outline: 5px solid #ffe45c;
+  outline-offset: 4px;
+  background: rgba(255, 255, 255, .13);
+}
+
+.hotspot:active {
+  background: rgba(255, 255, 255, .22);
+  transform: scale(.985);
+}
+
+.menu {
+  top: 2.3%;
+  right: 3.2%;
+  width: 10%;
+  height: 5.2%;
+  border-radius: 16px;
+}
+
+.login,
+.signup,
+.family {
+  left: 15%;
+  width: 70%;
+  height: 7.2%;
+}
+
+.login { top: 66.6%; }
+.signup { top: 74.7%; }
+.family { top: 83%; }
+
+.toast {
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  margin: 0;
+  padding: 12px 20px;
+  border-radius: 999px;
+  color: #176ebd;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 10px 32px rgba(21, 86, 140, .25);
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 18px);
+  transition: opacity .2s ease, transform .2s ease;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 913px) {
+  .poster { margin-block: 24px; border-radius: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: none; }
+}
