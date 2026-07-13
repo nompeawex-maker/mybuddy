@@ -94,7 +94,7 @@ const navItems = [
   { icon: <LocationIcon />, label: 'ติดตามพิกัด' },
   { icon: <CalendarIcon />, label: 'หมอนัด', route: 'appointments' },
   { icon: <UsersIcon />, label: 'กิจกรรมร่วมกลุ่ม', route: 'activities' },
-  { icon: <StethoscopeIcon />, label: 'ปรึกษาแพทย์' },
+  { icon: <StethoscopeIcon />, label: 'ปรึกษาแพทย์', route: 'consult' },
 ]
 
 const activityImages = [
@@ -133,7 +133,7 @@ function MemberHome() {
             <BrandIcon />
             <span className="brand-copy"><strong>MyBuddy+</strong><small>เพื่อนที่เข้าใจ...วัยที่มีความหมาย</small></span>
           </button>
-          <button className="sos-button" type="button" onClick={() => notify('กำลังเตรียมโทรฉุกเฉิน')} aria-label="โทรฉุกเฉิน SOS">
+          <button className="sos-button" type="button" onClick={() => { window.location.hash = 'sos' }} aria-label="โทรฉุกเฉิน SOS">
             <IconPhone /><strong>SOS</strong>
           </button>
         </header>
@@ -141,16 +141,12 @@ function MemberHome() {
         <section className="welcome-card" style={{ '--home-bg': `url(${homeBg})` }}>
           <div className="care-row">
             <ElderIcon />
-            <div className="care-pill">พอร์ทัลดูแลส่วนบุคคลเพื่อผู้สูงอายุ</div>
+            <div className="care-pill">MyBuddyพร้อมดูแลคุณผู้ชาย/คุณผู้หญิง</div>
           </div>
           <div className="welcome-copy">
             <h1>สวัสดีค่ะ</h1>
             <p>วันนี้อากาศสดใส สุขภาพร่างกายแข็งแรงดีนะคะ หากรู้สึกไม่สบายตัว ปรึกษาหมอหรือเลือกใช้งานเมนูด้านล่างได้เลยค่ะ</p>
           </div>
-        </section>
-
-        <section className="quick-section" aria-labelledby="quick-title">
-          <h2 id="quick-title"><PhoneMenuIcon /> เมนูการใช้งานด่วน (ขนาดใหญ่ เข้าใจง่าย)</h2>
         </section>
 
         <section className="recommend-section" aria-labelledby="recommend-title">
@@ -292,6 +288,142 @@ function AppointmentsPage() {
   )
 }
 
+const consultationModes = [
+  { id: 'video', label: 'วิดีโอคอล', detail: 'พบแพทย์แบบเห็นหน้า', icon: '🎥' },
+  { id: 'chat', label: 'แชท', detail: 'ส่งอาการและรูปภาพ', icon: '💬' },
+  { id: 'call', label: 'โทรเสียง', detail: 'คุยง่าย ไม่ต้องพิมพ์', icon: '📞' },
+]
+
+const doctors = [
+  { name: 'พญ. อรณิชา ใจดี', field: 'อายุรกรรม / ผู้สูงอายุ', status: 'พร้อมให้คำปรึกษา', wait: 'รอประมาณ 5 นาที' },
+  { name: 'นพ. สมชาย รักดี', field: 'โรคหัวใจ', status: 'ว่างรอบถัดไป', wait: 'วันนี้ 13:30 น.' },
+]
+
+function ConsultPage() {
+  const [mode, setMode] = useState('video')
+  const [selectedDoctor, setSelectedDoctor] = useState(doctors[0])
+  const [symptom, setSymptom] = useState('')
+  const [notice, setNotice] = useState('')
+
+  const activeMode = consultationModes.find((item) => item.id === mode)
+  const submitConsult = () => {
+    setNotice(symptom.trim() ? 'ส่งคำขอปรึกษาแพทย์แล้ว' : 'เลือกแพทย์และช่องทางแล้ว สามารถพิมพ์อาการเพิ่มได้')
+    window.setTimeout(() => setNotice(''), 2200)
+  }
+
+  return (
+    <main className="consult-page">
+      <section className="consult-shell" aria-label="ระบบปรึกษาแพทย์">
+        <header className="consult-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>ปรึกษาแพทย์</strong>
+            <small>เลือกช่องทางและแพทย์ที่เหมาะกับคุณ</small>
+          </div>
+        </header>
+
+        <section className="consult-hero">
+          <span className="consult-mark">🩺</span>
+          <h1>พบแพทย์ได้จากที่บ้าน</h1>
+          <p>เริ่มปรึกษาอาการเบื้องต้น จองคิว หรือเลือกแพทย์เฉพาะทางได้อย่างรวดเร็ว</p>
+        </section>
+
+        <section className="consult-panel" aria-label="เลือกช่องทางปรึกษา">
+          <h2>ช่องทางปรึกษา</h2>
+          <div className="consult-modes">
+            {consultationModes.map((item) => (
+              <button className={mode === item.id ? 'active' : ''} type="button" key={item.id} onClick={() => setMode(item.id)}>
+                <span>{item.icon}</span>
+                <strong>{item.label}</strong>
+                <small>{item.detail}</small>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="consult-panel" aria-label="เลือกแพทย์">
+          <h2>แพทย์ที่พร้อมให้บริการ</h2>
+          <div className="doctor-list">
+            {doctors.map((doctor) => (
+              <button className={selectedDoctor.name === doctor.name ? 'active' : ''} type="button" key={doctor.name} onClick={() => setSelectedDoctor(doctor)}>
+                <span className="doctor-avatar">👩‍⚕️</span>
+                <span>
+                  <strong>{doctor.name}</strong>
+                  <small>{doctor.field}</small>
+                  <em>{doctor.status} · {doctor.wait}</em>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="consult-panel" aria-label="รายละเอียดอาการ">
+          <h2>บอกอาการเบื้องต้น</h2>
+          <textarea value={symptom} onChange={(event) => setSymptom(event.target.value)} placeholder="เช่น เวียนหัว เจ็บหน้าอก นอนไม่หลับ หรืออยากปรึกษาเรื่องยา" />
+          <div className="consult-summary">
+            <span>{activeMode.icon}</span>
+            <div>
+              <small>ช่องทางที่เลือก</small>
+              <strong>{activeMode.label} กับ {selectedDoctor.name}</strong>
+            </div>
+          </div>
+          <button className="consult-submit" type="button" onClick={submitConsult}>เริ่มปรึกษาแพทย์</button>
+        </section>
+
+        <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
+      </section>
+    </main>
+  )
+}
+
+function SosPage() {
+  const [notice, setNotice] = useState('')
+
+  const notify = (text) => {
+    setNotice(text)
+    window.setTimeout(() => setNotice(''), 1800)
+  }
+
+  return (
+    <main className="sos-page">
+      <section className="sos-shell" aria-label="SOS ขอความช่วยเหลือฉุกเฉิน">
+        <header className="sos-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>SOS ฉุกเฉิน</strong>
+            <small>ขอความช่วยเหลือทันทีเมื่อเกิดเหตุ</small>
+          </div>
+        </header>
+
+        <section className="sos-hero">
+          <div className="sos-ring"><IconPhone /></div>
+          <h1>ต้องการความช่วยเหลือใช่ไหม?</h1>
+          <p>กดโทรฉุกเฉิน หรือแจ้งคนในครอบครัวให้ทราบตำแหน่งและสถานะของคุณทันที</p>
+          <a className="sos-main-call" href="tel:1669">โทร 1669 ฉุกเฉิน</a>
+        </section>
+
+        <section className="sos-actions" aria-label="ตัวเลือกขอความช่วยเหลือ">
+          <a href="tel:191"><span>🚓</span><strong>ตำรวจ 191</strong><small>เหตุร้ายหรือความปลอดภัย</small></a>
+          <a href="tel:199"><span>🚒</span><strong>ดับเพลิง 199</strong><small>ไฟไหม้หรืออุบัติเหตุรุนแรง</small></a>
+          <a href="tel:022011000"><span>🏥</span><strong>โรงพยาบาล</strong><small>02-201-1000</small></a>
+          <button type="button" onClick={() => notify('ส่งแจ้งเตือนให้ครอบครัวแล้ว')}><span>👨‍👩‍👧</span><strong>แจ้งครอบครัว</strong><small>ส่งข้อความขอความช่วยเหลือ</small></button>
+        </section>
+
+        <section className="sos-guide" aria-label="คำแนะนำระหว่างรอความช่วยเหลือ">
+          <h2>ระหว่างรอความช่วยเหลือ</h2>
+          <ul>
+            <li>อยู่ในที่ปลอดภัยและมองเห็นง่าย</li>
+            <li>เปิดเสียงโทรศัพท์และอย่าวางสายถ้าเจ้าหน้าที่ติดต่อกลับ</li>
+            <li>เตรียมชื่อ โรคประจำตัว ยาที่ใช้ และอาการสำคัญ</li>
+          </ul>
+        </section>
+
+        <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
+      </section>
+    </main>
+  )
+}
+
 function LoginPage() {
   const loginImage = `${import.meta.env.BASE_URL}mybuddy-login.png`
   const goHome = () => { window.location.hash = 'home' }
@@ -352,6 +484,8 @@ function App() {
   if (route === '#login') return <LoginPage />
   if (route === '#activities') return <ActivitiesPage />
   if (route === '#appointments') return <AppointmentsPage />
+  if (route === '#consult') return <ConsultPage />
+  if (route === '#sos') return <SosPage />
   return <LandingPage />
 }
 
