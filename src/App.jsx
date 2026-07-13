@@ -92,7 +92,7 @@ function StethoscopeIcon() {
 const navItems = [
   { icon: <HomeIcon />, label: 'หน้าหลัก', active: true },
   { icon: <LocationIcon />, label: 'ติดตามพิกัด' },
-  { icon: <CalendarIcon />, label: 'หมอนัด' },
+  { icon: <CalendarIcon />, label: 'หมอนัด', route: 'appointments' },
   { icon: <UsersIcon />, label: 'กิจกรรมร่วมกลุ่ม', route: 'activities' },
   { icon: <StethoscopeIcon />, label: 'ปรึกษาแพทย์' },
 ]
@@ -201,6 +201,97 @@ function ActivitiesPage() {
   )
 }
 
+const firstAppointment = {
+  hospital: 'โรงพยาบาลรามาธิบดี',
+  doctor: 'คุณหมอเวร: นพ. สมชาย รักดี (แผนกโรคหัวใจ)',
+  type: 'เดินทางไปพบแพทย์ ณ โรงพยาบาล',
+  date: 'วันพุธที่ 15 กรกฎาคม 2569',
+  time: '09:00 น.',
+  note: 'ตรวจเลือดประจำปี กรุณางดน้ำและอาหารหลังเที่ยงคืน',
+  phone: '02-201-1000',
+}
+
+function AppointmentCard({ appointment, isNewest }) {
+  return (
+    <article className="appointment-card">
+      <div className="appointment-badges">
+        <span className="nearest-badge">📣 นัดหมายถัดไปใกล้ที่สุด</span>
+        {isNewest && <span className="important-badge">🚨 บันทึกสำคัญ</span>}
+      </div>
+      <h2>{appointment.hospital}</h2>
+      <p className="doctor-line">👨‍⚕️ {appointment.doctor}</p>
+      <p className="visit-pill">🏥 {appointment.type}</p>
+      <div className="appointment-detail-box">
+        <div className="detail-icon">📅</div>
+        <div>
+          <small>วันที่ระบุนัด</small>
+          <strong>{appointment.date}</strong>
+        </div>
+        <div className="detail-icon">🕘</div>
+        <div>
+          <small>เวลาที่กำหนด</small>
+          <strong>{appointment.time}</strong>
+        </div>
+      </div>
+      <p className="appointment-note">ⓘ ข้อแนะนำ: {appointment.note}</p>
+      <a className="hospital-call" href={`tel:${appointment.phone.replaceAll('-', '')}`}>📞 เบอร์โรงพยาบาลฉุกเฉิน: {appointment.phone}</a>
+    </article>
+  )
+}
+
+function AppointmentsPage() {
+  const [appointments, setAppointments] = useState([firstAppointment])
+  const [notice, setNotice] = useState('')
+
+  const addAppointment = () => {
+    const count = appointments.length + 1
+    setAppointments([
+      {
+        hospital: 'โรงพยาบาลรามาธิบดี',
+        doctor: 'คุณหมอเวร: นพ. สมชาย รักดี (แผนกโรคหัวใจ)',
+        type: 'ปรึกษาแพทย์ทางไกลผ่านช่องทางออนไลน์',
+        date: `วันศุกร์ที่ ${15 + count} กรกฎาคม 2569`,
+        time: count % 2 === 0 ? '13:30 น.' : '10:00 น.',
+        note: 'เตรียมผลตรวจล่าสุดและรายการยาที่ใช้อยู่ก่อนพบแพทย์',
+        phone: '02-201-1000',
+      },
+      ...appointments,
+    ])
+    setNotice('เพิ่มนัดหมายใหม่แล้ว')
+    window.setTimeout(() => setNotice(''), 1800)
+  }
+
+  return (
+    <main className="appointments-page">
+      <section className="appointments-shell" aria-label="ระบบตารางนัดหมายและปรึกษาแพทย์">
+        <header className="appointments-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>หมอนัด</strong>
+            <small>จัดการตารางนัดหมายและปรึกษาแพทย์</small>
+          </div>
+        </header>
+
+        <section className="appointment-intro">
+          <div className="intro-title">
+            <span>📅</span>
+            <h1>ระบบตารางนัดหมาย & ปรึกษาแพทย์</h1>
+          </div>
+          <p>จัดการวันนัดพบหมอที่โรงพยาบาล และจองช่วงเวลาปรึกษาแพทย์ทางไกลผ่านช่องทางต่าง ๆ</p>
+          <button type="button" onClick={addAppointment}>＋ เพิ่มนัดหมายใหม่</button>
+        </section>
+
+        <div className="appointment-list">
+          {appointments.map((appointment, index) => (
+            <AppointmentCard appointment={appointment} isNewest={index === 0} key={`${appointment.date}-${appointment.time}-${index}`} />
+          ))}
+        </div>
+        <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
+      </section>
+    </main>
+  )
+}
+
 function LoginPage() {
   const loginImage = `${import.meta.env.BASE_URL}mybuddy-login.png`
   const goHome = () => { window.location.hash = 'home' }
@@ -260,6 +351,7 @@ function App() {
   if (route === '#home') return <MemberHome />
   if (route === '#login') return <LoginPage />
   if (route === '#activities') return <ActivitiesPage />
+  if (route === '#appointments') return <AppointmentsPage />
   return <LandingPage />
 }
 
