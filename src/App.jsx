@@ -46,12 +46,13 @@ function HomeIcon() {
   return <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24.6 24 9l18 15.6v17.2a2.2 2.2 0 0 1-2.2 2.2H29V31H19v13H8.2A2.2 2.2 0 0 1 6 41.8V24.6z" /></svg>
 }
 
-function LocationIcon() {
+function MatchIcon() {
   return (
     <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M23.7 5.5c-7.1 0-12.8 5.7-12.8 12.8 0 9.6 12.8 21.5 12.8 21.5s12.8-11.9 12.8-21.5c0-7.1-5.7-12.8-12.8-12.8zm0 17.4a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6z" fill="none" stroke="currentColor" strokeWidth="3.2" />
-      <path d="M10.2 33.9c-3.2 1.2-5.2 2.9-5.2 4.7 0 3.1 8.5 5.6 19 5.6s19-2.5 19-5.6c0-1.6-2.2-3.1-5.8-4.2" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-      <path d="M32.9 31.5c3.4-.4 5.6-.2 6.8.6 1.2.8 1 1.9-.7 3.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeDasharray="2.2 4" />
+      <circle cx="16" cy="17" r="7" fill="none" stroke="currentColor" strokeWidth="3.2" />
+      <circle cx="32" cy="17" r="7" fill="none" stroke="currentColor" strokeWidth="3.2" />
+      <path d="M5.5 39c1.7-7.2 5.2-10.8 10.5-10.8 4.3 0 7.3 2.4 9.1 7.2M22.9 35.4c1.8-4.8 4.8-7.2 9.1-7.2 5.3 0 8.8 3.6 10.5 10.8" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+      <path d="M22.4 12.9c1.1-2.1 2.1-3.1 3.1-3.1 1.8 0 3.2 2.2 1.1 4.4l-4.2 4.1-4.2-4.1c-2.1-2.2-.7-4.4 1.1-4.4 1 0 2 1 3.1 3.1z" fill="currentColor" />
     </svg>
   )
 }
@@ -91,7 +92,7 @@ function StethoscopeIcon() {
 
 const navItems = [
   { icon: <HomeIcon />, label: 'หน้าหลัก', active: true },
-  { icon: <LocationIcon />, label: 'ติดตามพิกัด' },
+  { icon: <MatchIcon />, label: 'จับคู่', route: 'match' },
   { icon: <CalendarIcon />, label: 'หมอนัด', route: 'appointments' },
   { icon: <UsersIcon />, label: 'กิจกรรมร่วมกลุ่ม', route: 'activities' },
   { icon: <StethoscopeIcon />, label: 'ปรึกษาแพทย์', route: 'consult' },
@@ -282,6 +283,80 @@ function AppointmentsPage() {
             <AppointmentCard appointment={appointment} isNewest={index === 0} key={`${appointment.date}-${appointment.time}-${index}`} />
           ))}
         </div>
+        <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
+      </section>
+    </main>
+  )
+}
+
+const matchInterests = ['เดินเล่น', 'ทำอาหาร', 'ฝึกสมาธิ', 'คุยเล่น', 'ดูแลสุขภาพ']
+
+const matchProfiles = [
+  { name: 'คุณมาลี', role: 'เพื่อนวัยเดียวกัน', note: 'ชอบเดินเล่นตอนเช้าและคุยเรื่องสุขภาพ', score: '96%' },
+  { name: 'คุณอนงค์', role: 'เพื่อนกิจกรรม', note: 'สนใจทำอาหารสุขภาพและฝึกสมาธิ', score: '92%' },
+  { name: 'น้องพิม', role: 'ผู้ช่วยดูแล', note: 'ช่วยเตือนนัดหมอและติดตามกิจวัตรประจำวัน', score: '89%' },
+]
+
+function MatchPage() {
+  const [interest, setInterest] = useState(matchInterests[0])
+  const [selectedProfile, setSelectedProfile] = useState(matchProfiles[0])
+  const [notice, setNotice] = useState('')
+
+  const startMatch = () => {
+    setNotice(`จับคู่กับ ${selectedProfile.name} แล้ว`)
+    window.setTimeout(() => setNotice(''), 2000)
+  }
+
+  return (
+    <main className="match-page">
+      <section className="match-shell" aria-label="ระบบจับคู่ MyBuddy">
+        <header className="match-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>จับคู่</strong>
+            <small>หาเพื่อน ผู้ช่วย หรือคนดูแลที่เหมาะกับคุณ</small>
+          </div>
+        </header>
+
+        <section className="match-hero">
+          <span>💙</span>
+          <h1>MyBuddy ช่วยจับคู่คนที่เข้าใจคุณ</h1>
+          <p>เลือกความสนใจ แล้วระบบจะแนะนำเพื่อนหรือผู้ช่วยที่เข้ากับไลฟ์สไตล์ของคุณมากที่สุด</p>
+        </section>
+
+        <section className="match-panel" aria-label="เลือกความสนใจ">
+          <h2>คุณอยากจับคู่เรื่องอะไร?</h2>
+          <div className="interest-list">
+            {matchInterests.map((item) => (
+              <button className={interest === item ? 'active' : ''} type="button" key={item} onClick={() => setInterest(item)}>{item}</button>
+            ))}
+          </div>
+        </section>
+
+        <section className="match-panel" aria-label="รายชื่อที่เหมาะกับคุณ">
+          <h2>แนะนำสำหรับคุณ</h2>
+          <div className="match-list">
+            {matchProfiles.map((profile) => (
+              <button className={selectedProfile.name === profile.name ? 'active' : ''} type="button" key={profile.name} onClick={() => setSelectedProfile(profile)}>
+                <span className="match-avatar">{profile.role === 'ผู้ช่วยดูแล' ? '🧑‍⚕️' : '😊'}</span>
+                <span>
+                  <strong>{profile.name}</strong>
+                  <small>{profile.role}</small>
+                  <em>{profile.note}</em>
+                </span>
+                <b>{profile.score}</b>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="match-summary">
+          <small>ความสนใจที่เลือก</small>
+          <strong>{interest}</strong>
+          <p>ระบบแนะนำให้เริ่มคุยกับ {selectedProfile.name} เพราะมีความสนใจใกล้เคียงกัน</p>
+          <button type="button" onClick={startMatch}>เริ่มจับคู่</button>
+        </section>
+
         <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
       </section>
     </main>
@@ -483,6 +558,7 @@ function App() {
   if (route === '#home') return <MemberHome />
   if (route === '#login') return <LoginPage />
   if (route === '#activities') return <ActivitiesPage />
+  if (route === '#match') return <MatchPage />
   if (route === '#appointments') return <AppointmentsPage />
   if (route === '#consult') return <ConsultPage />
   if (route === '#sos') return <SosPage />
