@@ -1,0 +1,12 @@
+:root {
+  font-family: "Leelawadee UI", "Noto Sans Thai", system-ui, sans-serif;
+  color: #ffffff;
+  background: #75b5e5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+button { font-family: inherit; }
