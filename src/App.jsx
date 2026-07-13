@@ -103,6 +103,11 @@ const activityImages = [
   { src: 'activity-nature.png', alt: 'กิจกรรมทริปเดินชมธรรมชาติศึกษาพรรณไม้' },
 ]
 
+const homeRecommendations = [
+  { src: 'home-recommend-brain.jpg', alt: 'แนะนำกิจกรรมฝึกสมองป้องกันความจำเสื่อม' },
+  { src: 'home-recommend-health.jpg', alt: 'บทความอาหารสุขภาพและวิธีฝึกสมาธิ' },
+]
+
 function MemberHome() {
   const [notice, setNotice] = useState('')
   const homeBg = `${import.meta.env.BASE_URL}mybuddy-home-bg.png`
@@ -146,6 +151,17 @@ function MemberHome() {
 
         <section className="quick-section" aria-labelledby="quick-title">
           <h2 id="quick-title"><PhoneMenuIcon /> เมนูการใช้งานด่วน (ขนาดใหญ่ เข้าใจง่าย)</h2>
+        </section>
+
+        <section className="recommend-section" aria-labelledby="recommend-title">
+          <h2 id="recommend-title">🌟 แนะนำสำหรับคุณ</h2>
+          <div className="recommend-list">
+            {homeRecommendations.map((item) => (
+              <button className="recommend-card" type="button" key={item.src} onClick={() => notify('เปิดบทความแนะนำ')}>
+                <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} />
+              </button>
+            ))}
+          </div>
         </section>
 
         <nav className="bottom-nav" aria-label="เมนูหลัก">
@@ -198,9 +214,9 @@ function LoginPage() {
         </button>
         <form className="login-form-overlay" onSubmit={(event) => { event.preventDefault(); goHome() }}>
           <label className="sr-only" htmlFor="login-user">ชื่อผู้ใช้หรืออีเมล</label>
-          <input id="login-user" className="login-input login-user-input" type="text" name="username" autoComplete="username" placeholder="กรอกชื่อผู้ใช้หรืออีเมล" />
+          <input id="login-user" className="login-input login-user-input" type="text" name="username" autoComplete="username" />
           <label className="sr-only" htmlFor="login-password">รหัสผ่าน</label>
-          <input id="login-password" className="login-input login-password-input" type="password" name="password" autoComplete="current-password" placeholder="กรอกรหัสผ่าน" />
+          <input id="login-password" className="login-input login-password-input" type="password" name="password" autoComplete="current-password" />
           <button className="login-submit-hotspot" type="submit"><span className="sr-only">เข้าสู่ระบบ</span></button>
           <button className="login-line-hotspot" type="button" onClick={goHome}><span className="sr-only">เข้าสู่ระบบด้วย LINE</span></button>
         </form>
