@@ -292,15 +292,16 @@ function AppointmentsPage() {
 const matchInterests = ['เดินเล่น', 'ทำอาหาร', 'ฝึกสมาธิ', 'คุยเล่น', 'ดูแลสุขภาพ']
 
 const matchProfiles = [
-  { name: 'คุณมาลี', role: 'เพื่อนวัยเดียวกัน', note: 'ชอบเดินเล่นตอนเช้าและคุยเรื่องสุขภาพ', score: '96%' },
-  { name: 'คุณอนงค์', role: 'เพื่อนกิจกรรม', note: 'สนใจทำอาหารสุขภาพและฝึกสมาธิ', score: '92%' },
-  { name: 'น้องพิม', role: 'ผู้ช่วยดูแล', note: 'ช่วยเตือนนัดหมอและติดตามกิจวัตรประจำวัน', score: '89%' },
+  { name: 'คุณภาคิน', age: 64, role: 'เพื่อนวัยเดียวกัน', note: 'สุขภาพแข็งแรง ชอบคุยเรื่องข่าว เดินออกกำลัง และทำกิจกรรมใหม่ ๆ', score: '96%', image: 'match-profile-60plus.png' },
+  { name: 'คุณมาลี', age: 62, role: 'เพื่อนกิจกรรม', note: 'ชอบเดินเล่นตอนเช้า ทำอาหารสุขภาพ และคุยเรื่องสุขภาพ', score: '92%', image: 'match-profile-60plus.png' },
+  { name: 'คุณอนงค์', age: 67, role: 'เพื่อนฝึกสมาธิ', note: 'สนใจฝึกสมาธิ อ่านหนังสือ และหาเพื่อนคุยสบาย ๆ', score: '89%', image: 'match-profile-60plus.png' },
 ]
 
 function MatchPage() {
   const [interest, setInterest] = useState(matchInterests[0])
   const [selectedProfile, setSelectedProfile] = useState(matchProfiles[0])
   const [notice, setNotice] = useState('')
+  const profileImage = `${import.meta.env.BASE_URL}${selectedProfile.image}`
 
   const startMatch = () => {
     setNotice(`จับคู่กับ ${selectedProfile.name} แล้ว`)
@@ -335,12 +336,25 @@ function MatchPage() {
 
         <section className="match-panel" aria-label="รายชื่อที่เหมาะกับคุณ">
           <h2>แนะนำสำหรับคุณ</h2>
+          <article className="match-swipe-card">
+            <img src={profileImage} alt={`${selectedProfile.name} อายุ ${selectedProfile.age} ปี`} />
+            <div className="match-card-gradient">
+              <span className="match-score">{selectedProfile.score} เข้ากัน</span>
+              <h3>{selectedProfile.name}, {selectedProfile.age}</h3>
+              <p>{selectedProfile.role}</p>
+              <small>{selectedProfile.note}</small>
+            </div>
+          </article>
+          <div className="swipe-actions" aria-label="เลือกการจับคู่">
+            <button type="button" onClick={() => setNotice('ข้ามโปรไฟล์นี้แล้ว')}>✕</button>
+            <button type="button" onClick={startMatch}>♥</button>
+          </div>
           <div className="match-list">
             {matchProfiles.map((profile) => (
               <button className={selectedProfile.name === profile.name ? 'active' : ''} type="button" key={profile.name} onClick={() => setSelectedProfile(profile)}>
                 <span className="match-avatar">{profile.role === 'ผู้ช่วยดูแล' ? '🧑‍⚕️' : '😊'}</span>
                 <span>
-                  <strong>{profile.name}</strong>
+                  <strong>{profile.name}, {profile.age}</strong>
                   <small>{profile.role}</small>
                   <em>{profile.note}</em>
                 </span>
