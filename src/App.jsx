@@ -105,9 +105,85 @@ const activityImages = [
 ]
 
 const homeRecommendations = [
-  { src: 'home-recommend-brain.jpg', alt: 'แนะนำกิจกรรมฝึกสมองป้องกันความจำเสื่อม' },
-  { src: 'home-recommend-health.jpg', alt: 'บทความอาหารสุขภาพและวิธีฝึกสมาธิ' },
+  {
+    id: 'brain',
+    src: 'home-recommend-brain.jpg',
+    alt: 'แนะนำกิจกรรมฝึกสมองป้องกันความจำเสื่อม',
+    label: 'กิจกรรมแนะนำ',
+    title: '5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม',
+    summary: 'กิจกรรมเล็ก ๆ ที่ทำได้ทุกวัน ช่วยให้สมองตื่นตัว อารมณ์ดี และลดความเสี่ยงภาวะความจำถดถอย',
+    bullets: ['เล่นเกมฝึกคิด เช่น จับคู่ภาพ หมากฮอส หรือซูโดกุวันละ 10 นาที', 'อ่านหนังสือหรือฟังพอดแคสต์ แล้วเล่าให้คนใกล้ตัวฟัง', 'ฝึกจำรายการของใช้ 5 อย่างก่อนออกจากบ้าน', 'ทำงานฝีมือ วาดรูป ปลูกต้นไม้ หรือจัดของตามสี', 'นัดคุยกับ Buddy หรือเข้ากิจกรรมกลุ่มอย่างน้อยสัปดาห์ละ 1 ครั้ง'],
+    action: 'บันทึกกิจกรรมฝึกสมองวันนี้',
+  },
+  {
+    id: 'health',
+    src: 'home-recommend-health.jpg',
+    alt: 'บทความอาหารสุขภาพและวิธีฝึกสมาธิ',
+    label: 'อาหารสุขภาพ',
+    title: 'อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก',
+    summary: 'เริ่มต้นวันใหม่อย่างสดชื่นด้วยอาหารอ่อน ย่อยง่าย และมีสารอาหารเหมาะกับผู้สูงอายุ',
+    bullets: ['เลือกข้าวต้ม โจ๊ก หรือซุปอุ่น ๆ ที่เคี้ยวง่าย', 'เพิ่มโปรตีนย่อยง่าย เช่น ไข่ ปลา ไก่นุ่ม หรือเต้าหู้', 'เติมผักอ่อนและผลไม้ไม่หวานจัด เช่น กล้วยน้ำว้า มะละกอ หรือแอปเปิลนึ่ง', 'ดื่มน้ำอุ่นหลังตื่นนอน และเลี่ยงอาหารทอดมันในมื้อเช้า', 'กินช้า ๆ และสังเกตอาการแน่นท้องหรือจุกเสียดหลังอาหาร'],
+    action: 'บันทึกมื้อเช้าสุขภาพดี',
+  },
 ]
+
+function RecommendDetailPage({ item }) {
+  const [checkedItems, setCheckedItems] = useState([])
+  const [saved, setSaved] = useState(false)
+
+  const toggleItem = (index) => {
+    setCheckedItems((current) => (
+      current.includes(index) ? current.filter((itemIndex) => itemIndex !== index) : [...current, index]
+    ))
+    setSaved(false)
+  }
+
+  return (
+    <main className="recommend-detail-page">
+      <section className="recommend-detail-shell" aria-label={item.title}>
+        <header className="recommend-detail-header">
+          <button type="button" onClick={() => { window.location.hash = 'home' }} aria-label="กลับหน้าหลัก">‹</button>
+          <div>
+            <strong>{item.label}</strong>
+            <small>แนะนำสำหรับคุณ</small>
+          </div>
+        </header>
+
+        <article className="recommend-detail-card">
+          <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} />
+          <div className="recommend-detail-body">
+            <span>{item.label}</span>
+            <h1>{item.title}</h1>
+            <p>{item.summary}</p>
+
+            <div className="recommend-checklist" aria-label="รายการแนะนำ">
+              {item.bullets.map((bullet, index) => (
+                <label key={bullet}>
+                  <input type="checkbox" checked={checkedItems.includes(index)} onChange={() => toggleItem(index)} />
+                  <i aria-hidden="true">✓</i>
+                  <em>{bullet}</em>
+                </label>
+              ))}
+            </div>
+
+            <button className="recommend-save-button" type="button" onClick={() => setSaved(true)}>
+              {item.action}
+            </button>
+            {saved && <p className="recommend-saved" role="status">บันทึกแล้ว วันนี้ทำได้ {checkedItems.length} รายการ</p>}
+          </div>
+        </article>
+
+        <nav className="bottom-nav" aria-label="เมนูหลัก">
+          {navItems.map((navItem) => (
+            <button className={!navItem.route ? 'active' : ''} type="button" key={navItem.label} onClick={() => { window.location.hash = navItem.route || 'home' }}>
+              <span>{navItem.icon}</span><small>{navItem.label}</small>
+            </button>
+          ))}
+        </nav>
+      </section>
+    </main>
+  )
+}
 
 function MemberHome() {
   const [notice, setNotice] = useState('')
@@ -154,7 +230,7 @@ function MemberHome() {
           <h2 id="recommend-title">🌟 แนะนำสำหรับคุณ</h2>
           <div className="recommend-list">
             {homeRecommendations.map((item) => (
-              <button className="recommend-card" type="button" key={item.src} onClick={() => notify('เปิดบทความแนะนำ')}>
+              <button className="recommend-card" type="button" key={item.src} onClick={() => { window.location.hash = `recommend-${item.id}` }}>
                 <img src={`${import.meta.env.BASE_URL}${item.src}`} alt={item.alt} />
               </button>
             ))}
@@ -292,9 +368,9 @@ function AppointmentsPage() {
 const matchInterests = ['ใกล้ที่สุด', 'เดินเล่น', 'คุยกาแฟ', 'ออกกำลัง', 'ทำกิจกรรม']
 
 const matchProfiles = [
-  { name: 'คุณภาคิน', age: 64, role: 'Buddy ใกล้คุณ', note: 'อยู่แถวสวนสาธารณะ ชอบเดินออกกำลัง คุยเรื่องข่าว และนัดดื่มกาแฟช่วงเช้า', distance: '0.8 กม.', pickup: 'คอนโดศาลาแดง', place: 'สวนลุมพินี', image: 'match-profile-60plus.png' },
-  { name: 'คุณมาลี', age: 62, role: 'Buddy กิจกรรม', note: 'อยู่ใกล้ศูนย์ชุมชน ชอบทำอาหารสุขภาพและเดินเล่นช่วงเย็น', distance: '1.4 กม.', pickup: 'ศูนย์ชุมชนใกล้บ้าน', place: 'สวนลุมพินี', image: 'match-profile-60plus.png' },
-  { name: 'คุณอนงค์', age: 67, role: 'Buddy คุยสบาย ๆ', note: 'อยู่แถวตลาดเช้า สนใจฝึกสมาธิ อ่านหนังสือ และหาเพื่อนคุยประจำวัน', distance: '2.1 กม.', pickup: 'ตลาดเช้า', place: 'สวนลุมพินี', image: 'match-profile-60plus.png' },
+  { name: 'คุณภาคิน', age: 64, role: 'Buddy ใกล้คุณ', note: 'อยู่แถวสวนสาธารณะ ชอบเดินออกกำลัง คุยเรื่องข่าว และนัดดื่มกาแฟช่วงเช้า', distance: '0.8 กม.', pickup: 'คอนโดศาลาแดง', place: 'สวนลุมพินี', image: 'buddy-pakin.png' },
+  { name: 'คุณมาลี', age: 62, role: 'Buddy กิจกรรม', note: 'อยู่ใกล้ศูนย์ชุมชน ชอบทำอาหารสุขภาพและเดินเล่นช่วงเย็น', distance: '1.4 กม.', pickup: 'ศูนย์ชุมชนใกล้บ้าน', place: 'สวนลุมพินี', image: 'buddy-malee.png' },
+  { name: 'คุณอนงค์', age: 67, role: 'Buddy คุยสบาย ๆ', note: 'อยู่แถวตลาดเช้า สนใจฝึกสมาธิ อ่านหนังสือ และหาเพื่อนคุยประจำวัน', distance: '2.1 กม.', pickup: 'ตลาดเช้า', place: 'สวนลุมพินี', image: 'buddy-anong.png' },
 ]
 
 const buddyRideStops = [
@@ -677,6 +753,8 @@ function LandingPage() {
 
 function App() {
   const [route, setRoute] = useState(window.location.hash)
+  const recommendId = route.replace('#recommend-', '')
+  const activeRecommendation = homeRecommendations.find((item) => item.id === recommendId)
 
   useEffect(() => {
     const onHashChange = () => setRoute(window.location.hash)
@@ -687,6 +765,7 @@ function App() {
   if (route === '#home') return <MemberHome />
   if (route === '#login') return <LoginPage />
   if (route === '#line-auth') return <LineAuthPage />
+  if (activeRecommendation) return <RecommendDetailPage item={activeRecommendation} />
   if (route === '#activities') return <ActivitiesPage />
   if (route === '#match') return <MatchPage />
   if (route === '#appointments') return <AppointmentsPage />
