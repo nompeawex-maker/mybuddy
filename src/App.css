@@ -105,7 +105,7 @@
 .recommend-detail-header strong { display: block; color: #122042; font-size: 22px; font-weight: 900; line-height: 1.1; }
 .recommend-detail-header small { color: #667085; font-size: 13px; font-weight: 800; }
 .recommend-detail-card { margin: 14px 12px 18px; overflow: hidden; border: 3px solid #dbeafe; border-radius: 26px; background: #fff; box-shadow: 0 12px 26px rgba(67,96,140,.12); }
-.recommend-detail-card>img { display: block; width: 100%; aspect-ratio: 597 / 401; object-fit: cover; object-position: center top; }
+.recommend-detail-card>img { display: block; width: 100%; height: 176px; object-fit: cover; object-position: center top; }
 .recommend-detail-body { padding: 20px 18px 22px; }
 .recommend-detail-body>span { display: inline-flex; min-height: 30px; align-items: center; padding: 0 14px; border-radius: 999px; color: #075adf; background: #eaf4ff; font-size: 14px; font-weight: 900; }
 .recommend-detail-body h1 { margin: 14px 0 10px; color: #132033; font-size: 27px; font-weight: 900; line-height: 1.2; }
