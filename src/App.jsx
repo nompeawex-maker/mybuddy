@@ -308,11 +308,11 @@ function MatchPage() {
   const [interest, setInterest] = useState(matchInterests[0])
   const [selectedProfile, setSelectedProfile] = useState(matchProfiles[0])
   const [matchedProfiles, setMatchedProfiles] = useState([])
-  const [chatOpen, setChatOpen] = useState(false)
+  const [buddyTab, setBuddyTab] = useState('discover')
   const [rideReady, setRideReady] = useState(false)
   const [notice, setNotice] = useState('')
   const profileImage = `${import.meta.env.BASE_URL}${selectedProfile.image}`
-  const groupMembers = [selectedProfile, ...matchedProfiles.filter((profile) => profile.name !== selectedProfile.name)]
+  const groupMembers = [selectedProfile, ...matchedProfiles.filter((profile) => profile.name !== selectedProfile.name)].slice(0, 3)
   const isMatched = groupMembers.some((profile) => profile.name === selectedProfile.name)
 
   const startMatch = () => {
@@ -321,17 +321,59 @@ function MatchPage() {
     window.setTimeout(() => setNotice(''), 2000)
   }
 
-  const openGroupChat = () => {
-    setChatOpen(true)
-    setNotice('สร้างแชทกลุ่ม Buddy แล้ว')
-    window.setTimeout(() => setNotice(''), 2000)
-  }
-
   const requestRide = () => {
     setRideReady(true)
     setNotice('คำนวณเส้นทางรับ Buddy แล้ว')
     window.setTimeout(() => setNotice(''), 2000)
   }
+
+  const openChat = (tab) => {
+    if (!isMatched) startMatch()
+    setBuddyTab(tab)
+  }
+
+  const ChatRoom = ({ group = false }) => (
+    <section className="buddy-chat-room" aria-label={group ? 'ห้องแชทกลุ่ม Buddy' : 'ห้องแชทเดียว Buddy'}>
+      <header className="chat-room-head">
+        <button type="button" onClick={() => setBuddyTab('discover')} aria-label="กลับหน้า Buddy">‹</button>
+        <div>
+          <strong>{group ? 'แชทกลุ่ม Buddy' : selectedProfile.name}</strong>
+          <small>{group ? `สมาชิก ${groupMembers.length + 1} คน · จุดหมาย ${selectedProfile.place}` : `${selectedProfile.distance} · ${selectedProfile.role}`}</small>
+        </div>
+      </header>
+
+      <div className="chat-member-strip">
+        <span>คุณ</span>
+        {(group ? groupMembers : [selectedProfile]).map((profile) => <span key={profile.name}>{profile.name}</span>)}
+      </div>
+
+      <div className="chat-thread">
+        <p className="system-message">MyBuddy สร้างห้องแชทให้แล้ว สามารถคุยและเรียกรถจากช่องพิมพ์ได้เลย</p>
+        <p><b>{selectedProfile.name}:</b> สวัสดีครับ วันนี้สะดวกนัดที่ {selectedProfile.place} ไหมครับ</p>
+        {group && <p><b>คุณมาลี:</b> ถ้ามีรถรับหลายจุดจะสะดวกมากค่ะ</p>}
+        <p className="my-message">ได้ครับ เดี๋ยวให้แอปช่วยคำนวณรถรับส่งให้</p>
+      </div>
+
+      <div className="chat-composer">
+        <button type="button" onClick={requestRide}>🚗 เรียกรถ</button>
+        <input type="text" placeholder="พิมพ์ข้อความถึง Buddy..." />
+        <button type="button" onClick={() => setNotice('ส่งข้อความแล้ว')}>ส่ง</button>
+      </div>
+
+      {rideReady && (
+        <div className="chat-ride-card">
+          <small>MyBuddy Ride</small>
+          <strong>คำนวณเส้นทางรับส่งแล้ว</strong>
+          <ol>
+            {buddyRideStops.map((stop) => (
+              <li key={stop.label}><span>{stop.label}</span><b>{stop.place}</b><em>{stop.eta}</em></li>
+            ))}
+          </ol>
+          <button type="button" onClick={() => setNotice('ยืนยันเรียกรถแล้ว')}>ยืนยันเรียกรถ</button>
+        </div>
+      )}
+    </section>
+  )
 
   return (
     <main className="match-page">
@@ -344,102 +386,71 @@ function MatchPage() {
           </div>
         </header>
 
-        <section className="match-hero">
-          <span>💙</span>
-          <h1>หา Buddy ใกล้บ้านคุณ</h1>
-          <p>ดูเพื่อนบริเวณใกล้เคียง เลือกคนที่สนใจเหมือนกัน และเริ่มทักทายเพื่อทำกิจกรรมด้วยกัน</p>
-        </section>
+        {buddyTab === 'discover' && (
+          <>
+            <section className="match-hero">
+              <span>💙</span>
+              <h1>หา Buddy ใกล้บ้านคุณ</h1>
+              <p>ดูเพื่อนบริเวณใกล้เคียง เลือกคนที่สนใจเหมือนกัน แล้วเปิดแชทเดียวหรือแชทกลุ่มได้จากแถบ Buddy ด้านล่าง</p>
+            </section>
 
-        <section className="match-panel" aria-label="ตัวกรอง Buddy ใกล้เคียง">
-          <h2>อยากหา Buddy แบบไหน?</h2>
-          <div className="interest-list">
-            {matchInterests.map((item) => (
-              <button className={interest === item ? 'active' : ''} type="button" key={item} onClick={() => setInterest(item)}>{item}</button>
-            ))}
-          </div>
-        </section>
-
-        <section className="match-panel" aria-label="รายชื่อ Buddy ใกล้คุณ">
-          <h2>Buddy ใกล้คุณ</h2>
-          <article className="match-swipe-card">
-            <img src={profileImage} alt={`${selectedProfile.name} อายุ ${selectedProfile.age} ปี`} />
-            <div className="match-card-gradient">
-              <span className="match-score">📍 {selectedProfile.distance}</span>
-              <h3>{selectedProfile.name}, {selectedProfile.age}</h3>
-              <p>{selectedProfile.role}</p>
-              <small>{selectedProfile.note}</small>
-              <small>จุดนัดพบแนะนำ: {selectedProfile.place}</small>
-            </div>
-          </article>
-          <div className="swipe-actions" aria-label="เลือก Buddy">
-            <button type="button" onClick={() => setNotice('ข้ามโปรไฟล์นี้แล้ว')}>✕</button>
-            <button type="button" onClick={startMatch}>♥</button>
-          </div>
-          <div className="match-list">
-            {matchProfiles.map((profile) => (
-              <button className={selectedProfile.name === profile.name ? 'active' : ''} type="button" key={profile.name} onClick={() => setSelectedProfile(profile)}>
-                <span className="match-avatar">😊</span>
-                <span>
-                  <strong>{profile.name}, {profile.age}</strong>
-                  <small>{profile.role}</small>
-                  <em>{profile.note}</em>
-                </span>
-                <b>{profile.distance}</b>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="match-summary">
-          <small>ตัวกรองที่เลือก</small>
-          <strong>{interest}</strong>
-          <p>{selectedProfile.name} อยู่ห่างประมาณ {selectedProfile.distance} จุดนัดพบแนะนำคือ {selectedProfile.place}</p>
-          <button type="button" onClick={startMatch}>{isMatched ? 'จับคู่สำเร็จแล้ว' : 'ทัก Buddy คนนี้'}</button>
-        </section>
-
-        {isMatched && (
-          <section className="buddy-system">
-            <div className="buddy-system-head">
-              <span>💬</span>
-              <div>
-                <h2>Buddy Connect</h2>
-                <p>จับคู่สำเร็จแล้ว เริ่มคุยหรือชวนกันไปจุดนัดพบได้เลย</p>
-              </div>
-            </div>
-            <div className="buddy-actions">
-              <button type="button" onClick={openGroupChat}>เปิดแชทกลุ่ม</button>
-              <button type="button" onClick={requestRide}>เรียกรถรับ Buddy</button>
-            </div>
-            {chatOpen && (
-              <div className="buddy-chat">
-                <strong>แชทกลุ่ม: Buddy ใกล้บ้าน</strong>
-                <p><b>MyBuddy:</b> สร้างกลุ่มให้แล้ว สมาชิก {groupMembers.length + 1} คน</p>
-                <p><b>{selectedProfile.name}:</b> สวัสดีครับ นัดเจอกันที่ {selectedProfile.place} ได้เลย</p>
-                <label>
-                  <span>พิมพ์ข้อความ</span>
-                  <input type="text" placeholder="เช่น เจอกันกี่โมงดีครับ" />
-                </label>
-              </div>
-            )}
-            <div className="ride-planner">
-              <div>
-                <small>ระบบเรียกรถ MyBuddy</small>
-                <strong>{rideReady ? 'พร้อมเรียกรถแล้ว' : 'คำนวณเส้นทางรับเพื่อน'}</strong>
-                <p>รับคุณและ Buddy ตามลำดับ แล้วไปส่งที่ {selectedProfile.place}</p>
-              </div>
-              <ol>
-                {buddyRideStops.map((stop) => (
-                  <li key={stop.label}>
-                    <span>{stop.label}</span>
-                    <strong>{stop.place}</strong>
-                    <small>{stop.eta}</small>
-                  </li>
+            <section className="match-panel" aria-label="ตัวกรอง Buddy ใกล้เคียง">
+              <h2>อยากหา Buddy แบบไหน?</h2>
+              <div className="interest-list">
+                {matchInterests.map((item) => (
+                  <button className={interest === item ? 'active' : ''} type="button" key={item} onClick={() => setInterest(item)}>{item}</button>
                 ))}
-              </ol>
-              <button type="button" onClick={requestRide}>{rideReady ? 'ยืนยันเรียกรถ' : 'คำนวณพิกัดรับส่ง'}</button>
-            </div>
-          </section>
+              </div>
+            </section>
+
+            <section className="match-panel" aria-label="รายชื่อ Buddy ใกล้คุณ">
+              <h2>Buddy ใกล้คุณ</h2>
+              <article className="match-swipe-card">
+                <img src={profileImage} alt={`${selectedProfile.name} อายุ ${selectedProfile.age} ปี`} />
+                <div className="match-card-gradient">
+                  <span className="match-score">📍 {selectedProfile.distance}</span>
+                  <h3>{selectedProfile.name}, {selectedProfile.age}</h3>
+                  <p>{selectedProfile.role}</p>
+                  <small>{selectedProfile.note}</small>
+                  <small>จุดนัดพบแนะนำ: {selectedProfile.place}</small>
+                </div>
+              </article>
+              <div className="swipe-actions" aria-label="เลือก Buddy">
+                <button type="button" onClick={() => setNotice('ข้ามโปรไฟล์นี้แล้ว')}>✕</button>
+                <button type="button" onClick={startMatch}>♥</button>
+              </div>
+              <div className="match-list">
+                {matchProfiles.map((profile) => (
+                  <button className={selectedProfile.name === profile.name ? 'active' : ''} type="button" key={profile.name} onClick={() => setSelectedProfile(profile)}>
+                    <span className="match-avatar">😊</span>
+                    <span>
+                      <strong>{profile.name}, {profile.age}</strong>
+                      <small>{profile.role}</small>
+                      <em>{profile.note}</em>
+                    </span>
+                    <b>{profile.distance}</b>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            <section className="match-summary">
+              <small>ตัวกรองที่เลือก</small>
+              <strong>{interest}</strong>
+              <p>{selectedProfile.name} อยู่ห่างประมาณ {selectedProfile.distance} จุดนัดพบแนะนำคือ {selectedProfile.place}</p>
+              <button type="button" onClick={startMatch}>{isMatched ? 'จับคู่สำเร็จแล้ว' : 'ทัก Buddy คนนี้'}</button>
+            </section>
+          </>
         )}
+
+        {buddyTab === 'single' && <ChatRoom />}
+        {buddyTab === 'group' && <ChatRoom group />}
+
+        <nav className="buddy-subnav" aria-label="เมนู Buddy">
+          <button className={buddyTab === 'discover' ? 'active' : ''} type="button" onClick={() => setBuddyTab('discover')}>Buddy</button>
+          <button className={buddyTab === 'single' ? 'active' : ''} type="button" onClick={() => openChat('single')}>แชทเดียว</button>
+          <button className={buddyTab === 'group' ? 'active' : ''} type="button" onClick={() => openChat('group')}>แชทกลุ่ม</button>
+        </nav>
 
         <p className={`toast member-toast ${notice ? 'show' : ''}`} role="status" aria-live="polite">{notice}</p>
       </section>
