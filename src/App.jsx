@@ -314,6 +314,14 @@ function MatchPage() {
   const profileImage = `${import.meta.env.BASE_URL}${selectedProfile.image}`
   const groupMembers = [selectedProfile, ...matchedProfiles.filter((profile) => profile.name !== selectedProfile.name)].slice(0, 3)
   const isMatched = groupMembers.some((profile) => profile.name === selectedProfile.name)
+  const currentProfileIndex = matchProfiles.findIndex((profile) => profile.name === selectedProfile.name)
+
+  const showNextBuddy = () => {
+    const nextIndex = (currentProfileIndex + 1) % matchProfiles.length
+    setSelectedProfile(matchProfiles[nextIndex])
+    setNotice('เลื่อนไปหา Buddy คนถัดไป')
+    window.setTimeout(() => setNotice(''), 1400)
+  }
 
   const startMatch = () => {
     setMatchedProfiles((current) => current.some((profile) => profile.name === selectedProfile.name) ? current : [selectedProfile, ...current])
@@ -416,29 +424,10 @@ function MatchPage() {
                 </div>
               </article>
               <div className="swipe-actions" aria-label="เลือก Buddy">
-                <button type="button" onClick={() => setNotice('ข้ามโปรไฟล์นี้แล้ว')}>✕</button>
+                <button type="button" onClick={showNextBuddy}>✕</button>
                 <button type="button" onClick={startMatch}>♥</button>
               </div>
-              <div className="match-list">
-                {matchProfiles.map((profile) => (
-                  <button className={selectedProfile.name === profile.name ? 'active' : ''} type="button" key={profile.name} onClick={() => setSelectedProfile(profile)}>
-                    <span className="match-avatar">😊</span>
-                    <span>
-                      <strong>{profile.name}, {profile.age}</strong>
-                      <small>{profile.role}</small>
-                      <em>{profile.note}</em>
-                    </span>
-                    <b>{profile.distance}</b>
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            <section className="match-summary">
-              <small>ตัวกรองที่เลือก</small>
-              <strong>{interest}</strong>
-              <p>{selectedProfile.name} อยู่ห่างประมาณ {selectedProfile.distance} จุดนัดพบแนะนำคือ {selectedProfile.place}</p>
-              <button type="button" onClick={startMatch}>{isMatched ? 'จับคู่สำเร็จแล้ว' : 'ทัก Buddy คนนี้'}</button>
+              <p className="swipe-hint">กด ✕ เพื่อปัดหา Buddy คนใหม่ หรือกด ♥ เพื่อจับคู่</p>
             </section>
           </>
         )}
@@ -597,6 +586,7 @@ function SosPage() {
 function LoginPage() {
   const loginImage = `${import.meta.env.BASE_URL}mybuddy-login.png`
   const goHome = () => { window.location.hash = 'home' }
+  const goLineAuth = () => { window.location.hash = 'line-auth' }
 
   return (
     <main className="login-page" style={{ '--login-image': `url(${loginImage})` }}>
@@ -611,8 +601,52 @@ function LoginPage() {
           <label className="sr-only" htmlFor="login-password">รหัสผ่าน</label>
           <input id="login-password" className="login-input login-password-input" type="password" name="password" autoComplete="current-password" />
           <button className="login-submit-hotspot" type="submit"><span className="sr-only">เข้าสู่ระบบ</span></button>
-          <button className="login-line-hotspot" type="button" onClick={goHome}><span className="sr-only">เข้าสู่ระบบด้วย LINE</span></button>
+          <button className="login-line-hotspot" type="button" onClick={goLineAuth}><span className="sr-only">เข้าสู่ระบบด้วย LINE</span></button>
         </form>
+      </section>
+    </main>
+  )
+}
+
+function LineAuthPage() {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const approveLogin = () => {
+    setIsLoading(true)
+    window.setTimeout(() => {
+      window.location.hash = 'home'
+    }, 850)
+  }
+
+  return (
+    <main className="line-auth-page">
+      <section className="line-auth-card" aria-label="ยืนยันการเข้าสู่ระบบด้วย LINE">
+        <header className="line-auth-header">
+          <button type="button" onClick={() => { window.location.hash = 'login' }} aria-label="กลับหน้าเข้าสู่ระบบ">‹</button>
+          <strong>LINE Login</strong>
+        </header>
+
+        <div className="line-auth-brand">
+          <span className="line-logo" aria-hidden="true">LINE</span>
+          <span className="line-bridge" aria-hidden="true">→</span>
+          <BrandIcon />
+        </div>
+
+        <h1>อนุญาตให้ MyBuddy+ เข้าสู่ระบบด้วย LINE</h1>
+        <p>MyBuddy+ จะใช้ข้อมูลพื้นฐานจากบัญชี LINE เพื่อเข้าสู่ระบบและดูแลประสบการณ์ของคุณให้ต่อเนื่อง</p>
+
+        <ul className="line-permission-list">
+          <li><span>✓</span> ชื่อโปรไฟล์และรูปโปรไฟล์</li>
+          <li><span>✓</span> ใช้สำหรับยืนยันตัวตนในแอป</li>
+          <li><span>✓</span> ไม่โพสต์ข้อความแทนคุณ</li>
+        </ul>
+
+        <button className="line-approve-button" type="button" onClick={approveLogin} disabled={isLoading}>
+          {isLoading ? 'กำลังเข้าสู่ระบบ...' : 'อนุญาตและเข้าสู่ระบบ'}
+        </button>
+        <button className="line-cancel-button" type="button" onClick={() => { window.location.hash = 'login' }}>
+          ยกเลิก
+        </button>
       </section>
     </main>
   )
@@ -652,6 +686,7 @@ function App() {
 
   if (route === '#home') return <MemberHome />
   if (route === '#login') return <LoginPage />
+  if (route === '#line-auth') return <LineAuthPage />
   if (route === '#activities') return <ActivitiesPage />
   if (route === '#match') return <MatchPage />
   if (route === '#appointments') return <AppointmentsPage />
