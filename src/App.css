@@ -110,6 +110,12 @@
 .recommend-detail-body>span { display: inline-flex; min-height: 30px; align-items: center; padding: 0 14px; border-radius: 999px; color: #075adf; background: #eaf4ff; font-size: 14px; font-weight: 900; }
 .recommend-detail-body h1 { margin: 14px 0 10px; color: #132033; font-size: 27px; font-weight: 900; line-height: 1.2; }
 .recommend-detail-body p { margin: 0 0 18px; color: #475467; font-size: 17px; font-weight: 750; line-height: 1.55; }
+.recommend-info-box,.recommend-menu-box { margin: 0 0 18px; padding: 16px; border-radius: 20px; background: #fbfdff; box-shadow: inset 0 0 0 1px #e4eefb; }
+.recommend-info-box h2,.recommend-menu-box h2 { margin: 0 0 10px; color: #122042; font-size: 21px; font-weight: 900; line-height: 1.2; }
+.recommend-menu-box>strong { display: block; margin: 0 0 8px; color: #075adf; font-size: 19px; font-weight: 900; line-height: 1.25; }
+.recommend-menu-box h3 { margin: 16px 0 8px; color: #25344d; font-size: 17px; font-weight: 900; line-height: 1.25; }
+.recommend-info-box ul,.recommend-menu-box ul,.recommend-menu-box ol { display: grid; gap: 8px; margin: 0; padding-left: 22px; color: #344054; font-size: 15px; font-weight: 800; line-height: 1.45; }
+.recommend-menu-box p { margin-bottom: 12px; font-size: 15px; }
 .recommend-checklist { display: grid; gap: 10px; margin: 0 0 18px; }
 .recommend-checklist label { display: grid; grid-template-columns: 0 34px 1fr; gap: 10px; align-items: start; padding: 13px; border: 2px solid #e4eefb; border-radius: 18px; background: #fbfdff; cursor: pointer; }
 .recommend-checklist input { width: 1px; height: 1px; opacity: 0; }
@@ -133,8 +139,26 @@
 .activities-header strong { font-size: 24px; font-weight: 900; }
 .activities-header small { color: #697386; font-size: 13px; font-weight: 700; }
 .activity-list { display: grid; gap: 18px; padding: 18px 12px 28px; }
-.activity-card { margin: 0; overflow: hidden; border-radius: 28px; background: #fff; box-shadow: 0 10px 24px rgba(67,96,140,.13); }
+.activity-card { display: block; width: 100%; margin: 0; overflow: hidden; padding: 0; border: 0; border-radius: 28px; background: #fff; box-shadow: 0 10px 24px rgba(67,96,140,.13); cursor: pointer; text-align: left; }
 .activity-card img { display: block; width: 100%; height: auto; user-select: none; }
+.activity-card:focus-visible { outline: 5px solid #ffe45c; outline-offset: 4px; }
+.activity-card:active { transform: scale(.992); }
+.activity-detail-card { margin: 18px 12px 28px; overflow: hidden; border: 3px solid #dbeafe; border-radius: 28px; background: #fff; box-shadow: 0 12px 28px rgba(67,96,140,.13); }
+.activity-detail-card>img { display: block; width: 100%; height: auto; user-select: none; }
+.activity-detail-body { padding: 20px 18px 22px; }
+.activity-detail-tag { display: inline-flex; min-height: 30px; align-items: center; padding: 0 14px; border-radius: 999px; color: #4f35e8; background: #efedff; font-size: 14px; font-weight: 900; }
+.activity-detail-body h1 { margin: 14px 0 10px; color: #122042; font-size: 29px; font-weight: 900; line-height: 1.15; }
+.activity-detail-body p { margin: 0 0 18px; color: #475467; font-size: 17px; font-weight: 750; line-height: 1.55; }
+.activity-info-grid { display: grid; gap: 10px; margin: 0 0 18px; }
+.activity-info-grid div { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 10px; padding: 13px; border-radius: 17px; background: #f8fbff; box-shadow: inset 0 0 0 1px #e4eefb; }
+.activity-info-grid span { font-size: 23px; line-height: 1; }
+.activity-info-grid strong { color: #25344d; font-size: 16px; font-weight: 900; line-height: 1.35; }
+.activity-detail-section { margin: 0 0 18px; padding: 16px; border-radius: 20px; background: #fbfdff; box-shadow: inset 0 0 0 1px #e4eefb; }
+.activity-detail-section h2 { margin: 0 0 10px; color: #122042; font-size: 21px; font-weight: 900; }
+.activity-detail-section ol,.activity-detail-section ul { display: grid; gap: 8px; margin: 0; padding-left: 22px; color: #344054; font-size: 15px; font-weight: 800; line-height: 1.45; }
+.activity-register-button { width: 100%; min-height: 58px; border: 0; border-radius: 18px; color: #fff; background: #4f35e8; box-shadow: 0 10px 22px rgba(79,53,232,.24); font: inherit; font-size: 18px; font-weight: 900; cursor: pointer; }
+.activity-register-button.registered { background: #0f9f78; box-shadow: 0 10px 22px rgba(15,159,120,.2); }
+.activity-register-note { margin: 12px 0 0 !important; padding: 12px 14px; border-radius: 16px; color: #0f684f !important; background: #eafff7; font-size: 15px !important; font-weight: 900 !important; text-align: center; }
 .appointments-page { min-height: 100svh; padding: 18px 0; color: #142039; background: #f2f6ff; }
 .appointments-shell { position: relative; width: min(100%,430px); min-height: 100svh; margin: 0 auto; padding-bottom: 26px; background: #eef4ff; box-shadow: 0 20px 70px rgba(28,91,131,.18); }
 .appointments-header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 13px; padding: 16px 18px 13px; border-bottom: 1px solid #dfe8f8; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); }

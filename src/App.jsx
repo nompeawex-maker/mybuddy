@@ -99,9 +99,45 @@ const navItems = [
 ]
 
 const activityImages = [
-  { src: 'activity-yoga.png', alt: 'กิจกรรมฝึกสมาธิและโยคะ' },
-  { src: 'activity-cooking.png', alt: 'กิจกรรมห้องเรียนทำอาหารคลีน' },
-  { src: 'activity-nature.png', alt: 'กิจกรรมทริปเดินชมธรรมชาติศึกษาพรรณไม้' },
+  {
+    id: 'yoga',
+    src: 'activity-yoga.png',
+    alt: 'กิจกรรมฝึกสมาธิและโยคะ',
+    title: 'ฝึกสมาธิและโยคะ',
+    description: 'กิจกรรมยืดเหยียดกล้ามเนื้อเบา ๆ และฝึกกำหนดลมหายใจคลายเครียด เหมาะสำหรับผู้สูงอายุทุกคน',
+    date: 'อาทิตย์ที่ 5 ก.ค. 2569',
+    time: '07:30 - 09:00 น.',
+    place: 'สวนลุมพินี (ลานตะวันยิ้ม)',
+    joined: 14,
+    schedule: ['07:30 ลงทะเบียนและวัดความพร้อมเบื้องต้น', '07:45 ยืดเหยียดกล้ามเนื้อแบบปลอดภัย', '08:15 ฝึกหายใจและสมาธิ 15 นาที', '08:40 โยคะท่าง่ายสำหรับผู้สูงอายุ', '09:00 สรุปกิจกรรมและถ่ายรูปกลุ่ม'],
+    prepare: ['ใส่รองเท้าหรือชุดที่เคลื่อนไหวสะดวก', 'พกน้ำดื่มส่วนตัว', 'แจ้งทีมงานหากมีอาการปวดเข่า หลัง หรือเวียนศีรษะ'],
+  },
+  {
+    id: 'cooking',
+    src: 'activity-cooking.png',
+    alt: 'กิจกรรมห้องเรียนทำอาหารคลีน',
+    title: 'ห้องเรียนทำอาหารคลีน',
+    description: 'เรียนรู้เคล็ดลับการปรุงอาหารโซเดียมต่ำ รสชาติดีต่อร่อยถูกปาก ย่อยง่าย และได้สารอาหารครบถ้วนสำหรับผู้สูงอายุ',
+    date: 'อาทิตย์ที่ 12 ก.ค. 2569',
+    time: '10:00 - 12:30 น.',
+    place: 'ศูนย์นันทนาการผู้สูงอายุ ดินแดง',
+    joined: 8,
+    schedule: ['10:00 ลงทะเบียนและแนะนำเมนู', '10:20 สาธิตการเลือกวัตถุดิบโซเดียมต่ำ', '10:50 ลงมือทำเมนูตัวอย่าง', '11:50 ชิมอาหารและรับคำแนะนำโภชนาการ', '12:30 รับสูตรอาหารกลับบ้าน'],
+    prepare: ['พกผ้ากันเปื้อนถ้ามี', 'แจ้งอาหารที่แพ้ก่อนเริ่มกิจกรรม', 'เตรียมกล่องเล็กหากต้องการนำอาหารกลับบ้าน'],
+  },
+  {
+    id: 'nature',
+    src: 'activity-nature.png',
+    alt: 'กิจกรรมทริปเดินชมธรรมชาติศึกษาพรรณไม้',
+    title: 'ทริปเดินชมธรรมชาติศึกษาพรรณไม้',
+    description: 'เดินออกกำลังกายเบา ๆ สูดอากาศบริสุทธิ์ ชมนิทรรศการพรรณไม้หายาก พร้อมวิทยากรผู้เชี่ยวชาญคอยให้ความรู้',
+    date: 'จันทร์ 20 ก.ค. 2569',
+    time: '08:00 - 11:30 น.',
+    place: 'สวนหลวง ร.๙',
+    joined: 22,
+    schedule: ['08:00 รวมตัวและเช็กชื่อ', '08:20 เดินชมเส้นทางพรรณไม้', '09:30 พักดื่มน้ำและฟังบรรยายสั้น', '10:15 เดินชมโซนไม้หายาก', '11:30 เดินทางกลับจุดนัดพบ'],
+    prepare: ['ใส่รองเท้าเดินสบาย', 'เตรียมหมวกหรือร่มกันแดด', 'พกยาประจำตัวและน้ำดื่ม'],
+  },
 ]
 
 const homeRecommendations = [
@@ -113,6 +149,7 @@ const homeRecommendations = [
     title: '5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม',
     summary: 'กิจกรรมเล็ก ๆ ที่ทำได้ทุกวัน ช่วยให้สมองตื่นตัว อารมณ์ดี และลดความเสี่ยงภาวะความจำถดถอย',
     bullets: ['เล่นเกมฝึกคิด เช่น จับคู่ภาพ หมากฮอส หรือซูโดกุวันละ 10 นาที', 'อ่านหนังสือหรือฟังพอดแคสต์ แล้วเล่าให้คนใกล้ตัวฟัง', 'ฝึกจำรายการของใช้ 5 อย่างก่อนออกจากบ้าน', 'ทำงานฝีมือ วาดรูป ปลูกต้นไม้ หรือจัดของตามสี', 'นัดคุยกับ Buddy หรือเข้ากิจกรรมกลุ่มอย่างน้อยสัปดาห์ละ 1 ครั้ง'],
+    benefits: ['ช่วยกระตุ้นความจำระยะสั้นและสมาธิ ทำให้จำเรื่องประจำวันได้ดีขึ้น', 'ช่วยให้สมองสร้างการเชื่อมต่อใหม่เมื่อได้เรียนรู้สิ่งที่ไม่คุ้นเคย', 'ลดความเครียดและความเหงา เพราะกิจกรรมบางอย่างทำร่วมกับเพื่อนได้', 'ช่วยฝึกการตัดสินใจ การวางแผน และการแก้ปัญหาเล็ก ๆ ในชีวิตประจำวัน', 'ทำให้มีเป้าหมายประจำวัน ส่งผลดีต่ออารมณ์และความมั่นใจ'],
     action: 'บันทึกกิจกรรมฝึกสมองวันนี้',
   },
   {
@@ -123,6 +160,13 @@ const homeRecommendations = [
     title: 'อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก',
     summary: 'เริ่มต้นวันใหม่อย่างสดชื่นด้วยอาหารอ่อน ย่อยง่าย และมีสารอาหารเหมาะกับผู้สูงอายุ',
     bullets: ['เลือกข้าวต้ม โจ๊ก หรือซุปอุ่น ๆ ที่เคี้ยวง่าย', 'เพิ่มโปรตีนย่อยง่าย เช่น ไข่ ปลา ไก่นุ่ม หรือเต้าหู้', 'เติมผักอ่อนและผลไม้ไม่หวานจัด เช่น กล้วยน้ำว้า มะละกอ หรือแอปเปิลนึ่ง', 'ดื่มน้ำอุ่นหลังตื่นนอน และเลี่ยงอาหารทอดมันในมื้อเช้า', 'กินช้า ๆ และสังเกตอาการแน่นท้องหรือจุกเสียดหลังอาหาร'],
+    menuToday: {
+      name: 'โจ๊กข้าวกล้องไก่นุ่ม ไข่ลวก และผักอ่อน',
+      reason: 'เมนูวันนี้เคี้ยวง่าย อุ่นท้อง ให้พลังงานพอดี มีโปรตีนช่วยดูแลกล้ามเนื้อ และไม่หนักท้องในตอนเช้า',
+      ingredients: ['ข้าวกล้องสุก 1 ถ้วย', 'อกไก่สับหรือไก่ฉีก 80 กรัม', 'ไข่ไก่ 1 ฟอง', 'แครอทหั่นเต๋าเล็ก 2 ช้อนโต๊ะ', 'ฟักทองหั่นเต๋าเล็ก 2 ช้อนโต๊ะ', 'น้ำซุปโซเดียมต่ำ 2 ถ้วย', 'ขิงซอยเล็กน้อย และต้นหอมตามชอบ'],
+      steps: ['ตั้งน้ำซุปให้เดือดอ่อน ๆ ใส่ข้าวกล้องสุกแล้วเคี่ยว 8-10 นาทีจนเนื้อนุ่ม', 'ใส่แครอทและฟักทอง เคี่ยวต่อจนผักนิ่ม ถ้าน้ำแห้งให้เติมน้ำซุปทีละน้อย', 'ใส่ไก่สับหรือไก่ฉีก คนให้สุกทั่ว ลดไฟให้อ่อนเพื่อไม่ให้เนื้อไก่แข็ง', 'ตอกไข่ใส่ถ้วยเล็ก แล้วค่อย ๆ เทลงหม้อหรือทำไข่ลวกแยกตามถนัด', 'ปิดไฟ โรยขิงซอยและต้นหอม ชิมรสก่อนปรุงเพิ่ม และหลีกเลี่ยงน้ำปลาหรือซีอิ๊วมากเกินไป'],
+      benefits: ['ข้าวกล้องให้พลังงานแบบค่อยเป็นค่อยไป ช่วยให้อิ่มนาน', 'ไก่และไข่ให้โปรตีน ช่วยดูแลกล้ามเนื้อของผู้สูงอายุ', 'ฟักทองและแครอทมีใยอาหารและวิตามิน ช่วยระบบขับถ่าย', 'น้ำซุปอุ่น ๆ ช่วยให้รับประทานง่าย เหมาะกับตอนเช้า', 'ลดโซเดียมช่วยดูแลความดันและหัวใจ'],
+    },
     action: 'บันทึกมื้อเช้าสุขภาพดี',
   },
 ]
@@ -155,6 +199,38 @@ function RecommendDetailPage({ item }) {
             <span>{item.label}</span>
             <h1>{item.title}</h1>
             <p>{item.summary}</p>
+
+            {item.benefits && (
+              <section className="recommend-info-box">
+                <h2>ประโยชน์ของการฝึกสมอง</h2>
+                <ul>
+                  {item.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+                </ul>
+              </section>
+            )}
+
+            {item.menuToday && (
+              <section className="recommend-menu-box">
+                <h2>เมนูแนะนำวันนี้</h2>
+                <strong>{item.menuToday.name}</strong>
+                <p>{item.menuToday.reason}</p>
+
+                <h3>วัตถุดิบ</h3>
+                <ul>
+                  {item.menuToday.ingredients.map((ingredient) => <li key={ingredient}>{ingredient}</li>)}
+                </ul>
+
+                <h3>วิธีทำอย่างละเอียด</h3>
+                <ol>
+                  {item.menuToday.steps.map((step) => <li key={step}>{step}</li>)}
+                </ol>
+
+                <h3>ประโยชน์ของเมนูนี้</h3>
+                <ul>
+                  {item.menuToday.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+                </ul>
+              </section>
+            )}
 
             <div className="recommend-checklist" aria-label="รายการแนะนำ">
               {item.bullets.map((bullet, index) => (
@@ -264,11 +340,64 @@ function ActivitiesPage() {
         </header>
         <div className="activity-list">
           {activityImages.map((activity) => (
-            <article className="activity-card" key={activity.src}>
+            <button className="activity-card" type="button" key={activity.src} onClick={() => { window.location.hash = `activity-${activity.id}` }}>
               <img src={`${import.meta.env.BASE_URL}${activity.src}`} alt={activity.alt} />
-            </article>
+            </button>
           ))}
         </div>
+      </section>
+    </main>
+  )
+}
+
+function ActivityDetailPage({ activity }) {
+  const [registered, setRegistered] = useState(false)
+
+  return (
+    <main className="activities-page">
+      <section className="activities-shell" aria-label={activity.title}>
+        <header className="activities-header">
+          <button type="button" onClick={() => { window.location.hash = 'activities' }} aria-label="กลับหน้ากิจกรรม">‹</button>
+          <div>
+            <strong>รายละเอียดกิจกรรม</strong>
+            <small>อ่านข้อมูลก่อนลงทะเบียน</small>
+          </div>
+        </header>
+
+        <article className="activity-detail-card">
+          <img src={`${import.meta.env.BASE_URL}${activity.src}`} alt={activity.alt} />
+          <div className="activity-detail-body">
+            <span className="activity-detail-tag">กิจกรรมร่วมกลุ่ม</span>
+            <h1>{activity.title}</h1>
+            <p>{activity.description}</p>
+
+            <div className="activity-info-grid">
+              <div><span>📅</span><strong>{activity.date}</strong></div>
+              <div><span>🕒</span><strong>{activity.time}</strong></div>
+              <div><span>📍</span><strong>{activity.place}</strong></div>
+              <div><span>👥</span><strong>เข้าร่วมแล้ว {registered ? activity.joined + 1 : activity.joined} ท่าน</strong></div>
+            </div>
+
+            <section className="activity-detail-section">
+              <h2>กำหนดการ</h2>
+              <ol>
+                {activity.schedule.map((item) => <li key={item}>{item}</li>)}
+              </ol>
+            </section>
+
+            <section className="activity-detail-section">
+              <h2>สิ่งที่ควรเตรียม</h2>
+              <ul>
+                {activity.prepare.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </section>
+
+            <button className={registered ? 'activity-register-button registered' : 'activity-register-button'} type="button" onClick={() => setRegistered(true)}>
+              {registered ? 'ลงทะเบียนสำเร็จแล้ว' : 'ลงทะเบียนเข้าร่วมกิจกรรม'}
+            </button>
+            {registered && <p className="activity-register-note" role="status">บันทึกการสมัครแล้ว ระบบจะแจ้งเตือนก่อนถึงวันกิจกรรม</p>}
+          </div>
+        </article>
       </section>
     </main>
   )
@@ -755,6 +884,8 @@ function App() {
   const [route, setRoute] = useState(window.location.hash)
   const recommendId = route.replace('#recommend-', '')
   const activeRecommendation = homeRecommendations.find((item) => item.id === recommendId)
+  const activityId = route.replace('#activity-', '')
+  const activeActivity = activityImages.find((item) => item.id === activityId)
 
   useEffect(() => {
     const onHashChange = () => setRoute(window.location.hash)
@@ -766,6 +897,7 @@ function App() {
   if (route === '#login') return <LoginPage />
   if (route === '#line-auth') return <LineAuthPage />
   if (activeRecommendation) return <RecommendDetailPage item={activeRecommendation} />
+  if (activeActivity) return <ActivityDetailPage activity={activeActivity} />
   if (route === '#activities') return <ActivitiesPage />
   if (route === '#match') return <MatchPage />
   if (route === '#appointments') return <AppointmentsPage />
