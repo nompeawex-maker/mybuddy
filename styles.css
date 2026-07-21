@@ -27,8 +27,8 @@ button {
 
 .app-shell {
   position: relative;
-  width: min(100vw, calc(100svh * 1170 / 2532));
-  height: min(100svh, calc(100vw * 2532 / 1170));
+  width: min(100vw, calc(100svh * 1080 / 2400));
+  height: min(100svh, calc(100vw * 2400 / 1080));
   overflow: hidden;
   background: #068bff;
   box-shadow: 0 22px 70px rgba(0, 64, 130, .3);
