@@ -1,12 +1,40 @@
-const pages = Array.from(document.querySelectorAll('.app-page'))
-const menuOverlay = document.querySelector('.menu-overlay')
+const screens = Array.from(document.querySelectorAll('.screen'))
+const splashScreen = document.querySelector('#splash')
+const menuLayer = document.querySelector('.menu-layer')
 const toast = document.querySelector('.toast')
-const splashPage = document.querySelector('.splash-page')
 let toastTimer
 
+function closeMenu() {
+  menuLayer?.classList.remove('open')
+  menuLayer?.setAttribute('aria-hidden', 'true')
+}
+
+function openMenu() {
+  menuLayer?.classList.add('open')
+  menuLayer?.setAttribute('aria-hidden', 'false')
+}
+
+function showScreen(screenId, options = {}) {
+  const target = document.getElementById(screenId)
+  if (!target) return
+
+  screens.forEach((screen) => {
+    screen.classList.toggle('active', screen === target)
+  })
+  splashScreen?.classList.add('leaving')
+  closeMenu()
+
+  if (options.updateHash !== false) {
+    const nextHash = screenId === 'login' ? '' : `#${screenId}`
+    if (window.location.hash !== nextHash) {
+      window.history.pushState(null, '', nextHash || window.location.pathname)
+    }
+  }
+}
+
 function showToast(message) {
-  window.clearTimeout(toastTimer)
   if (!toast) return
+  window.clearTimeout(toastTimer)
   toast.textContent = message
   toast.classList.add('show')
   toastTimer = window.setTimeout(() => {
@@ -14,76 +42,36 @@ function showToast(message) {
   }, 1800)
 }
 
-function closeMenu() {
-  if (!menuOverlay) return
-  menuOverlay.classList.remove('open')
-  menuOverlay.setAttribute('aria-hidden', 'true')
-}
-
-function openMenu() {
-  if (!menuOverlay) return
-  menuOverlay.classList.add('open')
-  menuOverlay.setAttribute('aria-hidden', 'false')
-}
-
-function goToPage(pageId, options = {}) {
-  const targetPage = document.getElementById(pageId)
-  if (!targetPage) return
-
-  pages.forEach((page) => {
-    page.classList.toggle('active', page.id === pageId)
-  })
-  if (splashPage) splashPage.classList.add('is-hidden')
-  closeMenu()
-
-  if (options.updateHash !== false && window.location.hash !== `#${pageId}`) {
-    window.history.pushState(null, '', `#${pageId}`)
-  }
-}
-
-window.goToPage = goToPage
-
-window.setTimeout(() => {
-  if (splashPage) splashPage.classList.add('is-hidden')
-}, 3900)
-
-document.querySelectorAll('[data-open-menu]').forEach((button) => {
-  button.addEventListener('click', openMenu)
-})
-
-document.querySelectorAll('[data-close-menu]').forEach((button) => {
-  button.addEventListener('click', closeMenu)
-})
-
-document.querySelectorAll('[data-go]').forEach((button) => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault()
-    goToPage(button.dataset.go)
+document.querySelectorAll('[data-go]').forEach((control) => {
+  control.addEventListener('click', () => {
+    showScreen(control.dataset.go)
   })
 })
 
-document.querySelectorAll('[data-toast]').forEach((button) => {
-  button.addEventListener('click', () => {
-    showToast(button.dataset.toast)
-  })
+document.querySelectorAll('[data-open-menu]').forEach((control) => {
+  control.addEventListener('click', openMenu)
 })
 
-if (menuOverlay) {
-  menuOverlay.addEventListener('click', (event) => {
-    if (event.target === menuOverlay) closeMenu()
-  })
-}
+document.querySelectorAll('[data-close-menu]').forEach((control) => {
+  control.addEventListener('click', closeMenu)
+})
 
-window.addEventListener('popstate', () => {
-  const pageId = window.location.hash.replace('#', '') || 'home'
-  goToPage(pageId, { updateHash: false })
+document.querySelectorAll('[data-toast]').forEach((control) => {
+  control.addEventListener('click', () => showToast(control.dataset.toast))
+})
+
+menuLayer?.addEventListener('click', (event) => {
+  if (event.target === menuLayer) closeMenu()
 })
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu()
 })
 
-const initialPageId = window.location.hash.replace('#', '')
-if (initialPageId) {
-  goToPage(initialPageId, { updateHash: false })
-}
+window.addEventListener('popstate', () => {
+  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+})
+
+window.setTimeout(() => {
+  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+}, 2000)

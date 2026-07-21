@@ -3,153 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyBuddy+ CareLog</title>
-    <link rel="stylesheet" href="styles.css?v=20260721-3" />
+    <title>NEOMYBuddy</title>
+    <link rel="stylesheet" href="styles.css?v=1" />
   </head>
   <body>
-    <main class="phone-app" aria-label="MyBuddy+ CareLog">
-      <section class="splash-page" aria-label="หน้าเริ่มต้น MyBuddy+ CareLog">
-        <img src="assets/splash-page.png" alt="MyBuddy+ CareLog" />
+    <main class="app-shell" aria-label="NEOMYBuddy">
+      <section class="screen splash-screen active" id="splash" aria-label="หน้าก่อนเข้าแอป">
+        <img src="assets/splash.png" alt="MyBuddy+ CareLog" />
       </section>
 
-      <section class="landing-page app-page active" id="home" aria-label="หน้าแนะนำ MyBuddy+">
-        <img src="assets/landing-page.png" alt="MyBuddy+ แอปหาเพื่อนและดูแลสุขภาพสำหรับผู้สูงอายุ" />
-        <a class="hotspot start" href="#login" aria-label="เริ่มต้นใช้งาน" data-go="login"></a>
-        <a class="hotspot family" href="#family" aria-label="สำหรับครอบครัว" data-go="family"></a>
-        <button class="hotspot menu" type="button" aria-label="เปิดเมนู" data-open-menu></button>
+      <section class="screen image-screen login-screen" id="login" aria-label="หน้าแรกหรือล็อกอิน">
+        <img src="assets/landing.png" alt="MyBuddy+ หาเพื่อนวัยเดียวกันและดูแลสุขภาพ" />
+        <button class="tap-zone menu-tap" type="button" data-open-menu aria-label="เปิดเมนู"></button>
+        <button class="tap-zone start-tap" type="button" data-go="line-login" aria-label="เริ่มต้นใช้งาน"></button>
+        <button class="tap-zone family-tap" type="button" data-go="family-login" aria-label="สำหรับครอบครัว"></button>
       </section>
 
-      <section class="login-page app-page image-page" id="login" aria-label="หน้า 3 เข้าสู่ระบบ">
-        <img src="assets/login-page.png" alt="หน้าเข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
-        <a class="login-line-button" href="#line-auth" aria-label="เข้าสู่ระบบด้วย LINE" data-go="line-auth"></a>
-        <a class="login-support-button" href="#support" aria-label="ติดต่อเรา" data-go="support"></a>
-      </section>
-
-      <section class="line-auth-page app-page" id="line-auth" aria-label="ยืนยันการเข้าสู่ระบบด้วย LINE">
-        <article class="line-auth-card">
-          <header>
-            <button type="button" data-go="login" aria-label="กลับหน้าเข้าสู่ระบบ">‹</button>
-            <strong>LINE Login</strong>
-          </header>
-          <img class="line-auth-icon" src="assets/carelog-icon.png" alt="" />
+      <section class="screen content-screen" id="line-login" aria-label="ยืนยันการเข้าสู่ระบบด้วย LINE">
+        <header class="topbar">
+          <button type="button" data-go="login" aria-label="กลับ">‹</button>
+          <strong>เข้าสู่ระบบ</strong>
+        </header>
+        <article class="panel auth-panel">
+          <div class="line-icon">LINE</div>
           <h1>ยืนยันการเข้าสู่ระบบด้วย LINE</h1>
-          <p>อนุญาตให้ MyBuddy+ CareLog ใช้ข้อมูลโปรไฟล์พื้นฐานจาก LINE เพื่อเข้าสู่ระบบและเชื่อมต่อบัญชีของคุณ</p>
-          <div class="permission-list">
-            <span>✓ ชื่อโปรไฟล์และรูปโปรไฟล์</span>
-            <span>✓ ใช้ยืนยันตัวตนในแอป</span>
-            <span>✓ ไม่โพสต์ข้อความแทนคุณ</span>
-          </div>
-          <button class="line-confirm" type="button" data-go="main">อนุญาตและเข้าสู่ระบบ</button>
-          <button class="line-cancel" type="button" data-go="login">ยกเลิก</button>
-        </article>
-      </section>
-
-      <section class="main-page app-page content-page" id="main" aria-label="หน้าหลักหลังล็อกอิน">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
-          <strong>MyBuddy+ CareLog</strong>
-        </header>
-        <article>
-          <h1>ยินดีต้อนรับ</h1>
-          <p>เข้าสู่ระบบสำเร็จแล้ว หน้านี้เป็นโครงหลักหลังล็อกอินสำหรับต่อยอดฟังก์ชัน GPS, Buddy, SOS และ CareLog</p>
-          <div class="info-grid">
-            <span>📍 GPS ครอบครัว</span>
-            <span>❤️ หา Buddy</span>
-            <span>🚑 SOS</span>
-            <span>📝 CareLog</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="content-page app-page" id="about" aria-label="เกี่ยวกับ MyBuddy+">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
-          <strong>เกี่ยวกับ MyBuddy+</strong>
-        </header>
-        <article>
-          <h1>เพื่อนดูแลผู้สูงอายุและครอบครัว</h1>
-          <p>MyBuddy+ CareLog ถูกออกแบบให้ผู้สูงอายุใช้งานง่าย เชื่อมต่อเพื่อนใหม่ ดูแลสุขภาพ นัดกิจกรรม และให้ครอบครัวอุ่นใจมากขึ้น</p>
-          <div class="info-grid">
-            <span>หา Buddy ใกล้เคียง</span>
-            <span>ติดตาม GPS ครอบครัว</span>
-            <span>SOS ฉุกเฉิน</span>
-            <span>บันทึกสุขภาพ</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="content-page app-page" id="features" aria-label="ฟังก์ชันของเรา">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
-          <strong>ฟังก์ชันของเรา</strong>
-        </header>
-        <article>
-          <h1>ระบบหลักที่พร้อมต่อยอด</h1>
-          <ul class="feature-list">
-            <li><b>Buddy Matching</b><span>หาเพื่อนวัยเดียวกันใกล้บ้าน พร้อมแชทเดี่ยวและกลุ่ม</span></li>
-            <li><b>Family GPS</b><span>ครอบครัวดูตำแหน่งล่าสุดและพื้นที่ปลอดภัย</span></li>
-            <li><b>CareLog</b><span>บันทึกสุขภาพ นัดหมอ ยา และกิจกรรมประจำวัน</span></li>
-            <li><b>SOS</b><span>แจ้งเตือนฉุกเฉินและเบอร์ติดต่อสำคัญ</span></li>
+          <p>ระบบจะจำลองหน้าขออนุญาตก่อนเข้าใช้งาน เพื่อให้ flow เหมือนการล็อกอิน LINE จริง</p>
+          <ul>
+            <li>ใช้ชื่อและรูปโปรไฟล์พื้นฐาน</li>
+            <li>เชื่อมต่อบัญชี MyBuddy+</li>
+            <li>ไม่โพสต์ข้อความแทนผู้ใช้</li>
           </ul>
+          <button class="primary-action" type="button" data-go="home">อนุญาตและเข้าสู่ระบบ</button>
+          <button class="ghost-action" type="button" data-go="login">ยกเลิก</button>
         </article>
       </section>
 
-      <section class="content-page app-page" id="family" aria-label="สำหรับครอบครัว">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
+      <section class="screen content-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
+        <header class="topbar">
+          <button type="button" data-go="login" aria-label="กลับ">‹</button>
           <strong>สำหรับครอบครัว</strong>
         </header>
-        <article>
-          <h1>ดูแลได้โดยไม่รบกวนเกินไป</h1>
-          <p>ระบบครอบครัวช่วยดูสถานะความปลอดภัย ตำแหน่งล่าสุด นัดหมายสำคัญ และแจ้งเตือนเมื่อเกิดเหตุฉุกเฉิน</p>
-          <button class="page-action" type="button" data-toast="ส่งคำขอเชื่อมต่อครอบครัวแล้ว">เชื่อมต่อบัญชีครอบครัว</button>
+        <article class="panel">
+          <h1>เชื่อมต่อบัญชีครอบครัว</h1>
+          <p>หน้าสำหรับผู้ดูแล ใช้ดูตำแหน่ง แจ้งเตือน SOS นัดหมาย และ CareLog ของผู้สูงอายุ</p>
+          <label>
+            เบอร์โทร / อีเมล
+            <input type="text" placeholder="กรอกเบอร์โทรหรืออีเมล" />
+          </label>
+          <label>
+            รหัส OTP
+            <input type="text" placeholder="กรอกรหัส 6 หลัก" inputmode="numeric" />
+          </label>
+          <button class="primary-action" type="button" data-go="family-dashboard">เข้าสู่แดชบอร์ดครอบครัว</button>
         </article>
       </section>
 
-      <section class="content-page app-page" id="guide" aria-label="วิธีใช้งาน">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
-          <strong>วิธีใช้งาน</strong>
+      <section class="screen content-screen" id="home" aria-label="หน้าหลักหลังล็อกอิน">
+        <header class="topbar">
+          <button type="button" data-go="login" aria-label="กลับหน้าแรก">‹</button>
+          <strong>MyBuddy+</strong>
+          <button type="button" data-open-menu aria-label="เปิดเมนู">☰</button>
         </header>
-        <article>
-          <h1>เริ่มต้นง่ายใน 4 ขั้นตอน</h1>
-          <ol class="step-list">
-            <li>กดเริ่มต้นใช้งานและสร้างบัญชี</li>
-            <li>เลือกโหมดผู้สูงอายุหรือครอบครัว</li>
-            <li>เปิดสิทธิ์ตำแหน่งและแจ้งเตือนตามต้องการ</li>
-            <li>เริ่มหา Buddy บันทึกสุขภาพ หรือใช้ SOS</li>
-          </ol>
+        <article class="panel">
+          <h1>พร้อมเริ่มใช้งาน</h1>
+          <p>นี่คือหน้าหลังล็อกอินตัวอย่าง รอเชื่อมกับรูป 3 หรือฟังก์ชันหลักที่ต้องการต่อไป</p>
+          <div class="feature-grid">
+            <button type="button" data-toast="เปิดหน้า Buddy">Buddy</button>
+            <button type="button" data-toast="เปิดหน้า CareLog">CareLog</button>
+            <button type="button" data-toast="เปิดหน้า SOS">SOS</button>
+            <button type="button" data-toast="เปิดหน้านัดหมาย">นัดหมาย</button>
+          </div>
         </article>
       </section>
 
-      <section class="content-page app-page" id="support" aria-label="ช่วยเหลือและติดต่อเรา">
-        <header>
-          <button type="button" data-go="home" aria-label="กลับหน้าแรก">‹</button>
-          <strong>ช่วยเหลือและติดต่อเรา</strong>
+      <section class="screen content-screen" id="family-dashboard" aria-label="แดชบอร์ดครอบครัว">
+        <header class="topbar">
+          <button type="button" data-go="login" aria-label="กลับหน้าแรก">‹</button>
+          <strong>Family Dashboard</strong>
         </header>
-        <article>
-          <h1>ต้องการความช่วยเหลือ?</h1>
-          <p>เลือกช่องทางที่ต้องการ ระบบนี้เป็นเดโมสำหรับออกแบบ flow และสามารถต่อเข้าระบบจริงภายหลังได้</p>
-          <button class="page-action" type="button" data-toast="เปิดช่องทางแชทช่วยเหลือแล้ว">แชทกับทีมช่วยเหลือ</button>
-          <a class="page-link" href="tel:1669">โทรฉุกเฉิน 1669</a>
+        <article class="panel">
+          <h1>ดูแลได้ในหน้าเดียว</h1>
+          <div class="status-list">
+            <span>ตำแหน่งล่าสุด: บ้าน</span>
+            <span>สุขภาพวันนี้: ปกติ</span>
+            <span>นัดหมายถัดไป: ยังไม่มี</span>
+            <span>SOS: พร้อมใช้งาน</span>
+          </div>
         </article>
       </section>
 
-      <section class="menu-overlay" aria-label="เมนูหลัก" aria-hidden="true">
-        <div class="menu-sheet">
-          <img src="assets/menu-panel.png" alt="เมนู MyBuddy+" />
-          <button class="menu-close" type="button" aria-label="ปิดเมนู" data-close-menu></button>
-          <button class="menu-item home" type="button" data-go="home" aria-label="หน้าแรก"></button>
-          <button class="menu-item about" type="button" data-go="about" aria-label="เกี่ยวกับ MyBuddy+"></button>
-          <button class="menu-item features" type="button" data-go="features" aria-label="ฟังก์ชันของเรา"></button>
-          <button class="menu-item family-menu" type="button" data-go="family" aria-label="สำหรับครอบครัว"></button>
-          <button class="menu-item guide" type="button" data-go="guide" aria-label="วิธีใช้งาน"></button>
-          <button class="menu-item support" type="button" data-go="support" aria-label="ช่วยเหลือและติดต่อเรา"></button>
+      <section class="menu-layer" aria-hidden="true">
+        <div class="menu-card">
+          <button class="close-menu" type="button" data-close-menu aria-label="ปิดเมนู">×</button>
+          <h2>เมนู</h2>
+          <button type="button" data-go="login">หน้าแรก</button>
+          <button type="button" data-go="home">ฟังก์ชันของเรา</button>
+          <button type="button" data-go="family-login">สำหรับครอบครัว</button>
+          <button type="button" data-toast="เปิดหน้าวิธีใช้งาน">วิธีใช้งาน</button>
+          <button type="button" data-toast="เปิดหน้าช่วยเหลือ">ช่วยเหลือและติดต่อเรา</button>
         </div>
       </section>
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=20260721-3"></script>
+    <script src="script.js?v=1"></script>
   </body>
 </html>
