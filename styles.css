@@ -57,6 +57,13 @@ button {
   transition: opacity .28s ease, visibility .28s ease;
 }
 
+.image-screen {
+  --art-h: calc(100vw * 2400 / 1080);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 .screen.active {
   visibility: visible;
   opacity: 1;
@@ -87,12 +94,21 @@ button {
   transition: opacity .38s ease, transform .38s ease, visibility .38s ease;
 }
 
-.splash-screen img,
-.image-screen img {
+.splash-screen img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  user-select: none;
+}
+
+.image-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: var(--art-h);
+  object-fit: contain;
   object-position: center top;
   user-select: none;
 }
@@ -136,168 +152,168 @@ button {
 }
 
 .menu-tap {
-  top: 1.35%;
+  top: calc(var(--art-h) * .0135);
   right: 3.4%;
   width: 10%;
-  height: 5%;
+  height: calc(var(--art-h) * .05);
   border-radius: 16px;
 }
 
 .line-logo-back-tap {
-  top: 1.8%;
+  top: calc(var(--art-h) * .018);
   right: 3.6%;
   width: 10%;
-  height: 5%;
+  height: calc(var(--art-h) * .05);
   border-radius: 16px;
 }
 
 .start-tap {
   left: 13.0%;
-  top: 71.2%;
+  top: calc(var(--art-h) * .712);
   width: 74.0%;
-  height: 5.9%;
+  height: calc(var(--art-h) * .059);
   border-radius: 999px;
 }
 
 .family-tap {
   left: 13.0%;
-  top: 79.15%;
+  top: calc(var(--art-h) * .7915);
   width: 74.0%;
-  height: 5.95%;
+  height: calc(var(--art-h) * .0595);
   border-radius: 999px;
 }
 
 .line-submit-tap {
   left: 10.7%;
-  top: 63.0%;
+  top: calc(var(--art-h) * .63);
   width: 78.6%;
-  height: 6.6%;
+  height: calc(var(--art-h) * .066);
   border-radius: 18px;
 }
 
 .line-help-tap {
   left: 24%;
-  top: 73.9%;
+  top: calc(var(--art-h) * .739);
   width: 52%;
-  height: 3.8%;
+  height: calc(var(--art-h) * .038);
   border-radius: 18px;
 }
 
 .confirm-back-tap {
   left: 3.0%;
-  top: 2.0%;
+  top: calc(var(--art-h) * .02);
   width: 13.2%;
-  height: 6.2%;
+  height: calc(var(--art-h) * .062);
   border-radius: 20px;
 }
 
 .confirm-approve-tap {
   left: 14.7%;
-  top: 76.6%;
+  top: calc(var(--art-h) * .766);
   width: 72.5%;
-  height: 5.0%;
+  height: calc(var(--art-h) * .05);
   border-radius: 28px;
 }
 
 .confirm-cancel-tap {
   left: 14.7%;
-  top: 82.7%;
+  top: calc(var(--art-h) * .827);
   width: 72.5%;
-  height: 5.0%;
+  height: calc(var(--art-h) * .05);
   border-radius: 28px;
 }
 
 .family-menu-tap {
-  top: 4.1%;
+  top: calc(var(--art-h) * .041);
   right: 4.6%;
   width: 8.6%;
-  height: 4.1%;
+  height: calc(var(--art-h) * .041);
   border-radius: 16px;
 }
 
 .family-user-input {
   left: 25.5%;
-  top: 38.9%;
+  top: calc(var(--art-h) * .389);
   width: 52.5%;
-  height: 4.4%;
+  height: calc(var(--art-h) * .044);
 }
 
 .family-password-input {
   left: 25.5%;
-  top: 49.05%;
+  top: calc(var(--art-h) * .4905);
   width: 44%;
-  height: 4.4%;
+  height: calc(var(--art-h) * .044);
 }
 
 .family-eye-tap {
   left: 72.5%;
-  top: 49.15%;
+  top: calc(var(--art-h) * .4915);
   width: 9%;
-  height: 4.2%;
+  height: calc(var(--art-h) * .042);
   border-radius: 999px;
 }
 
 .family-forgot-tap {
   left: 60%;
-  top: 55.3%;
+  top: calc(var(--art-h) * .553);
   width: 25%;
-  height: 3.2%;
+  height: calc(var(--art-h) * .032);
   border-radius: 14px;
 }
 
 .family-submit-tap {
   left: 17.6%;
-  top: 59.4%;
+  top: calc(var(--art-h) * .594);
   width: 64.8%;
-  height: 5.5%;
+  height: calc(var(--art-h) * .055);
   border-radius: 18px;
 }
 
 .family-line-tap {
   left: 17.6%;
-  top: 69.6%;
+  top: calc(var(--art-h) * .696);
   width: 64.8%;
-  height: 5.35%;
+  height: calc(var(--art-h) * .0535);
   border-radius: 18px;
 }
 
 .family-register-tap {
   left: 17.6%;
-  top: 80.35%;
+  top: calc(var(--art-h) * .8035);
   width: 64.8%;
-  height: 5.35%;
+  height: calc(var(--art-h) * .0535);
   border-radius: 18px;
 }
 
 .family-contact-tap {
   left: 54%;
-  top: 88.35%;
+  top: calc(var(--art-h) * .8835);
   width: 18%;
-  height: 3.1%;
+  height: calc(var(--art-h) * .031);
   border-radius: 14px;
 }
 
 .family-line-menu-tap {
-  top: 2.6%;
+  top: calc(var(--art-h) * .026);
   right: 3.6%;
   width: 9.8%;
-  height: 5.1%;
+  height: calc(var(--art-h) * .051);
   border-radius: 16px;
 }
 
 .family-line-approve-tap {
   left: 13.0%;
-  top: 77.1%;
+  top: calc(var(--art-h) * .771);
   width: 74.0%;
-  height: 5.2%;
+  height: calc(var(--art-h) * .052);
   border-radius: 26px;
 }
 
 .family-line-cancel-tap {
   left: 13.0%;
-  top: 83.4%;
+  top: calc(var(--art-h) * .834);
   width: 74.0%;
-  height: 5.1%;
+  height: calc(var(--art-h) * .051);
   border-radius: 26px;
 }
 
