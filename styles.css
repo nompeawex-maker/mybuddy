@@ -10,6 +10,8 @@ html {
 body {
   min-height: 100svh;
   margin: 0;
+  display: grid;
+  place-items: center;
   background:
     radial-gradient(circle at 50% 34%, rgba(255, 255, 255, .18), transparent 28%),
     linear-gradient(160deg, #0069f6 0%, #08a9ff 100%);
@@ -22,8 +24,8 @@ button {
 
 .phone-app {
   position: relative;
-  width: min(100%, 430px);
-  min-height: 100svh;
+  width: min(100vw, calc(100svh * 864 / 1872));
+  height: min(100svh, calc(100vw * 1872 / 864));
   margin: 0 auto;
   overflow: hidden;
   background: #0588ff;
@@ -36,7 +38,7 @@ button {
 .content-page {
   position: absolute;
   inset: 0;
-  min-height: 100svh;
+  height: 100%;
   background: #0588ff;
 }
 
@@ -73,8 +75,8 @@ button {
 .image-page img {
   display: block;
   width: 100%;
-  min-height: 100svh;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   object-position: center top;
   user-select: none;
 }
@@ -492,8 +494,8 @@ button {
 .menu-sheet img {
   display: block;
   width: 100%;
-  min-height: 100svh;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   object-position: center top;
   user-select: none;
 }
