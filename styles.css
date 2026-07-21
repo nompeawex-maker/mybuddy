@@ -27,8 +27,8 @@ button {
 
 .app-shell {
   position: relative;
-  width: min(100vw, calc(100svh * 910 / 1729));
-  height: min(100svh, calc(100vw * 1729 / 910));
+  width: min(100vw, calc(100svh * 853 / 1844));
+  height: min(100svh, calc(100vw * 1844 / 853));
   overflow: hidden;
   background: #068bff;
   box-shadow: 0 22px 70px rgba(0, 64, 130, .3);
@@ -52,10 +52,17 @@ button {
 
 .splash-screen {
   z-index: 5;
+  animation: autoHideSplash .35s ease 2s forwards;
+}
+
+.login-screen {
+  animation: autoShowLogin .35s ease 2.02s forwards;
 }
 
 .splash-screen.leaving {
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: scale(1.02);
   transition: opacity .38s ease, transform .38s ease, visibility .38s ease;
 }
@@ -368,4 +375,21 @@ button {
 .toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes autoHideSplash {
+  to {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes autoShowLogin {
+  to {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
