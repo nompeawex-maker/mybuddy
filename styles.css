@@ -700,3 +700,51 @@ button {
   font-size: 14px;
   font-weight: 700;
 }
+
+.home-screen {
+  --art-h: calc(var(--art-w) * 2400 / 1080);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.home-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.home-screen img {
+  width: 100%;
+  height: auto;
+  min-height: var(--art-h);
+  object-fit: contain;
+}
+
+.home-alert-preview {
+  top: calc(var(--art-h) * .395);
+  left: 22%;
+  width: 64%;
+  color: #0f3769;
+  font-size: clamp(15px, calc(var(--art-w) * .043), 22px);
+  font-weight: 900;
+}
+
+.home-alert-preview span {
+  padding-right: 8px;
+}
+
+.home-med-tap {
+  top: calc(var(--art-h) * .487);
+}
+
+.home-appointment-tap {
+  top: calc(var(--art-h) * .615);
+}
+
+.home-health-tap {
+  top: calc(var(--art-h) * .743);
+}
+
+.home-buddy-tap {
+  top: calc(var(--art-h) * .868);
+}
