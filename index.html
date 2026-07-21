@@ -1,127 +1,121 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=11" />
+    <link rel="stylesheet" href="styles.css?v=14" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
-      <section class="screen splash-screen active" id="splash" aria-label="หน้าก่อนเข้าแอป">
+      <section class="screen splash-screen active" id="splash" aria-label="à¸«à¸™à¹‰à¸²à¸à¹ˆà¸­à¸™à¹€à¸‚à¹‰à¸²à¹à¸­à¸›">
         <img src="assets/splash.png" alt="MyBuddy+ CareLog" />
       </section>
 
-      <section class="screen image-screen login-screen" id="login" aria-label="หน้าแรกหรือล็อกอิน">
-        <img src="assets/landing.png" alt="MyBuddy+ หาเพื่อนวัยเดียวกันและดูแลสุขภาพ" />
-        <button class="tap-zone menu-tap" type="button" data-open-menu aria-label="เปิดเมนู"></button>
-        <a class="tap-zone start-tap" href="#line-login" data-go="line-login" aria-label="เริ่มต้นใช้งาน"></a>
-        <a class="tap-zone family-tap" href="#family-login" data-go="family-login" aria-label="สำหรับครอบครัว"></a>
+      <section class="screen image-screen login-screen" id="login" aria-label="à¸«à¸™à¹‰à¸²à¹à¸£à¸à¸«à¸£à¸·à¸­à¸¥à¹‡à¸­à¸à¸­à¸´à¸™">
+        <img src="assets/landing.png" alt="MyBuddy+ à¸«à¸²à¹€à¸žà¸·à¹ˆà¸­à¸™à¸§à¸±à¸¢à¹€à¸”à¸µà¸¢à¸§à¸à¸±à¸™à¹à¸¥à¸°à¸”à¸¹à¹à¸¥à¸ªà¸¸à¸‚à¸ à¸²à¸ž" />
+        <button class="tap-zone menu-tap" type="button" data-open-menu aria-label="à¹€à¸›à¸´à¸”à¹€à¸¡à¸™à¸¹"></button>
+        <a class="tap-zone start-tap" href="#line-login" data-go="line-login" aria-label="à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™à¹ƒà¸Šà¹‰à¸‡à¸²à¸™"></a>
+        <a class="tap-zone family-tap" href="#family-login" data-go="family-login" aria-label="à¸ªà¸³à¸«à¸£à¸±à¸šà¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§"></a>
       </section>
 
-      <section class="screen image-screen line-login-screen" id="line-login" aria-label="หน้าเข้าสู่ระบบด้วย LINE">
-        <img src="assets/line-login.png" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
-        <button class="tap-zone line-logo-back-tap" type="button" data-go="login" aria-label="ย้อนกลับหน้าแรก"></button>
-        <a class="tap-zone line-submit-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
-        <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
+      <section class="screen image-screen line-login-screen" id="line-login" aria-label="à¸«à¸™à¹‰à¸²à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸šà¸”à¹‰à¸§à¸¢ LINE">
+        <img src="assets/line-login.png" alt="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š MyBuddy+ à¸”à¹‰à¸§à¸¢ LINE" />
+        <button class="tap-zone line-logo-back-tap" type="button" data-go="login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸šà¸«à¸™à¹‰à¸²à¹à¸£à¸"></button>
+        <a class="tap-zone line-submit-tap" href="#line-confirm" data-go="line-confirm" aria-label="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸šà¸”à¹‰à¸§à¸¢ LINE"></a>
+        <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="à¸•à¸´à¸”à¸•à¹ˆà¸­à¹€à¸£à¸²"></a>
       </section>
 
-      <section class="screen content-screen line-confirm-screen" id="line-confirm" aria-label="ยืนยันผ่าน LINE">
-        <header class="topbar">
-          <strong>LINE Login</strong>
-          <button class="top-logo-back" type="button" data-go="line-login" aria-label="ย้อนกลับ">MyBuddy+</button>
-        </header>
-        <article class="panel auth-panel">
-          <div class="line-icon">LINE</div>
-          <h1>ยืนยันการเข้าสู่ระบบผ่าน LINE</h1>
-          <p>อนุญาตให้ MyBuddy+ ใช้ข้อมูลโปรไฟล์พื้นฐานเพื่อเข้าสู่ระบบและเชื่อมต่อบัญชีของคุณ</p>
-          <ul>
-            <li>ชื่อและรูปโปรไฟล์</li>
-            <li>รหัสผู้ใช้ LINE สำหรับเข้าสู่ระบบ</li>
-            <li>ไม่โพสต์ข้อความแทนคุณ</li>
-          </ul>
-          <button class="primary-action" type="button" data-go="home">อนุญาตและเข้าสู่ระบบ</button>
-          <button class="ghost-action" type="button" data-go="line-login">ยกเลิก</button>
-        </article>
+      <section class="screen image-screen line-confirm-screen" id="line-confirm" aria-label="LINE Login">
+        <img src="assets/carelog-line-login.png" alt="LINE Login" />
+        <button class="tap-zone confirm-back-tap" type="button" data-go="line-login" aria-label="Back"></button>
+        <a class="tap-zone confirm-approve-tap" href="#home" data-go="home" aria-label="Allow and login"></a>
+        <a class="tap-zone confirm-cancel-tap" href="#line-login" data-go="line-login" aria-label="Cancel"></a>
+      </section>
+      <section class="screen image-screen family-login-screen" id="family-login" aria-label="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸šà¸ªà¸³à¸«à¸£à¸±à¸šà¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§">
+        <img src="assets/family-login.png" alt="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š MyBuddy+ à¸ªà¸³à¸«à¸£à¸±à¸šà¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§" />
+        <button class="tap-zone family-menu-tap" type="button" data-go="login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸šà¸«à¸™à¹‰à¸²à¹à¸£à¸"></button>
+        <input class="image-input family-user-input" type="text" aria-label="à¸Šà¸·à¹ˆà¸­à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¸«à¸£à¸·à¸­à¸­à¸µà¹€à¸¡à¸¥" autocomplete="username" />
+        <input class="image-input family-password-input" type="password" aria-label="à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™" autocomplete="current-password" />
+        <button class="tap-zone family-eye-tap" type="button" data-toggle-password aria-label="à¹à¸ªà¸”à¸‡à¸«à¸£à¸·à¸­à¸‹à¹ˆà¸­à¸™à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™"></button>
+        <button class="tap-zone family-forgot-tap" type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸¥à¸·à¸¡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™à¹à¸¥à¹‰à¸§" aria-label="à¸¥à¸·à¸¡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™"></button>
+        <a class="tap-zone family-submit-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š"></a>
+        <a class="tap-zone family-line-tap" href="#family-line-login" data-go="family-line-login" aria-label="à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸šà¸”à¹‰à¸§à¸¢ LINE"></a>
+        <button class="tap-zone family-register-tap" type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸ªà¸¡à¸±à¸„à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸à¹à¸¥à¹‰à¸§" aria-label="à¸ªà¸¡à¸±à¸„à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸"></button>
+        <a class="tap-zone family-contact-tap" href="#support" data-go="support" aria-label="à¸•à¸´à¸”à¸•à¹ˆà¸­à¹€à¸£à¸²"></a>
       </section>
 
-      <section class="screen image-screen family-login-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
-        <img src="assets/family-login.png" alt="เข้าสู่ระบบ MyBuddy+ สำหรับครอบครัว" />
-        <button class="tap-zone family-menu-tap" type="button" data-go="login" aria-label="ย้อนกลับหน้าแรก"></button>
-        <input class="image-input family-user-input" type="text" aria-label="ชื่อผู้ใช้หรืออีเมล" autocomplete="username" />
-        <input class="image-input family-password-input" type="password" aria-label="รหัสผ่าน" autocomplete="current-password" />
-        <button class="tap-zone family-eye-tap" type="button" data-toggle-password aria-label="แสดงหรือซ่อนรหัสผ่าน"></button>
-        <button class="tap-zone family-forgot-tap" type="button" data-toast="เปิดหน้าลืมรหัสผ่านแล้ว" aria-label="ลืมรหัสผ่าน"></button>
-        <a class="tap-zone family-submit-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="เข้าสู่ระบบ"></a>
-        <a class="tap-zone family-line-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
-        <button class="tap-zone family-register-tap" type="button" data-toast="เปิดหน้าสมัครสมาชิกแล้ว" aria-label="สมัครสมาชิก"></button>
-        <a class="tap-zone family-contact-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
+      <section class="screen image-screen family-line-login-screen" id="family-line-login" aria-label="Family LINE Login">
+        <img src="assets/family-line-login.png" alt="Family LINE Login" />
+        <button class="tap-zone family-line-menu-tap" type="button" data-go="family-login" aria-label="Back"></button>
+        <a class="tap-zone family-line-approve-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="Allow"></a>
+        <a class="tap-zone family-line-cancel-tap" href="#family-login" data-go="family-login" aria-label="Cancel"></a>
       </section>
 
-      <section class="screen content-screen" id="home" aria-label="หน้าหลักหลังล็อกอิน">
+      <section class="screen content-screen" id="home" aria-label="à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸à¸«à¸¥à¸±à¸‡à¸¥à¹‡à¸­à¸à¸­à¸´à¸™">
         <header class="topbar">
           <strong>MyBuddy+</strong>
-          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับหน้าแรก">MyBuddy+</button>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸šà¸«à¸™à¹‰à¸²à¹à¸£à¸">MyBuddy+</button>
         </header>
         <article class="panel">
-          <h1>พร้อมเริ่มใช้งาน</h1>
-          <p>นี่คือหน้าหลังล็อกอินตัวอย่าง รอเชื่อมกับรูป 3 หรือฟังก์ชันหลักที่ต้องการต่อไป</p>
+          <h1>à¸žà¸£à¹‰à¸­à¸¡à¹€à¸£à¸´à¹ˆà¸¡à¹ƒà¸Šà¹‰à¸‡à¸²à¸™</h1>
+          <p>à¸™à¸µà¹ˆà¸„à¸·à¸­à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸‡à¸¥à¹‡à¸­à¸à¸­à¸´à¸™à¸•à¸±à¸§à¸­à¸¢à¹ˆà¸²à¸‡ à¸£à¸­à¹€à¸Šà¸·à¹ˆà¸­à¸¡à¸à¸±à¸šà¸£à¸¹à¸› 3 à¸«à¸£à¸·à¸­à¸Ÿà¸±à¸‡à¸à¹Œà¸Šà¸±à¸™à¸«à¸¥à¸±à¸à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸•à¹ˆà¸­à¹„à¸›</p>
           <div class="feature-grid">
-            <button type="button" data-toast="เปิดหน้า Buddy">Buddy</button>
-            <button type="button" data-toast="เปิดหน้า CareLog">CareLog</button>
-            <button type="button" data-toast="เปิดหน้า SOS">SOS</button>
-            <button type="button" data-toast="เปิดหน้านัดหมาย">นัดหมาย</button>
+            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² Buddy">Buddy</button>
+            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² CareLog">CareLog</button>
+            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² SOS">SOS</button>
+            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸™à¸±à¸”à¸«à¸¡à¸²à¸¢">à¸™à¸±à¸”à¸«à¸¡à¸²à¸¢</button>
           </div>
         </article>
       </section>
 
-      <section class="screen content-screen" id="family-dashboard" aria-label="แดชบอร์ดครอบครัว">
+      <section class="screen content-screen" id="family-dashboard" aria-label="à¹à¸”à¸Šà¸šà¸­à¸£à¹Œà¸”à¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§">
         <header class="topbar">
           <strong>Family Dashboard</strong>
-          <button class="top-logo-back" type="button" data-go="family-login" aria-label="ย้อนกลับ">MyBuddy+</button>
+          <button class="top-logo-back" type="button" data-go="family-login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸š">MyBuddy+</button>
         </header>
         <article class="panel">
-          <h1>ดูแลได้ในหน้าเดียว</h1>
+          <h1>à¸”à¸¹à¹à¸¥à¹„à¸”à¹‰à¹ƒà¸™à¸«à¸™à¹‰à¸²à¹€à¸”à¸µà¸¢à¸§</h1>
           <div class="status-list">
-            <span>ตำแหน่งล่าสุด: บ้าน</span>
-            <span>สุขภาพวันนี้: ปกติ</span>
-            <span>นัดหมายถัดไป: ยังไม่มี</span>
-            <span>SOS: พร้อมใช้งาน</span>
+            <span>à¸•à¸³à¹à¸«à¸™à¹ˆà¸‡à¸¥à¹ˆà¸²à¸ªà¸¸à¸”: à¸šà¹‰à¸²à¸™</span>
+            <span>à¸ªà¸¸à¸‚à¸ à¸²à¸žà¸§à¸±à¸™à¸™à¸µà¹‰: à¸›à¸à¸•à¸´</span>
+            <span>à¸™à¸±à¸”à¸«à¸¡à¸²à¸¢à¸–à¸±à¸”à¹„à¸›: à¸¢à¸±à¸‡à¹„à¸¡à¹ˆà¸¡à¸µ</span>
+            <span>SOS: à¸žà¸£à¹‰à¸­à¸¡à¹ƒà¸Šà¹‰à¸‡à¸²à¸™</span>
           </div>
         </article>
       </section>
 
-      <section class="screen content-screen" id="support" aria-label="ช่วยเหลือและติดต่อเรา">
+      <section class="screen content-screen" id="support" aria-label="à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­à¹à¸¥à¸°à¸•à¸´à¸”à¸•à¹ˆà¸­à¹€à¸£à¸²">
         <header class="topbar">
-          <strong>ช่วยเหลือ</strong>
-          <button class="top-logo-back" type="button" data-go="line-login" aria-label="ย้อนกลับ">MyBuddy+</button>
+          <strong>à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­</strong>
+          <button class="top-logo-back" type="button" data-go="line-login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸š">MyBuddy+</button>
         </header>
         <article class="panel">
-          <h1>ติดต่อ MyBuddy+</h1>
-          <p>หน้านี้เป็นหน้าช่วยเหลือชั่วคราวสำหรับต่อระบบจริงในขั้นถัดไป</p>
+          <h1>à¸•à¸´à¸”à¸•à¹ˆà¸­ MyBuddy+</h1>
+          <p>à¸«à¸™à¹‰à¸²à¸™à¸µà¹‰à¹€à¸›à¹‡à¸™à¸«à¸™à¹‰à¸²à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­à¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§à¸ªà¸³à¸«à¸£à¸±à¸šà¸•à¹ˆà¸­à¸£à¸°à¸šà¸šà¸ˆà¸£à¸´à¸‡à¹ƒà¸™à¸‚à¸±à¹‰à¸™à¸–à¸±à¸”à¹„à¸›</p>
           <div class="status-list">
             <span>LINE Official: @MyBuddyPlus</span>
-            <span>โทร: 02-000-0000</span>
-            <span>เวลาทำการ: 08:00 - 18:00 น.</span>
+            <span>à¹‚à¸—à¸£: 02-000-0000</span>
+            <span>à¹€à¸§à¸¥à¸²à¸—à¸³à¸à¸²à¸£: 08:00 - 18:00 à¸™.</span>
           </div>
-          <button class="primary-action" type="button" data-go="line-login">กลับหน้าเข้าสู่ระบบ</button>
+          <button class="primary-action" type="button" data-go="line-login">à¸à¸¥à¸±à¸šà¸«à¸™à¹‰à¸²à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š</button>
         </article>
       </section>
 
       <section class="menu-layer" aria-hidden="true">
         <div class="menu-card">
-          <button class="close-menu" type="button" data-close-menu aria-label="ปิดเมนู">×</button>
-          <h2>เมนู</h2>
-          <button type="button" data-go="login">หน้าแรก</button>
-          <button type="button" data-go="home">ฟังก์ชันของเรา</button>
-          <button type="button" data-go="family-login">สำหรับครอบครัว</button>
-          <button type="button" data-toast="เปิดหน้าวิธีใช้งาน">วิธีใช้งาน</button>
-          <button type="button" data-toast="เปิดหน้าช่วยเหลือ">ช่วยเหลือและติดต่อเรา</button>
+          <button class="close-menu" type="button" data-close-menu aria-label="à¸›à¸´à¸”à¹€à¸¡à¸™à¸¹">Ã—</button>
+          <h2>à¹€à¸¡à¸™à¸¹</h2>
+          <button type="button" data-go="login">à¸«à¸™à¹‰à¸²à¹à¸£à¸</button>
+          <button type="button" data-go="home">à¸Ÿà¸±à¸‡à¸à¹Œà¸Šà¸±à¸™à¸‚à¸­à¸‡à¹€à¸£à¸²</button>
+          <button type="button" data-go="family-login">à¸ªà¸³à¸«à¸£à¸±à¸šà¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§</button>
+          <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸§à¸´à¸˜à¸µà¹ƒà¸Šà¹‰à¸‡à¸²à¸™">à¸§à¸´à¸˜à¸µà¹ƒà¸Šà¹‰à¸‡à¸²à¸™</button>
+          <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­">à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­à¹à¸¥à¸°à¸•à¸´à¸”à¸•à¹ˆà¸­à¹€à¸£à¸²</button>
         </div>
       </section>
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=14"></script>
   </body>
 </html>
