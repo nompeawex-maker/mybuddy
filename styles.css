@@ -72,6 +72,13 @@ button {
   pointer-events: auto;
 }
 
+.app-page:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 4;
+}
+
 .landing-page.active {
   animation: landingIn .85s ease 3.12s forwards;
 }
@@ -94,6 +101,7 @@ button {
   background: transparent;
   cursor: pointer;
   touch-action: manipulation;
+  display: block;
 }
 
 .hotspot:focus-visible {
@@ -148,6 +156,7 @@ button {
   background: transparent;
   cursor: pointer;
   touch-action: manipulation;
+  display: block;
 }
 
 .login-line-button {
