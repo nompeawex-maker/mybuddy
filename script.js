@@ -43,7 +43,8 @@ function showToast(message) {
 }
 
 document.querySelectorAll('[data-go]').forEach((control) => {
-  control.addEventListener('click', () => {
+  control.addEventListener('click', (event) => {
+    event.preventDefault()
     showScreen(control.dataset.go)
   })
 })

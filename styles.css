@@ -27,8 +27,8 @@ button {
 
 .app-shell {
   position: relative;
-  width: min(100vw, calc(100svh * 853 / 1844));
-  height: min(100svh, calc(100vw * 1844 / 853));
+  width: min(100vw, calc(100svh * 1080 / 2400));
+  height: min(100svh, calc(100vw * 2400 / 1080));
   overflow: hidden;
   background: #068bff;
   box-shadow: 0 22px 70px rgba(0, 64, 130, .3);
@@ -48,6 +48,13 @@ button {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
+}
+
+.screen:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 6;
 }
 
 .splash-screen {
@@ -100,26 +107,26 @@ button {
 }
 
 .menu-tap {
-  top: 1.1%;
-  right: 2.2%;
-  width: 10.5%;
-  height: 5.5%;
+  top: 1.75%;
+  right: 3.2%;
+  width: 9.2%;
+  height: 4.2%;
   border-radius: 16px;
 }
 
 .start-tap {
-  left: 14%;
-  top: 67.2%;
-  width: 72%;
-  height: 7.4%;
+  left: 13.2%;
+  top: 70.6%;
+  width: 73.8%;
+  height: 6.1%;
   border-radius: 999px;
 }
 
 .family-tap {
-  left: 14%;
-  top: 76.05%;
-  width: 72%;
-  height: 7.4%;
+  left: 13.2%;
+  top: 78.25%;
+  width: 73.8%;
+  height: 6.4%;
   border-radius: 999px;
 }
 
