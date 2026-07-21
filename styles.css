@@ -24,8 +24,8 @@ button {
 
 .phone-app {
   position: relative;
-  width: min(100vw, calc(100svh * 864 / 1872));
-  height: min(100svh, calc(100vw * 1872 / 864));
+  width: min(100vw, calc(100svh * 910 / 1729));
+  height: min(100svh, calc(100vw * 1729 / 910));
   margin: 0 auto;
   overflow: hidden;
   background: #0588ff;
@@ -45,6 +45,12 @@ button {
 .splash-page {
   z-index: 3;
   animation: splashOut .75s ease 3s forwards;
+}
+
+.splash-page.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .landing-page {
@@ -102,26 +108,26 @@ button {
 }
 
 .hotspot.menu {
-  top: 1.35%;
-  right: 3.6%;
-  width: 10%;
-  height: 5.2%;
+  top: 1.25%;
+  right: 2.4%;
+  width: 9%;
+  height: 4.9%;
   border-radius: 14px;
 }
 
 .hotspot.start {
-  left: 14.4%;
-  top: 71.4%;
-  width: 71.2%;
-  height: 6.2%;
+  left: 14.2%;
+  top: 67.4%;
+  width: 72%;
+  height: 7.2%;
   border-radius: 999px;
 }
 
 .hotspot.family {
-  left: 14.4%;
-  top: 80.2%;
-  width: 71.2%;
-  height: 6.1%;
+  left: 14.2%;
+  top: 76.15%;
+  width: 72%;
+  height: 7.2%;
   border-radius: 999px;
 }
 
