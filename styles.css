@@ -58,10 +58,18 @@ button {
 }
 
 .image-screen {
-  --art-h: calc(100vw * 2400 / 1080);
-  overflow-y: auto;
+  --art-h: 100vh;
+  overflow: hidden;
+}
+
+@supports (height: 100dvh) {
+  .image-screen {
+    --art-h: 100dvh;
+  }
+}
+
+.image-screen {
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 
 .screen.active {
@@ -106,9 +114,8 @@ button {
 .image-screen img {
   display: block;
   width: 100%;
-  height: auto;
-  min-height: var(--art-h);
-  object-fit: contain;
+  height: 100%;
+  object-fit: fill;
   object-position: center top;
   user-select: none;
 }
