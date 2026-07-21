@@ -115,28 +115,11 @@ button {
   background: transparent;
   font-size: 24px;
   font-weight: 700;
+  padding: 0 10px;
 }
 
 .image-input:focus {
   background: rgba(255, 255, 255, .12);
-}
-
-.image-back-button {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  z-index: 3;
-  width: 48px;
-  height: 48px;
-  border: 0;
-  border-radius: 50%;
-  color: #075fdb;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: 0 8px 20px rgba(0, 67, 150, .2);
-  font-size: 34px;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
 }
 
 .menu-tap {
@@ -147,19 +130,27 @@ button {
   border-radius: 16px;
 }
 
+.line-logo-back-tap {
+  top: 1.8%;
+  right: 3.6%;
+  width: 10%;
+  height: 5%;
+  border-radius: 16px;
+}
+
 .start-tap {
-  left: 12.4%;
-  top: 70.85%;
-  width: 75.2%;
-  height: 6.85%;
+  left: 13.0%;
+  top: 71.2%;
+  width: 74.0%;
+  height: 5.9%;
   border-radius: 999px;
 }
 
 .family-tap {
-  left: 12.4%;
-  top: 78.75%;
-  width: 75.2%;
-  height: 6.9%;
+  left: 13.0%;
+  top: 79.15%;
+  width: 74.0%;
+  height: 5.95%;
   border-radius: 999px;
 }
 
@@ -188,16 +179,16 @@ button {
 }
 
 .family-user-input {
-  left: 21%;
+  left: 25.5%;
   top: 38.9%;
-  width: 57%;
+  width: 52.5%;
   height: 4.4%;
 }
 
 .family-password-input {
-  left: 21%;
+  left: 25.5%;
   top: 49.05%;
-  width: 48%;
+  width: 44%;
   height: 4.4%;
 }
 
@@ -273,13 +264,13 @@ button {
 }
 
 .topbar button {
-  width: 42px;
+  min-width: 42px;
   height: 42px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 999px;
   color: #075fdb;
   background: rgba(255, 255, 255, .75);
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 800;
   cursor: pointer;
 }
@@ -288,6 +279,11 @@ button {
   flex: 1;
   font-size: 22px;
   font-weight: 900;
+}
+
+.top-logo-back {
+  padding: 0 14px;
+  white-space: nowrap;
 }
 
 .panel {
