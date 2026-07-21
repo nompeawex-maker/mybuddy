@@ -14,10 +14,18 @@ function openMenu() {
   menuLayer?.setAttribute('aria-hidden', 'false')
 }
 
+function updateHomeMetrics() {
+  const homeScreen = document.querySelector('.home-screen')
+  if (!homeScreen) return
+  const artHeight = homeScreen.clientWidth * (2400 / 1080)
+  homeScreen.style.setProperty('--art-h', `${artHeight}px`)
+}
+
 function showScreen(screenId, options = {}) {
   const target = document.getElementById(screenId)
   if (!target) return
 
+  updateHomeMetrics()
   screens.forEach((screen) => {
     screen.classList.toggle('active', screen === target)
   })
@@ -171,6 +179,7 @@ function renderList(selector, items, emptyText) {
 
 function updateHomeFlow(notifications) {
   const homeScreen = document.querySelector('.home-screen')
+  updateHomeMetrics()
   const visibleCount = Math.min(notifications.length, 2)
   const shift = visibleCount ? 18 + (visibleCount * 92) : 0
   homeScreen?.style.setProperty('--home-flow-shift', `${shift}px`)
@@ -257,6 +266,11 @@ appointmentForm?.addEventListener('submit', (event) => {
 })
 
 renderCareData()
+
+window.addEventListener('resize', () => {
+  updateHomeMetrics()
+  renderCareData()
+})
 
 window.setTimeout(() => {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })

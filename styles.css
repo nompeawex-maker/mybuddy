@@ -860,3 +860,21 @@ button {
 .home-buddy-tap {
   top: calc((var(--art-h) * .868) + var(--home-flow-shift));
 }
+
+.home-screen {
+  --art-h: 2400px;
+}
+
+.home-screen img {
+  position: relative;
+  z-index: 0;
+}
+
+.home-screen .tap-zone,
+.home-alert-preview {
+  z-index: 30;
+}
+
+.home-alert-tap {
+  z-index: 31;
+}

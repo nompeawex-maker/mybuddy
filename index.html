@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=27" />
+    <link rel="stylesheet" href="styles.css?v=28" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -58,8 +58,8 @@
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="Today alerts"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" aria-label="Medicine"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" aria-label="Appointments"></a>
-        <button class="tap-zone home-health-tap" type="button" data-toast="เปิดหน้าสุขภาพแล้ว" aria-label="Health"></button>
-        <button class="tap-zone home-buddy-tap" type="button" data-toast="เปิดหน้า Buddy แล้ว" aria-label="Buddy"></button>
+        <button class="tap-zone home-health-tap" type="button" data-go="health" aria-label="Health"></button>
+        <button class="tap-zone home-buddy-tap" type="button" data-go="buddy" aria-label="Buddy"></button>
         <div class="home-alert-preview" aria-live="polite">
           <strong data-alert-title>การแจ้งเตือนวันนี้</strong>
           <div class="home-alert-list" data-home-alert-list></div>
@@ -112,6 +112,38 @@
         </article>
       </section>
 
+      <section class="screen content-screen" id="health" aria-label="Health">
+        <header class="topbar">
+          <strong>สุขภาพ</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>สุขภาพวันนี้</h1>
+          <p>บันทึกและติดตามข้อมูลสุขภาพเบื้องต้นสำหรับเดโม</p>
+          <div class="status-list">
+            <span>ความดัน: 120/80 mmHg</span>
+            <span>ชีพจร: 72 ครั้ง/นาที</span>
+            <span>สถานะ: ปกติ</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="buddy" aria-label="Buddy">
+        <header class="topbar">
+          <strong>Buddy</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>Buddy</h1>
+          <p>พื้นที่กิจกรรมและเพื่อนของคุณ</p>
+          <div class="status-list">
+            <span>กิจกรรมแนะนำ: เดินเล่นใกล้บ้าน</span>
+            <span>เพื่อนใกล้เคียง: พร้อมค้นหา</span>
+            <span>แชทกลุ่ม: พร้อมใช้งานในขั้นถัดไป</span>
+          </div>
+        </article>
+      </section>
+
       <section class="screen content-screen" id="family-dashboard" aria-label="à¹à¸”à¸Šà¸šà¸­à¸£à¹Œà¸”à¸„à¸£à¸­à¸šà¸„à¸£à¸±à¸§">
         <header class="topbar">
           <strong>Family Dashboard</strong>
@@ -159,6 +191,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=27"></script>
+    <script src="script.js?v=28"></script>
   </body>
 </html>
