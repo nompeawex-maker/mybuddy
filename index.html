@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -19,23 +19,10 @@
         <a class="tap-zone family-tap" href="#family-login" data-go="family-login" aria-label="สำหรับครอบครัว"></a>
       </section>
 
-      <section class="screen content-screen" id="line-login" aria-label="ยืนยันการเข้าสู่ระบบด้วย LINE">
-        <header class="topbar">
-          <button type="button" data-go="login" aria-label="กลับ">‹</button>
-          <strong>เข้าสู่ระบบ</strong>
-        </header>
-        <article class="panel auth-panel">
-          <div class="line-icon">LINE</div>
-          <h1>ยืนยันการเข้าสู่ระบบด้วย LINE</h1>
-          <p>ระบบจะจำลองหน้าขออนุญาตก่อนเข้าใช้งาน เพื่อให้ flow เหมือนการล็อกอิน LINE จริง</p>
-          <ul>
-            <li>ใช้ชื่อและรูปโปรไฟล์พื้นฐาน</li>
-            <li>เชื่อมต่อบัญชี MyBuddy+</li>
-            <li>ไม่โพสต์ข้อความแทนผู้ใช้</li>
-          </ul>
-          <button class="primary-action" type="button" data-go="home">อนุญาตและเข้าสู่ระบบ</button>
-          <button class="ghost-action" type="button" data-go="login">ยกเลิก</button>
-        </article>
+      <section class="screen image-screen line-login-screen" id="line-login" aria-label="หน้าเข้าสู่ระบบด้วย LINE">
+        <img src="assets/line-login.png" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
+        <button class="tap-zone line-submit-tap" type="button" data-go="home" aria-label="เข้าสู่ระบบด้วย LINE"></button>
+        <button class="tap-zone line-help-tap" type="button" data-toast="เปิดช่องทางติดต่อเราแล้ว" aria-label="ติดต่อเรา"></button>
       </section>
 
       <section class="screen content-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
@@ -106,6 +93,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>
