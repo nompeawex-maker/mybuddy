@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -21,6 +21,7 @@
 
       <section class="screen image-screen line-login-screen" id="line-login" aria-label="หน้าเข้าสู่ระบบด้วย LINE">
         <img src="assets/line-login.png" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
+        <button class="image-back-button" type="button" data-go="login" aria-label="ย้อนกลับ">‹</button>
         <a class="tap-zone line-submit-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
         <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
       </section>
@@ -44,24 +45,18 @@
         </article>
       </section>
 
-      <section class="screen content-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
-        <header class="topbar">
-          <button type="button" data-go="login" aria-label="กลับ">‹</button>
-          <strong>สำหรับครอบครัว</strong>
-        </header>
-        <article class="panel">
-          <h1>เชื่อมต่อบัญชีครอบครัว</h1>
-          <p>หน้าสำหรับผู้ดูแล ใช้ดูตำแหน่ง แจ้งเตือน SOS นัดหมาย และ CareLog ของผู้สูงอายุ</p>
-          <label>
-            เบอร์โทร / อีเมล
-            <input type="text" placeholder="กรอกเบอร์โทรหรืออีเมล" />
-          </label>
-          <label>
-            รหัส OTP
-            <input type="text" placeholder="กรอกรหัส 6 หลัก" inputmode="numeric" />
-          </label>
-          <button class="primary-action" type="button" data-go="family-dashboard">เข้าสู่แดชบอร์ดครอบครัว</button>
-        </article>
+      <section class="screen image-screen family-login-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
+        <img src="assets/family-login.png" alt="เข้าสู่ระบบ MyBuddy+ สำหรับครอบครัว" />
+        <button class="image-back-button" type="button" data-go="login" aria-label="ย้อนกลับ">‹</button>
+        <button class="tap-zone family-menu-tap" type="button" data-open-menu aria-label="เปิดเมนู"></button>
+        <input class="image-input family-user-input" type="text" aria-label="ชื่อผู้ใช้หรืออีเมล" autocomplete="username" />
+        <input class="image-input family-password-input" type="password" aria-label="รหัสผ่าน" autocomplete="current-password" />
+        <button class="tap-zone family-eye-tap" type="button" data-toggle-password aria-label="แสดงหรือซ่อนรหัสผ่าน"></button>
+        <button class="tap-zone family-forgot-tap" type="button" data-toast="เปิดหน้าลืมรหัสผ่านแล้ว" aria-label="ลืมรหัสผ่าน"></button>
+        <a class="tap-zone family-submit-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="เข้าสู่ระบบ"></a>
+        <a class="tap-zone family-line-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
+        <button class="tap-zone family-register-tap" type="button" data-toast="เปิดหน้าสมัครสมาชิกแล้ว" aria-label="สมัครสมาชิก"></button>
+        <a class="tap-zone family-contact-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
       </section>
 
       <section class="screen content-screen" id="home" aria-label="หน้าหลักหลังล็อกอิน">
@@ -129,6 +124,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=9"></script>
   </body>
 </html>

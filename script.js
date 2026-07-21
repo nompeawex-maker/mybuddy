@@ -61,6 +61,14 @@ document.querySelectorAll('[data-toast]').forEach((control) => {
   control.addEventListener('click', () => showToast(control.dataset.toast))
 })
 
+document.querySelectorAll('[data-toggle-password]').forEach((control) => {
+  control.addEventListener('click', () => {
+    const passwordInput = document.querySelector('.family-password-input')
+    if (!passwordInput) return
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password'
+  })
+})
+
 menuLayer?.addEventListener('click', (event) => {
   if (event.target === menuLayer) closeMenu()
 })
