@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -21,8 +21,27 @@
 
       <section class="screen image-screen line-login-screen" id="line-login" aria-label="หน้าเข้าสู่ระบบด้วย LINE">
         <img src="assets/line-login.png" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
-        <button class="tap-zone line-submit-tap" type="button" data-go="home" aria-label="เข้าสู่ระบบด้วย LINE"></button>
-        <button class="tap-zone line-help-tap" type="button" data-toast="เปิดช่องทางติดต่อเราแล้ว" aria-label="ติดต่อเรา"></button>
+        <a class="tap-zone line-submit-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
+        <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
+      </section>
+
+      <section class="screen content-screen line-confirm-screen" id="line-confirm" aria-label="ยืนยันผ่าน LINE">
+        <header class="topbar">
+          <button type="button" data-go="line-login" aria-label="กลับ">‹</button>
+          <strong>LINE Login</strong>
+        </header>
+        <article class="panel auth-panel">
+          <div class="line-icon">LINE</div>
+          <h1>ยืนยันการเข้าสู่ระบบผ่าน LINE</h1>
+          <p>อนุญาตให้ MyBuddy+ ใช้ข้อมูลโปรไฟล์พื้นฐานเพื่อเข้าสู่ระบบและเชื่อมต่อบัญชีของคุณ</p>
+          <ul>
+            <li>ชื่อและรูปโปรไฟล์</li>
+            <li>รหัสผู้ใช้ LINE สำหรับเข้าสู่ระบบ</li>
+            <li>ไม่โพสต์ข้อความแทนคุณ</li>
+          </ul>
+          <button class="primary-action" type="button" data-go="home">อนุญาตและเข้าสู่ระบบ</button>
+          <button class="ghost-action" type="button" data-go="line-login">ยกเลิก</button>
+        </article>
       </section>
 
       <section class="screen content-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
@@ -79,6 +98,23 @@
         </article>
       </section>
 
+      <section class="screen content-screen" id="support" aria-label="ช่วยเหลือและติดต่อเรา">
+        <header class="topbar">
+          <button type="button" data-go="line-login" aria-label="กลับ">‹</button>
+          <strong>ช่วยเหลือ</strong>
+        </header>
+        <article class="panel">
+          <h1>ติดต่อ MyBuddy+</h1>
+          <p>หน้านี้เป็นหน้าช่วยเหลือชั่วคราวสำหรับต่อระบบจริงในขั้นถัดไป</p>
+          <div class="status-list">
+            <span>LINE Official: @MyBuddyPlus</span>
+            <span>โทร: 02-000-0000</span>
+            <span>เวลาทำการ: 08:00 - 18:00 น.</span>
+          </div>
+          <button class="primary-action" type="button" data-go="line-login">กลับหน้าเข้าสู่ระบบ</button>
+        </article>
+      </section>
+
       <section class="menu-layer" aria-hidden="true">
         <div class="menu-card">
           <button class="close-menu" type="button" data-close-menu aria-label="ปิดเมนู">×</button>
@@ -93,6 +129,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=6"></script>
   </body>
 </html>

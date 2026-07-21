@@ -107,26 +107,26 @@ button {
 }
 
 .menu-tap {
-  top: 1.75%;
-  right: 3.2%;
-  width: 9.2%;
-  height: 4.2%;
+  top: 1.55%;
+  right: 4.1%;
+  width: 8.5%;
+  height: 4.4%;
   border-radius: 16px;
 }
 
 .start-tap {
-  left: 13.2%;
-  top: 70.6%;
-  width: 73.8%;
-  height: 6.1%;
+  left: 13.4%;
+  top: 71.1%;
+  width: 73.3%;
+  height: 6.35%;
   border-radius: 999px;
 }
 
 .family-tap {
-  left: 13.2%;
-  top: 78.25%;
-  width: 73.8%;
-  height: 6.4%;
+  left: 13.4%;
+  top: 79.0%;
+  width: 73.3%;
+  height: 6.45%;
   border-radius: 999px;
 }
 
