@@ -58,6 +58,39 @@ document.querySelectorAll('[data-go]').forEach((control) => {
   })
 })
 
+const homeScreen = document.querySelector('.home-screen')
+homeScreen?.addEventListener('click', (event) => {
+  updateHomeMetrics()
+  const rect = homeScreen.getBoundingClientRect()
+  const artHeight = homeScreen.clientWidth * (2400 / 1080)
+  const shift = parseFloat(getComputedStyle(homeScreen).getPropertyValue('--home-flow-shift')) || 0
+  const x = (event.clientX - rect.left) / rect.width
+  const y = (event.clientY - rect.top + homeScreen.scrollTop) / artHeight
+  const shiftRatio = shift / artHeight
+
+  if (x >= .82 && y >= .02 && y <= .09) {
+    openMenu()
+    return
+  }
+
+  if (x >= .05 && x <= .95 && y >= .33 && y <= (.43 + shiftRatio)) {
+    showScreen('notifications')
+    return
+  }
+
+  if (x < .05 || x > .95) return
+
+  const zones = [
+    ['medicine', .47 + shiftRatio, .58 + shiftRatio],
+    ['appointments', .60 + shiftRatio, .71 + shiftRatio],
+    ['health', .73 + shiftRatio, .84 + shiftRatio],
+    ['buddy', .855 + shiftRatio, .965 + shiftRatio],
+  ]
+
+  const zone = zones.find(([, top, bottom]) => y >= top && y <= bottom)
+  if (zone) showScreen(zone[0])
+})
+
 document.querySelectorAll('[data-open-menu]').forEach((control) => {
   control.addEventListener('click', openMenu)
 })

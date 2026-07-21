@@ -878,3 +878,16 @@ button {
 .home-alert-tap {
   z-index: 31;
 }
+
+.home-screen .tap-zone {
+  pointer-events: none;
+}
+
+.home-screen {
+  cursor: pointer;
+}
+
+.home-screen .tap-zone:active,
+.home-screen:active .tap-zone {
+  background: transparent;
+}
