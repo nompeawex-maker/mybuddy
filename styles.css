@@ -152,18 +152,18 @@ button {
 }
 
 .start-tap {
-  left: 13.0%;
-  top: calc(var(--art-h) * .712);
-  width: 74.0%;
-  height: calc(var(--art-h) * .059);
+  left: 14.0%;
+  top: calc(var(--art-h) * .727);
+  width: 72.0%;
+  height: calc(var(--art-h) * .069);
   border-radius: 999px;
 }
 
 .family-tap {
-  left: 13.0%;
-  top: calc(var(--art-h) * .7915);
-  width: 74.0%;
-  height: calc(var(--art-h) * .0595);
+  left: 14.0%;
+  top: calc(var(--art-h) * .812);
+  width: 72.0%;
+  height: calc(var(--art-h) * .068);
   border-radius: 999px;
 }
 
@@ -575,4 +575,128 @@ button {
     opacity: 1;
     pointer-events: auto;
   }
+}
+
+.home-menu-tap {
+  top: calc(var(--art-h) * .028);
+  right: 5%;
+  width: 12%;
+  height: calc(var(--art-h) * .055);
+}
+
+.home-alert-tap {
+  top: calc(var(--art-h) * .345);
+  left: 5%;
+  width: 90%;
+  height: calc(var(--art-h) * .078);
+}
+
+.home-med-tap {
+  top: calc(var(--art-h) * .465);
+  left: 5%;
+  width: 90%;
+  height: calc(var(--art-h) * .112);
+}
+
+.home-appointment-tap {
+  top: calc(var(--art-h) * .59);
+  left: 5%;
+  width: 90%;
+  height: calc(var(--art-h) * .112);
+}
+
+.home-health-tap {
+  top: calc(var(--art-h) * .715);
+  left: 5%;
+  width: 90%;
+  height: calc(var(--art-h) * .112);
+}
+
+.home-buddy-tap {
+  top: calc(var(--art-h) * .84);
+  left: 5%;
+  width: 90%;
+  height: calc(var(--art-h) * .112);
+}
+
+.home-alert-preview {
+  position: absolute;
+  top: calc(var(--art-h) * .389);
+  left: 25%;
+  z-index: 3;
+  width: 58%;
+  color: #64748b;
+  font-size: clamp(11px, calc(var(--art-w) * .033), 15px);
+  font-weight: 750;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+.home-alert-preview strong {
+  display: none;
+}
+
+.home-alert-preview span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.demo-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.demo-form label {
+  display: grid;
+  gap: 7px;
+  color: #17416f;
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.demo-form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 14px;
+  border: 1px solid #bddcff;
+  border-radius: 14px;
+  color: #102744;
+  background: #fff;
+  font: inherit;
+  font-weight: 750;
+}
+
+.status-list:empty::before {
+  content: "ยังไม่มีข้อมูล";
+  display: block;
+  padding: 14px 16px;
+  border-radius: 16px;
+  color: #64748b;
+  background: #f4f8ff;
+  font-weight: 750;
+}
+
+.status-item {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid #d8eaff;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(16, 55, 105, .08);
+}
+
+.status-item strong {
+  color: #102744;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.status-item small {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
 }

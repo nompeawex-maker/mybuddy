@@ -23,6 +23,7 @@ function showScreen(screenId, options = {}) {
   })
   splashScreen?.classList.add('leaving')
   closeMenu()
+  renderCareData()
 
   if (options.updateHash !== false) {
     const nextHash = screenId === 'login' ? '' : `#${screenId}`
@@ -80,6 +81,155 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('popstate', () => {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
 })
+
+const careStorageKey = 'neomyb-carelog-demo-v1'
+
+function todayIso() {
+  return new Date().toISOString().slice(0, 10)
+}
+
+function defaultCareState() {
+  return {
+    medicines: [
+      { id: 'med-default', name: 'ยาความดัน', time: '09:00' },
+    ],
+    appointments: [
+      { id: 'appt-default', place: 'โรงพยาบาลรามาธิบดี', date: todayIso(), time: '14:00' },
+    ],
+  }
+}
+
+function loadCareState() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(careStorageKey) || 'null')
+    return {
+      ...defaultCareState(),
+      ...(saved || {}),
+    }
+  } catch {
+    return defaultCareState()
+  }
+}
+
+let careState = loadCareState()
+
+function saveCareState() {
+  try {
+    window.localStorage.setItem(careStorageKey, JSON.stringify(careState))
+  } catch {
+    showToast('บันทึกในเครื่องไม่ได้ แต่เดโมยังใช้งานต่อได้')
+  }
+}
+
+function formatThaiDate(dateValue) {
+  if (!dateValue) return 'วันนี้'
+  const date = new Date(`${dateValue}T00:00:00`)
+  return new Intl.DateTimeFormat('th-TH', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(date)
+}
+
+function notificationItems() {
+  const medicines = careState.medicines.map((item) => ({
+    id: item.id,
+    sort: `${todayIso()}T${item.time || '00:00'}`,
+    title: `${item.time || '--:--'} กิน${item.name || 'ยา'}`,
+    detail: 'แจ้งเตือนเวลากินยาวันนี้',
+  }))
+
+  const appointments = careState.appointments.map((item) => ({
+    id: item.id,
+    sort: `${item.date || todayIso()}T${item.time || '00:00'}`,
+    title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น. ${item.place || 'นัดหมายแพทย์'}`,
+    detail: 'แจ้งเตือนนัดหมายหมอ',
+  }))
+
+  return [...medicines, ...appointments].sort((a, b) => a.sort.localeCompare(b.sort))
+}
+
+function renderList(selector, items, emptyText) {
+  const list = document.querySelector(selector)
+  if (!list) return
+  list.innerHTML = ''
+
+  if (!items.length) {
+    list.dataset.empty = emptyText
+    return
+  }
+
+  items.forEach((item) => {
+    const row = document.createElement('div')
+    row.className = 'status-item'
+    row.innerHTML = `<strong></strong><small></small>`
+    row.querySelector('strong').textContent = item.title
+    row.querySelector('small').textContent = item.detail
+    list.append(row)
+  })
+}
+
+function renderCareData() {
+  const notifications = notificationItems()
+  const alertDetail = document.querySelector('[data-alert-detail]')
+  if (alertDetail) {
+    alertDetail.textContent = notifications[0]?.title || 'ยังไม่มีรายการเตือน'
+  }
+
+  renderList('[data-notification-list]', notifications, 'ยังไม่มีรายการเตือน')
+  renderList(
+    '[data-medicine-list]',
+    careState.medicines.map((item) => ({
+      title: `${item.time || '--:--'} น. ${item.name || 'ยา'}`,
+      detail: 'ระบบจะนำรายการนี้ไปขึ้นแจ้งเตือนวันนี้',
+    })),
+    'ยังไม่มีตารางกินยา'
+  )
+  renderList(
+    '[data-appointment-list]',
+    careState.appointments.map((item) => ({
+      title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น.`,
+      detail: item.place || 'นัดหมายแพทย์',
+    })),
+    'ยังไม่มีนัดหมายหมอ'
+  )
+}
+
+const medicineForm = document.querySelector('[data-medicine-form]')
+medicineForm?.addEventListener('submit', (event) => {
+  event.preventDefault()
+  const formData = new FormData(medicineForm)
+  careState.medicines.unshift({
+    id: `med-${Date.now()}`,
+    name: String(formData.get('name') || '').trim() || 'ยา',
+    time: String(formData.get('time') || '09:00'),
+  })
+  saveCareState()
+  renderCareData()
+  showToast('บันทึกเวลาเตือนกินยาแล้ว')
+  showScreen('home')
+})
+
+const appointmentForm = document.querySelector('[data-appointment-form]')
+const appointmentDate = appointmentForm?.querySelector('input[name="date"]')
+if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso()
+
+appointmentForm?.addEventListener('submit', (event) => {
+  event.preventDefault()
+  const formData = new FormData(appointmentForm)
+  careState.appointments.unshift({
+    id: `appt-${Date.now()}`,
+    place: String(formData.get('place') || '').trim() || 'โรงพยาบาล',
+    date: String(formData.get('date') || todayIso()),
+    time: String(formData.get('time') || '09:00'),
+  })
+  saveCareState()
+  renderCareData()
+  showToast('บันทึกนัดหมายหมอแล้ว')
+  showScreen('home')
+})
+
+renderCareData()
 
 window.setTimeout(() => {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=21" />
+    <link rel="stylesheet" href="styles.css?v=23" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -52,20 +52,63 @@
         <a class="tap-zone family-line-cancel-tap" href="#family-login" data-go="family-login" aria-label="Cancel"></a>
       </section>
 
-      <section class="screen content-screen" id="home" aria-label="à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸à¸«à¸¥à¸±à¸‡à¸¥à¹‡à¸­à¸à¸­à¸´à¸™">
+      <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
+        <img src="assets/home.png" alt="MyBuddy+ home" />
+        <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="Open menu"></button>
+        <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="Today alerts"></button>
+        <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" aria-label="Medicine"></a>
+        <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" aria-label="Appointments"></a>
+        <button class="tap-zone home-health-tap" type="button" data-toast="เปิดหน้าสุขภาพแล้ว" aria-label="Health"></button>
+        <button class="tap-zone home-buddy-tap" type="button" data-toast="เปิดหน้า Buddy แล้ว" aria-label="Buddy"></button>
+        <div class="home-alert-preview" aria-live="polite">
+          <strong data-alert-title>การแจ้งเตือนวันนี้</strong>
+          <span data-alert-detail>ยังไม่มีรายการเตือน</span>
+        </div>
+      </section>
+
+      <section class="screen content-screen" id="notifications" aria-label="Today notifications">
         <header class="topbar">
-          <strong>MyBuddy+</strong>
-          <button class="top-logo-back" type="button" data-go="login" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸šà¸«à¸™à¹‰à¸²à¹à¸£à¸">MyBuddy+</button>
+          <strong>การแจ้งเตือนวันนี้</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
         </header>
         <article class="panel">
-          <h1>à¸žà¸£à¹‰à¸­à¸¡à¹€à¸£à¸´à¹ˆà¸¡à¹ƒà¸Šà¹‰à¸‡à¸²à¸™</h1>
-          <p>à¸™à¸µà¹ˆà¸„à¸·à¸­à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸‡à¸¥à¹‡à¸­à¸à¸­à¸´à¸™à¸•à¸±à¸§à¸­à¸¢à¹ˆà¸²à¸‡ à¸£à¸­à¹€à¸Šà¸·à¹ˆà¸­à¸¡à¸à¸±à¸šà¸£à¸¹à¸› 3 à¸«à¸£à¸·à¸­à¸Ÿà¸±à¸‡à¸à¹Œà¸Šà¸±à¸™à¸«à¸¥à¸±à¸à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸•à¹ˆà¸­à¹„à¸›</p>
-          <div class="feature-grid">
-            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² Buddy">Buddy</button>
-            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² CareLog">CareLog</button>
-            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸² SOS">SOS</button>
-            <button type="button" data-toast="à¹€à¸›à¸´à¸”à¸«à¸™à¹‰à¸²à¸™à¸±à¸”à¸«à¸¡à¸²à¸¢">à¸™à¸±à¸”à¸«à¸¡à¸²à¸¢</button>
-          </div>
+          <h1>รายการวันนี้</h1>
+          <div class="status-list" data-notification-list></div>
+          <button class="primary-action" type="button" data-go="medicine">เพิ่มเวลากินยา</button>
+          <button class="ghost-action" type="button" data-go="appointments">เพิ่มนัดหมายหมอ</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="medicine" aria-label="Medicine schedule">
+        <header class="topbar">
+          <strong>กินยา</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>ตารางกินยา</h1>
+          <form class="demo-form" data-medicine-form>
+            <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" /></label>
+            <label>เวลา <input name="time" type="time" value="09:00" /></label>
+            <button class="primary-action" type="submit">บันทึกเวลาเตือน</button>
+          </form>
+          <div class="status-list" data-medicine-list></div>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="appointments" aria-label="Doctor appointments">
+        <header class="topbar">
+          <strong>นัดหมายแพทย์</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>นัดหมายหมอ</h1>
+          <form class="demo-form" data-appointment-form>
+            <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" /></label>
+            <label>วันที่ <input name="date" type="date" /></label>
+            <label>เวลา <input name="time" type="time" value="09:00" /></label>
+            <button class="primary-action" type="submit">บันทึกนัดหมาย</button>
+          </form>
+          <div class="status-list" data-appointment-list></div>
         </article>
       </section>
 
@@ -116,6 +159,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=21"></script>
+    <script src="script.js?v=23"></script>
   </body>
 </html>
