@@ -718,6 +718,13 @@ button {
   height: auto;
   min-height: var(--art-h);
   object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.home-screen .tap-zone {
+  z-index: 8;
+  pointer-events: auto;
 }
 
 .home-alert-preview {
@@ -747,4 +754,109 @@ button {
 
 .home-buddy-tap {
   top: calc(var(--art-h) * .868);
+}
+
+.home-screen {
+  --home-flow-shift: 0px;
+  padding-bottom: var(--home-flow-shift);
+}
+
+.home-alert-tap {
+  height: calc((var(--art-h) * .078) + var(--home-flow-shift));
+}
+
+.home-alert-preview span {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.home-alert-preview {
+  top: calc(var(--art-h) * .422);
+  left: 5%;
+  width: 90%;
+}
+
+.home-alert-list {
+  display: grid;
+  gap: 10px;
+}
+
+.home-alert-list:empty {
+  display: none;
+}
+
+.home-alert-card {
+  display: grid;
+  grid-template-columns: clamp(46px, calc(var(--art-w) * .14), 62px) 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: clamp(64px, calc(var(--art-w) * .19), 86px);
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 10px 26px rgba(35, 74, 119, .14);
+}
+
+.home-alert-icon {
+  display: grid;
+  place-items: center;
+  width: clamp(46px, calc(var(--art-w) * .14), 62px);
+  height: clamp(46px, calc(var(--art-w) * .14), 62px);
+  border-radius: 50%;
+  background: #eef7ff;
+  font-size: clamp(26px, calc(var(--art-w) * .072), 36px);
+}
+
+.home-alert-card.medicine .home-alert-icon {
+  background: #f4eaff;
+}
+
+.home-alert-card.appointment .home-alert-icon {
+  background: #e9fff4;
+}
+
+.home-alert-copy {
+  min-width: 0;
+}
+
+.home-alert-copy strong {
+  display: block;
+  overflow: hidden;
+  color: #0f2854;
+  font-size: clamp(17px, calc(var(--art-w) * .048), 25px);
+  font-weight: 950;
+  line-height: 1.18;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-alert-copy small {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #53657d;
+  font-size: clamp(13px, calc(var(--art-w) * .036), 18px);
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-med-tap {
+  top: calc((var(--art-h) * .487) + var(--home-flow-shift));
+}
+
+.home-appointment-tap {
+  top: calc((var(--art-h) * .615) + var(--home-flow-shift));
+}
+
+.home-health-tap {
+  top: calc((var(--art-h) * .743) + var(--home-flow-shift));
+}
+
+.home-buddy-tap {
+  top: calc((var(--art-h) * .868) + var(--home-flow-shift));
 }

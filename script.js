@@ -82,7 +82,7 @@ window.addEventListener('popstate', () => {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
 })
 
-const careStorageKey = 'neomyb-carelog-demo-v1'
+const careStorageKey = 'neomyb-carelog-demo-v2'
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10)
@@ -90,12 +90,8 @@ function todayIso() {
 
 function defaultCareState() {
   return {
-    medicines: [
-      { id: 'med-default', name: 'ยาความดัน', time: '09:00' },
-    ],
-    appointments: [
-      { id: 'appt-default', place: 'โรงพยาบาลรามาธิบดี', date: todayIso(), time: '14:00' },
-    ],
+    medicines: [],
+    appointments: [],
   }
 }
 
@@ -134,6 +130,8 @@ function formatThaiDate(dateValue) {
 function notificationItems() {
   const medicines = careState.medicines.map((item) => ({
     id: item.id,
+    type: 'medicine',
+    icon: '💊',
     sort: `${todayIso()}T${item.time || '00:00'}`,
     title: `${item.time || '--:--'} กิน${item.name || 'ยา'}`,
     detail: 'แจ้งเตือนเวลากินยาวันนี้',
@@ -141,6 +139,8 @@ function notificationItems() {
 
   const appointments = careState.appointments.map((item) => ({
     id: item.id,
+    type: 'appointment',
+    icon: '🏥',
     sort: `${item.date || todayIso()}T${item.time || '00:00'}`,
     title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น. ${item.place || 'นัดหมายแพทย์'}`,
     detail: 'แจ้งเตือนนัดหมายหมอ',
@@ -169,12 +169,39 @@ function renderList(selector, items, emptyText) {
   })
 }
 
+function updateHomeFlow(notifications) {
+  const homeScreen = document.querySelector('.home-screen')
+  const visibleCount = Math.min(notifications.length, 2)
+  const shift = visibleCount ? 18 + (visibleCount * 92) : 0
+  homeScreen?.style.setProperty('--home-flow-shift', `${shift}px`)
+}
+
+function renderHomeAlerts(notifications) {
+  const list = document.querySelector('[data-home-alert-list]')
+  if (!list) return
+  list.innerHTML = ''
+
+  notifications.slice(0, 2).forEach((item) => {
+    const card = document.createElement('div')
+    card.className = `home-alert-card ${item.type}`
+    card.innerHTML = `
+      <span class="home-alert-icon" aria-hidden="true"></span>
+      <span class="home-alert-copy">
+        <strong></strong>
+        <small></small>
+      </span>
+    `
+    card.querySelector('.home-alert-icon').textContent = item.icon
+    card.querySelector('strong').textContent = item.title
+    card.querySelector('small').textContent = item.detail
+    list.append(card)
+  })
+}
+
 function renderCareData() {
   const notifications = notificationItems()
-  const alertDetail = document.querySelector('[data-alert-detail]')
-  if (alertDetail) {
-    alertDetail.textContent = notifications[0]?.title || 'ยังไม่มีรายการเตือน'
-  }
+  renderHomeAlerts(notifications)
+  updateHomeFlow(notifications)
 
   renderList('[data-notification-list]', notifications, 'ยังไม่มีรายการเตือน')
   renderList(
