@@ -2,6 +2,7 @@ const screens = Array.from(document.querySelectorAll('.screen'))
 const splashScreen = document.querySelector('#splash')
 const menuLayer = document.querySelector('.menu-layer')
 const toast = document.querySelector('.toast')
+const careStorageKey = 'neomyb-carelog-demo-v2'
 let toastTimer
 
 function closeMenu() {
@@ -14,21 +15,14 @@ function openMenu() {
   menuLayer?.setAttribute('aria-hidden', 'false')
 }
 
-function updateHomeMetrics() {
-  const homeScreen = document.querySelector('.home-screen')
-  if (!homeScreen) return
-  const artHeight = homeScreen.clientWidth * (2400 / 1080)
-  homeScreen.style.setProperty('--art-h', `${artHeight}px`)
-}
-
 function showScreen(screenId, options = {}) {
   const target = document.getElementById(screenId)
   if (!target) return
 
-  updateHomeMetrics()
   screens.forEach((screen) => {
     screen.classList.toggle('active', screen === target)
   })
+
   splashScreen?.classList.add('leaving')
   closeMenu()
   renderCareData()
@@ -51,96 +45,8 @@ function showToast(message) {
   }, 1800)
 }
 
-document.addEventListener('click', (event) => {
-  const backControl = event.target.closest('.floating-back, .top-logo-back')
-  if (!backControl) return
-  const destination = backControl.dataset.go || 'home'
-  event.preventDefault()
-  event.stopImmediatePropagation()
-  showScreen(destination)
-  if (destination === 'home') window.location.hash = 'home'
-}, true)
-
-document.addEventListener('click', (event) => {
-  const control = event.target.closest('[data-go]')
-  if (!control) return
-  event.preventDefault()
-  showScreen(control.dataset.go)
-})
-
-document.querySelectorAll('[data-open-menu]').forEach((control) => {
-  control.addEventListener('click', openMenu)
-})
-
-document.querySelectorAll('[data-toggle-home-alert]').forEach((control) => {
-  control.addEventListener('click', () => {
-    const home = document.querySelector('.home-split')
-    const collapsed = home?.classList.toggle('alerts-collapsed') || false
-    control.setAttribute('aria-expanded', String(!collapsed))
-  })
-})
-
-document.querySelectorAll('[data-close-menu]').forEach((control) => {
-  control.addEventListener('click', closeMenu)
-})
-
-document.querySelectorAll('[data-toast]').forEach((control) => {
-  control.addEventListener('click', () => showToast(control.dataset.toast))
-})
-
-document.querySelectorAll('[data-toggle-password]').forEach((control) => {
-  control.addEventListener('click', () => {
-    const passwordInput = document.querySelector('.family-password-input')
-    if (!passwordInput) return
-    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password'
-  })
-})
-
-menuLayer?.addEventListener('click', (event) => {
-  if (event.target === menuLayer) closeMenu()
-})
-
-window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeMenu()
-})
-
-window.addEventListener('popstate', () => {
-  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
-})
-
-const careStorageKey = 'neomyb-carelog-demo-v2'
-
 function todayIso() {
   return new Date().toISOString().slice(0, 10)
-}
-
-function defaultCareState() {
-  return {
-    medicines: [],
-    appointments: [],
-  }
-}
-
-function loadCareState() {
-  try {
-    const saved = JSON.parse(window.localStorage.getItem(careStorageKey) || 'null')
-    return {
-      ...defaultCareState(),
-      ...(saved || {}),
-    }
-  } catch {
-    return defaultCareState()
-  }
-}
-
-let careState = loadCareState()
-
-function saveCareState() {
-  try {
-    window.localStorage.setItem(careStorageKey, JSON.stringify(careState))
-  } catch {
-    showToast('บันทึกในเครื่องไม่ได้ แต่เดโมยังใช้งานต่อได้')
-  }
 }
 
 function formatThaiDate(dateValue) {
@@ -153,181 +59,27 @@ function formatThaiDate(dateValue) {
   }).format(date)
 }
 
-function notificationItems() {
-  const medicines = careState.medicines.map((item) => ({
-    id: item.id,
-    type: 'medicine',
-    icon: '💊',
-    sort: `${todayIso()}T${item.time || '00:00'}`,
-    title: `${item.time || '--:--'} กิน${item.name || 'ยา'}`,
-    detail: 'แจ้งเตือนเวลากินยาวันนี้',
-  }))
-
-  const appointments = careState.appointments.map((item) => ({
-    id: item.id,
-    type: 'appointment',
-    icon: '🏥',
-    sort: `${item.date || todayIso()}T${item.time || '00:00'}`,
-    title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น. ${item.place || 'นัดหมายแพทย์'}`,
-    detail: 'แจ้งเตือนนัดหมายหมอ',
-  }))
-
-  return [...medicines, ...appointments].sort((a, b) => a.sort.localeCompare(b.sort))
-}
-
-function renderList(selector, items, emptyText) {
-  const list = document.querySelector(selector)
-  if (!list) return
-  list.innerHTML = ''
-
-  if (!items.length) {
-    list.dataset.empty = emptyText
-    return
+function loadCareState() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(careStorageKey) || 'null')
+    return {
+      medicines: Array.isArray(saved?.medicines) ? saved.medicines : [],
+      appointments: Array.isArray(saved?.appointments) ? saved.appointments : [],
+    }
+  } catch {
+    return { medicines: [], appointments: [] }
   }
-
-  items.forEach((item) => {
-    const row = document.createElement('div')
-    row.className = 'status-item'
-    row.innerHTML = `<strong></strong><small></small>`
-    row.querySelector('strong').textContent = item.title
-    row.querySelector('small').textContent = item.detail
-    list.append(row)
-  })
 }
 
-function updateHomeFlow(notifications) {
-  const homeScreen = document.querySelector('.home-screen')
-  updateHomeMetrics()
-  const visibleCount = Math.min(notifications.length, 2)
-  const shift = visibleCount ? 18 + (visibleCount * 92) : 0
-  homeScreen?.style.setProperty('--home-flow-shift', `${shift}px`)
-}
+let careState = loadCareState()
 
-function renderHomeAlerts(notifications) {
-  const list = document.querySelector('[data-home-alert-list]')
-  if (!list) return
-  list.innerHTML = ''
-
-  notifications.slice(0, 2).forEach((item) => {
-    const card = document.createElement('div')
-    card.className = `home-alert-card ${item.type}`
-    card.innerHTML = `
-      <span class="home-alert-icon" aria-hidden="true"></span>
-      <span class="home-alert-copy">
-        <strong></strong>
-        <small></small>
-      </span>
-    `
-    card.querySelector('.home-alert-icon').textContent = item.icon
-    card.querySelector('strong').textContent = item.title
-    card.querySelector('small').textContent = item.detail
-    list.append(card)
-  })
-}
-
-function renderCareData() {
-  const notifications = notificationItems()
-  renderHomeAlerts(notifications)
-  updateHomeFlow(notifications)
-
-  renderList('[data-notification-list]', notifications, 'ยังไม่มีรายการเตือน')
-  renderList(
-    '[data-medicine-list]',
-    careState.medicines.map((item) => ({
-      title: `${item.time || '--:--'} น. ${item.name || 'ยา'}`,
-      detail: 'ระบบจะนำรายการนี้ไปขึ้นแจ้งเตือนวันนี้',
-    })),
-    'ยังไม่มีตารางกินยา'
-  )
-  renderList(
-    '[data-appointment-list]',
-    careState.appointments.map((item) => ({
-      title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น.`,
-      detail: item.place || 'นัดหมายแพทย์',
-    })),
-    'ยังไม่มีนัดหมายหมอ'
-  )
-}
-
-const medicineForm = document.querySelector('[data-medicine-form]')
-medicineForm?.addEventListener('submit', (event) => {
-  event.preventDefault()
-  const formData = new FormData(medicineForm)
-  careState.medicines.unshift({
-    id: `med-${Date.now()}`,
-    name: String(formData.get('name') || '').trim() || 'ยา',
-    time: String(formData.get('time') || '09:00'),
-  })
-  saveCareState()
-  renderCareData()
-  showToast('บันทึกเวลาเตือนกินยาแล้ว')
-  showScreen('home')
-})
-
-const appointmentForm = document.querySelector('[data-appointment-form]')
-const appointmentDate = appointmentForm?.querySelector('input[name="date"]')
-if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso()
-
-document.addEventListener('submit', (event) => {
-  const medicineForm = event.target.closest('[data-medicine-form]')
-  const appointmentForm = event.target.closest('[data-appointment-form]')
-  if (!medicineForm && !appointmentForm) return
-
-  event.preventDefault()
-  event.stopImmediatePropagation()
-
-  const activeForm = medicineForm || appointmentForm
-  const formData = new FormData(activeForm)
-
-  if (medicineForm) {
-    careState.medicines.unshift({
-      id: `med-${Date.now()}`,
-      name: String(formData.get('name') || '').trim() || 'ยา',
-      time: String(formData.get('time') || '09:00'),
-    })
-    showToast('บันทึกเวลาเตือนกินยาแล้ว')
+function saveCareState() {
+  try {
+    window.localStorage.setItem(careStorageKey, JSON.stringify(careState))
+  } catch {
+    showToast('บันทึกในเครื่องไม่ได้')
   }
-
-  if (appointmentForm) {
-    careState.appointments.unshift({
-      id: `appt-${Date.now()}`,
-      place: String(formData.get('place') || '').trim() || 'โรงพยาบาล',
-      date: String(formData.get('date') || todayIso()),
-      time: String(formData.get('time') || '09:00'),
-    })
-    showToast('บันทึกนัดหมายหมอแล้ว')
-  }
-
-  saveCareState()
-  renderCareData()
-  window.setTimeout(() => showScreen('home'), 120)
-}, true)
-
-appointmentForm?.addEventListener('submit', (event) => {
-  event.preventDefault()
-  const formData = new FormData(appointmentForm)
-  careState.appointments.unshift({
-    id: `appt-${Date.now()}`,
-    place: String(formData.get('place') || '').trim() || 'โรงพยาบาล',
-    date: String(formData.get('date') || todayIso()),
-    time: String(formData.get('time') || '09:00'),
-  })
-  saveCareState()
-  renderCareData()
-  showToast('บันทึกนัดหมายหมอแล้ว')
-  showScreen('home')
-})
-
-renderCareData()
-
-window.addEventListener('resize', () => {
-  updateHomeMetrics()
-  renderCareData()
-})
-
-window.setTimeout(() => {
-  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
-}, 2000)
+}
 
 function notificationItems() {
   const medicines = careState.medicines.map((item) => ({
@@ -336,7 +88,7 @@ function notificationItems() {
     icon: '💊',
     sort: `${todayIso()}T${item.time || '00:00'}`,
     title: `${item.time || '--:--'} กิน${item.name || 'ยา'}`,
-    detail: 'เตือนกินยาวันนี้',
+    detail: 'เตือนกินยา',
   }))
 
   const appointments = careState.appointments.map((item) => ({
@@ -351,12 +103,12 @@ function notificationItems() {
   return [...medicines, ...appointments].sort((a, b) => a.sort.localeCompare(b.sort))
 }
 
-function renderHomeAlerts(notifications) {
+function renderHomeAlerts(items) {
   const list = document.querySelector('[data-home-alert-list]')
   if (!list) return
   list.innerHTML = ''
 
-  notifications.slice(0, 2).forEach((item) => {
+  items.slice(0, 2).forEach((item) => {
     const card = document.createElement('div')
     card.className = `home-alert-card ${item.type}`
     card.innerHTML = `
@@ -373,4 +125,137 @@ function renderHomeAlerts(notifications) {
   })
 }
 
+function renderList(selector, items, emptyText) {
+  const list = document.querySelector(selector)
+  if (!list) return
+  list.innerHTML = ''
+
+  if (!items.length) {
+    const empty = document.createElement('div')
+    empty.className = 'status-item empty'
+    empty.textContent = emptyText
+    list.append(empty)
+    return
+  }
+
+  items.forEach((item) => {
+    const row = document.createElement('div')
+    row.className = 'status-item'
+    row.innerHTML = '<strong></strong><small></small>'
+    row.querySelector('strong').textContent = item.title
+    row.querySelector('small').textContent = item.detail
+    list.append(row)
+  })
+}
+
+function renderCareData() {
+  const notifications = notificationItems()
+  renderHomeAlerts(notifications)
+  renderList('[data-notification-list]', notifications, 'ยังไม่มีรายการแจ้งเตือน')
+  renderList(
+    '[data-medicine-list]',
+    careState.medicines.map((item) => ({
+      title: `${item.time || '--:--'} น. ${item.name || 'ยา'}`,
+      detail: 'รายการนี้จะแสดงที่หน้าเมนูหลัก',
+    })),
+    'ยังไม่มีตารางกินยา'
+  )
+  renderList(
+    '[data-appointment-list]',
+    careState.appointments.map((item) => ({
+      title: `${formatThaiDate(item.date)} ${item.time || '--:--'} น.`,
+      detail: item.place || 'นัดหมายแพทย์',
+    })),
+    'ยังไม่มีนัดหมายหมอ'
+  )
+}
+
+function submitMedicine(form) {
+  const formData = new FormData(form)
+  careState.medicines.unshift({
+    id: `med-${Date.now()}`,
+    name: String(formData.get('name') || '').trim() || 'ยา',
+    time: String(formData.get('time') || '09:00'),
+  })
+  saveCareState()
+  renderCareData()
+  showToast('บันทึกเวลาเตือนกินยาแล้ว')
+  showScreen('home')
+}
+
+function submitAppointment(form) {
+  const formData = new FormData(form)
+  careState.appointments.unshift({
+    id: `appt-${Date.now()}`,
+    place: String(formData.get('place') || '').trim() || 'โรงพยาบาล',
+    date: String(formData.get('date') || todayIso()),
+    time: String(formData.get('time') || '09:00'),
+  })
+  saveCareState()
+  renderCareData()
+  showToast('บันทึกนัดหมายหมอแล้ว')
+  showScreen('home')
+}
+
+document.addEventListener('click', (event) => {
+  const menuButton = event.target.closest('[data-open-menu]')
+  if (menuButton) {
+    event.preventDefault()
+    openMenu()
+    return
+  }
+
+  if (event.target === menuLayer || event.target.closest('[data-close-menu]')) {
+    event.preventDefault()
+    closeMenu()
+    return
+  }
+
+  const toastButton = event.target.closest('[data-toast]')
+  if (toastButton) {
+    event.preventDefault()
+    showToast(toastButton.dataset.toast)
+    return
+  }
+
+  const passwordButton = event.target.closest('[data-toggle-password]')
+  if (passwordButton) {
+    event.preventDefault()
+    const input = document.querySelector('.family-password-input')
+    if (input) input.type = input.type === 'password' ? 'text' : 'password'
+    return
+  }
+
+  const nav = event.target.closest('[data-go]')
+  if (nav) {
+    event.preventDefault()
+    showScreen(nav.dataset.go || 'home')
+  }
+})
+
+document.addEventListener('submit', (event) => {
+  const medicineForm = event.target.closest('[data-medicine-form]')
+  const appointmentForm = event.target.closest('[data-appointment-form]')
+  if (!medicineForm && !appointmentForm) return
+
+  event.preventDefault()
+  if (medicineForm) submitMedicine(medicineForm)
+  if (appointmentForm) submitAppointment(appointmentForm)
+})
+
+window.addEventListener('popstate', () => {
+  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+})
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu()
+})
+
+const appointmentDate = document.querySelector('[data-appointment-form] input[name="date"]')
+if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso()
+
 renderCareData()
+
+window.setTimeout(() => {
+  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+}, 2000)

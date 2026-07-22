@@ -21,7 +21,8 @@ input {
   font: inherit;
 }
 
-button {
+button,
+a {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -44,26 +45,15 @@ button {
   transition: opacity .28s ease, visibility .28s ease;
 }
 
-.image-screen {
-  --art-h: 100%;
-  overflow: hidden;
-}
-
 .screen.active {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-}
-
-.screen:target {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 6;
+  z-index: 5;
 }
 
 .splash-screen {
-  z-index: 5;
+  z-index: 8;
   animation: autoHideSplash .35s ease 2s forwards;
 }
 
@@ -72,13 +62,17 @@ button {
 }
 
 .splash-screen.leaving {
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
   pointer-events: none;
-  transform: scale(1.02);
-  transition: opacity .38s ease, transform .38s ease, visibility .38s ease;
 }
 
+.image-screen {
+  --art-h: 100%;
+  overflow: hidden;
+}
+
+.image-screen img,
 .splash-screen img {
   display: block;
   width: 100%;
@@ -86,20 +80,12 @@ button {
   object-fit: cover;
   object-position: center top;
   user-select: none;
-}
-
-.image-screen img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  user-select: none;
+  pointer-events: none;
 }
 
 .tap-zone {
   position: absolute;
-  z-index: 2;
+  z-index: 20;
   display: block;
   border: 0;
   background: transparent;
@@ -107,21 +93,22 @@ button {
   touch-action: manipulation;
 }
 
-.tap-zone:focus-visible,
-.topbar button:focus-visible,
-.panel button:focus-visible,
-.menu-card button:focus-visible {
-  outline: 4px solid #ffe76b;
-  outline-offset: 4px;
-}
-
 .tap-zone:active {
   background: rgba(255, 255, 255, .14);
 }
 
+.tap-zone:focus-visible,
+.topbar button:focus-visible,
+.panel button:focus-visible,
+.menu-card button:focus-visible,
+.floating-back:focus-visible {
+  outline: 4px solid #ffe76b;
+  outline-offset: 4px;
+}
+
 .image-input {
   position: absolute;
-  z-index: 3;
+  z-index: 25;
   border: 0;
   outline: 0;
   color: #143a68;
@@ -143,28 +130,28 @@ button {
   border-radius: 16px;
 }
 
+.start-tap {
+  left: 14%;
+  top: calc(var(--art-h) * .727);
+  width: 72%;
+  height: calc(var(--art-h) * .069);
+  border-radius: 999px;
+}
+
+.family-tap {
+  left: 14%;
+  top: calc(var(--art-h) * .812);
+  width: 72%;
+  height: calc(var(--art-h) * .068);
+  border-radius: 999px;
+}
+
 .line-logo-back-tap {
   top: calc(var(--art-h) * .018);
   right: 3.6%;
   width: 10%;
   height: calc(var(--art-h) * .05);
   border-radius: 16px;
-}
-
-.start-tap {
-  left: 14.0%;
-  top: calc(var(--art-h) * .727);
-  width: 72.0%;
-  height: calc(var(--art-h) * .069);
-  border-radius: 999px;
-}
-
-.family-tap {
-  left: 14.0%;
-  top: calc(var(--art-h) * .812);
-  width: 72.0%;
-  height: calc(var(--art-h) * .068);
-  border-radius: 999px;
 }
 
 .line-submit-tap {
@@ -184,7 +171,7 @@ button {
 }
 
 .confirm-back-tap {
-  left: 3.0%;
+  left: 3%;
   top: calc(var(--art-h) * .02);
   width: 13.2%;
   height: calc(var(--art-h) * .062);
@@ -286,19 +273,143 @@ button {
 }
 
 .family-line-approve-tap {
-  left: 13.0%;
+  left: 13%;
   top: calc(var(--art-h) * .771);
-  width: 74.0%;
+  width: 74%;
   height: calc(var(--art-h) * .052);
   border-radius: 26px;
 }
 
 .family-line-cancel-tap {
-  left: 13.0%;
+  left: 13%;
   top: calc(var(--art-h) * .834);
-  width: 74.0%;
+  width: 74%;
   height: calc(var(--art-h) * .051);
   border-radius: 26px;
+}
+
+.home-screen {
+  overflow: hidden;
+  background: #0790ff;
+}
+
+.home-screen img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.home-menu-tap {
+  top: 1.9%;
+  right: 4.2%;
+  width: 11.5%;
+  height: 5.2%;
+  border-radius: 16px;
+}
+
+.home-alert-tap {
+  top: 33.4%;
+  left: 5.3%;
+  width: 89.4%;
+  height: 10.5%;
+  border-radius: 24px;
+}
+
+.home-med-tap,
+.home-appointment-tap,
+.home-health-tap,
+.home-buddy-tap {
+  left: 5.3%;
+  width: 89.4%;
+  height: 10.7%;
+  border-radius: 24px;
+}
+
+.home-med-tap {
+  top: 50.7%;
+}
+
+.home-appointment-tap {
+  top: 62.8%;
+}
+
+.home-health-tap {
+  top: 74.7%;
+}
+
+.home-buddy-tap {
+  top: 86.8%;
+}
+
+.home-alert-preview {
+  position: absolute;
+  top: 37.2%;
+  left: 10.8%;
+  z-index: 30;
+  width: 78.4%;
+  max-height: 5.9%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.home-alert-list {
+  display: grid;
+  gap: 3px;
+}
+
+.home-alert-list:empty {
+  display: none;
+}
+
+.home-alert-card {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 7px;
+  align-items: center;
+  min-height: 26px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .76);
+}
+
+.home-alert-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .9);
+  font-size: 14px;
+}
+
+.home-alert-copy {
+  min-width: 0;
+}
+
+.home-alert-copy strong,
+.home-alert-copy small {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-alert-copy strong {
+  color: #071f49;
+  font-size: clamp(10px, 3vw, 14px);
+  font-weight: 950;
+  line-height: 1.12;
+}
+
+.home-alert-copy small {
+  color: #405678;
+  font-size: clamp(8px, 2.4vw, 11px);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .content-screen {
@@ -313,7 +424,7 @@ button {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -324,16 +435,21 @@ button {
   backdrop-filter: blur(10px);
 }
 
-.topbar button {
-  min-width: 42px;
-  height: 42px;
-  border: 0;
-  border-radius: 999px;
+.topbar button,
+.floating-back {
+  border: 1px solid rgba(7, 95, 219, .16);
   color: #075fdb;
-  background: rgba(255, 255, 255, .75);
-  font-size: 16px;
-  font-weight: 800;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(26, 96, 164, .12);
   cursor: pointer;
+}
+
+.topbar button {
+  min-width: 92px;
+  height: 46px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 900;
 }
 
 .topbar strong {
@@ -342,9 +458,21 @@ button {
   font-weight: 900;
 }
 
-.top-logo-back {
-  padding: 0 14px;
-  white-space: nowrap;
+.floating-back {
+  position: sticky;
+  top: 10px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin: 0 0 12px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 950;
+  text-decoration: none;
+  touch-action: manipulation;
 }
 
 .panel {
@@ -369,52 +497,38 @@ button {
   line-height: 1.55;
 }
 
-.auth-panel {
-  text-align: center;
-}
-
-.line-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  margin-bottom: 16px;
-  border-radius: 20px;
-  color: #fff;
-  background: #06c755;
-  font-size: 18px;
-  font-weight: 950;
-}
-
-.panel ul {
-  margin: 18px 0;
-  padding-left: 22px;
-  text-align: left;
-}
-
-.panel label {
-  display: block;
+.panel label,
+.demo-form label {
+  display: grid;
+  gap: 7px;
   margin-top: 18px;
   color: #075fdb;
   font-size: 16px;
   font-weight: 850;
 }
 
-.panel input {
+.panel input,
+.demo-form input {
   width: 100%;
+  min-height: 50px;
   margin-top: 8px;
-  padding: 15px 16px;
+  padding: 10px 14px;
   border: 1px solid #a9d2ff;
-  border-radius: 16px;
+  border-radius: 14px;
   color: #123660;
   background: #fff;
   font-size: 17px;
+  font-weight: 750;
+}
+
+.demo-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .primary-action,
-.ghost-action,
-.feature-grid button,
-.menu-card button {
+.ghost-action {
   width: 100%;
   border: 0;
   cursor: pointer;
@@ -442,39 +556,48 @@ button {
   font-weight: 900;
 }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.feature-grid button {
-  min-height: 92px;
-  border-radius: 20px;
-  color: #075fdb;
-  background: #eef7ff;
-  font-size: 18px;
-  font-weight: 900;
-}
-
 .status-list {
   display: grid;
   gap: 12px;
   margin-top: 18px;
 }
 
+.status-item,
 .status-list span {
   padding: 14px 16px;
+  border: 1px solid #d8eaff;
   border-radius: 16px;
   background: #eef7ff;
   font-weight: 750;
 }
 
+.status-item {
+  display: grid;
+  gap: 4px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(16, 55, 105, .08);
+}
+
+.status-item strong {
+  color: #102744;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.status-item small {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-item.empty {
+  color: #64748b;
+}
+
 .menu-layer {
   position: absolute;
   inset: 0;
-  z-index: 20;
+  z-index: 80;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
@@ -512,6 +635,7 @@ button {
   right: 20px;
   width: 42px;
   height: 42px;
+  border: 0;
   border-radius: 50%;
   color: #075fdb;
   background: #eef7ff;
@@ -526,13 +650,16 @@ button {
 }
 
 .menu-card button:not(.close-menu) {
+  width: 100%;
   padding: 18px 0;
+  border: 0;
   border-bottom: 1px solid #d8eaff;
   color: #123660;
   background: transparent;
   text-align: left;
   font-size: 19px;
   font-weight: 850;
+  cursor: pointer;
 }
 
 .toast {
@@ -540,7 +667,7 @@ button {
   right: 18px;
   bottom: 20px;
   left: 18px;
-  z-index: 40;
+  z-index: 100;
   margin: 0;
   padding: 14px 16px;
   border-radius: 18px;
@@ -575,959 +702,4 @@ button {
     opacity: 1;
     pointer-events: auto;
   }
-}
-
-.home-menu-tap {
-  top: calc(var(--art-h) * .028);
-  right: 5%;
-  width: 12%;
-  height: calc(var(--art-h) * .055);
-}
-
-.home-alert-tap {
-  top: calc(var(--art-h) * .345);
-  left: 5%;
-  width: 90%;
-  height: calc(var(--art-h) * .078);
-}
-
-.home-med-tap {
-  top: calc(var(--art-h) * .465);
-  left: 5%;
-  width: 90%;
-  height: calc(var(--art-h) * .112);
-}
-
-.home-appointment-tap {
-  top: calc(var(--art-h) * .59);
-  left: 5%;
-  width: 90%;
-  height: calc(var(--art-h) * .112);
-}
-
-.home-health-tap {
-  top: calc(var(--art-h) * .715);
-  left: 5%;
-  width: 90%;
-  height: calc(var(--art-h) * .112);
-}
-
-.home-buddy-tap {
-  top: calc(var(--art-h) * .84);
-  left: 5%;
-  width: 90%;
-  height: calc(var(--art-h) * .112);
-}
-
-.home-alert-preview {
-  position: absolute;
-  top: calc(var(--art-h) * .389);
-  left: 25%;
-  z-index: 3;
-  width: 58%;
-  color: #64748b;
-  font-size: clamp(11px, calc(var(--art-w) * .033), 15px);
-  font-weight: 750;
-  line-height: 1.25;
-  pointer-events: none;
-}
-
-.home-alert-preview strong {
-  display: none;
-}
-
-.home-alert-preview span {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.demo-form {
-  display: grid;
-  gap: 14px;
-  margin-top: 18px;
-}
-
-.demo-form label {
-  display: grid;
-  gap: 7px;
-  color: #17416f;
-  font-size: 16px;
-  font-weight: 850;
-}
-
-.demo-form input {
-  width: 100%;
-  min-height: 50px;
-  padding: 10px 14px;
-  border: 1px solid #bddcff;
-  border-radius: 14px;
-  color: #102744;
-  background: #fff;
-  font: inherit;
-  font-weight: 750;
-}
-
-.status-list:empty::before {
-  content: "ยังไม่มีข้อมูล";
-  display: block;
-  padding: 14px 16px;
-  border-radius: 16px;
-  color: #64748b;
-  background: #f4f8ff;
-  font-weight: 750;
-}
-
-.status-item {
-  display: grid;
-  gap: 4px;
-  padding: 14px 16px;
-  border: 1px solid #d8eaff;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(16, 55, 105, .08);
-}
-
-.status-item strong {
-  color: #102744;
-  font-size: 17px;
-  font-weight: 900;
-}
-
-.status-item small {
-  color: #64748b;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.home-screen {
-  --art-h: calc(var(--art-w) * 2400 / 1080);
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: none;
-}
-
-.home-screen::-webkit-scrollbar {
-  display: none;
-}
-
-.home-screen img {
-  width: 100%;
-  height: auto;
-  min-height: var(--art-h);
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
-}
-
-.home-screen .tap-zone {
-  z-index: 8;
-  pointer-events: auto;
-}
-
-.home-alert-preview {
-  top: calc(var(--art-h) * .395);
-  left: 22%;
-  width: 64%;
-  color: #0f3769;
-  font-size: clamp(15px, calc(var(--art-w) * .043), 22px);
-  font-weight: 900;
-}
-
-.home-alert-preview span {
-  padding-right: 8px;
-}
-
-.home-med-tap {
-  top: calc(var(--art-h) * .487);
-}
-
-.home-appointment-tap {
-  top: calc(var(--art-h) * .615);
-}
-
-.home-health-tap {
-  top: calc(var(--art-h) * .743);
-}
-
-.home-buddy-tap {
-  top: calc(var(--art-h) * .868);
-}
-
-.home-screen {
-  --home-flow-shift: 0px;
-  padding-bottom: var(--home-flow-shift);
-}
-
-.home-alert-tap {
-  height: calc((var(--art-h) * .078) + var(--home-flow-shift));
-}
-
-.home-alert-preview span {
-  display: -webkit-box;
-  overflow: hidden;
-  white-space: normal;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.home-alert-preview {
-  top: calc(var(--art-h) * .422);
-  left: 5%;
-  width: 90%;
-}
-
-.home-alert-list {
-  display: grid;
-  gap: 10px;
-}
-
-.home-alert-list:empty {
-  display: none;
-}
-
-.home-alert-card {
-  display: grid;
-  grid-template-columns: clamp(46px, calc(var(--art-w) * .14), 62px) 1fr;
-  gap: 12px;
-  align-items: center;
-  min-height: clamp(64px, calc(var(--art-w) * .19), 86px);
-  padding: 10px 14px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, .94);
-  box-shadow: 0 10px 26px rgba(35, 74, 119, .14);
-}
-
-.home-alert-icon {
-  display: grid;
-  place-items: center;
-  width: clamp(46px, calc(var(--art-w) * .14), 62px);
-  height: clamp(46px, calc(var(--art-w) * .14), 62px);
-  border-radius: 50%;
-  background: #eef7ff;
-  font-size: clamp(26px, calc(var(--art-w) * .072), 36px);
-}
-
-.home-alert-card.medicine .home-alert-icon {
-  background: #f4eaff;
-}
-
-.home-alert-card.appointment .home-alert-icon {
-  background: #e9fff4;
-}
-
-.home-alert-copy {
-  min-width: 0;
-}
-
-.home-alert-copy strong {
-  display: block;
-  overflow: hidden;
-  color: #0f2854;
-  font-size: clamp(17px, calc(var(--art-w) * .048), 25px);
-  font-weight: 950;
-  line-height: 1.18;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.home-alert-copy small {
-  display: block;
-  margin-top: 3px;
-  overflow: hidden;
-  color: #53657d;
-  font-size: clamp(13px, calc(var(--art-w) * .036), 18px);
-  font-weight: 800;
-  line-height: 1.2;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.home-med-tap {
-  top: calc((var(--art-h) * .487) + var(--home-flow-shift));
-}
-
-.home-appointment-tap {
-  top: calc((var(--art-h) * .615) + var(--home-flow-shift));
-}
-
-.home-health-tap {
-  top: calc((var(--art-h) * .743) + var(--home-flow-shift));
-}
-
-.home-buddy-tap {
-  top: calc((var(--art-h) * .868) + var(--home-flow-shift));
-}
-
-.home-screen {
-  --art-h: 2400px;
-}
-
-.home-screen img {
-  position: relative;
-  z-index: 0;
-}
-
-.home-screen .tap-zone,
-.home-alert-preview {
-  z-index: 30;
-}
-
-.home-alert-tap {
-  z-index: 31;
-}
-
-.home-screen .tap-zone {
-  pointer-events: none;
-}
-
-.home-screen {
-  cursor: pointer;
-}
-
-.home-screen .tap-zone:active,
-.home-screen:active .tap-zone {
-  background: transparent;
-}
-
-.home-real {
-  overflow-y: auto;
-  color: #0f2854;
-  background: #f3f8ff;
-}
-
-.home-real button {
-  font: inherit;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.home-hero {
-  position: relative;
-  min-height: 36%;
-  overflow: hidden;
-  background: #eaf7ff;
-}
-
-.home-hero img {
-  display: block;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-}
-
-.home-icon-button {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 2;
-  width: 54px;
-  height: 54px;
-  border: 0;
-  border-radius: 18px;
-  color: #075fdb;
-  background: rgba(255, 255, 255, .72);
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.home-content {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: 18px;
-  margin-top: -42px;
-  padding: 0 20px 34px;
-}
-
-.home-alert-button,
-.home-card {
-  width: 100%;
-  border: 0;
-  text-align: left;
-}
-
-.home-alert-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 86px;
-  padding: 0 22px;
-  border-radius: 24px;
-  color: #0f2854;
-  background: rgba(255, 255, 255, .96);
-  box-shadow: 0 12px 30px rgba(32, 84, 143, .13);
-}
-
-.home-alert-main {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: clamp(20px, 5vw, 26px);
-  font-weight: 950;
-}
-
-.home-alert-bell {
-  color: #006df5;
-  font-size: 30px;
-}
-
-.home-chevron {
-  color: #006df5;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.home-section-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-
-.home-section-title strong {
-  font-size: clamp(20px, 5vw, 26px);
-  font-weight: 950;
-}
-
-.home-section-title button {
-  border: 0;
-  color: #006df5;
-  background: transparent;
-  font-size: clamp(15px, 4vw, 18px);
-  font-weight: 850;
-}
-
-.home-card {
-  min-height: 128px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, .97);
-  box-shadow: 0 14px 34px rgba(33, 84, 143, .12);
-}
-
-.image-card {
-  overflow: hidden;
-  padding: 0;
-  background: transparent;
-}
-
-.image-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-}
-
-.feature-card {
-  display: grid;
-  grid-template-columns: 88px 1fr auto;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-}
-
-.feature-card .feature-icon {
-  display: grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  font-size: 42px;
-}
-
-.appointment-card .feature-icon {
-  background: #e8fff4;
-}
-
-.health-card .feature-icon {
-  background: #ffecec;
-}
-
-.buddy-card .feature-icon {
-  background: #edf6ff;
-}
-
-.feature-card strong {
-  display: block;
-  color: #0f2854;
-  font-size: clamp(23px, 6vw, 31px);
-  font-weight: 950;
-  line-height: 1.15;
-}
-
-.feature-card small {
-  display: block;
-  margin-top: 6px;
-  color: #53657d;
-  font-size: clamp(15px, 4vw, 19px);
-  font-weight: 760;
-}
-
-.home-real .home-alert-list {
-  display: grid;
-  gap: 12px;
-}
-
-.home-real .home-alert-list:empty {
-  display: none;
-}
-
-.home-split {
-  position: relative;
-  overflow-y: auto;
-  background: #fffdf0;
-}
-
-.home-split-bg {
-  position: relative;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-split-bg img {
-  display: block;
-  width: 100%;
-  height: auto;
-  user-select: none;
-}
-
-.home-split .home-menu-button {
-  top: 24px;
-  right: 24px;
-  z-index: 10;
-}
-
-.home-split .home-content {
-  position: relative;
-  z-index: 3;
-  display: grid;
-  gap: 18px;
-  margin-top: calc(-1 * clamp(360px, 57vw, 560px));
-  padding: 0 20px 42px;
-}
-
-.home-split .home-alert-button {
-  min-height: 86px;
-  border-radius: 24px;
-}
-
-.home-split.alerts-collapsed .home-alert-list {
-  display: none;
-}
-
-.home-split.alerts-collapsed [data-alert-chevron] {
-  transform: rotate(-90deg);
-}
-
-.home-split [data-alert-chevron] {
-  transition: transform .18s ease;
-}
-
-.home-split .home-alert-main {
-  font-size: clamp(22px, 5.8vw, 30px);
-}
-
-.home-split .home-section-title strong {
-  font-size: clamp(22px, 5.8vw, 30px);
-}
-
-.home-split .image-card {
-  min-height: 0;
-  box-shadow: none;
-}
-
-.home-split .image-card img {
-  width: 100%;
-  border-radius: 24px;
-}
-
-.home-split .feature-card {
-  border-left: 6px solid #54b7ff;
-}
-
-.home-split .home-section-title {
-  margin-top: 0;
-}
-
-.home-split .home-section-title button {
-  min-width: 96px;
-  text-align: right;
-}
-
-.home-split .home-card {
-  width: 100%;
-}
-
-/* Current home menu: one 1080x2400 image with real clickable overlays. */
-.home-screen {
-  --art-w: 100%;
-  --art-h: calc(var(--art-w) * 2400 / 1080);
-  overflow: hidden;
-  padding: 0;
-  background: #0790ff;
-  cursor: default;
-}
-
-.home-screen img {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: cover;
-  object-position: center top;
-  pointer-events: none;
-  user-select: none;
-}
-
-.home-screen .tap-zone {
-  z-index: 20;
-  pointer-events: auto;
-}
-
-.home-screen .tap-zone:active {
-  background: rgba(255, 255, 255, .16);
-}
-
-.home-menu-tap {
-  top: calc(var(--art-h) * .020);
-  right: 4.7%;
-  width: 10.2%;
-  height: calc(var(--art-h) * .050);
-  border-radius: 16px;
-}
-
-.home-alert-tap {
-  top: calc(var(--art-h) * .325);
-  left: 5.2%;
-  width: 89.6%;
-  height: calc(var(--art-h) * .095);
-  border-radius: 24px;
-}
-
-.home-med-tap,
-.home-appointment-tap,
-.home-health-tap,
-.home-buddy-tap {
-  left: 5.2%;
-  width: 89.6%;
-  height: calc(var(--art-h) * .112);
-  border-radius: 24px;
-}
-
-.home-med-tap {
-  top: calc(var(--art-h) * .475);
-}
-
-.home-appointment-tap {
-  top: calc(var(--art-h) * .595);
-}
-
-.home-health-tap {
-  top: calc(var(--art-h) * .715);
-}
-
-.home-buddy-tap {
-  top: calc(var(--art-h) * .835);
-}
-
-.home-alert-preview {
-  position: absolute;
-  top: calc(var(--art-h) * .355);
-  left: 15.5%;
-  z-index: 21;
-  width: 71%;
-  max-height: calc(var(--art-h) * .086);
-  overflow: hidden;
-  color: #0f2854;
-  pointer-events: none;
-}
-
-.home-alert-list {
-  display: grid;
-  gap: 6px;
-}
-
-.home-alert-list:empty {
-  display: none;
-}
-
-.home-alert-card {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 8px;
-  align-items: center;
-  min-height: 34px;
-  padding: 3px 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.home-alert-icon {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .82);
-  font-size: 19px;
-}
-
-.home-alert-copy {
-  min-width: 0;
-}
-
-.home-alert-copy strong {
-  display: block;
-  overflow: hidden;
-  color: #0a2a55;
-  font-size: clamp(13px, 3.8vw, 18px);
-  font-weight: 950;
-  line-height: 1.15;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.home-alert-copy small {
-  display: block;
-  overflow: hidden;
-  color: #53657d;
-  font-size: clamp(10px, 3vw, 14px);
-  font-weight: 800;
-  line-height: 1.1;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* v36: fixed hit areas, measured as screen percentages for 1080x2400 art. */
-.home-screen {
-  --home-flow-shift: 0px;
-  overflow: hidden;
-}
-
-.home-screen .tap-zone {
-  pointer-events: auto !important;
-  z-index: 50;
-}
-
-.home-menu-tap {
-  top: 1.9% !important;
-  right: 4.2% !important;
-  width: 11.5% !important;
-  height: 5.2% !important;
-}
-
-.home-alert-tap {
-  top: 31.2% !important;
-  left: 4.8% !important;
-  width: 90.4% !important;
-  height: 10.5% !important;
-}
-
-.home-med-tap,
-.home-appointment-tap,
-.home-health-tap,
-.home-buddy-tap {
-  left: 4.8% !important;
-  width: 90.4% !important;
-  height: 10.8% !important;
-}
-
-.home-med-tap {
-  top: 44.8% !important;
-}
-
-.home-appointment-tap {
-  top: 57.1% !important;
-}
-
-.home-health-tap {
-  top: 69.3% !important;
-}
-
-.home-buddy-tap {
-  top: 81.5% !important;
-}
-
-.home-alert-preview {
-  top: 34.1% !important;
-  left: 14.5% !important;
-  z-index: 45;
-  width: 73% !important;
-  max-height: 7.8% !important;
-}
-
-.content-screen .topbar {
-  z-index: 80;
-}
-
-.content-screen .top-logo-back {
-  position: relative;
-  z-index: 81;
-  min-width: 92px;
-  height: 46px;
-  border: 1px solid rgba(7, 95, 219, .16);
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(26, 96, 164, .12);
-}
-
-/* v37: align home hotspots to the actual home-menu.png card positions. */
-.home-alert-tap {
-  top: 33.4% !important;
-  left: 5.3% !important;
-  width: 89.4% !important;
-  height: 10.5% !important;
-}
-
-.home-med-tap,
-.home-appointment-tap,
-.home-health-tap,
-.home-buddy-tap {
-  left: 5.3% !important;
-  width: 89.4% !important;
-  height: 10.7% !important;
-}
-
-.home-med-tap {
-  top: 50.7% !important;
-}
-
-.home-appointment-tap {
-  top: 62.8% !important;
-}
-
-.home-health-tap {
-  top: 74.7% !important;
-}
-
-.home-buddy-tap {
-  top: 86.8% !important;
-}
-
-.home-alert-preview {
-  top: 36.8% !important;
-  left: 16% !important;
-  width: 71% !important;
-  max-height: 6.8% !important;
-}
-
-.content-screen,
-.content-screen .topbar,
-.content-screen .panel {
-  pointer-events: auto;
-}
-
-.floating-back {
-  position: sticky;
-  top: 10px;
-  z-index: 999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  margin: 0 0 12px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: 999px;
-  color: #075fdb;
-  background: #fff;
-  font-size: 17px;
-  font-weight: 950;
-  box-shadow: 0 10px 24px rgba(26, 96, 164, .18);
-  cursor: pointer;
-  pointer-events: auto !important;
-  touch-action: manipulation;
-}
-
-.content-screen.active .floating-back,
-.content-screen.active .top-logo-back {
-  pointer-events: auto !important;
-}
-
-/* v42: make saved medicine / appointment alerts visibly appear on home. */
-.home-alert-preview {
-  top: 34.9% !important;
-  left: 10.5% !important;
-  z-index: 80 !important;
-  width: 79% !important;
-  max-height: 7.8% !important;
-  pointer-events: none !important;
-}
-
-.home-alert-preview .home-alert-list {
-  display: grid;
-  gap: 4px;
-}
-
-.home-alert-preview .home-alert-card {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 8px;
-  align-items: center;
-  min-height: 34px;
-  padding: 4px 8px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, .88);
-  box-shadow: 0 6px 14px rgba(13, 71, 135, .10);
-}
-
-.home-alert-preview .home-alert-icon {
-  width: 28px;
-  height: 28px;
-  font-size: 18px;
-}
-
-.home-alert-preview .home-alert-copy strong {
-  color: #071f49;
-  font-size: clamp(12px, 3.6vw, 17px);
-  line-height: 1.12;
-}
-
-.home-alert-preview .home-alert-copy small {
-  color: #405678;
-  font-size: clamp(10px, 2.8vw, 13px);
-  line-height: 1.1;
-}
-
-/* v43: place alert items inside the blank area under the alert title. */
-.home-alert-preview {
-  top: 37.2% !important;
-  left: 10.8% !important;
-  width: 78.4% !important;
-  max-height: 5.9% !important;
-}
-
-.home-alert-preview .home-alert-list {
-  gap: 3px;
-}
-
-.home-alert-preview .home-alert-card {
-  grid-template-columns: 24px 1fr;
-  min-height: 26px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .72);
-  box-shadow: none;
-}
-
-.home-alert-preview .home-alert-icon {
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-}
-
-.home-alert-preview .home-alert-copy strong {
-  font-size: clamp(10px, 3.0vw, 14px);
-}
-
-.home-alert-preview .home-alert-copy small {
-  font-size: clamp(8px, 2.4vw, 11px);
 }
