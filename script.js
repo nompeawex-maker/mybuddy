@@ -256,6 +256,13 @@ window.submitMedicineForm = submitMedicineForm
 window.submitAppointmentForm = submitAppointmentForm
 
 document.addEventListener('click', function (event) {
+  var featureBack = closestElement(event.target, '.round-back, .mini-home')
+  if (!featureBack || featureBack.getAttribute('data-go') !== 'home') return
+  event.preventDefault()
+  showScreen('home')
+}, true)
+
+document.addEventListener('click', function (event) {
   var menuButton = closestElement(event.target, '[data-open-menu]')
   if (menuButton) {
     event.preventDefault()

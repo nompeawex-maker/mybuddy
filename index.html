@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=58" />
+  <link rel="stylesheet" href="styles.css?v=59" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -80,12 +80,12 @@
 
     <section class="screen content-screen care-feature medicine-feature" id="medicine" aria-label="Medicine schedule">
       <header class="feature-topbar">
-        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
+        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
         <div>
           <strong>ระบบกินยา</strong>
           <span>จัดเวลาเตือนและดูรายการยา</span>
         </div>
-        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
+        <a class="mini-home" href="#home" data-go="home">Home</a>
       </header>
 
       <article class="feature-hero medicine-hero">
@@ -134,12 +134,12 @@
 
     <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
       <header class="feature-topbar">
-        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
+        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
         <div>
           <strong>ระบบนัดแพทย์</strong>
           <span>บันทึกสถานที่ วัน และเวลา</span>
         </div>
-        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
+        <a class="mini-home" href="#home" data-go="home">Home</a>
       </header>
 
       <article class="feature-hero appointment-hero">
@@ -314,6 +314,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=58"></script>
+  <script src="script.js?v=59"></script>
   </body>
 </html>

@@ -656,6 +656,7 @@ a {
 .mini-home {
   position: relative;
   z-index: 130;
+  text-decoration: none;
   border: 0;
   cursor: pointer;
   color: #0576ff;
