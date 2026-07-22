@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="stylesheet" href="styles.css?v=33" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -59,9 +59,9 @@
         </div>
         <button class="home-icon-button home-menu-button" type="button" data-open-menu aria-label="Open menu">☰</button>
         <div class="home-content">
-          <button class="home-alert-button" type="button" data-toggle-home-alert aria-expanded="true">
+          <button class="home-alert-button" type="button" data-go="notifications" aria-expanded="true">
             <span class="home-alert-main"><span class="home-alert-bell">🔔</span> การแจ้งเตือน</span>
-            <span class="home-chevron" data-alert-chevron>⌄</span>
+            <span class="home-chevron">›</span>
           </button>
           <div class="home-alert-list" data-home-alert-list></div>
 
@@ -71,7 +71,7 @@
           </div>
 
           <button class="home-card image-card" type="button" data-go="medicine">
-            <img src="assets/home-test-medicine.png" alt="กินยา" />
+            <img src="assets/home-test-medicine-crop.png" alt="กินยา" />
           </button>
 
           <button class="home-card feature-card appointment-card" type="button" data-go="appointments">
@@ -219,6 +219,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=32"></script>
+    <script src="script.js?v=33"></script>
   </body>
 </html>
