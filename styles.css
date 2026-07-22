@@ -38,7 +38,6 @@ a {
 .screen {
   position: absolute;
   inset: 0;
-  display: none;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
@@ -47,7 +46,6 @@ a {
 }
 
 .screen.active {
-  display: block;
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -55,7 +53,6 @@ a {
 }
 
 .screen:target {
-  display: block;
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -67,12 +64,7 @@ a {
   animation: autoHideSplash .35s ease 2s forwards;
 }
 
-.login-screen {
-  animation: autoShowLogin .35s ease 2.02s forwards;
-}
-
 .splash-screen.leaving {
-  display: none;
   z-index: -1;
   visibility: hidden;
   opacity: 0;
@@ -705,14 +697,5 @@ a {
     opacity: 0;
     pointer-events: none;
     transform: scale(1.02);
-  }
-}
-
-@keyframes autoShowLogin {
-  to {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
   }
 }

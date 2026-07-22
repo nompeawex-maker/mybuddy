@@ -257,5 +257,6 @@ if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso(
 renderCareData()
 
 window.setTimeout(() => {
-  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+  const initialScreen = window.location.hash.replace('#', '') || 'login'
+  showScreen(initialScreen, { updateHash: false })
 }, 2000)
