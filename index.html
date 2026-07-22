@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=60" />
+  <link rel="stylesheet" href="styles.css?v=62" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -69,14 +69,29 @@
             <h2>แนะนำ</h2>
           </div>
           <div class="recommend-list">
-            <button class="recommend-card" type="button" data-toast="เปิดบทความกิจกรรมฝึกสมอง">
-              <img src="assets/recommend-brain.png" alt="5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม" />
+            <button class="recommend-card" type="button" data-go="recommend-brain-detail">
+              <span class="recommend-cover"><img src="assets/recommend-brain.png" alt="" /></span>
+              <span class="recommend-body">
+                <span class="recommend-tag purple">กิจกรรมแนะนำ</span>
+                <strong>5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม</strong>
+                <span class="recommend-link">กดเพื่อเปิดอ่าน ›</span>
+              </span>
             </button>
-            <button class="recommend-card" type="button" data-toast="เปิดบทความอาหารสุขภาพ">
-              <img src="assets/recommend-food.png" alt="อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก" />
+            <button class="recommend-card" type="button" data-go="recommend-food-detail">
+              <span class="recommend-cover"><img src="assets/recommend-food.png" alt="" /></span>
+              <span class="recommend-body">
+                <span class="recommend-tag green">อาหารสุขภาพ</span>
+                <strong>อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก</strong>
+                <span class="recommend-link">กดเพื่อเปิดอ่าน ›</span>
+              </span>
             </button>
-            <button class="recommend-card" type="button" data-toast="เปิดบทความฝึกสมาธิ">
-              <img src="assets/recommend-meditation.png" alt="วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี" />
+            <button class="recommend-card" type="button" data-go="recommend-meditation-detail">
+              <span class="recommend-cover"><img src="assets/recommend-meditation.png" alt="" /></span>
+              <span class="recommend-body">
+                <span class="recommend-tag violet">ฝึกสมาธิ</span>
+                <strong>วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี</strong>
+                <span class="recommend-link">กดเพื่อเปิดอ่าน ›</span>
+              </span>
             </button>
           </div>
         </section>
@@ -147,6 +162,7 @@
         </div>
         <div class="status-list feature-list" data-medicine-list></div>
       </article>
+      <button class="feature-bottom-home" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
     </section>
 
     <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
@@ -202,6 +218,7 @@
         </div>
         <div class="status-list feature-list" data-appointment-list></div>
       </article>
+      <button class="feature-bottom-home" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
     </section>
 
       <section class="screen content-screen" id="health" aria-label="Health">
@@ -233,6 +250,67 @@
             <span>เพื่อนใกล้เคียง: พร้อมค้นหา</span>
             <span>แชทกลุ่ม: พร้อมใช้งานในขั้นถัดไป</span>
           </div>
+        </article>
+      </section>
+
+      <section class="screen content-screen article-screen" id="recommend-brain-detail" aria-label="กิจกรรมฝึกสมอง">
+        <header class="topbar">
+          <strong>กิจกรรมแนะนำ</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="article-panel">
+          <img class="article-hero-image" src="assets/recommend-brain.png" alt="กิจกรรมฝึกสมอง" />
+          <span class="recommend-tag purple">กิจกรรมแนะนำ</span>
+          <h1>5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม</h1>
+          <p>กิจกรรมเล็ก ๆ ที่ทำได้ทุกวันช่วยกระตุ้นความจำ สมาธิ และการคิดเป็นลำดับ เหมาะสำหรับผู้สูงอายุที่อยากดูแลสมองอย่างต่อเนื่อง</p>
+          <div class="article-list">
+            <span>เล่นเกมจับคู่ภาพหรือเรียงสี 10-15 นาที</span>
+            <span>อ่านข่าวสั้น ๆ แล้วเล่าให้คนใกล้ตัวฟัง</span>
+            <span>จดบันทึกสิ่งที่ทำในแต่ละวัน</span>
+            <span>ฝึกคำนวณง่าย ๆ เช่น รวมราคาของในบ้าน</span>
+            <span>ทำงานประดิษฐ์หรือปลูกต้นไม้เบา ๆ</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen article-screen" id="recommend-food-detail" aria-label="อาหารสุขภาพ">
+        <header class="topbar">
+          <strong>อาหารสุขภาพ</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="article-panel">
+          <img class="article-hero-image" src="assets/recommend-food.png" alt="อาหารเช้าเพื่อสุขภาพ" />
+          <span class="recommend-tag green">อาหารสุขภาพ</span>
+          <h1>อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก</h1>
+          <p>เลือกอาหารที่นุ่ม ย่อยง่าย และมีโปรตีนพอเหมาะ ช่วยให้เริ่มวันได้สดชื่นและลดภาระการย่อยอาหาร</p>
+          <div class="article-list">
+            <span>โจ๊กข้าวกล้องใส่ไข่และผักอ่อน</span>
+            <span>ข้าวต้มปลา ลดเค็ม เพิ่มขิงเล็กน้อย</span>
+            <span>โยเกิร์ตรสธรรมชาติกับผลไม้เนื้อนุ่ม</span>
+            <span>เต้าหู้นึ่งราดน้ำซุปอ่อน ๆ</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen article-screen" id="recommend-meditation-detail" aria-label="ฝึกสมาธิ">
+        <header class="topbar">
+          <strong>ฝึกสมาธิ</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="article-panel">
+          <img class="article-hero-image" src="assets/recommend-meditation.png" alt="ฝึกสมาธิ" />
+          <span class="recommend-tag violet">ฝึกสมาธิ</span>
+          <h1>วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี</h1>
+          <p>การฝึกหายใจช้า ๆ ช่วยให้ร่างกายผ่อนคลาย ลดความกังวล และเตรียมพร้อมสำหรับการพักผ่อนตอนกลางคืน</p>
+          <div class="article-list">
+            <span>นั่งสบาย ๆ หลังตรง ไม่เกร็ง</span>
+            <span>หายใจเข้า 4 วินาที ออก 6 วินาที</span>
+            <span>ทำต่อเนื่อง 5-10 นาที ก่อนนอน</span>
+            <span>ถ้าใจลอย ให้ค่อย ๆ กลับมารู้ลมหายใจ</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
         </article>
       </section>
 
@@ -331,6 +409,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=60"></script>
+  <script src="script.js?v=62"></script>
   </body>
 </html>

@@ -305,6 +305,10 @@ window.addEventListener('popstate', function () {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
 })
 
+window.addEventListener('hashchange', function () {
+  showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
+})
+
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') closeMenu()
 })
