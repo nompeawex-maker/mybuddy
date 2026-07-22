@@ -308,9 +308,8 @@ a {
   -webkit-overflow-scrolling: touch;
 }
 
-.home-screen img {
+.home-main-image {
   position: relative;
-  z-index: 0;
   display: block;
   z-index: 0;
   width: 100%;
@@ -411,8 +410,13 @@ a {
   transform: translateX(-50%);
 }
 
-.screen:not(.active) .home-bottom-nav {
+.screen:not(.active):not(:target) .home-bottom-nav {
   display: none;
+}
+
+.home-screen.active .home-bottom-nav,
+.home-screen:target .home-bottom-nav {
+  display: block;
 }
 
 .home-bottom-nav img {
