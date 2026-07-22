@@ -1424,3 +1424,23 @@ button {
 .content-screen .panel {
   pointer-events: auto;
 }
+
+.floating-back {
+  position: sticky;
+  top: 10px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin: 0 0 12px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  color: #075fdb;
+  background: #fff;
+  font-size: 17px;
+  font-weight: 950;
+  box-shadow: 0 10px 24px rgba(26, 96, 164, .18);
+  cursor: pointer;
+}

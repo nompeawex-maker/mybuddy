@@ -258,6 +258,41 @@ const appointmentForm = document.querySelector('[data-appointment-form]')
 const appointmentDate = appointmentForm?.querySelector('input[name="date"]')
 if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso()
 
+document.addEventListener('submit', (event) => {
+  const medicineForm = event.target.closest('[data-medicine-form]')
+  const appointmentForm = event.target.closest('[data-appointment-form]')
+  if (!medicineForm && !appointmentForm) return
+
+  event.preventDefault()
+  event.stopImmediatePropagation()
+
+  const activeForm = medicineForm || appointmentForm
+  const formData = new FormData(activeForm)
+
+  if (medicineForm) {
+    careState.medicines.unshift({
+      id: `med-${Date.now()}`,
+      name: String(formData.get('name') || '').trim() || 'ยา',
+      time: String(formData.get('time') || '09:00'),
+    })
+    showToast('บันทึกเวลาเตือนกินยาแล้ว')
+  }
+
+  if (appointmentForm) {
+    careState.appointments.unshift({
+      id: `appt-${Date.now()}`,
+      place: String(formData.get('place') || '').trim() || 'โรงพยาบาล',
+      date: String(formData.get('date') || todayIso()),
+      time: String(formData.get('time') || '09:00'),
+    })
+    showToast('บันทึกนัดหมายหมอแล้ว')
+  }
+
+  saveCareState()
+  renderCareData()
+  window.setTimeout(() => showScreen('home'), 120)
+}, true)
+
 appointmentForm?.addEventListener('submit', (event) => {
   event.preventDefault()
   const formData = new FormData(appointmentForm)
