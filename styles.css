@@ -623,11 +623,17 @@ a {
 }
 
 .feature-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 120;
   display: flex;
   align-items: center;
   gap: 12px;
   min-height: 52px;
   margin-bottom: 18px;
+  padding: 4px 0 10px;
+  background: linear-gradient(180deg, rgba(233, 247, 255, .98), rgba(233, 247, 255, .78));
+  backdrop-filter: blur(10px);
 }
 
 .feature-topbar strong,
@@ -648,6 +654,8 @@ a {
 
 .round-back,
 .mini-home {
+  position: relative;
+  z-index: 130;
   border: 0;
   cursor: pointer;
   color: #0576ff;
