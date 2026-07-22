@@ -216,6 +216,22 @@ function submitAppointment(form) {
 }
 
 document.addEventListener('click', (event) => {
+  const saveMedicineButton = event.target.closest('[data-save-medicine]')
+  if (saveMedicineButton) {
+    event.preventDefault()
+    const form = saveMedicineButton.closest('[data-medicine-form]')
+    if (form) submitMedicine(form)
+    return
+  }
+
+  const saveAppointmentButton = event.target.closest('[data-save-appointment]')
+  if (saveAppointmentButton) {
+    event.preventDefault()
+    const form = saveAppointmentButton.closest('[data-appointment-form]')
+    if (form) submitAppointment(form)
+    return
+  }
+
   const menuButton = event.target.closest('[data-open-menu]')
   if (menuButton) {
     event.preventDefault()

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=51" />
+    <link rel="stylesheet" href="styles.css?v=52" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -89,7 +89,7 @@
           <form class="demo-form" data-medicine-form>
             <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" /></label>
             <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="submit">บันทึกเวลาเตือน</button>
+            <button class="primary-action" type="button" data-save-medicine>บันทึกเวลาเตือน</button>
           </form>
           <div class="status-list" data-medicine-list></div>
         </article>
@@ -107,7 +107,7 @@
             <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" /></label>
             <label>วันที่ <input name="date" type="date" /></label>
             <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="submit">บันทึกนัดหมาย</button>
+            <button class="primary-action" type="button" data-save-appointment>บันทึกนัดหมาย</button>
           </form>
           <div class="status-list" data-appointment-list></div>
         </article>
@@ -192,6 +192,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=51"></script>
+    <script src="script.js?v=52"></script>
   </body>
 </html>
