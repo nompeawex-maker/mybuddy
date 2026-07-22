@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=30" />
+    <link rel="stylesheet" href="styles.css?v=31" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -52,17 +52,44 @@
         <a class="tap-zone family-line-cancel-tap" href="#family-login" data-go="family-login" aria-label="Cancel"></a>
       </section>
 
-      <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img src="assets/home.png" alt="MyBuddy+ home" />
-        <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="Open menu"></button>
-        <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="Today alerts"></button>
-        <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" aria-label="Medicine"></a>
-        <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" aria-label="Appointments"></a>
-        <button class="tap-zone home-health-tap" type="button" data-go="health" aria-label="Health"></button>
-        <button class="tap-zone home-buddy-tap" type="button" data-go="buddy" aria-label="Buddy"></button>
-        <div class="home-alert-preview" aria-live="polite">
-          <strong data-alert-title>การแจ้งเตือนวันนี้</strong>
+      <section class="screen home-screen home-real" id="home" aria-label="MyBuddy+ home">
+        <div class="home-hero">
+          <img src="assets/home-flower-bg.png" alt="MyBuddy+ home" />
+          <button class="home-icon-button home-menu-button" type="button" data-open-menu aria-label="Open menu">☰</button>
+        </div>
+        <div class="home-content">
+          <button class="home-alert-button" type="button" data-go="notifications">
+            <span class="home-alert-main"><span class="home-alert-bell">🔔</span> การแจ้งเตือนวันนี้</span>
+            <span class="home-chevron">›</span>
+          </button>
           <div class="home-alert-list" data-home-alert-list></div>
+
+          <div class="home-section-title">
+            <strong>กิจกรรมวันนี้</strong>
+            <button type="button" data-go="notifications">ดูทั้งหมด ›</button>
+          </div>
+
+          <button class="home-card image-card" type="button" data-go="medicine">
+            <img src="assets/home-card-medicine.png" alt="กินยา" />
+          </button>
+
+          <button class="home-card feature-card appointment-card" type="button" data-go="appointments">
+            <span class="feature-icon">🗓️</span>
+            <span><strong>นัดหมายแพทย์</strong><small>ดูนัดหมายครั้งต่อไป</small></span>
+            <span class="home-chevron">›</span>
+          </button>
+
+          <button class="home-card feature-card health-card" type="button" data-go="health">
+            <span class="feature-icon">❤️</span>
+            <span><strong>สุขภาพ</strong><small>บันทึกและติดตามสุขภาพ</small></span>
+            <span class="home-chevron">›</span>
+          </button>
+
+          <button class="home-card feature-card buddy-card" type="button" data-go="buddy">
+            <span class="feature-icon">🤝</span>
+            <span><strong>Buddy</strong><small>กิจกรรมและเพื่อนของคุณ</small></span>
+            <span class="home-chevron">›</span>
+          </button>
         </div>
       </section>
 
@@ -191,6 +218,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=30"></script>
+    <script src="script.js?v=31"></script>
   </body>
 </html>
