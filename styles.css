@@ -1428,7 +1428,7 @@ button {
 .floating-back {
   position: sticky;
   top: 10px;
-  z-index: 120;
+  z-index: 999;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1443,4 +1443,11 @@ button {
   font-weight: 950;
   box-shadow: 0 10px 24px rgba(26, 96, 164, .18);
   cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+
+.content-screen.active .floating-back,
+.content-screen.active .top-logo-back {
+  pointer-events: auto !important;
 }

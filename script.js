@@ -52,6 +52,15 @@ function showToast(message) {
 }
 
 document.addEventListener('click', (event) => {
+  const backControl = event.target.closest('.floating-back, .top-logo-back')
+  if (!backControl) return
+  const destination = backControl.dataset.go || 'home'
+  event.preventDefault()
+  event.stopImmediatePropagation()
+  showScreen(destination)
+}, true)
+
+document.addEventListener('click', (event) => {
   const control = event.target.closest('[data-go]')
   if (!control) return
   event.preventDefault()
