@@ -51,11 +51,11 @@ function showToast(message) {
   }, 1800)
 }
 
-document.querySelectorAll('[data-go]').forEach((control) => {
-  control.addEventListener('click', (event) => {
-    event.preventDefault()
-    showScreen(control.dataset.go)
-  })
+document.addEventListener('click', (event) => {
+  const control = event.target.closest('[data-go]')
+  if (!control) return
+  event.preventDefault()
+  showScreen(control.dataset.go)
 })
 
 document.querySelectorAll('[data-open-menu]').forEach((control) => {

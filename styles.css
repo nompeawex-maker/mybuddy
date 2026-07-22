@@ -1306,3 +1306,121 @@ button {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* v36: fixed hit areas, measured as screen percentages for 1080x2400 art. */
+.home-screen {
+  --home-flow-shift: 0px;
+  overflow: hidden;
+}
+
+.home-screen .tap-zone {
+  pointer-events: auto !important;
+  z-index: 50;
+}
+
+.home-menu-tap {
+  top: 1.9% !important;
+  right: 4.2% !important;
+  width: 11.5% !important;
+  height: 5.2% !important;
+}
+
+.home-alert-tap {
+  top: 31.2% !important;
+  left: 4.8% !important;
+  width: 90.4% !important;
+  height: 10.5% !important;
+}
+
+.home-med-tap,
+.home-appointment-tap,
+.home-health-tap,
+.home-buddy-tap {
+  left: 4.8% !important;
+  width: 90.4% !important;
+  height: 10.8% !important;
+}
+
+.home-med-tap {
+  top: 44.8% !important;
+}
+
+.home-appointment-tap {
+  top: 57.1% !important;
+}
+
+.home-health-tap {
+  top: 69.3% !important;
+}
+
+.home-buddy-tap {
+  top: 81.5% !important;
+}
+
+.home-alert-preview {
+  top: 34.1% !important;
+  left: 14.5% !important;
+  z-index: 45;
+  width: 73% !important;
+  max-height: 7.8% !important;
+}
+
+.content-screen .topbar {
+  z-index: 80;
+}
+
+.content-screen .top-logo-back {
+  position: relative;
+  z-index: 81;
+  min-width: 92px;
+  height: 46px;
+  border: 1px solid rgba(7, 95, 219, .16);
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(26, 96, 164, .12);
+}
+
+/* v37: align home hotspots to the actual home-menu.png card positions. */
+.home-alert-tap {
+  top: 33.4% !important;
+  left: 5.3% !important;
+  width: 89.4% !important;
+  height: 10.5% !important;
+}
+
+.home-med-tap,
+.home-appointment-tap,
+.home-health-tap,
+.home-buddy-tap {
+  left: 5.3% !important;
+  width: 89.4% !important;
+  height: 10.7% !important;
+}
+
+.home-med-tap {
+  top: 50.7% !important;
+}
+
+.home-appointment-tap {
+  top: 62.8% !important;
+}
+
+.home-health-tap {
+  top: 74.7% !important;
+}
+
+.home-buddy-tap {
+  top: 86.8% !important;
+}
+
+.home-alert-preview {
+  top: 36.8% !important;
+  left: 16% !important;
+  width: 71% !important;
+  max-height: 6.8% !important;
+}
+
+.content-screen,
+.content-screen .topbar,
+.content-screen .panel {
+  pointer-events: auto;
+}
