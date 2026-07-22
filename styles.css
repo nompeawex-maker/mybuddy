@@ -328,6 +328,7 @@ a {
   width: 89.4%;
   height: 10.5%;
   border-radius: 24px;
+  pointer-events: none;
 }
 
 .home-med-tap,
@@ -358,18 +359,18 @@ a {
 
 .home-alert-preview {
   position: absolute;
-  top: 37.2%;
-  left: 10.8%;
-  z-index: 30;
-  width: 78.4%;
-  max-height: 5.9%;
+  top: 37.4%;
+  left: 12.5%;
+  z-index: 45;
+  width: 75%;
+  max-height: 6.8%;
   overflow: hidden;
   pointer-events: none;
 }
 
 .home-alert-list {
   display: grid;
-  gap: 3px;
+  gap: 5px;
 }
 
 .home-alert-list:empty {
@@ -378,23 +379,25 @@ a {
 
 .home-alert-card {
   display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 7px;
+  grid-template-columns: 30px 1fr;
+  gap: 9px;
   align-items: center;
-  min-height: 26px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .76);
+  min-height: 34px;
+  padding: 5px 8px;
+  border: 1px solid rgba(0, 109, 245, .16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 6px 14px rgba(18, 54, 96, .08);
 }
 
 .home-alert-icon {
   display: grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: rgba(255, 255, 255, .9);
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .home-alert-copy {
@@ -411,14 +414,14 @@ a {
 
 .home-alert-copy strong {
   color: #071f49;
-  font-size: clamp(10px, 3vw, 14px);
+  font-size: clamp(12px, 3.35vw, 16px);
   font-weight: 950;
   line-height: 1.12;
 }
 
 .home-alert-copy small {
   color: #405678;
-  font-size: clamp(8px, 2.4vw, 11px);
+  font-size: clamp(10px, 2.75vw, 13px);
   font-weight: 800;
   line-height: 1.1;
 }

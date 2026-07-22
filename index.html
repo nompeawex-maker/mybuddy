@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=50" />
+    <link rel="stylesheet" href="styles.css?v=51" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -55,7 +55,7 @@
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
         <img src="assets/home-menu.png" alt="หน้าเมนูหลัก MyBuddy+" />
         <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="เมนู"></button>
-        <a class="tap-zone home-alert-tap" href="#notifications" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></a>
+        <div class="home-alert-tap" aria-hidden="true"></div>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" aria-label="เปิดหน้ากินยา"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" aria-label="เปิดหน้านัดหมายแพทย์"></a>
         <a class="tap-zone home-health-tap" href="#health" data-go="health" aria-label="เปิดหน้าสุขภาพ"></a>
@@ -192,6 +192,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=50"></script>
+    <script src="script.js?v=51"></script>
   </body>
 </html>
