@@ -1112,11 +1112,11 @@ a {
 .menu-layer {
   position: absolute;
   inset: 0;
-  z-index: 80;
+  z-index: 180;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  background: rgba(5, 31, 70, .22);
+  background: rgba(7, 31, 73, .18);
   transition: opacity .22s ease, visibility .22s ease;
 }
 
@@ -1130,12 +1130,14 @@ a {
   position: absolute;
   top: 0;
   right: 0;
-  width: min(86%, 360px);
+  width: min(92%, 430px);
   height: 100%;
-  padding: 42px 28px;
-  border-radius: 28px 0 0 28px;
-  background: rgba(255, 255, 255, .96);
-  box-shadow: -18px 0 44px rgba(11, 68, 126, .22);
+  padding: 58px 40px 34px;
+  border-radius: 24px 0 0 24px;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(238, 247, 255, .9), transparent 34%),
+    rgba(255, 255, 255, .98);
+  box-shadow: -22px 0 54px rgba(11, 68, 126, .22);
   transform: translateX(100%);
   transition: transform .28s ease;
 }
@@ -1146,35 +1148,63 @@ a {
 
 .close-menu {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
+  top: 52px;
+  right: 36px;
+  width: 48px;
+  height: 48px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 16px;
   color: #075fdb;
-  background: #eef7ff;
-  font-size: 28px;
+  background: transparent;
+  font-size: 42px;
+  font-weight: 300;
   line-height: 1;
+  cursor: pointer;
 }
 
 .menu-card h2 {
-  margin: 20px 0 28px;
-  color: #123660;
-  font-size: 28px;
+  margin: 22px 0 42px;
+  color: #071f49;
+  font-size: 30px;
+  font-weight: 950;
 }
 
-.menu-card button:not(.close-menu) {
+.menu-card .menu-row {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
+  align-items: center;
   width: 100%;
-  padding: 18px 0;
+  min-height: 78px;
+  padding: 0;
   border: 0;
-  border-bottom: 1px solid #d8eaff;
-  color: #123660;
+  border-bottom: 1px solid #cfe5ff;
+  color: #071f49;
   background: transparent;
   text-align: left;
-  font-size: 19px;
-  font-weight: 850;
+  font-size: 22px;
+  font-weight: 950;
   cursor: pointer;
+}
+
+.menu-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #087bff;
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.menu-row:active .menu-icon,
+.menu-row:active span:last-child {
+  transform: translateX(2px);
+}
+
+.menu-info-screen .panel h1 {
+  color: #071f49;
 }
 
 .toast {

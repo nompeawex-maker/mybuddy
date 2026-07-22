@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=62" />
+  <link rel="stylesheet" href="styles.css?v=63" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -379,6 +379,57 @@
         </article>
       </section>
 
+      <section class="screen content-screen menu-info-screen" id="about" aria-label="เกี่ยวกับ MyBuddy+">
+        <header class="topbar">
+          <strong>เกี่ยวกับ MyBuddy+</strong>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>เพื่อนที่เข้าใจ วัยที่มีความหมาย</h1>
+          <p>MyBuddy+ เป็นเว็บเดโมสำหรับช่วยให้ผู้สูงอายุเชื่อมต่อเพื่อน ดูแลสุขภาพ และให้ครอบครัวติดตามข้อมูลสำคัญได้ง่ายขึ้น</p>
+          <div class="status-list">
+            <span>ออกแบบตัวหนังสือใหญ่ ใช้งานง่าย</span>
+            <span>รวมกิจกรรม สุขภาพ นัดหมาย และ Buddy ไว้ในที่เดียว</span>
+            <span>รองรับการต่อยอดเป็นแอปจริงในอนาคต</span>
+          </div>
+          <button class="primary-action" type="button" data-go="login">กลับหน้าแรก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen menu-info-screen" id="features" aria-label="ฟังก์ชันของเรา">
+        <header class="topbar">
+          <strong>ฟังก์ชันของเรา</strong>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>ฟังก์ชันหลัก</h1>
+          <div class="status-list">
+            <span>💊 กินยา: บันทึกชื่อยาและเวลาเตือน</span>
+            <span>🏥 นัดหมายแพทย์: จดวัน เวลา และสถานที่</span>
+            <span>❤️ สุขภาพ: ดูข้อมูลสุขภาพเบื้องต้น</span>
+            <span>🤝 Buddy: พื้นที่กิจกรรมและเพื่อน</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">ไปหน้าเมนูหลัก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen menu-info-screen" id="family-info" aria-label="สำหรับครอบครัว">
+        <header class="topbar">
+          <strong>สำหรับครอบครัว</strong>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>ช่วยดูแลได้ใกล้ขึ้น</h1>
+          <p>โหมดครอบครัวออกแบบไว้ให้ผู้ดูแลเห็นข้อมูลสำคัญ เช่น สถานะสุขภาพ นัดหมาย และการแจ้งเตือน</p>
+          <div class="status-list">
+            <span>ดูสรุปข้อมูลสำคัญของผู้สูงอายุ</span>
+            <span>รองรับแนวคิดติดตามตำแหน่งและแจ้งเตือนในระบบจริง</span>
+            <span>แยกการเข้าสู่ระบบของครอบครัวจากผู้สูงอายุ</span>
+          </div>
+          <button class="primary-action" type="button" data-go="family-login">เข้าสู่ระบบครอบครัว</button>
+        </article>
+      </section>
+
       <section class="screen content-screen" id="howto" aria-label="วิธีใช้งาน">
         <header class="topbar">
           <strong>วิธีใช้งาน</strong>
@@ -399,16 +450,17 @@
         <div class="menu-card">
           <button class="close-menu" type="button" data-close-menu aria-label="ปิดเมนู">×</button>
           <h2>เมนู</h2>
-          <button type="button" data-go="login">หน้าแรก</button>
-          <button type="button" data-go="home">ฟังก์ชันของเรา</button>
-          <button type="button" data-go="family-login">สำหรับครอบครัว</button>
-          <button type="button" data-go="howto">วิธีใช้งาน</button>
-          <button type="button" data-go="support">ช่วยเหลือและติดต่อเรา</button>
+          <button class="menu-row" type="button" data-go="login"><span class="menu-icon">⌂</span><span>หน้าแรก</span></button>
+          <button class="menu-row" type="button" data-go="about"><span class="menu-icon">◎</span><span>เกี่ยวกับ MyBuddy+</span></button>
+          <button class="menu-row" type="button" data-go="features"><span class="menu-icon">▦</span><span>ฟังก์ชันของเรา</span></button>
+          <button class="menu-row" type="button" data-go="family-info"><span class="menu-icon">♙</span><span>สำหรับครอบครัว</span></button>
+          <button class="menu-row" type="button" data-go="howto"><span class="menu-icon">?</span><span>วิธีใช้งาน</span></button>
+          <button class="menu-row" type="button" data-go="support"><span class="menu-icon">☏</span><span>ช่วยเหลือและติดต่อเรา</span></button>
         </div>
       </section>
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=62"></script>
+  <script src="script.js?v=63"></script>
   </body>
 </html>
