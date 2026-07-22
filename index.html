@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=59" />
+  <link rel="stylesheet" href="styles.css?v=60" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -63,6 +63,23 @@
         <div class="home-alert-preview" aria-live="polite">
           <div class="home-alert-list" data-home-alert-list></div>
         </div>
+        <section class="recommend-section" aria-label="แนะนำ">
+          <div class="recommend-heading">
+            <span>✨</span>
+            <h2>แนะนำ</h2>
+          </div>
+          <div class="recommend-list">
+            <button class="recommend-card" type="button" data-toast="เปิดบทความกิจกรรมฝึกสมอง">
+              <img src="assets/recommend-brain.png" alt="5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม" />
+            </button>
+            <button class="recommend-card" type="button" data-toast="เปิดบทความอาหารสุขภาพ">
+              <img src="assets/recommend-food.png" alt="อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก" />
+            </button>
+            <button class="recommend-card" type="button" data-toast="เปิดบทความฝึกสมาธิ">
+              <img src="assets/recommend-meditation.png" alt="วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี" />
+            </button>
+          </div>
+        </section>
       </section>
 
       <section class="screen content-screen" id="notifications" aria-label="Today notifications">
@@ -80,12 +97,12 @@
 
     <section class="screen content-screen care-feature medicine-feature" id="medicine" aria-label="Medicine schedule">
       <header class="feature-topbar">
-        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
+        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
         <div>
           <strong>ระบบกินยา</strong>
           <span>จัดเวลาเตือนและดูรายการยา</span>
         </div>
-        <a class="mini-home" href="#home" data-go="home">Home</a>
+        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
       </header>
 
       <article class="feature-hero medicine-hero">
@@ -134,12 +151,12 @@
 
     <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
       <header class="feature-topbar">
-        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
+        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
         <div>
           <strong>ระบบนัดแพทย์</strong>
           <span>บันทึกสถานที่ วัน และเวลา</span>
         </div>
-        <a class="mini-home" href="#home" data-go="home">Home</a>
+        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
       </header>
 
       <article class="feature-hero appointment-hero">
@@ -314,6 +331,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=59"></script>
+  <script src="script.js?v=60"></script>
   </body>
 </html>
