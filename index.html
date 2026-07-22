@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=53" />
+    <link rel="stylesheet" href="styles.css?v=54" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -56,8 +56,8 @@
         <img src="assets/home-menu.png" alt="หน้าเมนูหลัก MyBuddy+" />
         <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="เมนู"></button>
         <div class="home-alert-tap" aria-hidden="true"></div>
-        <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
-        <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
+        <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
+        <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="window.showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
         <a class="tap-zone home-health-tap" href="#health" data-go="health" aria-label="เปิดหน้าสุขภาพ"></a>
         <a class="tap-zone home-buddy-tap" href="#buddy" data-go="buddy" aria-label="เปิดหน้า Buddy"></a>
         <div class="home-alert-preview" aria-live="polite">
@@ -86,10 +86,10 @@
         </header>
         <article class="panel">
           <h1>ตารางกินยา</h1>
-          <form class="demo-form" data-medicine-form>
+          <form class="demo-form" data-medicine-form onsubmit="return window.submitMedicineForm(this);">
             <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" /></label>
             <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="button" data-save-medicine onclick="event.stopPropagation(); submitMedicine(this.closest('[data-medicine-form]')); return false;">บันทึกเวลาเตือน</button>
+            <button class="primary-action" type="submit" data-save-medicine>บันทึกเวลาเตือน</button>
           </form>
           <div class="status-list" data-medicine-list></div>
         </article>
@@ -103,11 +103,11 @@
         </header>
         <article class="panel">
           <h1>นัดหมายหมอ</h1>
-          <form class="demo-form" data-appointment-form>
+          <form class="demo-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
             <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" /></label>
             <label>วันที่ <input name="date" type="date" /></label>
             <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="button" data-save-appointment onclick="event.stopPropagation(); submitAppointment(this.closest('[data-appointment-form]')); return false;">บันทึกนัดหมาย</button>
+            <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
           </form>
           <div class="status-list" data-appointment-list></div>
         </article>
@@ -192,6 +192,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=53"></script>
+    <script src="script.js?v=54"></script>
   </body>
 </html>
