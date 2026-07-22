@@ -1077,3 +1077,75 @@ button {
 .home-real .home-alert-list:empty {
   display: none;
 }
+
+.home-split {
+  position: relative;
+  overflow-y: auto;
+  background: #eaf7ff;
+}
+
+.home-split-bg {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.home-split-bg img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.home-split .home-menu-button {
+  top: 24px;
+  right: 24px;
+  z-index: 5;
+}
+
+.home-split .home-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  padding: min(54svh, 560px) 20px 38px;
+}
+
+.home-split .home-alert-button {
+  min-height: 94px;
+  border-radius: 24px;
+}
+
+.home-split.alerts-collapsed .home-alert-list {
+  display: none;
+}
+
+.home-split.alerts-collapsed [data-alert-chevron] {
+  transform: rotate(-90deg);
+}
+
+.home-split [data-alert-chevron] {
+  transition: transform .18s ease;
+}
+
+.home-split .home-alert-main {
+  font-size: clamp(22px, 5.8vw, 30px);
+}
+
+.home-split .home-section-title strong {
+  font-size: clamp(22px, 5.8vw, 30px);
+}
+
+.home-split .image-card {
+  min-height: 0;
+  box-shadow: none;
+}
+
+.home-split .image-card img {
+  width: 100%;
+  border-radius: 24px;
+}
+
+.home-split .feature-card {
+  border-left: 6px solid #54b7ff;
+}

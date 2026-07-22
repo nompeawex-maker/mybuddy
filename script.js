@@ -62,6 +62,14 @@ document.querySelectorAll('[data-open-menu]').forEach((control) => {
   control.addEventListener('click', openMenu)
 })
 
+document.querySelectorAll('[data-toggle-home-alert]').forEach((control) => {
+  control.addEventListener('click', () => {
+    const home = document.querySelector('.home-split')
+    const collapsed = home?.classList.toggle('alerts-collapsed') || false
+    control.setAttribute('aria-expanded', String(!collapsed))
+  })
+})
+
 document.querySelectorAll('[data-close-menu]').forEach((control) => {
   control.addEventListener('click', closeMenu)
 })
