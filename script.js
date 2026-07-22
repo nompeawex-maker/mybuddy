@@ -58,6 +58,7 @@ document.addEventListener('click', (event) => {
   event.preventDefault()
   event.stopImmediatePropagation()
   showScreen(destination)
+  if (destination === 'home') window.location.hash = 'home'
 }, true)
 
 document.addEventListener('click', (event) => {
