@@ -64,6 +64,10 @@ a {
   animation: autoHideSplash .35s ease 2s forwards;
 }
 
+.login-screen {
+  animation: autoShowLogin .35s ease 2.02s forwards;
+}
+
 .splash-screen.leaving {
   z-index: -1;
   visibility: hidden;
@@ -697,5 +701,13 @@ a {
     opacity: 0;
     pointer-events: none;
     transform: scale(1.02);
+  }
+}
+
+@keyframes autoShowLogin {
+  to {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
