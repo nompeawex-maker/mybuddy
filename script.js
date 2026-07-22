@@ -328,3 +328,49 @@ window.addEventListener('resize', () => {
 window.setTimeout(() => {
   showScreen(window.location.hash.replace('#', '') || 'login', { updateHash: false })
 }, 2000)
+
+function notificationItems() {
+  const medicines = careState.medicines.map((item) => ({
+    id: item.id,
+    type: 'medicine',
+    icon: '💊',
+    sort: `${todayIso()}T${item.time || '00:00'}`,
+    title: `${item.time || '--:--'} กิน${item.name || 'ยา'}`,
+    detail: 'เตือนกินยาวันนี้',
+  }))
+
+  const appointments = careState.appointments.map((item) => ({
+    id: item.id,
+    type: 'appointment',
+    icon: '🏥',
+    sort: `${item.date || todayIso()}T${item.time || '00:00'}`,
+    title: `${item.time || '--:--'} ${item.place || 'นัดหมายแพทย์'}`,
+    detail: `${formatThaiDate(item.date)} นัดหมายหมอ`,
+  }))
+
+  return [...medicines, ...appointments].sort((a, b) => a.sort.localeCompare(b.sort))
+}
+
+function renderHomeAlerts(notifications) {
+  const list = document.querySelector('[data-home-alert-list]')
+  if (!list) return
+  list.innerHTML = ''
+
+  notifications.slice(0, 2).forEach((item) => {
+    const card = document.createElement('div')
+    card.className = `home-alert-card ${item.type}`
+    card.innerHTML = `
+      <span class="home-alert-icon" aria-hidden="true"></span>
+      <span class="home-alert-copy">
+        <strong></strong>
+        <small></small>
+      </span>
+    `
+    card.querySelector('.home-alert-icon').textContent = item.icon
+    card.querySelector('strong').textContent = item.title
+    card.querySelector('small').textContent = item.detail
+    list.append(card)
+  })
+}
+
+renderCareData()

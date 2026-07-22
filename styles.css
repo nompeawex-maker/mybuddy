@@ -1451,3 +1451,48 @@ button {
 .content-screen.active .top-logo-back {
   pointer-events: auto !important;
 }
+
+/* v42: make saved medicine / appointment alerts visibly appear on home. */
+.home-alert-preview {
+  top: 34.9% !important;
+  left: 10.5% !important;
+  z-index: 80 !important;
+  width: 79% !important;
+  max-height: 7.8% !important;
+  pointer-events: none !important;
+}
+
+.home-alert-preview .home-alert-list {
+  display: grid;
+  gap: 4px;
+}
+
+.home-alert-preview .home-alert-card {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 8px;
+  align-items: center;
+  min-height: 34px;
+  padding: 4px 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .88);
+  box-shadow: 0 6px 14px rgba(13, 71, 135, .10);
+}
+
+.home-alert-preview .home-alert-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+}
+
+.home-alert-preview .home-alert-copy strong {
+  color: #071f49;
+  font-size: clamp(12px, 3.6vw, 17px);
+  line-height: 1.12;
+}
+
+.home-alert-preview .home-alert-copy small {
+  color: #405678;
+  font-size: clamp(10px, 2.8vw, 13px);
+  line-height: 1.1;
+}
