@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-    <link rel="stylesheet" href="styles.css?v=54" />
+  <link rel="stylesheet" href="styles.css?v=57" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -38,10 +38,10 @@
         <input class="image-input family-user-input" type="text" aria-label="ชื่อผู้ใช้หรืออีเมล" autocomplete="username" />
         <input class="image-input family-password-input" type="password" aria-label="รหัสผ่าน" autocomplete="current-password" />
         <button class="tap-zone family-eye-tap" type="button" data-toggle-password aria-label="แสดงหรือซ่อนรหัสผ่าน"></button>
-        <button class="tap-zone family-forgot-tap" type="button" data-toast="เปิดหน้าลืมรหัสผ่านแล้ว" aria-label="ลืมรหัสผ่าน"></button>
+        <button class="tap-zone family-forgot-tap" type="button" data-go="forgot-password" aria-label="ลืมรหัสผ่าน"></button>
         <a class="tap-zone family-submit-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="เข้าสู่ระบบ"></a>
         <a class="tap-zone family-line-tap" href="#family-line-login" data-go="family-line-login" aria-label="เข้าสู่ระบบด้วย LINE"></a>
-        <button class="tap-zone family-register-tap" type="button" data-toast="เปิดหน้าสมัครสมาชิกแล้ว" aria-label="สมัครสมาชิก"></button>
+        <button class="tap-zone family-register-tap" type="button" data-go="register" aria-label="สมัครสมาชิก"></button>
         <a class="tap-zone family-contact-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
       </section>
 
@@ -53,9 +53,9 @@
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img src="assets/home-menu.png" alt="หน้าเมนูหลัก MyBuddy+" />
+        <img src="assets/home-menu.png?v=57" alt="หน้าเมนูหลัก MyBuddy+" />
         <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="เมนู"></button>
-        <div class="home-alert-tap" aria-hidden="true"></div>
+        <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="window.showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
         <a class="tap-zone home-health-tap" href="#health" data-go="health" aria-label="เปิดหน้าสุขภาพ"></a>
@@ -78,40 +78,114 @@
         </article>
       </section>
 
-      <section class="screen content-screen" id="medicine" aria-label="Medicine schedule">
-        <a class="floating-back" href="#home" data-go="home">← กลับหน้าเมนู</a>
-        <header class="topbar">
-          <strong>กินยา</strong>
-          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
-        </header>
-        <article class="panel">
-          <h1>ตารางกินยา</h1>
-          <form class="demo-form" data-medicine-form onsubmit="return window.submitMedicineForm(this);">
-            <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" /></label>
-            <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="submit" data-save-medicine>บันทึกเวลาเตือน</button>
-          </form>
-          <div class="status-list" data-medicine-list></div>
-        </article>
+    <section class="screen content-screen care-feature medicine-feature" id="medicine" aria-label="Medicine schedule">
+      <header class="feature-topbar">
+        <button class="round-back" type="button" data-go="home" aria-label="กลับหน้าเมนู">‹</button>
+        <div>
+          <strong>ระบบกินยา</strong>
+          <span>จัดเวลาเตือนและดูรายการยา</span>
+        </div>
+        <button class="mini-home" type="button" data-go="home">Home</button>
+      </header>
+
+      <article class="feature-hero medicine-hero">
+        <div class="feature-hero-copy">
+          <span class="feature-badge">💊 CareLog</span>
+          <h1>ไม่ลืมกินยา<br>ตรงเวลา</h1>
+          <p>เพิ่มชื่อยาและเวลาที่ต้องเตือน ระบบจะนำไปแสดงในช่องการแจ้งเตือนหน้าเมนูหลัก</p>
+        </div>
+        <div class="feature-hero-art" aria-hidden="true">
+          <span class="hero-pill">💊</span>
+          <span class="hero-clock">⏰</span>
+        </div>
+      </article>
+
+      <section class="quick-grid" aria-label="คำแนะนำการกินยา">
+        <div class="info-chip">
+          <strong>ก่อนอาหาร</strong>
+          <span>บันทึกเวลาให้ชัดเจน</span>
+        </div>
+        <div class="info-chip">
+          <strong>หลังอาหาร</strong>
+          <span>เหมาะกับยาประจำ</span>
+        </div>
       </section>
 
-      <section class="screen content-screen" id="appointments" aria-label="Doctor appointments">
-        <a class="floating-back" href="#home" data-go="home">← กลับหน้าเมนู</a>
-        <header class="topbar">
-          <strong>นัดหมายแพทย์</strong>
-          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
-        </header>
-        <article class="panel">
-          <h1>นัดหมายหมอ</h1>
-          <form class="demo-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
-            <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" /></label>
-            <label>วันที่ <input name="date" type="date" /></label>
-            <label>เวลา <input name="time" type="time" value="09:00" /></label>
-            <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
-          </form>
-          <div class="status-list" data-appointment-list></div>
-        </article>
+      <article class="feature-panel">
+        <div class="section-heading">
+          <h2>เพิ่มเวลาเตือน</h2>
+          <span>ข้อมูลตัวอย่าง</span>
+        </div>
+        <form class="demo-form" data-medicine-form onsubmit="return window.submitMedicineForm(this);">
+          <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" autocomplete="off" /></label>
+          <label>เวลา <input name="time" type="time" value="09:00" /></label>
+          <button class="primary-action" type="submit" data-save-medicine>บันทึกเวลาเตือน</button>
+        </form>
+      </article>
+
+      <article class="feature-panel list-panel">
+        <div class="section-heading">
+          <h2>รายการที่บันทึก</h2>
+          <span>ขึ้นในหน้า Home</span>
+        </div>
+        <div class="status-list feature-list" data-medicine-list></div>
+      </article>
+    </section>
+
+    <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
+      <header class="feature-topbar">
+        <button class="round-back" type="button" data-go="home" aria-label="กลับหน้าเมนู">‹</button>
+        <div>
+          <strong>ระบบนัดแพทย์</strong>
+          <span>บันทึกสถานที่ วัน และเวลา</span>
+        </div>
+        <button class="mini-home" type="button" data-go="home">Home</button>
+      </header>
+
+      <article class="feature-hero appointment-hero">
+        <div class="feature-hero-copy">
+          <span class="feature-badge">🏥 Appointment</span>
+          <h1>เตรียมพร้อม<br>ก่อนพบแพทย์</h1>
+          <p>บันทึกนัดหมายสำคัญ แล้วให้ระบบสรุปไว้ที่หน้าเมนูหลักเพื่อเห็นง่ายทันที</p>
+        </div>
+        <div class="feature-hero-art" aria-hidden="true">
+          <span class="hero-hospital">🏥</span>
+          <span class="hero-calendar">📅</span>
+        </div>
+      </article>
+
+      <section class="quick-grid" aria-label="คำแนะนำนัดหมาย">
+        <div class="info-chip">
+          <strong>เตรียมเอกสาร</strong>
+          <span>บัตรประชาชน/ใบนัด</span>
+        </div>
+        <div class="info-chip">
+          <strong>เผื่อเวลาเดินทาง</strong>
+          <span>ไปถึงก่อนนัดเล็กน้อย</span>
+        </div>
       </section>
+
+      <article class="feature-panel">
+        <div class="section-heading">
+          <h2>เพิ่มนัดหมาย</h2>
+          <span>ข้อมูลตัวอย่าง</span>
+        </div>
+        <form class="demo-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
+          <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" autocomplete="off" /></label>
+          <label>วันที่ <input name="date" type="date" /></label>
+          <label>เวลา <input name="time" type="time" value="09:00" /></label>
+          <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
+        </form>
+      </article>
+
+      <article class="feature-panel list-panel">
+        <div class="section-heading">
+          <h2>นัดหมายที่บันทึก</h2>
+          <span>ขึ้นในหน้า Home</span>
+        </div>
+        <div class="status-list feature-list" data-appointment-list></div>
+      </article>
+    </section>
 
       <section class="screen content-screen" id="health" aria-label="Health">
         <header class="topbar">
@@ -161,10 +235,42 @@
         </article>
       </section>
 
+      <section class="screen content-screen" id="forgot-password" aria-label="ลืมรหัสผ่าน">
+        <header class="topbar">
+          <strong>ลืมรหัสผ่าน</strong>
+          <button class="top-logo-back" type="button" data-go="family-login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>กู้คืนบัญชี</h1>
+          <p>กรอกเบอร์โทรหรืออีเมลของครอบครัว เพื่อรับรหัสยืนยันสำหรับตั้งรหัสผ่านใหม่</p>
+          <form class="demo-form" onsubmit="event.preventDefault(); window.showScreen('family-login'); return false;">
+            <label>เบอร์โทร / อีเมล <input type="text" value="family@example.com" autocomplete="email" /></label>
+            <button class="primary-action" type="submit">ส่งรหัสยืนยัน</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="register" aria-label="สมัครสมาชิก">
+        <header class="topbar">
+          <strong>สมัครสมาชิก</strong>
+          <button class="top-logo-back" type="button" data-go="family-login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>สร้างบัญชีครอบครัว</h1>
+          <p>หน้านี้เป็นตัวอย่างขั้นตอนสมัครสมาชิก เพื่อเชื่อมครอบครัวกับผู้สูงอายุในระบบจริง</p>
+          <form class="demo-form" onsubmit="event.preventDefault(); window.showScreen('family-dashboard'); return false;">
+            <label>ชื่อผู้ดูแล <input type="text" value="คุณลูก" autocomplete="name" /></label>
+            <label>เบอร์โทร <input type="tel" value="0812345678" autocomplete="tel" /></label>
+            <label>ตั้งรหัสผ่าน <input type="password" value="12345678" autocomplete="new-password" /></label>
+            <button class="primary-action" type="submit">สร้างบัญชี</button>
+          </form>
+        </article>
+      </section>
+
       <section class="screen content-screen" id="support" aria-label="ช่วยเหลือและติดต่อเรา">
         <header class="topbar">
           <strong>ช่วยเหลือ</strong>
-          <button class="top-logo-back" type="button" data-go="line-login" aria-label="ย้อนกลับ">MyBuddy+</button>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับ">MyBuddy+</button>
         </header>
         <article class="panel">
           <h1>ติดต่อ MyBuddy+</h1>
@@ -174,7 +280,23 @@
             <span>โทร: 02-000-0000</span>
             <span>เวลาทำการ: 08:00 - 18:00 น.</span>
           </div>
-          <button class="primary-action" type="button" data-go="line-login">กลับหน้าเข้าสู่ระบบ</button>
+          <button class="primary-action" type="button" data-go="login">กลับหน้าแรก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="howto" aria-label="วิธีใช้งาน">
+        <header class="topbar">
+          <strong>วิธีใช้งาน</strong>
+          <button class="top-logo-back" type="button" data-go="login" aria-label="ย้อนกลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>เริ่มใช้งาน MyBuddy+</h1>
+          <div class="status-list">
+            <span>1. กดเริ่มต้นใช้งาน แล้วเข้าสู่ระบบผ่าน LINE</span>
+            <span>2. หน้าเมนูหลักใช้เลือก กินยา นัดหมายแพทย์ สุขภาพ และ Buddy</span>
+            <span>3. ข้อมูลยาและนัดหมายที่บันทึกจะแสดงในช่องการแจ้งเตือน</span>
+          </div>
+          <button class="primary-action" type="button" data-go="login">กลับหน้าแรก</button>
         </article>
       </section>
 
@@ -185,13 +307,13 @@
           <button type="button" data-go="login">หน้าแรก</button>
           <button type="button" data-go="home">ฟังก์ชันของเรา</button>
           <button type="button" data-go="family-login">สำหรับครอบครัว</button>
-          <button type="button" data-toast="เปิดหน้าวิธีใช้งาน">วิธีใช้งาน</button>
-          <button type="button" data-toast="เปิดหน้าช่วยเหลือ">ช่วยเหลือและติดต่อเรา</button>
+          <button type="button" data-go="howto">วิธีใช้งาน</button>
+          <button type="button" data-go="support">ช่วยเหลือและติดต่อเรา</button>
         </div>
       </section>
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=54"></script>
+  <script src="script.js?v=57"></script>
   </body>
 </html>
