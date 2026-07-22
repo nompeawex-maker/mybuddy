@@ -61,12 +61,16 @@ document.querySelectorAll('[data-go]').forEach((control) => {
 const homeScreen = document.querySelector('.home-screen')
 homeScreen?.addEventListener('click', (event) => {
   updateHomeMetrics()
-  const rect = homeScreen.getBoundingClientRect()
-  const artHeight = homeScreen.clientWidth * (2400 / 1080)
+  const homeImage = homeScreen.querySelector('img')
+  const rect = homeImage?.getBoundingClientRect()
+  if (!rect) return
+  const artHeight = rect.height
   const shift = parseFloat(getComputedStyle(homeScreen).getPropertyValue('--home-flow-shift')) || 0
   const x = (event.clientX - rect.left) / rect.width
-  const y = (event.clientY - rect.top + homeScreen.scrollTop) / artHeight
+  const y = (event.clientY - rect.top) / artHeight
   const shiftRatio = shift / artHeight
+
+  if (x < 0 || x > 1 || y < 0 || y > 1) return
 
   if (x >= .82 && y >= .02 && y <= .09) {
     openMenu()
