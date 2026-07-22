@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=65" />
+  <link rel="stylesheet" href="styles.css?v=68" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -95,6 +95,14 @@
             </button>
           </div>
         </section>
+        <nav class="home-bottom-nav" aria-label="เมนูล่าง">
+          <img src="assets/home-bottom-nav.png" alt="" />
+          <a class="bottom-nav-hit bottom-buddy" href="#buddy" data-go="buddy" aria-label="Buddy"></a>
+          <a class="bottom-nav-hit bottom-activities" href="#activities" data-go="activities" aria-label="กิจกรรม"></a>
+          <a class="bottom-nav-hit bottom-sos" href="#sos" data-go="sos" aria-label="SOS"></a>
+          <a class="bottom-nav-hit bottom-health" href="#health" data-go="health" aria-label="สุขภาพ"></a>
+          <a class="bottom-nav-hit bottom-profile" href="#profile" data-go="profile" aria-label="โปรไฟล์"></a>
+        </nav>
       </section>
 
       <section class="screen content-screen" id="notifications" aria-label="Today notifications">
@@ -112,12 +120,12 @@
 
     <section class="screen content-screen care-feature medicine-feature" id="medicine" aria-label="Medicine schedule">
       <header class="feature-topbar">
-        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
+        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
         <div>
           <strong>ระบบกินยา</strong>
           <span>จัดเวลาเตือนและดูรายการยา</span>
         </div>
-        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
+        <a class="mini-home" href="#home" data-go="home">Home</a>
       </header>
 
       <article class="feature-hero medicine-hero">
@@ -162,17 +170,17 @@
         </div>
         <div class="status-list feature-list" data-medicine-list></div>
       </article>
-      <button class="feature-bottom-home" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
+      <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
     </section>
 
     <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
       <header class="feature-topbar">
-        <button class="round-back" type="button" data-go="home" onclick="window.showScreen('home'); return false;" aria-label="กลับหน้าเมนู">‹</button>
+        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
         <div>
           <strong>ระบบนัดแพทย์</strong>
           <span>บันทึกสถานที่ วัน และเวลา</span>
         </div>
-        <button class="mini-home" type="button" data-go="home" onclick="window.showScreen('home'); return false;">Home</button>
+        <a class="mini-home" href="#home" data-go="home">Home</a>
       </header>
 
       <article class="feature-hero appointment-hero">
@@ -218,7 +226,7 @@
         </div>
         <div class="status-list feature-list" data-appointment-list></div>
       </article>
-      <button class="feature-bottom-home" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
+      <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
     </section>
 
       <section class="screen content-screen" id="health" aria-label="Health">
@@ -250,6 +258,56 @@
             <span>เพื่อนใกล้เคียง: พร้อมค้นหา</span>
             <span>แชทกลุ่ม: พร้อมใช้งานในขั้นถัดไป</span>
           </div>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="activities" aria-label="กิจกรรม">
+        <header class="topbar">
+          <strong>กิจกรรม</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>กิจกรรมแนะนำ</h1>
+          <p>รวมกิจกรรมกลุ่มและกิจกรรมดูแลสุขภาพสำหรับผู้สูงอายุ</p>
+          <div class="status-list">
+            <span>ฝึกสมาธิและโยคะเบา ๆ</span>
+            <span>ห้องเรียนทำอาหารคลีน</span>
+            <span>ทริปเดินชมธรรมชาติ</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen sos-screen" id="sos" aria-label="SOS">
+        <header class="topbar">
+          <strong>SOS</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel sos-panel">
+          <h1>ขอความช่วยเหลือฉุกเฉิน</h1>
+          <p>ปุ่มนี้เป็นเดโมสำหรับแจ้งเตือนครอบครัวหรือผู้ดูแลในระบบจริง</p>
+          <button class="sos-action" type="button" data-toast="ส่งสัญญาณ SOS แล้ว">SOS</button>
+          <div class="status-list">
+            <span>โทรฉุกเฉิน: 1669</span>
+            <span>แจ้งครอบครัว: พร้อมต่อระบบจริง</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="screen content-screen" id="profile" aria-label="โปรไฟล์">
+        <header class="topbar">
+          <strong>โปรไฟล์</strong>
+          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
+        </header>
+        <article class="panel">
+          <h1>คุณผู้ชาย</h1>
+          <p>ข้อมูลตัวอย่างสำหรับผู้ใช้งาน MyBuddy+</p>
+          <div class="status-list">
+            <span>อายุ: 68 ปี</span>
+            <span>สุขภาพ: แข็งแรง</span>
+            <span>ความสนใจ: เดินเล่น ทำอาหาร พบเพื่อน</span>
+          </div>
+          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
         </article>
       </section>
 
@@ -476,6 +534,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=65"></script>
+  <script src="script.js?v=68"></script>
   </body>
 </html>

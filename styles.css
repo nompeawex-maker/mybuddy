@@ -49,14 +49,14 @@ a {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-  z-index: 5;
+  z-index: 20;
 }
 
 .screen:target {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-  z-index: 12;
+  z-index: 21;
 }
 
 .splash-screen {
@@ -303,6 +303,7 @@ a {
 .home-screen {
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 104px;
   background: #0790ff;
   -webkit-overflow-scrolling: touch;
 }
@@ -389,9 +390,78 @@ a {
   position: relative;
   z-index: 8;
   min-height: 62%;
-  padding: 22px 18px 34px;
+  padding: 22px 18px 124px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, .96) 0%, #eef7ff 45%, #e6f2ff 100%);
+}
+
+.home-bottom-nav {
+  position: fixed;
+  right: auto;
+  bottom: 12px;
+  left: 50%;
+  z-index: 160;
+  display: block;
+  width: calc(100% - 20px);
+  max-width: 520px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 28px;
+  filter: drop-shadow(0 16px 28px rgba(6, 48, 112, .18));
+  transform: translateX(-50%);
+}
+
+.screen:not(.active) .home-bottom-nav {
+  display: none;
+}
+
+.home-bottom-nav img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bottom-nav-hit {
+  position: absolute;
+  top: 18%;
+  height: 70%;
+  border-radius: 18px;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-buddy {
+  left: 2%;
+  width: 18%;
+}
+
+.bottom-activities {
+  left: 21%;
+  width: 18%;
+}
+
+.bottom-sos {
+  left: 40%;
+  width: 20%;
+  top: 0;
+  height: 96%;
+  border-radius: 50%;
+}
+
+.bottom-health {
+  left: 61%;
+  width: 18%;
+}
+
+.bottom-profile {
+  left: 80%;
+  width: 18%;
+}
+
+.bottom-nav-hit:active {
+  background: rgba(7, 123, 255, .08);
 }
 
 .recommend-heading {
@@ -838,6 +908,7 @@ a {
 .mini-home {
   position: relative;
   z-index: 130;
+  text-decoration: none;
   border: 0;
   cursor: pointer;
   color: #0576ff;
@@ -867,6 +938,8 @@ a {
 }
 
 .feature-bottom-home {
+  display: grid;
+  place-items: center;
   width: 100%;
   min-height: 58px;
   margin: 18px 0 4px;
@@ -877,6 +950,7 @@ a {
   box-shadow: 0 14px 28px rgba(0, 115, 255, .22);
   font-size: 19px;
   font-weight: 950;
+  text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -1264,6 +1338,30 @@ a {
   text-decoration: none;
   font-size: 22px;
   font-weight: 950;
+}
+
+.sos-screen {
+  background: linear-gradient(180deg, #fff5f5 0%, #eaf7ff 100%);
+}
+
+.sos-panel {
+  text-align: center;
+}
+
+.sos-action {
+  display: grid;
+  place-items: center;
+  width: min(220px, 70vw);
+  aspect-ratio: 1;
+  margin: 24px auto;
+  border: 10px solid #ffe4e4;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 35% 28%, #ff4b4b, #e60000 68%);
+  box-shadow: 0 18px 36px rgba(230, 0, 0, .26);
+  font-size: 52px;
+  font-weight: 950;
+  cursor: pointer;
 }
 
 .toast {
