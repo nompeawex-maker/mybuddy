@@ -324,7 +324,9 @@ document.addEventListener('click', function (event) {
   var nav = closestElement(event.target, '[data-go]')
   if (nav) {
     event.preventDefault()
-    showScreen(nav.getAttribute('data-go') || 'home')
+    var nextScreen = nav.getAttribute('data-go') || 'home'
+    window.location.hash = nextScreen === 'login' ? '' : nextScreen
+    showScreen(nextScreen)
   }
 })
 

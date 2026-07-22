@@ -52,6 +52,13 @@ a {
   z-index: 5;
 }
 
+.screen:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 12;
+}
+
 .splash-screen {
   z-index: 8;
   animation: autoHideSplash .35s ease 2s forwards;
@@ -1206,6 +1213,57 @@ a {
 
 .menu-info-screen .panel h1 {
   color: #071f49;
+}
+
+.menu-page-screen {
+  padding: 70px 42px 40px;
+  color: #071f49;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(238, 247, 255, .96), transparent 34%),
+    #fff;
+}
+
+.menu-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 42px;
+}
+
+.menu-page-head h1 {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.menu-page-close {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  color: #075fdb;
+  text-decoration: none;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.menu-page-list {
+  display: grid;
+}
+
+.menu-page-list a {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
+  align-items: center;
+  min-height: 82px;
+  border-bottom: 1px solid #cfe5ff;
+  color: #071f49;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 950;
 }
 
 .toast {

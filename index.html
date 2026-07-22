@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=64" />
+  <link rel="stylesheet" href="styles.css?v=65" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -14,7 +14,7 @@
 
       <section class="screen image-screen login-screen" id="login" aria-label="หน้าแรกหรือล็อกอิน">
         <img src="assets/landing.png" alt="MyBuddy+ หาเพื่อนวัยเดียวกันและดูแลสุขภาพ" />
-        <button class="tap-zone menu-tap" type="button" data-open-menu aria-label="เปิดเมนู"></button>
+        <a class="tap-zone menu-tap" href="#menu-page" data-go="menu-page" aria-label="เปิดเมนู"></a>
         <a class="tap-zone start-tap" href="#line-login" data-go="line-login" aria-label="เริ่มต้นใช้งาน"></a>
         <a class="tap-zone family-tap" href="#family-login" data-go="family-login" aria-label="สำหรับครอบครัว"></a>
       </section>
@@ -54,7 +54,7 @@
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
         <img src="assets/home-menu.png?v=57" alt="หน้าเมนูหลัก MyBuddy+" />
-        <button class="tap-zone home-menu-tap" type="button" data-open-menu aria-label="เมนู"></button>
+        <a class="tap-zone home-menu-tap" href="#menu-page" data-go="menu-page" aria-label="เมนู"></a>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="window.showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
@@ -430,6 +430,21 @@
         </article>
       </section>
 
+      <section class="screen content-screen menu-page-screen" id="menu-page" aria-label="เมนู">
+        <header class="menu-page-head">
+          <h1>เมนู</h1>
+          <a class="menu-page-close" href="#login" data-go="login" aria-label="ปิดเมนู">×</a>
+        </header>
+        <nav class="menu-page-list" aria-label="เมนูหลัก">
+          <a href="#login" data-go="login"><span class="menu-icon">⌂</span><span>หน้าแรก</span></a>
+          <a href="#about" data-go="about"><span class="menu-icon">◎</span><span>เกี่ยวกับ MyBuddy+</span></a>
+          <a href="#features" data-go="features"><span class="menu-icon">▦</span><span>ฟังก์ชันของเรา</span></a>
+          <a href="#family-info" data-go="family-info"><span class="menu-icon">♙</span><span>สำหรับครอบครัว</span></a>
+          <a href="#howto" data-go="howto"><span class="menu-icon">?</span><span>วิธีใช้งาน</span></a>
+          <a href="#support" data-go="support"><span class="menu-icon">☏</span><span>ช่วยเหลือและติดต่อเรา</span></a>
+        </nav>
+      </section>
+
       <section class="screen content-screen" id="howto" aria-label="วิธีใช้งาน">
         <header class="topbar">
           <strong>วิธีใช้งาน</strong>
@@ -461,6 +476,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=64"></script>
+  <script src="script.js?v=65"></script>
   </body>
 </html>
