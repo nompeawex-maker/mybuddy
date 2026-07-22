@@ -65,6 +65,7 @@ a {
 }
 
 .splash-screen.leaving {
+  display: none;
   z-index: -1;
   visibility: hidden;
   opacity: 0;
@@ -127,26 +128,26 @@ a {
 }
 
 .menu-tap {
-  top: calc(var(--art-h) * .0135);
-  right: 3.4%;
-  width: 10%;
-  height: calc(var(--art-h) * .05);
+  top: calc(var(--art-h) * .012);
+  right: 2.5%;
+  width: 14%;
+  height: calc(var(--art-h) * .07);
   border-radius: 16px;
 }
 
 .start-tap {
-  left: 14%;
-  top: calc(var(--art-h) * .727);
-  width: 72%;
-  height: calc(var(--art-h) * .069);
+  left: 10%;
+  top: calc(var(--art-h) * .704);
+  width: 80%;
+  height: calc(var(--art-h) * .092);
   border-radius: 999px;
 }
 
 .family-tap {
-  left: 14%;
-  top: calc(var(--art-h) * .812);
-  width: 72%;
-  height: calc(var(--art-h) * .068);
+  left: 10%;
+  top: calc(var(--art-h) * .795);
+  width: 80%;
+  height: calc(var(--art-h) * .092);
   border-radius: 999px;
 }
 

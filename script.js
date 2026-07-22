@@ -255,7 +255,44 @@ window.submitAppointment = submitAppointment
 window.submitMedicineForm = submitMedicineForm
 window.submitAppointmentForm = submitAppointmentForm
 
+function handleLoginFallback(event) {
+  var login = closestElement(event.target, '.login-screen')
+  if (!login || !login.classList.contains('active')) return false
+  if (closestElement(event.target, '[data-go], [data-open-menu]')) return false
+
+  var rect = login.getBoundingClientRect()
+  var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
+  var x = (point.clientX - rect.left) / rect.width
+  var y = (point.clientY - rect.top) / rect.height
+
+  if (x > 0.82 && y < 0.12) {
+    event.preventDefault()
+    openMenu()
+    return true
+  }
+
+  if (x > 0.10 && x < 0.90 && y > 0.69 && y < 0.79) {
+    event.preventDefault()
+    showScreen('line-login')
+    return true
+  }
+
+  if (x > 0.10 && x < 0.90 && y > 0.79 && y < 0.90) {
+    event.preventDefault()
+    showScreen('family-login')
+    return true
+  }
+
+  return false
+}
+
+document.addEventListener('touchend', function (event) {
+  handleLoginFallback(event)
+}, { passive: false })
+
 document.addEventListener('click', function (event) {
+  if (handleLoginFallback(event)) return
+
   var menuButton = closestElement(event.target, '[data-open-menu]')
   if (menuButton) {
     event.preventDefault()
