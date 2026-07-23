@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=76" />
+  <link rel="stylesheet" href="styles.css?v=77" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -204,13 +204,10 @@
       <article class="appointment-dashboard">
         <section class="appointment-hero-new" aria-label="ภาพรวมระบบนัดหมาย">
           <div class="appointment-hero-copy">
-            <span class="appointment-pill">ระบบนัดหมายแพทย์</span>
-            <h1>นัดหมายง่าย<br>ดูแลสุขภาพทุกช่วงเวลา</h1>
-            <p>เลือกโรงพยาบาล แผนก วันที่ และเวลาที่สะดวก ระบบจะบันทึกไว้ให้เห็นในหน้าเมนูหลัก</p>
-            <button class="appointment-new-button" type="button" data-focus-appointment-form>+ นัดหมายใหม่</button>
+            <h1>นัดหมายแพทย์</h1>
           </div>
           <div class="appointment-illustration" aria-hidden="true">
-            <span class="calendar-art"><b>30</b><small>นัดถัดไป</small></span>
+            <span class="calendar-art"><b>30</b></span>
             <span class="stetho-art"></span>
             <span class="heart-art">♡</span>
           </div>
@@ -229,15 +226,15 @@
         </section>
 
         <section class="appointment-tools" aria-label="เครื่องมือช่วยจัดการ">
-          <div><span>📄</span><strong>เอกสารนัดหมาย</strong></div>
-          <div><span>🗓️</span><strong>ประวัติการนัด</strong></div>
-          <div><span>✅</span><strong>สิ่งที่ต้องเตรียม</strong></div>
-          <div><span>📞</span><strong>ติดต่อเจ้าหน้าที่</strong></div>
+          <button type="button" data-go="appointment-documents"><span>📄</span><strong>เอกสารนัดหมาย</strong></button>
+          <button type="button" data-go="appointment-history"><span>🗓️</span><strong>ประวัติการนัด</strong></button>
+          <button type="button" data-go="appointment-prep"><span>✅</span><strong>สิ่งที่ต้องเตรียม</strong></button>
+          <button type="button" data-go="appointment-contact"><span>📞</span><strong>ติดต่อเจ้าหน้าที่</strong></button>
         </section>
 
         <article class="feature-panel appointment-form-panel" id="appointment-form-panel">
           <div class="section-heading">
-            <h2>สร้างนัดหมายใหม่</h2>
+            <h2>เพิ่มนัดหมายแพทย์</h2>
             <span>เลือกข้อมูลให้ครบ</span>
           </div>
           <form class="demo-form appointment-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
@@ -283,17 +280,66 @@
             <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
           </form>
         </article>
-
-        <article class="feature-panel list-panel">
-          <div class="section-heading">
-            <h2>นัดหมายของฉัน</h2>
-            <span>ขึ้นในหน้า Home</span>
-          </div>
-          <div class="status-list feature-list appointment-list" data-appointment-list></div>
-        </article>
       </article>
       <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
     </section>
+
+      <section class="screen content-screen appointment-subscreen" id="appointment-documents" aria-label="เอกสารนัดหมาย">
+        <header class="topbar">
+          <strong>เอกสารนัดหมาย</strong>
+          <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
+        </header>
+        <article class="panel appointment-tool-panel">
+          <h1>เอกสารที่ควรเตรียม</h1>
+          <p>ติ๊กเอกสารที่เตรียมแล้วก่อนออกจากบ้าน</p>
+          <label class="big-check"><input type="checkbox" /> บัตรประชาชน</label>
+          <label class="big-check"><input type="checkbox" /> ใบนัดหมาย / เลข HN</label>
+          <label class="big-check"><input type="checkbox" /> รายชื่อยาที่ใช้อยู่</label>
+          <label class="big-check"><input type="checkbox" /> ผลตรวจเดิมหรือเอกสารส่งตัว</label>
+          <button class="primary-action" type="button" data-toast="บันทึกรายการเอกสารแล้ว">บันทึกรายการเอกสาร</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen appointment-subscreen" id="appointment-history" aria-label="ประวัติการนัด">
+        <header class="topbar">
+          <strong>ประวัติการนัด</strong>
+          <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
+        </header>
+        <article class="panel appointment-tool-panel">
+          <h1>นัดหมายที่บันทึกไว้</h1>
+          <p>รายการนี้ดึงจากข้อมูลที่บันทึกในเครื่อง</p>
+          <div class="status-list feature-list appointment-list" data-appointment-list></div>
+          <button class="primary-action" type="button" data-go="appointments">เพิ่มนัดใหม่</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen appointment-subscreen" id="appointment-prep" aria-label="สิ่งที่ต้องเตรียม">
+        <header class="topbar">
+          <strong>สิ่งที่ต้องเตรียม</strong>
+          <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
+        </header>
+        <article class="panel appointment-tool-panel">
+          <h1>เตรียมตัวก่อนพบแพทย์</h1>
+          <div class="prep-card"><strong>ก่อนวันนัด</strong><span>นอนพักให้พอ เตรียมเอกสาร และทบทวนอาการที่ต้องการเล่าให้แพทย์ฟัง</span></div>
+          <div class="prep-card"><strong>วันนัด</strong><span>ไปถึงก่อนเวลา 30 นาที เผื่อเวลาลงทะเบียนและตรวจวัดสัญญาณชีพ</span></div>
+          <div class="prep-card"><strong>หลังพบแพทย์</strong><span>ตรวจสอบวันนัดครั้งถัดไป วิธีใช้ยา และเบอร์โทรติดต่อโรงพยาบาล</span></div>
+          <button class="primary-action" type="button" data-toast="บันทึกการเตรียมตัวแล้ว">บันทึกว่าเตรียมพร้อมแล้ว</button>
+        </article>
+      </section>
+
+      <section class="screen content-screen appointment-subscreen" id="appointment-contact" aria-label="ติดต่อเจ้าหน้าที่">
+        <header class="topbar">
+          <strong>ติดต่อเจ้าหน้าที่</strong>
+          <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
+        </header>
+        <article class="panel appointment-tool-panel">
+          <h1>ช่องทางติดต่อ</h1>
+          <div class="contact-card"><strong>โรงพยาบาลรามาธิบดี</strong><span>02-201-1000</span></div>
+          <div class="contact-card"><strong>ศูนย์นัดหมาย</strong><span>เปิดบริการ 08:00 - 18:00 น.</span></div>
+          <button class="primary-action" type="button" data-toast="กำลังโทรหาเจ้าหน้าที่">โทรหาเจ้าหน้าที่</button>
+          <button class="ghost-action" type="button" data-toast="ส่งข้อความหาเจ้าหน้าที่แล้ว">ส่งข้อความ</button>
+        </article>
+      </section>
 
       <section class="screen content-screen" id="health" aria-label="Health">
         <header class="topbar">
@@ -600,6 +646,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=76"></script>
+  <script src="script.js?v=77"></script>
   </body>
 </html>

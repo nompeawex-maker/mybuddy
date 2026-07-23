@@ -1360,20 +1360,20 @@ a {
 .appointment-hero-new {
   position: relative;
   display: grid;
-  min-height: 260px;
+  min-height: 250px;
   overflow: hidden;
-  padding: 22px;
+  padding: 26px;
   border-radius: 28px;
   background:
-    radial-gradient(circle at 78% 28%, rgba(255, 255, 255, .75), transparent 26%),
+    radial-gradient(circle at 76% 24%, rgba(255, 255, 255, .88), transparent 30%),
     linear-gradient(135deg, #dff3ff 0%, #bcdfff 48%, #84c6ff 100%);
   box-shadow: 0 20px 38px rgba(22, 89, 160, .16);
 }
 
 .appointment-hero-copy {
   position: relative;
-  z-index: 2;
-  max-width: 58%;
+  z-index: 3;
+  max-width: 56%;
 }
 
 .appointment-pill,
@@ -1390,10 +1390,10 @@ a {
 }
 
 .appointment-hero-new h1 {
-  margin: 14px 0 8px;
+  margin: 0;
   color: #0a2d62;
-  font-size: 30px;
-  line-height: 1.14;
+  font-size: 34px;
+  line-height: 1.08;
   font-weight: 950;
 }
 
@@ -1420,24 +1420,25 @@ a {
 
 .appointment-illustration {
   position: absolute;
-  right: 12px;
-  bottom: 16px;
-  width: 155px;
-  height: 170px;
+  right: -16px;
+  top: 10px;
+  bottom: auto;
+  width: 220px;
+  height: 225px;
 }
 
 .calendar-art {
   position: absolute;
-  right: 16px;
-  bottom: 30px;
+  right: 10px;
+  bottom: 16px;
   display: grid;
   place-items: center;
-  width: 104px;
-  height: 112px;
-  border-radius: 22px;
+  width: 162px;
+  height: 178px;
+  border-radius: 32px;
   background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
-  box-shadow: 0 18px 34px rgba(29, 101, 176, .18);
-  transform: rotate(7deg);
+  box-shadow: 0 24px 44px rgba(29, 101, 176, .2);
+  transform: rotate(8deg);
 }
 
 .calendar-art::before {
@@ -1445,16 +1446,16 @@ a {
   top: 0;
   right: 0;
   left: 0;
-  height: 28px;
+  height: 46px;
   content: "";
-  border-radius: 22px 22px 8px 8px;
+  border-radius: 32px 32px 12px 12px;
   background: linear-gradient(135deg, #7aa7ff, #087bff);
 }
 
 .calendar-art b {
-  margin-top: 16px;
+  margin-top: 28px;
   color: #087bff;
-  font-size: 38px;
+  font-size: 66px;
   line-height: 1;
 }
 
@@ -1467,10 +1468,10 @@ a {
 .stetho-art {
   position: absolute;
   right: 0;
-  bottom: 0;
-  width: 72px;
-  height: 72px;
-  border: 10px solid rgba(8, 123, 255, .72);
+  bottom: 4px;
+  width: 96px;
+  height: 96px;
+  border: 13px solid rgba(8, 123, 255, .68);
   border-top: 0;
   border-left-color: transparent;
   border-radius: 0 0 48px 48px;
@@ -1479,8 +1480,8 @@ a {
 
 .heart-art {
   position: absolute;
-  left: 2px;
-  bottom: 18px;
+  left: 10px;
+  bottom: 22px;
   display: grid;
   place-items: center;
   width: 38px;
@@ -1542,30 +1543,87 @@ a {
 
 .appointment-tools {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
-.appointment-tools div {
+.appointment-tools button {
   display: grid;
   place-items: center;
-  min-height: 88px;
-  padding: 10px 6px;
+  gap: 8px;
+  min-height: 122px;
+  padding: 14px 8px;
   border: 1px solid rgba(105, 166, 238, .22);
-  border-radius: 20px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, .88);
   box-shadow: 0 12px 26px rgba(40, 100, 168, .08);
+  color: #14345e;
   text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 .appointment-tools span {
-  font-size: 24px;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  background: #eef7ff;
+  font-size: 34px;
 }
 
 .appointment-tools strong {
   color: #14345e;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.25;
+}
+
+.appointment-tools button:active {
+  transform: translateY(1px);
+}
+
+.appointment-tool-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.appointment-tool-panel h1 {
+  margin-bottom: 2px;
+}
+
+.big-check,
+.prep-card,
+.contact-card {
+  display: grid;
+  gap: 5px;
+  min-height: 68px;
+  padding: 16px;
+  border: 1px solid rgba(94, 158, 232, .24);
+  border-radius: 20px;
+  background: #f7fbff;
+  color: #0a2d62;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.big-check {
+  grid-template-columns: 26px 1fr;
+  align-items: center;
+}
+
+.big-check input {
+  width: 22px;
+  height: 22px;
+  accent-color: #087bff;
+}
+
+.prep-card span,
+.contact-card span {
+  color: #62758e;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 750;
 }
 
 .appointment-form-panel {
