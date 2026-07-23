@@ -6,6 +6,8 @@ var careStorageKey = 'neomyb-carelog-demo-v4'
 var buddyStorageKey = 'neomyb-buddy-demo-v1'
 var toastTimer = null
 var lastTouchNavTime = 0
+var buddySwipeLock = false
+var buddyDrag = null
 
 var text = {
   today: '\u0e27\u0e31\u0e19\u0e19\u0e35\u0e49',
@@ -503,18 +505,107 @@ function appendBuddyMessage(message) {
   list.scrollTop = list.scrollHeight
 }
 
+function discoveryCard() {
+  return document.querySelector('#buddy-discovery.active .buddy-discovery-card')
+}
+
+function animateBuddyCard(direction, done) {
+  var card = discoveryCard()
+  if (!card || buddySwipeLock) {
+    if (typeof done === 'function') done()
+    return
+  }
+
+  buddySwipeLock = true
+  card.classList.remove('swipe-in', 'swipe-left', 'swipe-right', 'is-dragging')
+  card.style.transform = ''
+  card.classList.add(direction === 'right' ? 'swipe-right' : 'swipe-left')
+
+  window.setTimeout(function () {
+    if (typeof done === 'function') done()
+    card.classList.remove('swipe-left', 'swipe-right')
+    card.classList.add('swipe-in')
+    window.setTimeout(function () {
+      card.classList.remove('swipe-in')
+      buddySwipeLock = false
+    }, 340)
+  }, 280)
+}
+
+function nextBuddyAnimated() {
+  animateBuddyCard('left', function () {
+    nextBuddyProfile()
+  })
+}
+
+function likeBuddyAnimated() {
+  animateBuddyCard('right', function () {
+    likeBuddyProfile()
+  })
+}
+
+function beginBuddyDrag(event) {
+  var card = discoveryCard()
+  if (!card || buddySwipeLock || !event.touches || !event.touches[0]) return
+  if (closestElement(event.target, 'button, a, input, select, textarea')) return
+  buddyDrag = {
+    card: card,
+    startX: event.touches[0].clientX,
+    startY: event.touches[0].clientY,
+    dx: 0,
+    dy: 0
+  }
+  card.classList.add('is-dragging')
+}
+
+function moveBuddyDrag(event) {
+  if (!buddyDrag || !event.touches || !event.touches[0]) return
+  buddyDrag.dx = event.touches[0].clientX - buddyDrag.startX
+  buddyDrag.dy = event.touches[0].clientY - buddyDrag.startY
+
+  if (Math.abs(buddyDrag.dy) > Math.abs(buddyDrag.dx) * 1.25) return
+  event.preventDefault()
+
+  var rotate = Math.max(-10, Math.min(10, buddyDrag.dx / 18))
+  var scale = 1 - Math.min(Math.abs(buddyDrag.dx) / 900, .04)
+  buddyDrag.card.style.transform = 'translate3d(' + buddyDrag.dx + 'px, 0, 0) rotate(' + rotate + 'deg) scale(' + scale + ')'
+}
+
+function finishBuddyDrag(event) {
+  if (!buddyDrag) return false
+  var dx = buddyDrag.dx
+  var dy = buddyDrag.dy
+  var card = buddyDrag.card
+  buddyDrag = null
+  card.classList.remove('is-dragging')
+
+  if (Math.abs(dx) < 70 || Math.abs(dy) > Math.abs(dx) * 1.35) {
+    card.style.transform = ''
+    return false
+  }
+
+  event.preventDefault()
+  card.style.transform = ''
+  if (dx > 0) likeBuddyAnimated()
+  else nextBuddyAnimated()
+  lastTouchNavTime = Date.now()
+  return true
+}
+
 function handleBuddyAction(event) {
   var nextButton = closestElement(event.target, '[data-next-buddy]')
   if (nextButton) {
     event.preventDefault()
-    nextBuddyProfile()
+    if (discoveryCard()) nextBuddyAnimated()
+    else nextBuddyProfile()
     if (nextButton.getAttribute('data-go')) showScreen(nextButton.getAttribute('data-go'))
     return true
   }
 
   if (closestElement(event.target, '[data-like-buddy]')) {
     event.preventDefault()
-    likeBuddyProfile()
+    if (discoveryCard()) likeBuddyAnimated()
+    else likeBuddyProfile()
     return true
   }
 
@@ -658,6 +749,7 @@ function activateNavigationFromEvent(event) {
 }
 
 document.addEventListener('touchend', function (event) {
+  if (finishBuddyDrag(event)) return
   if (handleBuddyAction(event)) {
     lastTouchNavTime = Date.now()
     return
@@ -667,6 +759,14 @@ document.addEventListener('touchend', function (event) {
     return
   }
   handleLoginFallback(event)
+}, { passive: false })
+
+document.addEventListener('touchstart', function (event) {
+  beginBuddyDrag(event)
+}, { passive: true })
+
+document.addEventListener('touchmove', function (event) {
+  moveBuddyDrag(event)
 }, { passive: false })
 
 document.addEventListener('click', function (event) {

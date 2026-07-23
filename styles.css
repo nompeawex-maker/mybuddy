@@ -2497,6 +2497,29 @@ a {
   border-radius: 30px;
   background: #fff;
   box-shadow: 0 18px 46px rgba(16, 82, 145, .16);
+  touch-action: pan-y;
+  transform: translate3d(0, 0, 0);
+  transition: transform .34s cubic-bezier(.2, .8, .2, 1), opacity .28s ease, box-shadow .28s ease;
+  will-change: transform, opacity;
+}
+
+.buddy-discovery-card.is-dragging {
+  transition: none;
+}
+
+.buddy-discovery-card.swipe-left {
+  opacity: 0;
+  transform: translate3d(-118%, 0, 0) rotate(-10deg);
+}
+
+.buddy-discovery-card.swipe-right {
+  opacity: 0;
+  box-shadow: 0 24px 54px rgba(0, 140, 255, .28);
+  transform: translate3d(118%, 0, 0) rotate(10deg);
+}
+
+.buddy-discovery-card.swipe-in {
+  animation: buddyCardIn .32s cubic-bezier(.18, .85, .24, 1.1);
 }
 
 .buddy-discovery-card img,
@@ -2751,6 +2774,18 @@ a {
 
 .buddy-call-panel {
   text-align: center;
+}
+
+@keyframes buddyCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
 .buddy-system select,
