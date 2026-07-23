@@ -1616,6 +1616,66 @@ a {
   gap: 12px;
 }
 
+.appointment-tools-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #edf7ff;
+  box-shadow: 0 16px 34px rgba(28, 88, 150, .12);
+}
+
+.appointment-tools-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.appointment-tool-hit {
+  position: absolute;
+  z-index: 3;
+  border: 0;
+  border-radius: 24px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.appointment-tool-hit:active {
+  background: rgba(8, 123, 255, .08);
+}
+
+.tool-documents {
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+}
+
+.tool-history {
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+}
+
+.tool-prep {
+  top: 50%;
+  left: 0;
+  width: 50%;
+  height: 50%;
+}
+
+.tool-contact {
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+}
+
 .appointment-tools button {
   display: grid;
   place-items: center;

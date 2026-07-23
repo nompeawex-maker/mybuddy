@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=85" />
+  <link rel="stylesheet" href="styles.css?v=86" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -71,7 +71,7 @@
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img class="home-main-image" src="assets/home-menu.png?v=85" alt="หน้าเมนูหลัก MyBuddy+" />
+        <img class="home-main-image" src="assets/home-menu.png?v=86" alt="หน้าเมนูหลัก MyBuddy+" />
         <span class="home-menu-cover" aria-hidden="true"></span>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
@@ -203,7 +203,7 @@
 
       <article class="appointment-dashboard">
         <section class="appointment-hero-new appointment-hero-image-card" aria-label="ภาพรวมระบบนัดหมาย">
-          <img src="assets/appointment-hero.png?v=85" alt="นัดหมายแพทย์" />
+          <img src="assets/appointment-hero.png?v=86" alt="นัดหมายแพทย์" />
         </section>
 
         <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
@@ -218,11 +218,12 @@
           </div>
         </section>
 
-        <section class="appointment-tools" aria-label="เครื่องมือช่วยจัดการ">
-          <button type="button" data-go="appointment-documents"><span>📄</span><strong>เอกสารนัดหมาย</strong></button>
-          <button type="button" data-go="appointment-history"><span>🗓️</span><strong>ประวัติการนัด</strong></button>
-          <button type="button" data-go="appointment-prep"><span>✅</span><strong>สิ่งที่ต้องเตรียม</strong></button>
-          <button type="button" data-go="appointment-contact"><span>📞</span><strong>ติดต่อเจ้าหน้าที่</strong></button>
+        <section class="appointment-tools appointment-tools-image" aria-label="เครื่องมือช่วยจัดการ">
+          <img src="assets/appointment-tools.png?v=86" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
+          <button class="appointment-tool-hit tool-documents" type="button" data-go="appointment-documents" aria-label="เอกสารนัดหมาย"></button>
+          <button class="appointment-tool-hit tool-history" type="button" data-go="appointment-history" aria-label="ประวัติการนัด"></button>
+          <button class="appointment-tool-hit tool-prep" type="button" data-go="appointment-prep" aria-label="สิ่งที่ต้องเตรียม"></button>
+          <button class="appointment-tool-hit tool-contact" type="button" data-go="appointment-contact" aria-label="ติดต่อเจ้าหน้าที่"></button>
         </section>
 
         <article class="feature-panel appointment-form-panel" id="appointment-form-panel">
@@ -639,6 +640,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=85"></script>
+  <script src="script.js?v=86"></script>
   </body>
 </html>
