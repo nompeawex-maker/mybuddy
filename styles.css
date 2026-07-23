@@ -209,7 +209,8 @@ a {
 .line-confirm-screen {
   display: grid;
   place-items: center;
-  padding: 28px 18px;
+  overflow-y: auto;
+  padding: 18px 18px max(30px, env(safe-area-inset-bottom));
   background:
     radial-gradient(circle at 18% 10%, rgba(255, 255, 255, .5), transparent 30%),
     linear-gradient(160deg, #06a6ff 0%, #006dff 55%, #0398ff 100%);
@@ -232,11 +233,15 @@ a {
   line-height: 1;
   box-shadow: 0 10px 24px rgba(0, 62, 150, .16);
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
 }
 
 .line-confirm-card {
   width: min(88%, 390px);
-  padding: 28px 22px 24px;
+  margin: 42px 0 18px;
+  padding: 22px 22px 20px;
   border-radius: 28px;
   background: rgba(255, 255, 255, .98);
   box-shadow: 0 22px 58px rgba(0, 47, 138, .28);
@@ -291,7 +296,7 @@ a {
   place-items: center;
   width: 74px;
   height: 74px;
-  margin: 28px auto 16px;
+  margin: 20px auto 12px;
   border-radius: 22px;
   background: #06c755;
   color: #fff;
@@ -303,13 +308,13 @@ a {
 .line-confirm-card h1 {
   margin: 0;
   color: #006fff;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1.15;
   font-weight: 950;
 }
 
 .line-confirm-copy {
-  margin: 12px 0 18px;
+  margin: 10px 0 14px;
   color: #51627f;
   font-size: 16px;
   line-height: 1.55;
@@ -318,14 +323,14 @@ a {
 
 .line-permission-list {
   display: grid;
-  gap: 9px;
-  margin: 0 0 22px;
+  gap: 8px;
+  margin: 0 0 16px;
   text-align: left;
 }
 
 .line-permission-list span {
   display: block;
-  padding: 10px 12px;
+  padding: 9px 12px;
   border-radius: 14px;
   background: #f1f7ff;
   color: #173862;
@@ -343,6 +348,51 @@ a {
   text-decoration: none;
   font-size: 18px;
   font-weight: 950;
+}
+
+@media (max-height: 760px) {
+  .line-confirm-card {
+    margin-top: 36px;
+    padding: 18px 18px 16px;
+  }
+
+  .line-confirm-app {
+    padding: 10px;
+  }
+
+  .line-app-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+
+  .line-mark {
+    width: 62px;
+    height: 62px;
+    margin: 14px auto 10px;
+    border-radius: 18px;
+    font-size: 16px;
+  }
+
+  .line-confirm-card h1 {
+    font-size: 25px;
+  }
+
+  .line-confirm-copy {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .line-permission-list span {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .line-confirm-approve,
+  .line-confirm-cancel {
+    min-height: 48px;
+    font-size: 16px;
+  }
 }
 
 .line-confirm-approve {
