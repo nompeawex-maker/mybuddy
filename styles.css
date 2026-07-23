@@ -2958,3 +2958,106 @@ a {
     font-size: 19px;
   }
 }
+
+.buddy-swipe-screen {
+  background: #061729;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.buddy-swipe-screen .buddy-full-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: 50% 75%;
+  transition: transform .28s ease, opacity .28s ease;
+}
+
+.buddy-swipe-screen .buddy-zone {
+  position: absolute;
+  z-index: 220;
+  display: block;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 999px;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.buddy-swipe-screen .buddy-zone-filter {
+  left: 2%;
+  top: 4%;
+  width: 15%;
+  height: 9%;
+}
+
+.buddy-swipe-screen .buddy-zone-refresh {
+  right: 3%;
+  top: 12%;
+  width: 17%;
+  height: 11%;
+}
+
+.buddy-swipe-screen .buddy-zone-skip {
+  left: 0;
+  bottom: 10%;
+  width: 22%;
+  height: 13%;
+}
+
+.buddy-swipe-screen .buddy-zone-message {
+  left: 21%;
+  bottom: 11%;
+  width: 39%;
+  height: 11%;
+}
+
+.buddy-swipe-screen .buddy-zone-save {
+  right: 21%;
+  bottom: 11%;
+  width: 18%;
+  height: 11%;
+}
+
+.buddy-swipe-screen .buddy-zone-like {
+  right: 0;
+  bottom: 10%;
+  width: 23%;
+  height: 13%;
+}
+
+.buddy-swipe-screen .buddy-nav-find,
+.buddy-swipe-screen .buddy-nav-match,
+.buddy-swipe-screen .buddy-nav-group,
+.buddy-swipe-screen .buddy-nav-chat,
+.buddy-swipe-screen .buddy-nav-ride {
+  bottom: 0;
+  width: 20%;
+  height: 14%;
+}
+
+.buddy-swipe-screen .buddy-nav-find {
+  left: 0;
+}
+
+.buddy-swipe-screen .buddy-nav-match {
+  left: 20%;
+}
+
+.buddy-swipe-screen .buddy-nav-group {
+  left: 40%;
+}
+
+.buddy-swipe-screen .buddy-nav-chat {
+  left: 60%;
+}
+
+.buddy-swipe-screen .buddy-nav-ride {
+  left: 80%;
+}

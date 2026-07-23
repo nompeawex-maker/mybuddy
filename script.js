@@ -770,7 +770,7 @@ document.addEventListener('touchmove', function (event) {
 }, { passive: false })
 
 document.addEventListener('click', function (event) {
-  if (Date.now() - lastTouchNavTime < 450 && closestElement(event.target, '[data-go], [data-next-buddy], [data-like-buddy], [data-buddy-message], [data-send-buddy-message]')) {
+  if (Date.now() - lastTouchNavTime < 450 && closestElement(event.target, '[data-go], [data-next-buddy], [data-like-buddy], [data-buddy-next], [data-buddy-like], [data-buddy-save], [data-buddy-message-open], [data-buddy-message], [data-send-buddy-message]')) {
     event.preventDefault()
     return
   }
@@ -942,6 +942,48 @@ function saveCleanBuddyMatch(profile) {
 }
 
 function handleBuddyAction(event) {
+  var activeBuddyScreen = document.querySelector('#buddy-discovery.active')
+  if (activeBuddyScreen && !closestElement(event.target, 'button')) {
+    var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
+    var rect = activeBuddyScreen.getBoundingClientRect()
+    var x = (point.clientX - rect.left) / rect.width
+    var y = (point.clientY - rect.top) / rect.height
+    if (x >= 0 && x <= 1 && y >= 0 && y <= 1) {
+      if (y > .86) {
+        event.preventDefault()
+        if (x < .20) showScreen('buddy-discovery')
+        else if (x < .40) showScreen('buddy-match')
+        else if (x < .60) showScreen('buddy-group')
+        else if (x < .80) showScreen('buddy-chat')
+        else showScreen('buddy-ride')
+        return true
+      }
+      if (y > .77 && y < .89) {
+        event.preventDefault()
+        if (x < .22) return showNextCleanBuddy('left')
+        if (x < .60) {
+          saveCleanBuddyMatch(getCleanBuddyProfile())
+          showScreen('buddy-chat')
+          return true
+        }
+        if (x < .78) {
+          saveCleanBuddyMatch(getCleanBuddyProfile())
+          showToast('บันทึก Buddy ที่สนใจแล้ว')
+          return true
+        }
+        animateCleanBuddy('right', function () {
+          saveCleanBuddyMatch(getCleanBuddyProfile())
+          showScreen('buddy-match')
+        })
+        return true
+      }
+      if (x > .80 && y > .11 && y < .24) {
+        event.preventDefault()
+        return showNextCleanBuddy('left')
+      }
+    }
+  }
+
   var nextButton = closestElement(event.target, '[data-buddy-next], [data-next-buddy]')
   if (nextButton) {
     event.preventDefault()
@@ -1038,3 +1080,55 @@ function finishBuddyDrag() {
   }
   return true
 }
+
+function handleCleanBuddyDirectTap(event) {
+  var screen = document.querySelector('#buddy-discovery.active')
+  if (!screen) return false
+  var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
+  if (typeof point.clientX !== 'number' || typeof point.clientY !== 'number') return false
+
+  var rect = screen.getBoundingClientRect()
+  var x = (point.clientX - rect.left) / rect.width
+  var y = (point.clientY - rect.top) / rect.height
+  if (x < 0 || x > 1 || y < 0 || y > 1) return false
+
+  var targetScreen = null
+  var handled = true
+
+  if (x < .16 && y < .13) {
+    targetScreen = 'home'
+  } else if (x > .80 && y > .11 && y < .25) {
+    showNextCleanBuddy('left')
+  } else if (y > .89) {
+    if (x < .20) targetScreen = 'buddy-discovery'
+    else if (x < .40) targetScreen = 'buddy-match'
+    else if (x < .60) targetScreen = 'buddy-group'
+    else if (x < .80) targetScreen = 'buddy-chat'
+    else targetScreen = 'buddy-ride'
+  } else if (y > .76 && y < .89 && x < .23) {
+    showNextCleanBuddy('left')
+  } else if (y > .76 && y < .89 && x < .60) {
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    targetScreen = 'buddy-chat'
+  } else if (y > .76 && y < .89 && x < .78) {
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    showToast('บันทึก Buddy แล้ว')
+  } else if (y > .76 && y < .89) {
+    animateCleanBuddy('right', function () {
+      saveCleanBuddyMatch(getCleanBuddyProfile())
+      showScreen('buddy-match')
+    })
+  } else {
+    handled = false
+  }
+
+  if (!handled) return false
+  event.preventDefault()
+  event.stopPropagation()
+  if (targetScreen) showScreen(targetScreen)
+  lastTouchNavTime = Date.now()
+  return true
+}
+
+document.addEventListener('touchend', handleCleanBuddyDirectTap, { passive: false, capture: true })
+document.addEventListener('click', handleCleanBuddyDirectTap, { passive: false, capture: true })
