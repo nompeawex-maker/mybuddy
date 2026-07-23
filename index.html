@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=86" />
+  <link rel="stylesheet" href="styles.css?v=88" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -71,7 +71,7 @@
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img class="home-main-image" src="assets/home-menu.png?v=86" alt="หน้าเมนูหลัก MyBuddy+" />
+        <img class="home-main-image" src="assets/home-menu.png?v=88" alt="หน้าเมนูหลัก MyBuddy+" />
         <span class="home-menu-cover" aria-hidden="true"></span>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
@@ -203,7 +203,7 @@
 
       <article class="appointment-dashboard">
         <section class="appointment-hero-new appointment-hero-image-card" aria-label="ภาพรวมระบบนัดหมาย">
-          <img src="assets/appointment-hero.png?v=86" alt="นัดหมายแพทย์" />
+          <img src="assets/appointment-hero.png?v=88" alt="นัดหมายแพทย์" />
         </section>
 
         <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
@@ -219,7 +219,7 @@
         </section>
 
         <section class="appointment-tools appointment-tools-image" aria-label="เครื่องมือช่วยจัดการ">
-          <img src="assets/appointment-tools.png?v=86" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
+          <img src="assets/appointment-tools.png?v=88" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
           <button class="appointment-tool-hit tool-documents" type="button" data-go="appointment-documents" aria-label="เอกสารนัดหมาย"></button>
           <button class="appointment-tool-hit tool-history" type="button" data-go="appointment-history" aria-label="ประวัติการนัด"></button>
           <button class="appointment-tool-hit tool-prep" type="button" data-go="appointment-prep" aria-label="สิ่งที่ต้องเตรียม"></button>
@@ -284,12 +284,18 @@
           <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel appointment-tool-panel">
-          <h1>เอกสารที่ควรเตรียม</h1>
-          <p>ติ๊กเอกสารที่เตรียมแล้วก่อนออกจากบ้าน</p>
-          <label class="big-check"><input type="checkbox" /> บัตรประชาชน</label>
-          <label class="big-check"><input type="checkbox" /> ใบนัดหมาย / เลข HN</label>
-          <label class="big-check"><input type="checkbox" /> รายชื่อยาที่ใช้อยู่</label>
-          <label class="big-check"><input type="checkbox" /> ผลตรวจเดิมหรือเอกสารส่งตัว</label>
+          <div class="tool-hero mini-document-hero">
+            <span>📄</span>
+            <div>
+              <h1>เอกสารนัดหมาย</h1>
+              <p>เตรียมไว้ให้พร้อมก่อนออกจากบ้าน เพื่อลงทะเบียนและพบแพทย์ได้ไวขึ้น</p>
+            </div>
+          </div>
+          <label class="big-check"><input type="checkbox" /> บัตรประชาชน หรือบัตรโรงพยาบาล</label>
+          <label class="big-check"><input type="checkbox" /> ใบนัดหมาย เลข HN หรือ QR นัดหมาย</label>
+          <label class="big-check"><input type="checkbox" /> รายชื่อยาทั้งหมด วิตามิน สมุนไพร และอาหารเสริม</label>
+          <label class="big-check"><input type="checkbox" /> ผลตรวจเดิม เอกซเรย์ ใบส่งตัว หรือสมุดประจำตัว</label>
+          <label class="big-check"><input type="checkbox" /> บัตรประกัน/สิทธิรักษา และเบอร์ญาติที่ติดต่อได้</label>
           <button class="primary-action" type="button" data-toast="บันทึกรายการเอกสารแล้ว">บันทึกรายการเอกสาร</button>
         </article>
       </section>
@@ -300,8 +306,31 @@
           <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel appointment-tool-panel">
-          <h1>นัดหมายที่บันทึกไว้</h1>
-          <p>รายการนี้ดึงจากข้อมูลที่บันทึกในเครื่อง</p>
+          <div class="tool-hero mini-history-hero">
+            <span>🗓️</span>
+            <div>
+              <h1>ประวัติการนัด</h1>
+              <p>ตัวอย่างระบบสรุปนัดที่ผ่านมาและนัดล่าสุด เพื่อให้ผู้ใช้เห็นภาพการใช้งาน</p>
+            </div>
+          </div>
+          <div class="history-timeline">
+            <div class="history-item upcoming">
+              <strong>30 ก.ค. 2567 • 10:00 น.</strong>
+              <span>โรงพยาบาลรามาธิบดี • แผนกโรคหัวใจ</span>
+              <small>สถานะ: ใกล้ถึงนัดหมาย</small>
+            </div>
+            <div class="history-item">
+              <strong>15 มิ.ย. 2567 • 09:30 น.</strong>
+              <span>ตรวจเลือดประจำปีและวัดความดัน</span>
+              <small>สถานะ: เข้ารับบริการแล้ว</small>
+            </div>
+            <div class="history-item">
+              <strong>20 พ.ค. 2567 • 13:00 น.</strong>
+              <span>ปรึกษาแพทย์ออนไลน์ เรื่องการนอนหลับ</span>
+              <small>สถานะ: เสร็จสิ้น</small>
+            </div>
+          </div>
+          <h2 class="tool-subtitle">รายการที่บันทึกในเครื่อง</h2>
           <div class="status-list feature-list appointment-list" data-appointment-list></div>
           <button class="primary-action" type="button" data-go="appointments">เพิ่มนัดใหม่</button>
         </article>
@@ -313,10 +342,18 @@
           <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel appointment-tool-panel">
-          <h1>เตรียมตัวก่อนพบแพทย์</h1>
-          <div class="prep-card"><strong>ก่อนวันนัด</strong><span>นอนพักให้พอ เตรียมเอกสาร และทบทวนอาการที่ต้องการเล่าให้แพทย์ฟัง</span></div>
-          <div class="prep-card"><strong>วันนัด</strong><span>ไปถึงก่อนเวลา 30 นาที เผื่อเวลาลงทะเบียนและตรวจวัดสัญญาณชีพ</span></div>
-          <div class="prep-card"><strong>หลังพบแพทย์</strong><span>ตรวจสอบวันนัดครั้งถัดไป วิธีใช้ยา และเบอร์โทรติดต่อโรงพยาบาล</span></div>
+          <div class="tool-hero mini-prep-hero">
+            <span>✅</span>
+            <div>
+              <h1>สิ่งที่ต้องเตรียม</h1>
+              <p>เช็กทีละข้อก่อนพบแพทย์ ช่วยให้เล่าอาการครบและไม่ลืมถามเรื่องสำคัญ</p>
+            </div>
+          </div>
+          <div class="prep-card"><strong>จดคำถามและอาการ</strong><span>เขียนคำถามที่อยากถาม อาการที่เป็น เริ่มเมื่อไร อะไรทำให้ดีขึ้นหรือแย่ลง</span></div>
+          <div class="prep-card"><strong>เตรียมรายการยา</strong><span>จดชื่อยา วิตามิน สมุนไพร อาหารเสริม และอาการแพ้ยา หรือพกยาจริงไปด้วย</span></div>
+          <div class="prep-card"><strong>พาญาติหรือผู้ดูแลไปด้วย</strong><span>ให้ช่วยฟัง ช่วยจด และช่วยถามในกรณีที่จำรายละเอียดไม่ครบ</span></div>
+          <div class="prep-card"><strong>วันนัดไปก่อนเวลา</strong><span>เผื่อเวลาลงทะเบียน วัดความดัน ชั่งน้ำหนัก และตรวจเอกสารก่อนพบแพทย์</span></div>
+          <div class="prep-card"><strong>หลังพบแพทย์</strong><span>ถามวิธีใช้ยา นัดครั้งถัดไป อาการที่ต้องรีบกลับมาพบแพทย์ และช่องทางติดต่อ</span></div>
           <button class="primary-action" type="button" data-toast="บันทึกการเตรียมตัวแล้ว">บันทึกว่าเตรียมพร้อมแล้ว</button>
         </article>
       </section>
@@ -327,10 +364,16 @@
           <button class="top-logo-back" type="button" data-go="appointments" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel appointment-tool-panel">
-          <h1>ช่องทางติดต่อ</h1>
+          <div class="tool-hero mini-contact-hero">
+            <span>📞</span>
+            <div>
+              <h1>ติดต่อเจ้าหน้าที่</h1>
+              <p>โทรสอบถามนัดหมาย เปลี่ยนเวลา หรือขอความช่วยเหลือเรื่องการเดินทาง</p>
+            </div>
+          </div>
           <div class="contact-card"><strong>โรงพยาบาลรามาธิบดี</strong><span>02-201-1000</span></div>
-          <div class="contact-card"><strong>ศูนย์นัดหมาย</strong><span>เปิดบริการ 08:00 - 18:00 น.</span></div>
-          <button class="primary-action" type="button" data-toast="กำลังโทรหาเจ้าหน้าที่">โทรหาเจ้าหน้าที่</button>
+          <div class="contact-card"><strong>ศูนย์นัดหมาย</strong><span>เปิดบริการ 08:00 - 18:00 น. ทุกวันทำการ</span></div>
+          <a class="primary-action call-action" href="tel:022011000">โทรหาเจ้าหน้าที่</a>
           <button class="ghost-action" type="button" data-toast="ส่งข้อความหาเจ้าหน้าที่แล้ว">ส่งข้อความ</button>
         </article>
       </section>
@@ -640,6 +683,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=86"></script>
+  <script src="script.js?v=88"></script>
   </body>
 </html>
