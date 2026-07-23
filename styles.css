@@ -3385,3 +3385,122 @@ a {
 .buddy-swipe-screen .buddy-nav-ride {
   left: 80%;
 }
+
+.buddy-chat-menu-screen {
+  background: #082b60;
+  overflow: hidden;
+}
+
+.buddy-chat-menu-screen > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+  user-select: none;
+}
+
+.chat-zone {
+  position: absolute;
+  z-index: 90;
+  display: block;
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0);
+  touch-action: manipulation;
+}
+
+.chat-zone-shield {
+  left: 68%;
+  top: 3.4%;
+  width: 13%;
+  height: 4.7%;
+}
+
+.chat-zone-add-group {
+  right: 4.5%;
+  top: 3.4%;
+  width: 13%;
+  height: 4.7%;
+}
+
+.chat-zone-new-match {
+  left: 4%;
+  top: 16%;
+  width: 25%;
+  height: 18%;
+}
+
+.chat-zone-match-1 {
+  left: 31%;
+  top: 16%;
+  width: 21%;
+  height: 18%;
+}
+
+.chat-zone-match-2 {
+  left: 54%;
+  top: 16%;
+  width: 21%;
+  height: 18%;
+}
+
+.chat-zone-row-1 {
+  left: 4%;
+  top: 41%;
+  width: 92%;
+  height: 14%;
+}
+
+.chat-zone-row-2 {
+  left: 4%;
+  top: 55.5%;
+  width: 92%;
+  height: 13.5%;
+}
+
+.chat-zone-row-3 {
+  left: 4%;
+  top: 69%;
+  width: 92%;
+  height: 13%;
+}
+
+.chat-zone-all {
+  left: 6%;
+  top: 83.2%;
+  width: 88%;
+  height: 4.2%;
+}
+
+.chat-nav-find,
+.chat-nav-match,
+.chat-nav-group,
+.chat-nav-chat,
+.chat-nav-ride {
+  bottom: 1.6%;
+  width: 18.5%;
+  height: 10.5%;
+  border-radius: 22px;
+}
+
+.chat-nav-find {
+  left: 2.8%;
+}
+
+.chat-nav-match {
+  left: 21.8%;
+}
+
+.chat-nav-group {
+  left: 40.8%;
+}
+
+.chat-nav-chat {
+  left: 59.8%;
+}
+
+.chat-nav-ride {
+  left: 78.8%;
+}
