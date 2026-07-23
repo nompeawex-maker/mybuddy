@@ -4,6 +4,7 @@ var menuLayer = document.querySelector('.menu-layer')
 var toast = document.querySelector('.toast')
 var careStorageKey = 'neomyb-carelog-demo-v4'
 var toastTimer = null
+var lastTouchNavTime = 0
 
 var text = {
   today: '\u0e27\u0e31\u0e19\u0e19\u0e35\u0e49',
@@ -326,11 +327,31 @@ function handleLoginFallback(event) {
   return false
 }
 
+function activateNavigationFromEvent(event) {
+  var nav = closestElement(event.target, '[data-go]')
+  if (!nav) return false
+
+  event.preventDefault()
+  var nextScreen = nav.getAttribute('data-go') || 'home'
+  window.location.hash = nextScreen === 'login' ? '' : nextScreen
+  showScreen(nextScreen)
+  return true
+}
+
 document.addEventListener('touchend', function (event) {
+  if (activateNavigationFromEvent(event)) {
+    lastTouchNavTime = Date.now()
+    return
+  }
   handleLoginFallback(event)
 }, { passive: false })
 
 document.addEventListener('click', function (event) {
+  if (Date.now() - lastTouchNavTime < 450 && closestElement(event.target, '[data-go]')) {
+    event.preventDefault()
+    return
+  }
+
   if (handleLoginFallback(event)) return
 
   var menuButton = closestElement(event.target, '[data-open-menu]')
@@ -361,13 +382,7 @@ document.addEventListener('click', function (event) {
     return
   }
 
-  var nav = closestElement(event.target, '[data-go]')
-  if (nav) {
-    event.preventDefault()
-    var nextScreen = nav.getAttribute('data-go') || 'home'
-    window.location.hash = nextScreen === 'login' ? '' : nextScreen
-    showScreen(nextScreen)
-  }
+  activateNavigationFromEvent(event)
 })
 
 document.addEventListener('submit', function (event) {
