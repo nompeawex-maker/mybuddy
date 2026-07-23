@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEOMYBuddy</title>
-  <link rel="stylesheet" href="styles.css?v=73" />
+  <link rel="stylesheet" href="styles.css?v=76" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -26,11 +26,29 @@
         <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
       </section>
 
-      <section class="screen image-screen line-confirm-screen" id="line-confirm" aria-label="LINE Login">
-        <img src="assets/carelog-line-login.png?v=2" alt="LINE Login" />
-        <button class="tap-zone confirm-back-tap" type="button" data-go="line-login" aria-label="Back"></button>
-        <a class="tap-zone confirm-approve-tap" href="#home" data-go="home" aria-label="Allow and login"></a>
-        <a class="tap-zone confirm-cancel-tap" href="#line-login" data-go="line-login" aria-label="Cancel"></a>
+      <section class="screen line-confirm-screen" id="line-confirm" aria-label="LINE Login">
+        <button class="line-confirm-back" type="button" data-go="line-login" aria-label="ย้อนกลับ">‹</button>
+        <div class="line-confirm-card">
+          <div class="line-confirm-app">
+            <span class="line-app-logo">M+</span>
+            <div>
+              <p>MyBuddy+ CareLog</p>
+              <strong>ขอเชื่อมต่อบัญชี LINE</strong>
+            </div>
+          </div>
+          <div class="line-mark" aria-hidden="true">LINE</div>
+          <h1>เข้าสู่ระบบด้วย LINE</h1>
+          <p class="line-confirm-copy">
+            ยืนยันเพื่อให้ MyBuddy+ ใช้ชื่อโปรไฟล์และบัญชี LINE สำหรับเข้าสู่ระบบ demo นี้
+          </p>
+          <div class="line-permission-list" aria-label="สิทธิ์ที่ใช้">
+            <span>✓ ใช้สำหรับเข้าสู่ระบบ</span>
+            <span>✓ แสดงชื่อผู้ใช้งานในแอป</span>
+            <span>✓ สามารถยกเลิกได้ภายหลัง</span>
+          </div>
+          <a class="line-confirm-approve" href="#home" data-go="home">ยืนยันและเข้าสู่ระบบ</a>
+          <a class="line-confirm-cancel" href="#line-login" data-go="line-login">ยกเลิก</a>
+        </div>
       </section>
       <section class="screen image-screen family-login-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
         <img src="assets/family-login.png" alt="เข้าสู่ระบบ MyBuddy+ สำหรับครอบครัว" />
@@ -53,8 +71,8 @@
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img class="home-main-image" src="assets/home-menu.png?v=73" alt="หน้าเมนูหลัก MyBuddy+" />
-        <a class="tap-zone home-menu-tap" href="#menu-page" data-go="menu-page" aria-label="เมนู"></a>
+        <img class="home-main-image" src="assets/home-menu.png?v=75" alt="หน้าเมนูหลัก MyBuddy+" />
+        <span class="home-menu-cover" aria-hidden="true"></span>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="window.showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
@@ -183,48 +201,96 @@
         <a class="mini-home" href="#home" data-go="home">Home</a>
       </header>
 
-      <article class="feature-hero appointment-hero">
-        <div class="feature-hero-copy">
-          <span class="feature-badge">🏥 Appointment</span>
-          <h1>เตรียมพร้อม<br>ก่อนพบแพทย์</h1>
-          <p>บันทึกนัดหมายสำคัญ แล้วให้ระบบสรุปไว้ที่หน้าเมนูหลักเพื่อเห็นง่ายทันที</p>
-        </div>
-        <div class="feature-hero-art" aria-hidden="true">
-          <span class="hero-hospital">🏥</span>
-          <span class="hero-calendar">📅</span>
-        </div>
-      </article>
+      <article class="appointment-dashboard">
+        <section class="appointment-hero-new" aria-label="ภาพรวมระบบนัดหมาย">
+          <div class="appointment-hero-copy">
+            <span class="appointment-pill">ระบบนัดหมายแพทย์</span>
+            <h1>นัดหมายง่าย<br>ดูแลสุขภาพทุกช่วงเวลา</h1>
+            <p>เลือกโรงพยาบาล แผนก วันที่ และเวลาที่สะดวก ระบบจะบันทึกไว้ให้เห็นในหน้าเมนูหลัก</p>
+            <button class="appointment-new-button" type="button" data-focus-appointment-form>+ นัดหมายใหม่</button>
+          </div>
+          <div class="appointment-illustration" aria-hidden="true">
+            <span class="calendar-art"><b>30</b><small>นัดถัดไป</small></span>
+            <span class="stetho-art"></span>
+            <span class="heart-art">♡</span>
+          </div>
+        </section>
 
-      <section class="quick-grid" aria-label="คำแนะนำนัดหมาย">
-        <div class="info-chip">
-          <strong>เตรียมเอกสาร</strong>
-          <span>บัตรประชาชน/ใบนัด</span>
-        </div>
-        <div class="info-chip">
-          <strong>เผื่อเวลาเดินทาง</strong>
-          <span>ไปถึงก่อนนัดเล็กน้อย</span>
-        </div>
-      </section>
+        <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
+          <div>
+            <span class="appointment-status-badge">ใกล้ถึงนัดหมาย</span>
+            <h2 data-next-appointment-title>ยังไม่มีนัดหมาย</h2>
+            <p data-next-appointment-detail>เพิ่มนัดหมายใหม่เพื่อให้ระบบสรุปข้อมูลสำคัญไว้ตรงนี้</p>
+          </div>
+          <div class="appointment-date-tile">
+            <small data-next-appointment-month>--</small>
+            <strong data-next-appointment-day>--</strong>
+          </div>
+        </section>
 
-      <article class="feature-panel">
-        <div class="section-heading">
-          <h2>เพิ่มนัดหมาย</h2>
-          <span>ข้อมูลตัวอย่าง</span>
-        </div>
-        <form class="demo-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
-          <label>สถานที่ <input name="place" type="text" value="โรงพยาบาลรามาธิบดี" autocomplete="off" /></label>
-          <label>วันที่ <input name="date" type="date" /></label>
-          <label>เวลา <input name="time" type="time" value="09:00" /></label>
-          <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
-        </form>
-      </article>
+        <section class="appointment-tools" aria-label="เครื่องมือช่วยจัดการ">
+          <div><span>📄</span><strong>เอกสารนัดหมาย</strong></div>
+          <div><span>🗓️</span><strong>ประวัติการนัด</strong></div>
+          <div><span>✅</span><strong>สิ่งที่ต้องเตรียม</strong></div>
+          <div><span>📞</span><strong>ติดต่อเจ้าหน้าที่</strong></div>
+        </section>
 
-      <article class="feature-panel list-panel">
-        <div class="section-heading">
-          <h2>นัดหมายที่บันทึก</h2>
-          <span>ขึ้นในหน้า Home</span>
-        </div>
-        <div class="status-list feature-list" data-appointment-list></div>
+        <article class="feature-panel appointment-form-panel" id="appointment-form-panel">
+          <div class="section-heading">
+            <h2>สร้างนัดหมายใหม่</h2>
+            <span>เลือกข้อมูลให้ครบ</span>
+          </div>
+          <form class="demo-form appointment-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
+            <label>โรงพยาบาล
+              <select name="place">
+                <option value="โรงพยาบาลรามาธิบดี">โรงพยาบาลรามาธิบดี</option>
+                <option value="โรงพยาบาลศิริราช">โรงพยาบาลศิริราช</option>
+                <option value="โรงพยาบาลจุฬาลงกรณ์">โรงพยาบาลจุฬาลงกรณ์</option>
+                <option value="โรงพยาบาลใกล้บ้าน">โรงพยาบาลใกล้บ้าน</option>
+              </select>
+            </label>
+            <label>แผนกที่ต้องการพบ
+              <select name="department">
+                <option value="แผนกโรคหัวใจ">แผนกโรคหัวใจ</option>
+                <option value="แผนกอายุรกรรม">แผนกอายุรกรรม</option>
+                <option value="แผนกกระดูกและข้อ">แผนกกระดูกและข้อ</option>
+                <option value="แผนกเวชศาสตร์ผู้สูงอายุ">แผนกเวชศาสตร์ผู้สูงอายุ</option>
+                <option value="ปรึกษาแพทย์ออนไลน์">ปรึกษาแพทย์ออนไลน์</option>
+              </select>
+            </label>
+            <div class="form-two-col">
+              <label>วันที่ <input name="date" type="date" /></label>
+              <label>เวลา
+                <select name="time">
+                  <option value="08:00">08:00 น.</option>
+                  <option value="09:00" selected>09:00 น.</option>
+                  <option value="10:30">10:30 น.</option>
+                  <option value="13:00">13:00 น.</option>
+                  <option value="15:30">15:30 น.</option>
+                </select>
+              </label>
+            </div>
+            <label>ช่องทางรับบริการ
+              <select name="channel">
+                <option value="เดินทางไปโรงพยาบาล">เดินทางไปโรงพยาบาล</option>
+                <option value="ปรึกษาแพทย์ออนไลน์">ปรึกษาแพทย์ออนไลน์</option>
+                <option value="ให้ครอบครัวพาไป">ให้ครอบครัวพาไป</option>
+              </select>
+            </label>
+            <label>หมายเหตุ
+              <textarea name="note" rows="3" placeholder="เช่น ตรวจเลือดประจำปี กรุณางดน้ำและอาหารก่อนพบแพทย์"></textarea>
+            </label>
+            <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
+          </form>
+        </article>
+
+        <article class="feature-panel list-panel">
+          <div class="section-heading">
+            <h2>นัดหมายของฉัน</h2>
+            <span>ขึ้นในหน้า Home</span>
+          </div>
+          <div class="status-list feature-list appointment-list" data-appointment-list></div>
+        </article>
       </article>
       <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
     </section>
@@ -534,6 +600,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=73"></script>
+  <script src="script.js?v=76"></script>
   </body>
 </html>

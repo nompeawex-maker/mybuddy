@@ -137,7 +137,7 @@ function notificationItems() {
       icon: '\uD83C\uDFE5',
       sort: (appointment.date || todayIso()) + 'T' + (appointment.time || '00:00'),
       title: (appointment.time || '--:--') + ' ' + (appointment.place || text.appointment),
-      detail: formatThaiDate(appointment.date) + ' ' + text.appointmentDoctor
+      detail: formatThaiDate(appointment.date) + ' ' + (appointment.department || text.appointmentDoctor)
     })
   }
 
@@ -188,6 +188,38 @@ function renderList(selector, items, emptyText) {
   }
 }
 
+function renderNextAppointment() {
+  var title = document.querySelector('[data-next-appointment-title]')
+  var detail = document.querySelector('[data-next-appointment-detail]')
+  var month = document.querySelector('[data-next-appointment-month]')
+  var day = document.querySelector('[data-next-appointment-day]')
+  if (!title || !detail || !month || !day) return
+
+  if (!careState.appointments.length) {
+    title.textContent = 'ยังไม่มีนัดหมาย'
+    detail.textContent = 'เพิ่มนัดหมายใหม่เพื่อให้ระบบสรุปข้อมูลสำคัญไว้ตรงนี้'
+    month.textContent = '--'
+    day.textContent = '--'
+    return
+  }
+
+  var next = careState.appointments.slice().sort(function (a, b) {
+    var aSort = (a.date || todayIso()) + 'T' + (a.time || '00:00')
+    var bSort = (b.date || todayIso()) + 'T' + (b.time || '00:00')
+    return aSort.localeCompare(bSort)
+  })[0]
+  var date = next.date ? new Date(next.date + 'T00:00:00') : null
+  title.textContent = next.place || text.hospital
+  detail.textContent = [
+    next.department || text.appointmentDoctor,
+    next.time ? next.time + ' น.' : '',
+    next.channel || '',
+    next.note || ''
+  ].filter(Boolean).join(' • ')
+  month.textContent = date ? date.toLocaleDateString('th-TH', { month: 'short' }) : '--'
+  day.textContent = date ? String(date.getDate()) : '--'
+}
+
 function renderCareData() {
   var notifications = notificationItems()
   renderHomeAlerts(notifications)
@@ -206,10 +238,15 @@ function renderCareData() {
   for (var j = 0; j < careState.appointments.length; j += 1) {
     appointments.push({
       title: formatThaiDate(careState.appointments[j].date) + ' ' + (careState.appointments[j].time || '--:--') + ' ' + text.timeSuffix,
-      detail: careState.appointments[j].place || text.appointment
+      detail: [
+        careState.appointments[j].place || text.appointment,
+        careState.appointments[j].department || '',
+        careState.appointments[j].channel || ''
+      ].filter(Boolean).join(' • ')
     })
   }
   renderList('[data-appointment-list]', appointments, text.noAppointment)
+  renderNextAppointment()
 }
 
 function submitMedicine(form) {
@@ -232,8 +269,11 @@ function submitAppointment(form) {
   careState.appointments.unshift({
     id: 'appt-' + Date.now(),
     place: String(formData.get('place') || '').trim() || text.hospital,
+    department: String(formData.get('department') || '').trim() || text.appointmentDoctor,
     date: String(formData.get('date') || todayIso()),
-    time: String(formData.get('time') || '09:00')
+    time: String(formData.get('time') || '09:00'),
+    channel: String(formData.get('channel') || '').trim(),
+    note: String(formData.get('note') || '').trim()
   })
   saveCareState()
   renderCareData()
@@ -338,6 +378,14 @@ document.addEventListener('submit', function (event) {
   event.preventDefault()
   if (medicineForm) submitMedicine(medicineForm)
   if (appointmentForm) submitAppointment(appointmentForm)
+})
+
+document.addEventListener('click', function (event) {
+  if (!closestElement(event.target, '[data-focus-appointment-form]')) return
+  var panel = document.getElementById('appointment-form-panel')
+  if (panel && typeof panel.scrollIntoView === 'function') {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 })
 
 window.addEventListener('popstate', function () {
