@@ -1053,7 +1053,8 @@ function finishBuddyDrag() {
 }
 
 function handleCleanBuddyDirectTap(event) {
-  var screen = document.querySelector('#buddy-discovery.active') || (window.location.hash === '#buddy-discovery' ? document.getElementById('buddy-discovery') : null)
+  var screen = document.querySelector('#buddy-discovery.active, #buddy-discovery-2.active, #buddy-discovery-3.active')
+    || (/^#buddy-discovery/.test(window.location.hash) ? document.querySelector(window.location.hash) : null)
   if (!screen) return false
   var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
   if (typeof point.clientX !== 'number' || typeof point.clientY !== 'number') return false

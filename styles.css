@@ -2980,7 +2980,7 @@ a {
 
 .buddy-swipe-screen .buddy-zone {
   position: absolute;
-  z-index: 220;
+  z-index: 999;
   display: block;
   border: 0;
   padding: 0;
@@ -2988,6 +2988,8 @@ a {
   border-radius: 999px;
   pointer-events: auto;
   touch-action: manipulation;
+  color: transparent;
+  text-decoration: none;
 }
 
 .buddy-swipe-screen .buddy-zone-filter {
