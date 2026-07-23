@@ -929,10 +929,15 @@ function animateCleanBuddy(direction, callback) {
 }
 
 function showNextCleanBuddy(direction) {
-  return animateCleanBuddy(direction || 'left', function () {
-    cleanBuddyIndex = (cleanBuddyIndex + 1) % cleanBuddyProfiles.length
-    renderBuddyData()
-  })
+  cleanBuddyIndex = (cleanBuddyIndex + 1) % cleanBuddyProfiles.length
+  renderBuddyData()
+  return true
+}
+
+function likeCleanBuddyNow() {
+  saveCleanBuddyMatch(getCleanBuddyProfile())
+  showScreen('buddy-match')
+  return true
 }
 
 function saveCleanBuddyMatch(profile) {
@@ -971,10 +976,7 @@ function handleBuddyAction(event) {
           showToast('บันทึก Buddy ที่สนใจแล้ว')
           return true
         }
-        animateCleanBuddy('right', function () {
-          saveCleanBuddyMatch(getCleanBuddyProfile())
-          showScreen('buddy-match')
-        })
+        likeCleanBuddyNow()
         return true
       }
       if (x > .80 && y > .11 && y < .24) {
@@ -994,10 +996,7 @@ function handleBuddyAction(event) {
   var likeButton = closestElement(event.target, '[data-buddy-like], [data-like-buddy]')
   if (likeButton) {
     event.preventDefault()
-    animateCleanBuddy('right', function () {
-      saveCleanBuddyMatch(getCleanBuddyProfile())
-      showScreen('buddy-match')
-    })
+    likeCleanBuddyNow()
     return true
   }
 
@@ -1041,44 +1040,16 @@ function getCleanBuddyImage() {
 }
 
 function beginBuddyDrag(event) {
-  var image = getCleanBuddyImage()
-  if (!image || cleanBuddyLock || !event.touches || !event.touches[0] || closestElement(event.target, 'button')) return
-  cleanBuddyDrag = {
-    image: image,
-    startX: event.touches[0].clientX,
-    startY: event.touches[0].clientY,
-    dx: 0,
-    dy: 0
-  }
-  image.classList.add('is-dragging')
+  return
 }
 
 function moveBuddyDrag(event) {
-  if (!cleanBuddyDrag || !event.touches || !event.touches[0]) return
-  cleanBuddyDrag.dx = event.touches[0].clientX - cleanBuddyDrag.startX
-  cleanBuddyDrag.dy = event.touches[0].clientY - cleanBuddyDrag.startY
-  if (Math.abs(cleanBuddyDrag.dy) > Math.abs(cleanBuddyDrag.dx) * 1.25) return
-  event.preventDefault()
-  var rotate = Math.max(-8, Math.min(8, cleanBuddyDrag.dx / 24))
-  cleanBuddyDrag.image.style.transform = 'translate3d(' + cleanBuddyDrag.dx + 'px,0,0) rotate(' + rotate + 'deg)'
+  return
 }
 
 function finishBuddyDrag() {
-  if (!cleanBuddyDrag) return false
-  var drag = cleanBuddyDrag
   cleanBuddyDrag = null
-  drag.image.classList.remove('is-dragging')
-  drag.image.style.transform = ''
-  if (Math.abs(drag.dx) < 70 || Math.abs(drag.dx) < Math.abs(drag.dy)) return false
-  if (drag.dx > 0) {
-    animateCleanBuddy('right', function () {
-      saveCleanBuddyMatch(getCleanBuddyProfile())
-      showScreen('buddy-match')
-    })
-  } else {
-    showNextCleanBuddy('left')
-  }
-  return true
+  return false
 }
 
 function handleCleanBuddyDirectTap(event) {
@@ -1114,10 +1085,7 @@ function handleCleanBuddyDirectTap(event) {
     saveCleanBuddyMatch(getCleanBuddyProfile())
     showToast('บันทึก Buddy แล้ว')
   } else if (y > .76 && y < .89) {
-    animateCleanBuddy('right', function () {
-      saveCleanBuddyMatch(getCleanBuddyProfile())
-      showScreen('buddy-match')
-    })
+    likeCleanBuddyNow()
   } else {
     handled = false
   }
@@ -1149,10 +1117,7 @@ window.buddyTap = function (action, event) {
     saveCleanBuddyMatch(getCleanBuddyProfile())
     showToast('บันทึก Buddy แล้ว')
   } else if (action === 'like') {
-    animateCleanBuddy('right', function () {
-      saveCleanBuddyMatch(getCleanBuddyProfile())
-      showScreen('buddy-match')
-    })
+    likeCleanBuddyNow()
   } else if (action === 'find') {
     showScreen('buddy-discovery')
   } else if (action === 'match') {
