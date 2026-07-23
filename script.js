@@ -875,11 +875,15 @@ var cleanBuddyProfiles = [
   {
     name: 'คุณอรุณี',
     age: '68',
-    image: 'assets/buddy-arunee.png?v=94',
+    image: 'assets/buddy-malee.png?v=94',
     distance: 'เพิ่งเข้าร่วมไม่นานนี้',
     summary: 'ชอบเดินเล่น ทำบุญ ฟังเพลง และคุยตอนเช้า'
   }
 ]
+
+cleanBuddyProfiles = cleanBuddyProfiles.filter(function (profile) {
+  return profile.age !== '68'
+})
 
 function getCleanBuddyProfile() {
   return cleanBuddyProfiles[cleanBuddyIndex % cleanBuddyProfiles.length]
@@ -976,7 +980,7 @@ function handleBuddyAction(event) {
           showToast('บันทึก Buddy ที่สนใจแล้ว')
           return true
         }
-        likeCleanBuddyNow()
+        return showNextCleanBuddy('left')
         return true
       }
       if (x > .80 && y > .11 && y < .24) {
@@ -996,7 +1000,7 @@ function handleBuddyAction(event) {
   var likeButton = closestElement(event.target, '[data-buddy-like], [data-like-buddy]')
   if (likeButton) {
     event.preventDefault()
-    likeCleanBuddyNow()
+    showNextCleanBuddy('left')
     return true
   }
 
@@ -1053,7 +1057,7 @@ function finishBuddyDrag() {
 }
 
 function handleCleanBuddyDirectTap(event) {
-  var screen = document.querySelector('#buddy-discovery.active, #buddy-discovery-2.active, #buddy-discovery-3.active')
+  var screen = document.querySelector('#buddy-discovery.active, #buddy-discovery-2.active')
     || (/^#buddy-discovery/.test(window.location.hash) ? document.querySelector(window.location.hash) : null)
   if (!screen) return false
   var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
@@ -1118,7 +1122,7 @@ window.buddyTap = function (action, event) {
     saveCleanBuddyMatch(getCleanBuddyProfile())
     showToast('บันทึก Buddy แล้ว')
   } else if (action === 'like') {
-    likeCleanBuddyNow()
+    showNextCleanBuddy('left')
   } else if (action === 'find') {
     showScreen('buddy-discovery')
   } else if (action === 'match') {

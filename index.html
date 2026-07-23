@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}.buddy-swipe-screen{background:#061729;overflow:hidden;touch-action:manipulation}.buddy-full-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}.buddy-zone{position:absolute;z-index:999;display:block;border:0;padding:0;background:rgba(255,255,255,0);border-radius:999px;pointer-events:auto;touch-action:manipulation;text-decoration:none;color:transparent}.buddy-zone-filter{left:2%;top:4%;width:15%;height:9%}.buddy-zone-refresh{right:3%;top:12%;width:17%;height:11%}.buddy-zone-skip{left:0;bottom:10%;width:22%;height:13%}.buddy-zone-message{left:21%;bottom:11%;width:39%;height:11%}.buddy-zone-save{right:21%;bottom:11%;width:18%;height:11%}.buddy-zone-like{right:0;bottom:10%;width:23%;height:13%}.buddy-nav-find,.buddy-nav-match,.buddy-nav-group,.buddy-nav-chat,.buddy-nav-ride{bottom:0;width:20%;height:14%}.buddy-nav-find{left:0}.buddy-nav-match{left:20%}.buddy-nav-group{left:40%}.buddy-nav-chat{left:60%}.buddy-nav-ride{left:80%}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=99" />
+    <link rel="stylesheet" href="styles.css?v=102" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -417,7 +417,7 @@
         <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery-2" aria-label="ข้าม"></a>
         <a class="buddy-zone buddy-zone-message" href="#buddy-chat" aria-label="ส่งข้อความ"></a>
         <a class="buddy-zone buddy-zone-save" href="#buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
-        <a class="buddy-zone buddy-zone-like" href="#buddy-match" aria-label="สนใจเป็น Buddy"></a>
+        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery-2" aria-label="ดู Buddy คนถัดไป"></a>
         <a class="buddy-zone buddy-nav-find" href="#buddy-discovery" aria-label="หาเพื่อน"></a>
         <a class="buddy-zone buddy-nav-match" href="#buddy-match" aria-label="แมตช์"></a>
         <a class="buddy-zone buddy-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
@@ -429,28 +429,12 @@
         <img class="buddy-full-card-image" src="assets/buddy-malee.png?v=94" alt="หน้าปัดหาเพื่อน Buddy คุณมาลี" />
         <a class="buddy-zone buddy-zone-home" href="#home" aria-label="กลับหน้า Home"></a>
         <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery-2" aria-label="ตัวกรอง"></a>
-        <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery-3" aria-label="ดูคนถัดไป"></a>
-        <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery-3" aria-label="ข้าม"></a>
-        <a class="buddy-zone buddy-zone-message" href="#buddy-chat" aria-label="ส่งข้อความ"></a>
-        <a class="buddy-zone buddy-zone-save" href="#buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
-        <a class="buddy-zone buddy-zone-like" href="#buddy-match" aria-label="สนใจเป็น Buddy"></a>
-        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery-2" aria-label="หาเพื่อน"></a>
-        <a class="buddy-zone buddy-nav-match" href="#buddy-match" aria-label="แมตช์"></a>
-        <a class="buddy-zone buddy-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
-        <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" aria-label="แชท"></a>
-        <a class="buddy-zone buddy-nav-ride" href="#buddy-ride" aria-label="รถ"></a>
-      </section>
-
-      <section class="screen image-screen buddy-swipe-screen" id="buddy-discovery-3" aria-label="หาเพื่อน Buddy">
-        <img class="buddy-full-card-image" src="assets/buddy-arunee.png?v=94" alt="หน้าปัดหาเพื่อน Buddy คุณอรุณี" />
-        <a class="buddy-zone buddy-zone-home" href="#home" aria-label="กลับหน้า Home"></a>
-        <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery-3" aria-label="ตัวกรอง"></a>
         <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery" aria-label="ดูคนถัดไป"></a>
         <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery" aria-label="ข้าม"></a>
         <a class="buddy-zone buddy-zone-message" href="#buddy-chat" aria-label="ส่งข้อความ"></a>
         <a class="buddy-zone buddy-zone-save" href="#buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
-        <a class="buddy-zone buddy-zone-like" href="#buddy-match" aria-label="สนใจเป็น Buddy"></a>
-        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery-3" aria-label="หาเพื่อน"></a>
+        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery" aria-label="ดู Buddy คนถัดไป"></a>
+        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery-2" aria-label="หาเพื่อน"></a>
         <a class="buddy-zone buddy-nav-match" href="#buddy-match" aria-label="แมตช์"></a>
         <a class="buddy-zone buddy-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
         <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" aria-label="แชท"></a>
@@ -492,14 +476,96 @@
       </section>
 
       <section class="screen content-screen buddy-system" id="buddy-chat" aria-label="แชท Buddy">
+        <div class="buddy-chat-dashboard">
+          <header class="buddy-chat-hero">
+            <button class="buddy-glass-button" type="button" data-go="buddy-discovery" aria-label="กลับไปหาเพื่อน">‹</button>
+            <div>
+              <span>Buddy</span>
+              <strong>บัดดี้</strong>
+            </div>
+            <button class="buddy-glass-button" type="button" data-go="buddy-tracking" aria-label="ความปลอดภัย">โล่</button>
+            <button class="buddy-glass-button" type="button" data-go="buddy-group" aria-label="เพิ่มเพื่อนเข้ากลุ่ม">กลุ่ม</button>
+          </header>
+
+          <section class="buddy-chat-card">
+            <h2>บัดดี้แมตช์ใหม่</h2>
+            <div class="buddy-match-strip" aria-label="บัดดี้แมตช์ใหม่">
+              <button type="button" data-go="buddy-match">
+                <span class="buddy-new-card"><span>99+</span><small>ใหม่</small></span>
+                <strong>ดูบัดดี้ทั้งหมด</strong>
+              </button>
+              <button type="button" data-go="buddy-chat-room">
+                <img src="assets/buddy-somchai.png?v=94" alt="คุณสมชาย" />
+                <strong>คุณสมชาย</strong>
+              </button>
+              <button type="button" data-go="buddy-chat-room">
+                <img src="assets/buddy-malee.png?v=94" alt="คุณมาลี" />
+                <strong>คุณมาลี</strong>
+              </button>
+            </div>
+
+            <div class="buddy-chat-title">
+              <span class="buddy-chat-dot"></span>
+              <h2>ข้อความ</h2>
+            </div>
+            <div class="buddy-conversation-list">
+              <article class="buddy-conversation">
+                <button class="buddy-conversation-main" type="button" data-go="buddy-chat-room">
+                  <img src="assets/buddy-malee.png?v=94" alt="คุณมาลี" />
+                  <span><strong>คุณมาลี</strong><small>เพิ่งแมตช์กับคุณ ชวนเดินเล่นตอนเช้า</small></span>
+                </button>
+                <div class="buddy-conversation-actions">
+                  <button type="button" data-toast="เพิ่มคุณมาลีเป็นแมตช์แล้ว">เพิ่มแมตช์</button>
+                  <a href="tel:021231234">โทร</a>
+                  <button type="button" data-go="buddy-group">ชวนเข้ากลุ่ม</button>
+                </div>
+              </article>
+
+              <article class="buddy-conversation">
+                <button class="buddy-conversation-main" type="button" data-go="buddy-chat-room">
+                  <img src="assets/buddy-somchai.png?v=94" alt="คุณสมชาย" />
+                  <span><strong>คุณสมชาย</strong><small>วันนี้ไปทำบุญไหมครับ</small></span>
+                </button>
+                <div class="buddy-conversation-actions">
+                  <button type="button" data-go="buddy-activity">นัดกิจกรรมแล้ว</button>
+                  <a href="tel:021231235">โทร</a>
+                  <button type="button" data-go="buddy-group">ชวนเข้ากลุ่ม</button>
+                </div>
+              </article>
+
+              <article class="buddy-conversation">
+                <button class="buddy-conversation-main" type="button" data-go="buddy-chat-room">
+                  <img src="assets/buddy-malee.png?v=94" alt="คุณมาลี" />
+                  <span><strong>คุณมาลี</strong><small>นัดเจอกันที่สวนสาธารณะนะคะ</small></span>
+                </button>
+                <div class="buddy-conversation-actions">
+                  <button type="button" data-go="buddy-activity">ถึงเวลานัดแล้ว</button>
+                  <a href="tel:021231236">โทร</a>
+                  <button type="button" data-go="buddy-ride">เรียกรถ</button>
+                </div>
+              </article>
+            </div>
+            <button class="buddy-all-chat" type="button" data-go="buddy-chat-room">ดูข้อความทั้งหมด</button>
+          </section>
+          <nav class="buddy-app-nav buddy-chat-nav" aria-label="เมนู Buddy">
+            <button type="button" data-go="buddy-discovery"><span class="buddy-menu-icon people"></span><strong>หาเพื่อน</strong></button>
+            <button type="button" data-go="buddy-match"><span class="buddy-menu-icon match"></span><strong>บัดดี้แมตช์</strong></button>
+            <button type="button" data-go="buddy-group"><span class="buddy-menu-icon group"></span><strong>กลุ่ม</strong></button>
+            <button class="active" type="button" data-go="buddy-chat"><span class="buddy-menu-icon chat"></span><strong>แชท</strong></button>
+            <button type="button" data-go="buddy-ride"><span class="buddy-menu-icon ride"></span><strong>รถ</strong></button>
+          </nav>
+        </div>
+      </section>
+
+      <section class="screen content-screen buddy-system" id="buddy-chat-room" aria-label="ห้องแชท Buddy">
         <header class="topbar">
-          <strong>แชท Buddy</strong>
-          <button class="top-logo-back" type="button" data-go="buddy-match" aria-label="กลับ">กลับ</button>
+          <strong>แชทกับ Buddy</strong>
+          <button class="top-logo-back" type="button" data-go="buddy-chat" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel buddy-chat-panel">
-          <div class="buddy-chat-head"><span class="buddy-avatar">ก</span><div><strong>คุณกานิน</strong><small>ออนไลน์ พร้อมคุย</small></div></div>
+          <div class="buddy-chat-head"><img class="buddy-chat-avatar" src="assets/buddy-malee.png?v=94" alt="คุณมาลี" /><div><strong>คุณมาลี</strong><small>ออนไลน์ พร้อมคุย</small></div></div>
           <div class="buddy-message-list" data-buddy-chat-list>
-            <span class="incoming">สวัสดีครับ วันนี้สะดวกคุยไหมครับ</span>
+            <span class="incoming">สวัสดีค่ะ วันนี้สะดวกคุยไหมคะ</span>
             <span class="outgoing">สะดวกครับ อยากไปเดินเล่นช่วงเช้า</span>
           </div>
           <div class="quick-message-row">
@@ -876,6 +942,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=99"></script>
+    <script src="script.js?v=102"></script>
   </body>
 </html>
