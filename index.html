@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=90" />
+    <link rel="stylesheet" href="styles.css?v=91" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -74,7 +74,7 @@
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img class="home-main-image" src="assets/home-menu.png?v=90" alt="หน้าเมนูหลัก MyBuddy+" />
+        <img class="home-main-image" src="assets/home-menu.png?v=91" alt="หน้าเมนูหลัก MyBuddy+" />
         <span class="home-menu-cover" aria-hidden="true"></span>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
@@ -206,7 +206,7 @@
 
       <article class="appointment-dashboard">
         <section class="appointment-hero-new appointment-hero-image-card" aria-label="ภาพรวมระบบนัดหมาย">
-          <img src="assets/appointment-hero.png?v=90" alt="นัดหมายแพทย์" />
+          <img src="assets/appointment-hero.png?v=91" alt="นัดหมายแพทย์" />
         </section>
 
         <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
@@ -222,7 +222,7 @@
         </section>
 
         <section class="appointment-tools appointment-tools-image" aria-label="เครื่องมือช่วยจัดการ">
-          <img src="assets/appointment-tools.png?v=90" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
+          <img src="assets/appointment-tools.png?v=91" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
           <button class="appointment-tool-hit tool-documents" type="button" data-go="appointment-documents" aria-label="เอกสารนัดหมาย"></button>
           <button class="appointment-tool-hit tool-history" type="button" data-go="appointment-history" aria-label="ประวัติการนัด"></button>
           <button class="appointment-tool-hit tool-prep" type="button" data-go="appointment-prep" aria-label="สิ่งที่ต้องเตรียม"></button>
@@ -403,13 +403,18 @@
           <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
         </header>
         <article class="buddy-hero-panel">
-          <img src="assets/buddy-hero.png?v=90" alt="เพื่อน Buddy ที่พร้อมทำกิจกรรมร่วมกัน" />
+          <img src="assets/buddy-hero.png?v=91" alt="เพื่อน Buddy ที่พร้อมทำกิจกรรมร่วมกัน" />
           <div>
             <span>ระบบหาเพื่อนใกล้เคียง</span>
             <h1>หาเพื่อนคุย ทำกิจกรรม และเดินทางไปด้วยกัน</h1>
             <p>เลือก Buddy ที่สนใจคล้ายกัน คุยก่อนนัดเจอ และให้ครอบครัวติดตามได้เมื่อมีการเดินทาง</p>
           </div>
         </article>
+        <section class="buddy-dashboard-stats" aria-label="สถานะ Buddy">
+          <span><strong data-buddy-match-count>0</strong><small>แมตช์</small></span>
+          <span><strong data-buddy-activity-count>0</strong><small>กิจกรรม</small></span>
+          <span><strong data-buddy-ride-count>0</strong><small>การเดินทาง</small></span>
+        </section>
         <section class="buddy-menu-grid" aria-label="เมนู Buddy">
           <button type="button" data-go="buddy-discovery"><span class="buddy-menu-icon people"></span><strong>หาเพื่อน</strong><small>ปัดเลือก Buddy ใกล้เคียง</small></button>
           <button type="button" data-go="buddy-match"><span class="buddy-menu-icon match"></span><strong>แมตช์ของฉัน</strong><small>คนที่สนใจตรงกัน</small></button>
@@ -427,7 +432,7 @@
           <button class="top-logo-back" type="button" data-go="buddy" aria-label="กลับ">กลับ</button>
         </header>
         <article class="buddy-discovery-card">
-          <img src="assets/buddy-hero.png?v=90" alt="รูป Buddy" data-buddy-photo />
+          <img src="assets/buddy-hero.png?v=91" alt="รูป Buddy" data-buddy-photo />
           <div class="buddy-distance" data-buddy-distance>0.8 กม.</div>
           <h1 data-buddy-name>คุณกานิน, 64</h1>
           <p data-buddy-summary>อยู่ใกล้สวนสาธารณะ ชอบเดินตอนเช้าและคุยเรื่องสุขภาพ</p>
@@ -447,7 +452,7 @@
           <button class="top-logo-back" type="button" data-go="buddy-discovery" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel buddy-profile-panel">
-          <img src="assets/buddy-hero.png?v=90" alt="รูปโปรไฟล์ Buddy" data-profile-photo />
+          <img src="assets/buddy-hero.png?v=91" alt="รูปโปรไฟล์ Buddy" data-profile-photo />
           <h1 data-profile-name>คุณกานิน, 64</h1>
           <p data-profile-area>อยู่ใกล้สวนลุมพินี ประมาณ 0.8 กม.</p>
           <div class="buddy-detail-list">
@@ -468,10 +473,8 @@
         </header>
         <article class="panel buddy-match-panel">
           <h1>Buddy ที่พร้อมคุย</h1>
-          <div class="buddy-match-list">
+          <div class="buddy-match-list" data-buddy-match-list>
             <button type="button" data-go="buddy-chat"><span class="buddy-avatar">ก</span><strong>คุณกานิน</strong><small>ใกล้ที่สุด 0.8 กม. พร้อมคุยตอนเช้า</small></button>
-            <button type="button" data-go="buddy-chat"><span class="buddy-avatar">ม</span><strong>คุณมาลี</strong><small>ชอบทำอาหารสุขภาพและกิจกรรมกลุ่ม</small></button>
-            <button type="button" data-go="buddy-chat"><span class="buddy-avatar">อ</span><strong>คุณอนงค์</strong><small>ชอบอ่านหนังสือและเดินเล่นเบา ๆ</small></button>
           </div>
           <button class="primary-action" type="button" data-go="buddy-discovery">หา Buddy เพิ่ม</button>
         </article>
@@ -524,8 +527,8 @@
         <article class="panel">
           <h1>กลุ่มเดินเล่นตอนเช้า</h1>
           <div class="buddy-detail-list">
-            <span><strong>สมาชิก</strong><small>คุณกานิน คุณมาลี คุณอนงค์ และคุณผู้ชาย</small></span>
-            <span><strong>กิจกรรมล่าสุด</strong><small>เดินเล่นสวนสาธารณะ เวลา 08:00 น.</small></span>
+            <span><strong>สมาชิก</strong><small data-buddy-group-members>คุณกานิน และคุณผู้ชาย</small></span>
+            <span><strong>กิจกรรมล่าสุด</strong><small data-buddy-group-latest>ยังไม่มีกิจกรรมที่บันทึก</small></span>
           </div>
           <button class="primary-action" type="button" data-go="buddy-activity">นัดกิจกรรมกลุ่ม</button>
           <button class="ghost-action" type="button" data-go="buddy-chat">เปิดแชทกลุ่ม</button>
@@ -547,6 +550,7 @@
             <label>หมายเหตุ<input name="note" type="text" value="เดินไม่ไกล พกน้ำและยาประจำตัว" /></label>
             <button class="primary-action" type="submit">บันทึกกิจกรรม</button>
           </form>
+          <div class="status-list" data-buddy-activity-list></div>
         </article>
       </section>
 
@@ -557,14 +561,20 @@
         </header>
         <article class="panel">
           <h1>จัดรถให้ไปถึงจุดหมายร่วมกัน</h1>
-          <div class="buddy-detail-list">
-            <span><strong>รูปแบบรถ</strong><small>รถกลุ่ม รับคุณกานิน คุณมาลี และคุณผู้ชายตามลำดับ</small></span>
-            <span><strong>จุดหมาย</strong><small>สวนสาธารณะใกล้บ้าน</small></span>
-            <span><strong>เวลาประเมิน</strong><small>รถมาถึงคนแรก 07:35 น. ถึงจุดหมาย 08:00 น.</small></span>
-            <span><strong>ครอบครัว</strong><small>ได้รับสถานะการเดินทางแบบเดโม</small></span>
-          </div>
-          <button class="primary-action" type="button" data-toast="บันทึกคำขอเรียกรถกลุ่มแล้ว">เรียกรถกลุ่ม</button>
-          <button class="ghost-action" type="button" data-toast="บันทึกคำขอเรียกรถส่วนตัวแล้ว">เรียกรถส่วนตัว</button>
+          <form class="demo-form" data-buddy-ride-form>
+            <label>รูปแบบรถ
+              <select name="type">
+                <option value="รถกลุ่ม">รถกลุ่ม</option>
+                <option value="รถส่วนตัว">รถส่วนตัว</option>
+              </select>
+            </label>
+            <label>จุดรับ<input name="pickup" type="text" value="บ้านของคุณผู้ชาย" /></label>
+            <label>จุดหมาย<input name="destination" type="text" value="สวนสาธารณะใกล้บ้าน" /></label>
+            <label>เวลาเดินทาง<input name="time" type="time" value="07:30" /></label>
+            <label>หมายเหตุ<input name="note" type="text" value="ต้องการรถขึ้นลงสะดวก" /></label>
+            <button class="primary-action" type="submit">บันทึกคำขอรถ</button>
+          </form>
+          <div class="buddy-detail-list" data-buddy-ride-list></div>
         </article>
       </section>
 
@@ -575,11 +585,8 @@
         </header>
         <article class="panel">
           <h1>สถานะการเดินทาง</h1>
-          <div class="buddy-timeline">
-            <span><strong>07:30</strong><small>เริ่มเดินทางจากบ้าน</small></span>
-            <span><strong>07:42</strong><small>รับ Buddy คนที่สองแล้ว</small></span>
-            <span><strong>08:00</strong><small>ถึงสวนสาธารณะ</small></span>
-            <span><strong>09:30</strong><small>กิจกรรมจบ เตรียมเดินทางกลับ</small></span>
+          <div class="buddy-timeline" data-buddy-tracking-list>
+            <span><strong>พร้อมใช้งาน</strong><small>เมื่อบันทึกกิจกรรมหรือเรียกรถ ระบบจะแสดงสถานะที่นี่</small></span>
           </div>
           <button class="primary-action" type="button" data-go="sos">เปิด SOS</button>
         </article>
@@ -858,6 +865,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=90"></script>
+  <script src="script.js?v=91"></script>
   </body>
 </html>

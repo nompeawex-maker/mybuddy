@@ -3,6 +3,7 @@ var splashScreen = document.getElementById('splash')
 var menuLayer = document.querySelector('.menu-layer')
 var toast = document.querySelector('.toast')
 var careStorageKey = 'neomyb-carelog-demo-v4'
+var buddyStorageKey = 'neomyb-buddy-demo-v1'
 var toastTimer = null
 var lastTouchNavTime = 0
 
@@ -140,6 +141,34 @@ var buddyProfiles = [
     note: 'เดินระยะสั้นได้ดี ต้องการกิจกรรมที่มีที่นั่งพัก'
   }
 ]
+
+function loadBuddyState() {
+  try {
+    var raw = window.localStorage.getItem(buddyStorageKey)
+    var saved = raw ? JSON.parse(raw) : {}
+    return {
+      matches: saved && Array.isArray(saved.matches) ? saved.matches : [],
+      messages: saved && Array.isArray(saved.messages) ? saved.messages : [
+        { type: 'incoming', text: 'สวัสดีครับ วันนี้สะดวกคุยไหมครับ' },
+        { type: 'outgoing', text: 'สะดวกครับ อยากไปเดินเล่นช่วงเช้า' }
+      ],
+      activities: saved && Array.isArray(saved.activities) ? saved.activities : [],
+      rides: saved && Array.isArray(saved.rides) ? saved.rides : []
+    }
+  } catch (error) {
+    return { matches: [], messages: [], activities: [], rides: [] }
+  }
+}
+
+var buddyState = loadBuddyState()
+
+function saveBuddyState() {
+  try {
+    window.localStorage.setItem(buddyStorageKey, JSON.stringify(buddyState))
+  } catch (error) {
+    showToast(text.saveError)
+  }
+}
 
 function saveCareState() {
   try {
@@ -311,6 +340,126 @@ function renderBuddyData() {
       tagContainer.appendChild(chip)
     }
   }
+  renderBuddyState()
+}
+
+function profileKey(profile) {
+  return String(profile.name || '').split(',')[0]
+}
+
+function ensureBuddyMatch(profile) {
+  var key = profileKey(profile)
+  for (var i = 0; i < buddyState.matches.length; i += 1) {
+    if (buddyState.matches[i].name === key) return
+  }
+  buddyState.matches.unshift({
+    name: key,
+    distance: profile.distance,
+    summary: profile.summary,
+    status: 'พร้อมคุย'
+  })
+  saveBuddyState()
+}
+
+function renderBuddyState() {
+  setText('[data-buddy-match-count]', String(buddyState.matches.length))
+  setText('[data-buddy-activity-count]', String(buddyState.activities.length))
+  setText('[data-buddy-ride-count]', String(buddyState.rides.length))
+
+  var matchList = document.querySelector('[data-buddy-match-list]')
+  if (matchList) {
+    matchList.innerHTML = ''
+    var matches = buddyState.matches.length ? buddyState.matches : [
+      { name: 'คุณกานิน', distance: '0.8 กม.', summary: 'พร้อมคุยตอนเช้า', status: 'ตัวอย่าง' }
+    ]
+    for (var i = 0; i < matches.length; i += 1) {
+      var match = matches[i]
+      var row = document.createElement('button')
+      row.type = 'button'
+      row.setAttribute('data-go', 'buddy-chat')
+      row.innerHTML = '<span class="buddy-avatar"></span><strong></strong><small></small>'
+      row.querySelector('.buddy-avatar').textContent = match.name.replace('คุณ', '').slice(0, 1) || 'B'
+      row.querySelector('strong').textContent = match.name
+      row.querySelector('small').textContent = match.status + ' / ' + match.distance + ' / ' + match.summary
+      matchList.appendChild(row)
+    }
+  }
+
+  var chatList = document.querySelector('[data-buddy-chat-list]')
+  if (chatList) {
+    chatList.innerHTML = ''
+    for (var j = 0; j < buddyState.messages.length; j += 1) {
+      var bubble = document.createElement('span')
+      bubble.className = buddyState.messages[j].type || 'outgoing'
+      bubble.textContent = buddyState.messages[j].text
+      chatList.appendChild(bubble)
+    }
+  }
+
+  var activityList = document.querySelector('[data-buddy-activity-list]')
+  if (activityList) {
+    activityList.innerHTML = ''
+    if (!buddyState.activities.length) {
+      var emptyActivity = document.createElement('div')
+      emptyActivity.className = 'status-item empty'
+      emptyActivity.textContent = 'ยังไม่มีกิจกรรมที่บันทึก'
+      activityList.appendChild(emptyActivity)
+    }
+    for (var k = 0; k < buddyState.activities.length; k += 1) {
+      var activity = buddyState.activities[k]
+      var activityRow = document.createElement('div')
+      activityRow.className = 'status-item'
+      activityRow.innerHTML = '<strong></strong><small></small>'
+      activityRow.querySelector('strong').textContent = activity.title + ' / ' + activity.time
+      activityRow.querySelector('small').textContent = activity.place + ' / ' + activity.note
+      activityList.appendChild(activityRow)
+    }
+  }
+
+  var latestActivity = buddyState.activities[0]
+  setText('[data-buddy-group-latest]', latestActivity ? latestActivity.title + ' เวลา ' + latestActivity.time : 'ยังไม่มีกิจกรรมที่บันทึก')
+  setText('[data-buddy-group-members]', buddyState.matches.length ? buddyState.matches.map(function (item) { return item.name }).join(' / ') + ' / คุณผู้ชาย' : 'คุณกานิน / คุณผู้ชาย')
+
+  var rideList = document.querySelector('[data-buddy-ride-list]')
+  if (rideList) {
+    rideList.innerHTML = ''
+    if (!buddyState.rides.length) {
+      var emptyRide = document.createElement('span')
+      emptyRide.innerHTML = '<strong>ยังไม่มีคำขอรถ</strong><small>กรอกข้อมูลแล้วกดบันทึกคำขอรถ</small>'
+      rideList.appendChild(emptyRide)
+    }
+    for (var r = 0; r < buddyState.rides.length; r += 1) {
+      var ride = buddyState.rides[r]
+      var rideRow = document.createElement('span')
+      rideRow.innerHTML = '<strong></strong><small></small>'
+      rideRow.querySelector('strong').textContent = ride.type + ' / ' + ride.time
+      rideRow.querySelector('small').textContent = ride.pickup + ' ไป ' + ride.destination + ' / ' + ride.note
+      rideList.appendChild(rideRow)
+    }
+  }
+
+  var trackingList = document.querySelector('[data-buddy-tracking-list]')
+  if (trackingList) {
+    trackingList.innerHTML = ''
+    var steps = []
+    if (buddyState.rides[0]) {
+      steps.push({ title: buddyState.rides[0].time, detail: 'รถออกจาก ' + buddyState.rides[0].pickup })
+      steps.push({ title: 'ระหว่างทาง', detail: 'ระบบคำนวณเส้นทางรับ Buddy ตามลำดับ' })
+      steps.push({ title: 'จุดหมาย', detail: 'เดินทางไป ' + buddyState.rides[0].destination })
+    } else if (buddyState.activities[0]) {
+      steps.push({ title: buddyState.activities[0].time, detail: 'นัดกิจกรรมที่ ' + buddyState.activities[0].place })
+      steps.push({ title: 'ครอบครัว', detail: 'พร้อมแจ้งสถานะเมื่อเริ่มเดินทาง' })
+    } else {
+      steps.push({ title: 'พร้อมใช้งาน', detail: 'เมื่อบันทึกกิจกรรมหรือเรียกรถ ระบบจะแสดงสถานะที่นี่' })
+    }
+    for (var s = 0; s < steps.length; s += 1) {
+      var step = document.createElement('span')
+      step.innerHTML = '<strong></strong><small></small>'
+      step.querySelector('strong').textContent = steps[s].title
+      step.querySelector('small').textContent = steps[s].detail
+      trackingList.appendChild(step)
+    }
+  }
 }
 
 function nextBuddyProfile() {
@@ -332,6 +481,25 @@ function appendBuddyMessage(message) {
   bubble.className = 'outgoing'
   bubble.textContent = message
   list.appendChild(bubble)
+  list.scrollTop = list.scrollHeight
+}
+
+function likeBuddyProfile() {
+  ensureBuddyMatch(buddyProfiles[buddyIndex % buddyProfiles.length])
+  renderBuddyState()
+  showToast('จับคู่ Buddy สำเร็จแล้ว')
+  return showScreen('buddy-match')
+}
+
+function appendBuddyMessage(message) {
+  var list = document.querySelector('[data-buddy-chat-list]')
+  if (!list || !message) return
+  var bubble = document.createElement('span')
+  bubble.className = 'outgoing'
+  bubble.textContent = message
+  list.appendChild(bubble)
+  buddyState.messages.push({ type: 'outgoing', text: message })
+  saveBuddyState()
   list.scrollTop = list.scrollHeight
 }
 
@@ -399,6 +567,38 @@ function submitAppointment(form) {
   renderCareData()
   showToast(text.appointmentSaved)
   return showScreen('home')
+}
+
+function submitBuddyActivity(form) {
+  var formData = new FormData(form)
+  buddyState.activities.unshift({
+    id: 'act-' + Date.now(),
+    title: String(formData.get('title') || '').trim() || 'กิจกรรม Buddy',
+    date: String(formData.get('date') || todayIso()),
+    time: String(formData.get('time') || '08:00'),
+    place: String(formData.get('place') || '').trim() || 'สถานที่นัดหมาย',
+    note: String(formData.get('note') || '').trim() || 'กิจกรรมเบา ๆ'
+  })
+  saveBuddyState()
+  renderBuddyState()
+  showToast('บันทึกกิจกรรม Buddy แล้ว')
+  return showScreen('buddy-group')
+}
+
+function submitBuddyRide(form) {
+  var formData = new FormData(form)
+  buddyState.rides.unshift({
+    id: 'ride-' + Date.now(),
+    type: String(formData.get('type') || 'รถกลุ่ม'),
+    pickup: String(formData.get('pickup') || '').trim() || 'บ้านของคุณผู้ชาย',
+    destination: String(formData.get('destination') || '').trim() || 'จุดหมาย',
+    time: String(formData.get('time') || '07:30'),
+    note: String(formData.get('note') || '').trim() || 'เดินทางแบบสะดวก'
+  })
+  saveBuddyState()
+  renderBuddyState()
+  showToast('บันทึกคำขอรถแล้ว')
+  return showScreen('buddy-tracking')
 }
 
 function submitMedicineForm(form) {
@@ -513,15 +713,14 @@ document.addEventListener('submit', function (event) {
   var medicineForm = closestElement(event.target, '[data-medicine-form]')
   var appointmentForm = closestElement(event.target, '[data-appointment-form]')
   var buddyActivityForm = closestElement(event.target, '[data-buddy-activity-form]')
-  if (!medicineForm && !appointmentForm && !buddyActivityForm) return
+  var buddyRideForm = closestElement(event.target, '[data-buddy-ride-form]')
+  if (!medicineForm && !appointmentForm && !buddyActivityForm && !buddyRideForm) return
 
   event.preventDefault()
   if (medicineForm) submitMedicine(medicineForm)
   if (appointmentForm) submitAppointment(appointmentForm)
-  if (buddyActivityForm) {
-    showToast('บันทึกกิจกรรม Buddy แล้ว')
-    showScreen('buddy-group')
-  }
+  if (buddyActivityForm) submitBuddyActivity(buddyActivityForm)
+  if (buddyRideForm) submitBuddyRide(buddyRideForm)
 })
 
 document.addEventListener('click', function (event) {

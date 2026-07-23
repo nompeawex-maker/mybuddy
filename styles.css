@@ -2371,6 +2371,38 @@ a {
   margin-top: 16px;
 }
 
+.buddy-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.buddy-dashboard-stats span {
+  display: grid;
+  gap: 2px;
+  min-height: 72px;
+  padding: 12px 8px;
+  border: 1px solid rgba(7, 118, 255, .14);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 12px 26px rgba(20, 80, 140, .09);
+  text-align: center;
+}
+
+.buddy-dashboard-stats strong {
+  color: var(--buddy-blue);
+  font-size: 26px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.buddy-dashboard-stats small {
+  color: #59708b;
+  font-size: 13px;
+  font-weight: 850;
+}
+
 .buddy-menu-grid button,
 .buddy-match-list button {
   display: grid;
@@ -2719,6 +2751,20 @@ a {
 
 .buddy-call-panel {
   text-align: center;
+}
+
+.buddy-system select,
+.demo-form select {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: 1px solid #a9d2ff;
+  border-radius: 14px;
+  color: #123660;
+  background: #fff;
+  font-size: 17px;
+  font-weight: 750;
 }
 
 @media (max-width: 420px) {
