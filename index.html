@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=92" />
+    <link rel="stylesheet" href="styles.css?v=93" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -80,7 +80,7 @@
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
         <a class="tap-zone home-appointment-tap" href="#appointments" data-go="appointments" onclick="window.showScreen('appointments'); return false;" aria-label="เปิดหน้านัดหมายแพทย์"></a>
         <a class="tap-zone home-health-tap" href="#health" data-go="health" aria-label="เปิดหน้าสุขภาพ"></a>
-        <a class="tap-zone home-buddy-tap" href="#buddy" data-go="buddy" aria-label="เปิดหน้า Buddy"></a>
+        <a class="tap-zone home-buddy-tap" href="#buddy-discovery" data-go="buddy-discovery" aria-label="เปิดหน้า Buddy"></a>
         <div class="home-alert-preview" aria-live="polite">
           <div class="home-alert-list" data-home-alert-list></div>
         </div>
@@ -118,7 +118,7 @@
         </section>
         <nav class="home-bottom-nav" aria-label="เมนูล่าง">
           <img src="assets/home-bottom-nav.png" alt="" />
-          <a class="bottom-nav-hit bottom-buddy" href="#buddy" data-go="buddy" aria-label="Buddy"></a>
+          <a class="bottom-nav-hit bottom-buddy" href="#buddy-discovery" data-go="buddy-discovery" aria-label="Buddy"></a>
           <a class="bottom-nav-hit bottom-activities" href="#activities" data-go="activities" aria-label="กิจกรรม"></a>
           <a class="bottom-nav-hit bottom-sos" href="#sos" data-go="sos" aria-label="SOS"></a>
           <a class="bottom-nav-hit bottom-health" href="#health" data-go="health" aria-label="สุขภาพ"></a>
@@ -865,6 +865,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-  <script src="script.js?v=92"></script>
+  <script src="script.js?v=93"></script>
   </body>
 </html>
