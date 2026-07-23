@@ -2,6 +2,149 @@
   box-sizing: border-box;
 }
 
+.buddy-swipe-screen {
+  background: #061729;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.buddy-full-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 50% 75%;
+  transition: transform .28s ease, opacity .28s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.buddy-full-card-image.is-dragging {
+  transition: none;
+}
+
+.buddy-full-card-image.swipe-left {
+  transform: translateX(-115%) rotate(-10deg);
+  opacity: .15;
+}
+
+.buddy-full-card-image.swipe-right {
+  transform: translateX(115%) rotate(10deg);
+  opacity: .15;
+}
+
+.buddy-full-card-image.swipe-in {
+  animation: buddyFullIn .28s cubic-bezier(.18, .85, .24, 1.1);
+}
+
+.buddy-zone {
+  position: absolute;
+  z-index: 30;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.buddy-zone-home {
+  left: 2%;
+  top: 2%;
+  width: 14%;
+  height: 8%;
+}
+
+.buddy-zone-filter {
+  left: 3%;
+  top: 6%;
+  width: 11%;
+  height: 6%;
+}
+
+.buddy-zone-refresh {
+  right: 5%;
+  top: 15%;
+  width: 13%;
+  height: 7%;
+}
+
+.buddy-zone-skip {
+  left: 3%;
+  bottom: 12%;
+  width: 17%;
+  height: 9%;
+}
+
+.buddy-zone-message {
+  left: 23%;
+  bottom: 13%;
+  width: 36%;
+  height: 7%;
+}
+
+.buddy-zone-save {
+  right: 23%;
+  bottom: 13%;
+  width: 14%;
+  height: 7%;
+}
+
+.buddy-zone-like {
+  right: 4%;
+  bottom: 12%;
+  width: 18%;
+  height: 9%;
+}
+
+.buddy-nav-find,
+.buddy-nav-match,
+.buddy-nav-group,
+.buddy-nav-chat,
+.buddy-nav-ride {
+  bottom: 1.6%;
+  height: 9.5%;
+}
+
+.buddy-nav-find {
+  left: 3%;
+  width: 18%;
+}
+
+.buddy-nav-match {
+  left: 22%;
+  width: 18%;
+}
+
+.buddy-nav-group {
+  left: 41%;
+  width: 18%;
+}
+
+.buddy-nav-chat {
+  left: 60%;
+  width: 18%;
+}
+
+.buddy-nav-ride {
+  right: 3%;
+  width: 18%;
+}
+
+@keyframes buddyFullIn {
+  from {
+    transform: translateY(24px) scale(.985);
+    opacity: .75;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
 html {
   min-height: 100%;
   background: #0488ff;

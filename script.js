@@ -853,3 +853,188 @@ window.setTimeout(function () {
   var initialScreen = window.location.hash.replace('#', '') || 'login'
   showScreen(initialScreen, { updateHash: false })
 }, 2000)
+
+var cleanBuddyIndex = 0
+var cleanBuddyDrag = null
+var cleanBuddyLock = false
+var cleanBuddyProfiles = [
+  {
+    name: 'คุณสมชาย',
+    age: '70',
+    image: 'assets/buddy-somchai.png?v=94',
+    distance: 'ใกล้คุณ 1.8 กม.',
+    summary: 'ชอบเดินเล่น เล่นหมากรุก คุยเรื่องข่าว และออกกำลังกายเบา ๆ'
+  },
+  {
+    name: 'คุณมาลี',
+    age: '66',
+    image: 'assets/buddy-malee.png?v=94',
+    distance: 'ใกล้คุณ 3.2 กม.',
+    summary: 'ชอบทำอาหาร ปลูกต้นไม้ ทำบุญ และเข้ากิจกรรมกลุ่ม'
+  },
+  {
+    name: 'คุณอรุณี',
+    age: '68',
+    image: 'assets/buddy-arunee.png?v=94',
+    distance: 'เพิ่งเข้าร่วมไม่นานนี้',
+    summary: 'ชอบเดินเล่น ทำบุญ ฟังเพลง และคุยตอนเช้า'
+  }
+]
+
+function getCleanBuddyProfile() {
+  return cleanBuddyProfiles[cleanBuddyIndex % cleanBuddyProfiles.length]
+}
+
+function renderBuddyData() {
+  var profile = getCleanBuddyProfile()
+  var image = document.querySelector('[data-buddy-card-image]')
+  if (image && image.getAttribute('src') !== profile.image) {
+    image.setAttribute('src', profile.image)
+    image.setAttribute('alt', 'หน้า Buddy ของ ' + profile.name)
+  }
+
+  setText('[data-buddy-name]', profile.name + ', ' + profile.age)
+  setText('[data-buddy-distance]', profile.distance)
+  setText('[data-buddy-summary]', profile.summary)
+  setText('[data-profile-name]', profile.name + ', ' + profile.age)
+  setText('[data-profile-area]', profile.distance)
+  var profileImage = document.querySelector('[data-profile-photo]')
+  if (profileImage) profileImage.setAttribute('src', profile.image)
+
+  if (typeof renderBuddyState === 'function') {
+    renderBuddyState()
+  }
+}
+
+function animateCleanBuddy(direction, callback) {
+  var image = document.querySelector('#buddy-discovery.active [data-buddy-card-image]')
+  if (!image || cleanBuddyLock) {
+    if (callback) callback()
+    return true
+  }
+
+  cleanBuddyLock = true
+  image.classList.remove('swipe-in', 'swipe-left', 'swipe-right')
+  image.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right')
+  window.setTimeout(function () {
+    if (callback) callback()
+    image.classList.remove('swipe-left', 'swipe-right')
+    image.classList.add('swipe-in')
+    window.setTimeout(function () {
+      image.classList.remove('swipe-in')
+      cleanBuddyLock = false
+    }, 320)
+  }, 280)
+  return true
+}
+
+function showNextCleanBuddy(direction) {
+  return animateCleanBuddy(direction || 'left', function () {
+    cleanBuddyIndex = (cleanBuddyIndex + 1) % cleanBuddyProfiles.length
+    renderBuddyData()
+  })
+}
+
+function saveCleanBuddyMatch(profile) {
+  if (typeof ensureBuddyMatch === 'function') ensureBuddyMatch(profile)
+  if (typeof saveBuddyState === 'function') saveBuddyState()
+  renderBuddyData()
+}
+
+function handleBuddyAction(event) {
+  var nextButton = closestElement(event.target, '[data-buddy-next], [data-next-buddy]')
+  if (nextButton) {
+    event.preventDefault()
+    showNextCleanBuddy('left')
+    return true
+  }
+
+  var likeButton = closestElement(event.target, '[data-buddy-like], [data-like-buddy]')
+  if (likeButton) {
+    event.preventDefault()
+    animateCleanBuddy('right', function () {
+      saveCleanBuddyMatch(getCleanBuddyProfile())
+      showScreen('buddy-match')
+    })
+    return true
+  }
+
+  var saveButton = closestElement(event.target, '[data-buddy-save]')
+  if (saveButton) {
+    event.preventDefault()
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    showToast('บันทึก Buddy ที่สนใจแล้ว')
+    return true
+  }
+
+  var messageOpen = closestElement(event.target, '[data-buddy-message-open]')
+  if (messageOpen) {
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    return false
+  }
+
+  var quickMessage = closestElement(event.target, '[data-buddy-message]')
+  if (quickMessage) {
+    event.preventDefault()
+    appendBuddyMessage(quickMessage.getAttribute('data-buddy-message'))
+    return true
+  }
+
+  var sendButton = closestElement(event.target, '[data-send-buddy-message]')
+  if (sendButton) {
+    event.preventDefault()
+    var input = document.querySelector('[data-buddy-chat-input]')
+    var text = input ? input.value.trim() : ''
+    if (!text) return true
+    appendBuddyMessage(text)
+    input.value = ''
+    return true
+  }
+
+  return false
+}
+
+function getCleanBuddyImage() {
+  return document.querySelector('#buddy-discovery.active [data-buddy-card-image]')
+}
+
+function beginBuddyDrag(event) {
+  var image = getCleanBuddyImage()
+  if (!image || cleanBuddyLock || !event.touches || !event.touches[0] || closestElement(event.target, 'button')) return
+  cleanBuddyDrag = {
+    image: image,
+    startX: event.touches[0].clientX,
+    startY: event.touches[0].clientY,
+    dx: 0,
+    dy: 0
+  }
+  image.classList.add('is-dragging')
+}
+
+function moveBuddyDrag(event) {
+  if (!cleanBuddyDrag || !event.touches || !event.touches[0]) return
+  cleanBuddyDrag.dx = event.touches[0].clientX - cleanBuddyDrag.startX
+  cleanBuddyDrag.dy = event.touches[0].clientY - cleanBuddyDrag.startY
+  if (Math.abs(cleanBuddyDrag.dy) > Math.abs(cleanBuddyDrag.dx) * 1.25) return
+  event.preventDefault()
+  var rotate = Math.max(-8, Math.min(8, cleanBuddyDrag.dx / 24))
+  cleanBuddyDrag.image.style.transform = 'translate3d(' + cleanBuddyDrag.dx + 'px,0,0) rotate(' + rotate + 'deg)'
+}
+
+function finishBuddyDrag() {
+  if (!cleanBuddyDrag) return false
+  var drag = cleanBuddyDrag
+  cleanBuddyDrag = null
+  drag.image.classList.remove('is-dragging')
+  drag.image.style.transform = ''
+  if (Math.abs(drag.dx) < 70 || Math.abs(drag.dx) < Math.abs(drag.dy)) return false
+  if (drag.dx > 0) {
+    animateCleanBuddy('right', function () {
+      saveCleanBuddyMatch(getCleanBuddyProfile())
+      showScreen('buddy-match')
+    })
+  } else {
+    showNextCleanBuddy('left')
+  }
+  return true
+}
