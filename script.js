@@ -1082,7 +1082,7 @@ function finishBuddyDrag() {
 }
 
 function handleCleanBuddyDirectTap(event) {
-  var screen = document.querySelector('#buddy-discovery.active')
+  var screen = document.querySelector('#buddy-discovery.active') || (window.location.hash === '#buddy-discovery' ? document.getElementById('buddy-discovery') : null)
   if (!screen) return false
   var point = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event
   if (typeof point.clientX !== 'number' || typeof point.clientY !== 'number') return false
@@ -1132,3 +1132,40 @@ function handleCleanBuddyDirectTap(event) {
 
 document.addEventListener('touchend', handleCleanBuddyDirectTap, { passive: false, capture: true })
 document.addEventListener('click', handleCleanBuddyDirectTap, { passive: false, capture: true })
+
+window.buddyTap = function (action, event) {
+  if (event) {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  if (action === 'home') {
+    showScreen('home')
+  } else if (action === 'filter') {
+    showToast('เปิดตัวกรอง Buddy แล้ว')
+  } else if (action === 'next') {
+    showNextCleanBuddy('left')
+  } else if (action === 'save') {
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    showToast('บันทึก Buddy แล้ว')
+  } else if (action === 'like') {
+    animateCleanBuddy('right', function () {
+      saveCleanBuddyMatch(getCleanBuddyProfile())
+      showScreen('buddy-match')
+    })
+  } else if (action === 'find') {
+    showScreen('buddy-discovery')
+  } else if (action === 'match') {
+    showScreen('buddy-match')
+  } else if (action === 'group') {
+    showScreen('buddy-group')
+  } else if (action === 'chat') {
+    saveCleanBuddyMatch(getCleanBuddyProfile())
+    showScreen('buddy-chat')
+  } else if (action === 'ride') {
+    showScreen('buddy-ride')
+  }
+
+  lastTouchNavTime = Date.now()
+  return false
+}
