@@ -52,13 +52,6 @@ a {
   z-index: 20;
 }
 
-.screen:target {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 21;
-}
-
 .splash-screen {
   z-index: 8;
   animation: autoHideSplash .35s ease 2s forwards;
@@ -587,12 +580,11 @@ a {
   pointer-events: none;
 }
 
-.screen:not(.active):not(:target) .home-bottom-nav {
+.screen:not(.active) .home-bottom-nav {
   display: none;
 }
 
-.home-screen.active .home-bottom-nav,
-.home-screen:target .home-bottom-nav {
+.home-screen.active .home-bottom-nav {
   display: block;
 }
 
@@ -1370,6 +1362,22 @@ a {
   box-shadow: 0 20px 38px rgba(22, 89, 160, .16);
 }
 
+.appointment-hero-image-card {
+  min-height: 0;
+  padding: 0;
+  background: #dff3ff;
+}
+
+.appointment-hero-image-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
 .appointment-hero-copy {
   position: relative;
   z-index: 3;
@@ -1765,6 +1773,11 @@ a {
     min-height: 190px;
     padding: 22px;
     border-radius: 24px;
+  }
+
+  .appointment-hero-image-card {
+    min-height: 0;
+    padding: 0;
   }
 
   .appointment-hero-copy {
