@@ -56,6 +56,7 @@ function showScreen(screenId, options) {
   if (splashScreen) splashScreen.classList.add('leaving')
   closeMenu()
   renderCareData()
+  renderBuddyData()
 
   options = options || {}
   if (options.updateHash !== false) {
@@ -105,6 +106,40 @@ function loadCareState() {
 }
 
 var careState = loadCareState()
+var buddyIndex = 0
+
+var buddyProfiles = [
+  {
+    name: 'คุณกานิน, 64',
+    distance: '0.8 กม.',
+    area: 'อยู่ใกล้สวนลุมพินี ประมาณ 0.8 กม.',
+    summary: 'อยู่ใกล้สวนสาธารณะ ชอบเดินตอนเช้าและคุยเรื่องสุขภาพ',
+    tags: ['เดินเล่น', 'สุขภาพ', 'กาแฟเช้า'],
+    time: 'ช่วงเช้า',
+    goal: 'เพื่อนคุยและเพื่อนเดินเล่น',
+    note: 'เดินได้ปกติ แต่ไม่ต้องการกิจกรรมที่หนักมาก'
+  },
+  {
+    name: 'คุณมาลี, 62',
+    distance: '1.4 กม.',
+    area: 'อยู่ใกล้ศูนย์ชุมชน ประมาณ 1.4 กม.',
+    summary: 'ชอบทำอาหารสุขภาพ ฟังเพลง และเข้ากิจกรรมกลุ่ม',
+    tags: ['ทำอาหาร', 'ฟังเพลง', 'กิจกรรมกลุ่ม'],
+    time: 'ช่วงบ่าย',
+    goal: 'เพื่อนคุยและเพื่อนทำกิจกรรม',
+    note: 'ชอบสถานที่เดินทางสะดวกและคนไม่แน่นมาก'
+  },
+  {
+    name: 'คุณอนงค์, 67',
+    distance: '2.1 กม.',
+    area: 'อยู่แถวตลาดเช้า ประมาณ 2.1 กม.',
+    summary: 'ชอบอ่านหนังสือ เดินเล่นเบา ๆ และแลกเปลี่ยนเรื่องดูแลสุขภาพ',
+    tags: ['อ่านหนังสือ', 'เดินเบา ๆ', 'ดูแลสุขภาพ'],
+    time: 'ช่วงเย็น',
+    goal: 'เพื่อนคุยประจำและเพื่อนร่วมกิจกรรมเบา ๆ',
+    note: 'เดินระยะสั้นได้ดี ต้องการกิจกรรมที่มีที่นั่งพัก'
+  }
+]
 
 function saveCareState() {
   try {
@@ -250,6 +285,90 @@ function renderCareData() {
   renderNextAppointment()
 }
 
+function setText(selector, value) {
+  var element = document.querySelector(selector)
+  if (element) element.textContent = value
+}
+
+function renderBuddyData() {
+  var profile = buddyProfiles[buddyIndex % buddyProfiles.length]
+  setText('[data-buddy-name]', profile.name)
+  setText('[data-buddy-distance]', profile.distance)
+  setText('[data-buddy-summary]', profile.summary)
+  setText('[data-profile-name]', profile.name)
+  setText('[data-profile-area]', profile.area)
+  setText('[data-profile-tags]', profile.tags.join(' / '))
+  setText('[data-profile-time]', profile.time)
+  setText('[data-profile-goal]', profile.goal)
+  setText('[data-profile-note]', profile.note)
+
+  var tagContainer = document.querySelector('[data-buddy-tags]')
+  if (tagContainer) {
+    tagContainer.innerHTML = ''
+    for (var i = 0; i < profile.tags.length; i += 1) {
+      var chip = document.createElement('span')
+      chip.textContent = profile.tags[i]
+      tagContainer.appendChild(chip)
+    }
+  }
+}
+
+function nextBuddyProfile() {
+  buddyIndex = (buddyIndex + 1) % buddyProfiles.length
+  renderBuddyData()
+  showToast('เปลี่ยน Buddy แนะนำแล้ว')
+}
+
+function likeBuddyProfile() {
+  renderBuddyData()
+  showToast('จับคู่ Buddy สำเร็จแล้ว')
+  return showScreen('buddy-match')
+}
+
+function appendBuddyMessage(message) {
+  var list = document.querySelector('[data-buddy-chat-list]')
+  if (!list || !message) return
+  var bubble = document.createElement('span')
+  bubble.className = 'outgoing'
+  bubble.textContent = message
+  list.appendChild(bubble)
+  list.scrollTop = list.scrollHeight
+}
+
+function handleBuddyAction(event) {
+  var nextButton = closestElement(event.target, '[data-next-buddy]')
+  if (nextButton) {
+    event.preventDefault()
+    nextBuddyProfile()
+    if (nextButton.getAttribute('data-go')) showScreen(nextButton.getAttribute('data-go'))
+    return true
+  }
+
+  if (closestElement(event.target, '[data-like-buddy]')) {
+    event.preventDefault()
+    likeBuddyProfile()
+    return true
+  }
+
+  var quickMessage = closestElement(event.target, '[data-buddy-message]')
+  if (quickMessage) {
+    event.preventDefault()
+    appendBuddyMessage(quickMessage.getAttribute('data-buddy-message'))
+    return true
+  }
+
+  if (closestElement(event.target, '[data-send-buddy-message]')) {
+    event.preventDefault()
+    var input = document.querySelector('[data-buddy-chat-input]')
+    var message = input ? String(input.value || '').trim() : ''
+    appendBuddyMessage(message || 'สวัสดีครับ')
+    if (input) input.value = ''
+    return true
+  }
+
+  return false
+}
+
 function submitMedicine(form) {
   if (!form) return false
   var formData = new FormData(form)
@@ -339,6 +458,10 @@ function activateNavigationFromEvent(event) {
 }
 
 document.addEventListener('touchend', function (event) {
+  if (handleBuddyAction(event)) {
+    lastTouchNavTime = Date.now()
+    return
+  }
   if (activateNavigationFromEvent(event)) {
     lastTouchNavTime = Date.now()
     return
@@ -347,12 +470,13 @@ document.addEventListener('touchend', function (event) {
 }, { passive: false })
 
 document.addEventListener('click', function (event) {
-  if (Date.now() - lastTouchNavTime < 450 && closestElement(event.target, '[data-go]')) {
+  if (Date.now() - lastTouchNavTime < 450 && closestElement(event.target, '[data-go], [data-next-buddy], [data-like-buddy], [data-buddy-message], [data-send-buddy-message]')) {
     event.preventDefault()
     return
   }
 
   if (handleLoginFallback(event)) return
+  if (handleBuddyAction(event)) return
 
   var menuButton = closestElement(event.target, '[data-open-menu]')
   if (menuButton) {
@@ -388,11 +512,16 @@ document.addEventListener('click', function (event) {
 document.addEventListener('submit', function (event) {
   var medicineForm = closestElement(event.target, '[data-medicine-form]')
   var appointmentForm = closestElement(event.target, '[data-appointment-form]')
-  if (!medicineForm && !appointmentForm) return
+  var buddyActivityForm = closestElement(event.target, '[data-buddy-activity-form]')
+  if (!medicineForm && !appointmentForm && !buddyActivityForm) return
 
   event.preventDefault()
   if (medicineForm) submitMedicine(medicineForm)
   if (appointmentForm) submitAppointment(appointmentForm)
+  if (buddyActivityForm) {
+    showToast('บันทึกกิจกรรม Buddy แล้ว')
+    showScreen('buddy-group')
+  }
 })
 
 document.addEventListener('click', function (event) {
@@ -419,6 +548,7 @@ var appointmentDate = document.querySelector('[data-appointment-form] input[name
 if (appointmentDate && !appointmentDate.value) appointmentDate.value = todayIso()
 
 renderCareData()
+renderBuddyData()
 
 window.setTimeout(function () {
   var initialScreen = window.location.hash.replace('#', '') || 'login'
