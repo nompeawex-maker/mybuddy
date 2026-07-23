@@ -52,6 +52,13 @@ a {
   z-index: 20;
 }
 
+.screen:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 25;
+}
+
 .splash-screen {
   z-index: 8;
   animation: autoHideSplash .35s ease 2s forwards;
@@ -580,11 +587,12 @@ a {
   pointer-events: none;
 }
 
-.screen:not(.active) .home-bottom-nav {
+.screen:not(.active):not(:target) .home-bottom-nav {
   display: none;
 }
 
-.home-screen.active .home-bottom-nav {
+.home-screen.active .home-bottom-nav,
+.home-screen:target .home-bottom-nav {
   display: block;
 }
 
