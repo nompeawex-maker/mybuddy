@@ -5758,6 +5758,123 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.activities-image-screen {
+  --art-h: 100%;
+  background: #eef8ff;
+  overflow: hidden auto;
+}
+
+.activities-image-screen > img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.activities-home-tap {
+  left: 4%;
+  top: 2%;
+  width: 16%;
+  height: 6%;
+}
+
+.activities-add-tap {
+  left: 84%;
+  top: 7.2%;
+  width: 12%;
+  height: 5.8%;
+  border-radius: 18px;
+}
+
+.activities-all-tap {
+  left: 79%;
+  top: 34%;
+  width: 18%;
+  height: 4%;
+}
+
+.activities-filter-all-tap,
+.activities-filter-health-tap,
+.activities-filter-trip-tap,
+.activities-filter-learn-tap,
+.activities-filter-social-tap {
+  top: 37.5%;
+  height: 4.8%;
+  border-radius: 18px;
+}
+
+.activities-filter-all-tap {
+  left: 5%;
+  width: 16%;
+}
+
+.activities-filter-health-tap {
+  left: 23%;
+  width: 16%;
+}
+
+.activities-filter-trip-tap {
+  left: 41%;
+  width: 17%;
+}
+
+.activities-filter-learn-tap {
+  left: 60%;
+  width: 16%;
+}
+
+.activities-filter-social-tap {
+  left: 78%;
+  width: 17%;
+}
+
+.activities-register-1-tap,
+.activities-register-2-tap,
+.activities-register-3-tap {
+  left: 73%;
+  width: 20%;
+  height: 4.6%;
+  border-radius: 18px;
+}
+
+.activities-register-1-tap {
+  top: 52.8%;
+}
+
+.activities-register-2-tap {
+  top: 69.8%;
+}
+
+.activities-register-3-tap {
+  top: 86.7%;
+}
+
+.activities-image-nav {
+  position: absolute;
+  z-index: 70;
+  left: 4%;
+  bottom: 1%;
+  width: 92%;
+  height: 7.8%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: auto;
+}
+
+.activities-image-nav a,
+.activities-image-nav button {
+  border: 0;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 430px) {
   .medicine-image-form input {
     width: 1px;
