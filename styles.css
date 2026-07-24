@@ -5875,6 +5875,67 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.recommend-detail-image-screen {
+  background: #eef8ff;
+  overflow: hidden auto;
+}
+
+.recommend-detail-image-screen > img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.recommend-detail-back-tap {
+  left: 4%;
+  top: 2%;
+  width: 13%;
+  height: 6%;
+  border-radius: 18px;
+}
+
+.recommend-detail-bookmark-tap {
+  left: 77%;
+  top: 2%;
+  width: 9%;
+  height: 6%;
+  border-radius: 18px;
+}
+
+.recommend-detail-share-tap {
+  left: 86%;
+  top: 2%;
+  width: 10%;
+  height: 6%;
+  border-radius: 18px;
+}
+
+.recommend-detail-buddy-tap {
+  left: 30%;
+  top: 91.6%;
+  width: 30%;
+  height: 5.2%;
+  border-radius: 18px;
+}
+
+.recommend-detail-save-tap {
+  left: 62%;
+  top: 91.6%;
+  width: 29%;
+  height: 5.2%;
+  border-radius: 18px;
+}
+
+.recommend-food-family-tap {
+  left: 61%;
+  top: 91.6%;
+  width: 31%;
+  height: 5.2%;
+  border-radius: 18px;
+}
+
 @media (max-width: 430px) {
   .medicine-image-form input {
     width: 1px;

@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}.buddy-swipe-screen{background:#061729;overflow:hidden;touch-action:manipulation}.buddy-full-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}.buddy-zone{position:absolute;z-index:999;display:block;border:0;padding:0;background:rgba(255,255,255,0);border-radius:999px;pointer-events:auto;touch-action:manipulation;text-decoration:none;color:transparent}.buddy-zone-filter{left:2%;top:4%;width:15%;height:9%}.buddy-zone-refresh{right:3%;top:12%;width:17%;height:11%}.buddy-zone-skip{left:0;bottom:10%;width:22%;height:13%}.buddy-zone-message{left:21%;bottom:11%;width:39%;height:11%}.buddy-zone-save{right:21%;bottom:11%;width:18%;height:11%}.buddy-zone-like{right:0;bottom:10%;width:23%;height:13%}.buddy-nav-find,.buddy-nav-match,.buddy-nav-group,.buddy-nav-chat,.buddy-nav-ride{bottom:0;width:20%;height:14%}.buddy-nav-find{left:0}.buddy-nav-match{left:20%}.buddy-nav-group{left:40%}.buddy-nav-chat{left:60%}.buddy-nav-ride{left:80%}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=129" />
+    <link rel="stylesheet" href="styles.css?v=131" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -626,45 +626,22 @@
         <a class="tap-zone profile-nav-profile" href="#profile" data-go="profile" aria-label="โปรไฟล์"></a>
       </section>
 
-      <section class="screen content-screen article-screen" id="recommend-brain-detail" aria-label="กิจกรรมฝึกสมอง">
-        <header class="topbar">
-          <strong>กิจกรรมแนะนำ</strong>
-          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
-        </header>
-        <article class="article-panel">
-          <img class="article-hero-image" src="assets/recommend-brain.jpg" alt="กิจกรรมฝึกสมอง" />
-          <span class="recommend-tag purple">กิจกรรมแนะนำ</span>
-          <h1>5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม</h1>
-          <p>กิจกรรมเล็ก ๆ ที่ทำได้ทุกวันช่วยกระตุ้นความจำ สมาธิ และการคิดเป็นลำดับ เหมาะสำหรับผู้สูงอายุที่อยากดูแลสมองอย่างต่อเนื่อง</p>
-          <div class="article-list">
-            <span>เล่นเกมจับคู่ภาพหรือเรียงสี 10-15 นาที</span>
-            <span>อ่านข่าวสั้น ๆ แล้วเล่าให้คนใกล้ตัวฟัง</span>
-            <span>จดบันทึกสิ่งที่ทำในแต่ละวัน</span>
-            <span>ฝึกคำนวณง่าย ๆ เช่น รวมราคาของในบ้าน</span>
-            <span>ทำงานประดิษฐ์หรือปลูกต้นไม้เบา ๆ</span>
-          </div>
-          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
-        </article>
+      <section class="screen image-screen recommend-detail-image-screen" id="recommend-brain-detail" aria-label="กิจกรรมฝึกสมอง">
+        <img src="assets/recommend-brain-detail.png?v=130" alt="หน้ารายละเอียดกิจกรรมฝึกสมอง" />
+        <a class="tap-zone recommend-detail-back-tap" href="#home" data-go="home" aria-label="กลับหน้าเมนูหลัก"></a>
+        <button class="tap-zone recommend-detail-bookmark-tap" type="button" data-toast="บันทึกคำแนะนำนี้ไว้แล้ว" aria-label="บันทึกไว้"></button>
+        <button class="tap-zone recommend-detail-share-tap" type="button" data-toast="แชร์คำแนะนำนี้แล้ว" aria-label="แชร์"></button>
+        <a class="tap-zone recommend-detail-buddy-tap" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หา Buddy"></a>
+        <button class="tap-zone recommend-detail-save-tap" type="button" data-toast="บันทึกไว้แล้ว" aria-label="บันทึกไว้"></button>
       </section>
 
-      <section class="screen content-screen article-screen" id="recommend-food-detail" aria-label="อาหารสุขภาพ">
-        <header class="topbar">
-          <strong>อาหารสุขภาพ</strong>
-          <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
-        </header>
-        <article class="article-panel">
-          <img class="article-hero-image" src="assets/recommend-food.jpg" alt="อาหารเช้าเพื่อสุขภาพ" />
-          <span class="recommend-tag green">อาหารสุขภาพ</span>
-          <h1>อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก</h1>
-          <p>เลือกอาหารที่นุ่ม ย่อยง่าย และมีโปรตีนพอเหมาะ ช่วยให้เริ่มวันได้สดชื่นและลดภาระการย่อยอาหาร</p>
-          <div class="article-list">
-            <span>โจ๊กข้าวกล้องใส่ไข่และผักอ่อน</span>
-            <span>ข้าวต้มปลา ลดเค็ม เพิ่มขิงเล็กน้อย</span>
-            <span>โยเกิร์ตรสธรรมชาติกับผลไม้เนื้อนุ่ม</span>
-            <span>เต้าหู้นึ่งราดน้ำซุปอ่อน ๆ</span>
-          </div>
-          <button class="primary-action" type="button" data-go="home">กลับหน้าเมนูหลัก</button>
-        </article>
+      <section class="screen image-screen recommend-detail-image-screen" id="recommend-food-detail" aria-label="อาหารสุขภาพ">
+        <img src="assets/recommend-food-detail.png?v=131" alt="หน้ารายละเอียดอาหารสุขภาพ" />
+        <a class="tap-zone recommend-detail-back-tap" href="#home" data-go="home" aria-label="กลับหน้าเมนูหลัก"></a>
+        <button class="tap-zone recommend-detail-bookmark-tap" type="button" data-toast="บันทึกเมนูนี้ไว้แล้ว" aria-label="บันทึกไว้"></button>
+        <button class="tap-zone recommend-detail-share-tap" type="button" data-toast="แชร์เมนูนี้ให้ครอบครัวแล้ว" aria-label="แชร์"></button>
+        <button class="tap-zone recommend-detail-save-tap" type="button" data-toast="บันทึกเมนูนี้ไว้แล้ว" aria-label="บันทึกไว้"></button>
+        <button class="tap-zone recommend-food-family-tap" type="button" data-toast="แชร์เมนูนี้ให้ครอบครัวแล้ว" aria-label="แชร์ให้ครอบครัว"></button>
       </section>
 
       <section class="screen content-screen article-screen" id="recommend-meditation-detail" aria-label="ฝึกสมาธิ">
@@ -849,7 +826,7 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=129"></script>
+    <script src="script.js?v=131"></script>
   </body>
 </html>
 
