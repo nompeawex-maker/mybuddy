@@ -435,8 +435,9 @@ function renderBuddyState() {
   setText('[data-buddy-group-latest]', latestActivity ? latestActivity.title + ' เวลา ' + latestActivity.time : 'ยังไม่มีกิจกรรมที่บันทึก')
   setText('[data-buddy-group-members]', buddyState.matches.length ? buddyState.matches.map(function (item) { return item.name }).join(' / ') + ' / คุณผู้ชาย' : 'คุณกานิน / คุณผู้ชาย')
 
-  var rideList = document.querySelector('[data-buddy-ride-list]')
-  if (rideList) {
+  var rideLists = document.querySelectorAll('[data-buddy-ride-list]')
+  for (var rideListIndex = 0; rideListIndex < rideLists.length; rideListIndex += 1) {
+    var rideList = rideLists[rideListIndex]
     rideList.innerHTML = ''
     if (!buddyState.rides.length) {
       var emptyRide = document.createElement('span')
@@ -874,21 +875,21 @@ var cleanBuddyProfiles = [
   {
     name: 'คุณสมชาย',
     age: '70',
-    image: 'assets/buddy-somchai.jpg?v=110',
+    image: 'assets/buddy-somchai.jpg?v=111',
     distance: 'ใกล้คุณ 1.8 กม.',
     summary: 'ชอบเดินเล่น เล่นหมากรุก คุยเรื่องข่าว และออกกำลังกายเบา ๆ'
   },
   {
     name: 'คุณมาลี',
     age: '66',
-    image: 'assets/buddy-malee.jpg?v=110',
+    image: 'assets/buddy-malee.jpg?v=111',
     distance: 'ใกล้คุณ 3.2 กม.',
     summary: 'ชอบทำอาหาร ปลูกต้นไม้ ทำบุญ และเข้ากิจกรรมกลุ่ม'
   },
   {
     name: 'คุณอรุณี',
     age: '68',
-    image: 'assets/buddy-malee.jpg?v=110',
+    image: 'assets/buddy-malee.jpg?v=111',
     distance: 'เพิ่งเข้าร่วมไม่นานนี้',
     summary: 'ชอบเดินเล่น ทำบุญ ฟังเพลง และคุยตอนเช้า'
   }
