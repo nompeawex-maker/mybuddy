@@ -683,26 +683,18 @@ a {
 
 .home-sos-top-tap {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 4.4%;
+  right: 4.2%;
   z-index: 70;
-  display: grid;
-  width: clamp(46px, 12vw, 58px);
-  height: clamp(46px, 12vw, 58px);
-  place-items: center;
-  overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, .96);
+  width: 15%;
+  height: 7.2%;
+  border: 0;
   border-radius: 999px;
-  color: #fff;
-  font-size: clamp(13px, 3.5vw, 17px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
+  color: transparent;
   text-decoration: none;
-  background:
-    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 28%),
-    linear-gradient(180deg, #ff3131 0%, #e40012 100%);
-  box-shadow: 0 8px 18px rgba(179, 0, 19, .24);
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
   touch-action: manipulation;
 }
 
