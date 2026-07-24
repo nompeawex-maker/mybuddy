@@ -5571,11 +5571,17 @@ a {
   pointer-events: auto;
 }
 
+.medicine-image-nav a,
 .medicine-image-nav button {
   border: 0;
   background: transparent;
   color: transparent;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .appointment-image-screen {
@@ -5669,11 +5675,87 @@ a {
   pointer-events: auto;
 }
 
+.appointment-image-nav a,
 .appointment-image-nav button {
   border: 0;
   background: transparent;
   color: transparent;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.health-image-screen {
+  --art-h: 100%;
+  background: #eef8ff;
+  overflow: hidden auto;
+}
+
+.health-image-screen > img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.health-home-tap {
+  left: 4%;
+  top: 2%;
+  width: 16%;
+  height: 6%;
+}
+
+.health-record-tap {
+  left: 84%;
+  top: 2%;
+  width: 12%;
+  height: 6%;
+  border-radius: 20px;
+}
+
+.health-report-tap {
+  left: 9%;
+  top: 59.8%;
+  width: 82%;
+  height: 4.2%;
+  border-radius: 18px;
+}
+
+.health-stats-tap {
+  left: 9%;
+  top: 85.2%;
+  width: 82%;
+  height: 4.2%;
+  border-radius: 18px;
+}
+
+.health-image-nav {
+  position: absolute;
+  z-index: 70;
+  left: 4%;
+  bottom: 1%;
+  width: 92%;
+  height: 7.8%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: auto;
+}
+
+.health-image-nav a,
+.health-image-nav button {
+  border: 0;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 430px) {
