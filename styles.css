@@ -896,6 +896,8 @@ a {
   cursor: pointer;
   touch-action: manipulation;
   text-align: left;
+  color: #071f49;
+  text-decoration: none;
 }
 
 .recommend-cover {
