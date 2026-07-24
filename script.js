@@ -875,21 +875,21 @@ var cleanBuddyProfiles = [
   {
     name: 'คุณสมชาย',
     age: '70',
-    image: 'assets/buddy-somchai.jpg?v=112',
+    image: 'assets/buddy-somchai.jpg?v=113',
     distance: 'ใกล้คุณ 1.8 กม.',
     summary: 'ชอบเดินเล่น เล่นหมากรุก คุยเรื่องข่าว และออกกำลังกายเบา ๆ'
   },
   {
     name: 'คุณมาลี',
     age: '66',
-    image: 'assets/buddy-malee.jpg?v=112',
+    image: 'assets/buddy-malee.jpg?v=113',
     distance: 'ใกล้คุณ 3.2 กม.',
     summary: 'ชอบทำอาหาร ปลูกต้นไม้ ทำบุญ และเข้ากิจกรรมกลุ่ม'
   },
   {
     name: 'คุณอรุณี',
     age: '68',
-    image: 'assets/buddy-malee.jpg?v=112',
+    image: 'assets/buddy-malee.jpg?v=113',
     distance: 'เพิ่งเข้าร่วมไม่นานนี้',
     summary: 'ชอบเดินเล่น ทำบุญ ฟังเพลง และคุยตอนเช้า'
   }
