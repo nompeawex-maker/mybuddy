@@ -1349,7 +1349,7 @@ a {
 .appointment-hero {
   background:
     linear-gradient(135deg, rgba(0, 151, 117, .9), rgba(30, 145, 255, .86)),
-    url("assets/home-menu.jpg?v=109") center top / cover;
+    url("assets/home-menu.jpg?v=110") center top / cover;
 }
 
 .feature-hero::after {
@@ -3387,13 +3387,15 @@ a {
 }
 
 .buddy-chat-menu-screen,
-.buddy-match-menu-screen {
+.buddy-match-menu-screen,
+.buddy-all-menu-screen {
   background: #082b60;
   overflow: hidden;
 }
 
 .buddy-chat-menu-screen > img,
-.buddy-match-menu-screen > img {
+.buddy-match-menu-screen > img,
+.buddy-all-menu-screen > img {
   display: block;
   width: 100%;
   height: 100%;
@@ -3414,6 +3416,16 @@ a {
 }
 
 .match-zone {
+  position: absolute;
+  z-index: 90;
+  display: block;
+  border: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0);
+  touch-action: manipulation;
+}
+
+.all-zone {
   position: absolute;
   z-index: 90;
   display: block;
@@ -3486,6 +3498,58 @@ a {
   height: 0;
   border-radius: 999px;
   pointer-events: none;
+}
+
+.all-tab-match {
+  left: 5%;
+  top: 9.7%;
+  width: 42%;
+  height: 6%;
+  border-radius: 12px;
+}
+
+.all-tab-recommend {
+  left: 50%;
+  top: 9.7%;
+  width: 45%;
+  height: 6%;
+}
+
+.all-card-1,
+.all-card-2,
+.all-card-3,
+.all-card-4 {
+  width: 43.5%;
+  height: 24.2%;
+  border-radius: 28px;
+}
+
+.all-card-1 {
+  left: 4.5%;
+  top: 22.1%;
+}
+
+.all-card-2 {
+  right: 4.5%;
+  top: 22.1%;
+}
+
+.all-card-3 {
+  left: 4.5%;
+  top: 49.8%;
+}
+
+.all-card-4 {
+  right: 4.5%;
+  top: 49.8%;
+}
+
+.all-cta {
+  left: 9%;
+  top: 80.1%;
+  width: 82%;
+  height: 6.2%;
+  border-radius: 999px;
 }
 
 .chat-zone-shield {
