@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}.buddy-swipe-screen{background:#061729;overflow:hidden;touch-action:manipulation}.buddy-full-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}.buddy-zone{position:absolute;z-index:999;display:block;border:0;padding:0;background:rgba(255,255,255,0);border-radius:999px;pointer-events:auto;touch-action:manipulation;text-decoration:none;color:transparent}.buddy-zone-filter{left:2%;top:4%;width:15%;height:9%}.buddy-zone-refresh{right:3%;top:12%;width:17%;height:11%}.buddy-zone-skip{left:0;bottom:10%;width:22%;height:13%}.buddy-zone-message{left:21%;bottom:11%;width:39%;height:11%}.buddy-zone-save{right:21%;bottom:11%;width:18%;height:11%}.buddy-zone-like{right:0;bottom:10%;width:23%;height:13%}.buddy-nav-find,.buddy-nav-match,.buddy-nav-group,.buddy-nav-chat,.buddy-nav-ride{bottom:0;width:20%;height:14%}.buddy-nav-find{left:0}.buddy-nav-match{left:20%}.buddy-nav-group{left:40%}.buddy-nav-chat{left:60%}.buddy-nav-ride{left:80%}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=123" />
+    <link rel="stylesheet" href="styles.css?v=126" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -122,7 +122,7 @@
       </section>
 
     <section class="screen image-screen medicine-image-screen" id="medicine" aria-label="Medicine schedule">
-      <img src="assets/medicine-menu.png?v=123" alt="หน้าจอกินยา MyBuddy+ CareLog" />
+      <img src="assets/medicine-menu.png?v=126" alt="หน้าจอกินยา MyBuddy+ CareLog" />
       <a class="tap-zone medicine-home-tap" href="#home" data-go="home" aria-label="กลับหน้าเมนูหลัก"></a>
       <button class="tap-zone medicine-time-tap morning active" type="button" data-medicine-time="08:00" aria-label="เลือกเวลาเช้า"></button>
       <button class="tap-zone medicine-time-tap noon" type="button" data-medicine-time="12:00" aria-label="เลือกเวลากลางวัน"></button>
@@ -143,91 +143,29 @@
       </nav>
     </section>
 
-    <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
-      <header class="feature-topbar">
-        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
-        <div>
-          <strong>นัดหมายแพทย์</strong>
-          <span>บันทึกสถานที่ วัน และเวลา</span>
-        </div>
-        <a class="mini-home" href="#home" data-go="home">Home</a>
-      </header>
-
-      <article class="appointment-dashboard">
-        <section class="appointment-hero-new appointment-hero-image-card" aria-label="ภาพรวมระบบนัดหมาย">
-          <img src="assets/appointment-hero.jpg?v=113" alt="นัดหมายแพทย์" />
-        </section>
-
-        <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
-          <div>
-            <span class="appointment-status-badge">ใกล้ถึงนัดหมาย</span>
-            <h2 data-next-appointment-title>ยังไม่มีนัดหมาย</h2>
-            <p data-next-appointment-detail>เพิ่มนัดหมายใหม่เพื่อให้ระบบสรุปข้อมูลสำคัญไว้ตรงนี้</p>
-          </div>
-          <div class="appointment-date-tile">
-            <small data-next-appointment-month>--</small>
-            <strong data-next-appointment-day>--</strong>
-          </div>
-        </section>
-
-        <section class="appointment-tools appointment-tools-image" aria-label="เครื่องมือช่วยจัดการ">
-          <img src="assets/appointment-tools.jpg?v=113" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
-          <button class="appointment-tool-hit tool-documents" type="button" data-go="appointment-documents" aria-label="เอกสารนัดหมาย"></button>
-          <button class="appointment-tool-hit tool-history" type="button" data-go="appointment-history" aria-label="ประวัติการนัด"></button>
-          <button class="appointment-tool-hit tool-prep" type="button" data-go="appointment-prep" aria-label="สิ่งที่ต้องเตรียม"></button>
-          <button class="appointment-tool-hit tool-contact" type="button" data-go="appointment-contact" aria-label="ติดต่อเจ้าหน้าที่"></button>
-        </section>
-
-        <article class="feature-panel appointment-form-panel" id="appointment-form-panel">
-          <div class="section-heading">
-            <h2>เพิ่มนัดหมายแพทย์</h2>
-            <span>เลือกข้อมูลให้ครบ</span>
-          </div>
-          <form class="demo-form appointment-form" data-appointment-form onsubmit="return window.submitAppointmentForm(this);">
-            <label>โรงพยาบาล
-              <select name="place">
-                <option value="โรงพยาบาลรามาธิบดี">โรงพยาบาลรามาธิบดี</option>
-                <option value="โรงพยาบาลศิริราช">โรงพยาบาลศิริราช</option>
-                <option value="โรงพยาบาลจุฬาลงกรณ์">โรงพยาบาลจุฬาลงกรณ์</option>
-                <option value="โรงพยาบาลใกล้บ้าน">โรงพยาบาลใกล้บ้าน</option>
-              </select>
-            </label>
-            <label>แผนกที่ต้องการพบ
-              <select name="department">
-                <option value="แผนกโรคหัวใจ">แผนกโรคหัวใจ</option>
-                <option value="แผนกอายุรกรรม">แผนกอายุรกรรม</option>
-                <option value="แผนกกระดูกและข้อ">แผนกกระดูกและข้อ</option>
-                <option value="แผนกเวชศาสตร์ผู้สูงอายุ">แผนกเวชศาสตร์ผู้สูงอายุ</option>
-                <option value="ปรึกษาแพทย์ออนไลน์">ปรึกษาแพทย์ออนไลน์</option>
-              </select>
-            </label>
-            <div class="form-two-col">
-              <label>วันที่ <input name="date" type="date" /></label>
-              <label>เวลา
-                <select name="time">
-                  <option value="08:00">08:00 น.</option>
-                  <option value="09:00" selected>09:00 น.</option>
-                  <option value="10:30">10:30 น.</option>
-                  <option value="13:00">13:00 น.</option>
-                  <option value="15:30">15:30 น.</option>
-                </select>
-              </label>
-            </div>
-            <label>ช่องทางรับบริการ
-              <select name="channel">
-                <option value="เดินทางไปโรงพยาบาล">เดินทางไปโรงพยาบาล</option>
-                <option value="ปรึกษาแพทย์ออนไลน์">ปรึกษาแพทย์ออนไลน์</option>
-                <option value="ให้ครอบครัวพาไป">ให้ครอบครัวพาไป</option>
-              </select>
-            </label>
-            <label>หมายเหตุ
-              <textarea name="note" rows="3" placeholder="เช่น ตรวจเลือดประจำปี กรุณางดน้ำและอาหารก่อนพบแพทย์"></textarea>
-            </label>
-            <button class="primary-action" type="submit" data-save-appointment>บันทึกนัดหมาย</button>
-          </form>
-        </article>
-      </article>
-      <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
+    <section class="screen image-screen appointment-image-screen" id="appointments" aria-label="Doctor appointments">
+      <img src="assets/appointment-menu.png?v=126" alt="หน้าจอนัดหมายหมอ MyBuddy+ CareLog" />
+      <form class="appointment-image-form" id="appointment-quick-form" data-appointment-form>
+        <input name="place" type="hidden" value="โรงพยาบาลศิริราช" />
+        <input name="department" type="hidden" value="แผนกอายุรกรรม" />
+        <input name="date" type="hidden" />
+        <input name="time" type="hidden" value="10:30" />
+        <input name="channel" type="hidden" value="เดินทางไปโรงพยาบาล" />
+        <input name="note" type="hidden" value="นัดหมายถัดไปจากเมนูนัดหมายหมอ" />
+      </form>
+      <button class="tap-zone appointment-top-add-tap" type="submit" form="appointment-quick-form" aria-label="เพิ่มนัดหมายหมอ"></button>
+      <button class="tap-zone appointment-see-all-tap" type="button" data-go="appointment-history" aria-label="ดูนัดหมายทั้งหมด"></button>
+      <button class="tap-zone appointment-first-tap" type="button" data-toast="เปิดรายละเอียดตรวจสุขภาพประจำปี" aria-label="ตรวจสุขภาพประจำปี"></button>
+      <button class="tap-zone appointment-second-tap" type="button" data-toast="เปิดรายละเอียดพบแพทย์เบาหวาน" aria-label="พบแพทย์เบาหวาน"></button>
+      <button class="tap-zone appointment-add-card-tap" type="submit" form="appointment-quick-form" aria-label="เพิ่มหรือแก้ไขนัดหมาย"></button>
+      <button class="tap-zone appointment-alert-tap" type="button" data-toast="เปิดแจ้งเตือนนัดหมายผ่าน LINE และครอบครัวแล้ว" aria-label="การแจ้งเตือน"></button>
+      <button class="tap-zone appointment-ride-tap" type="button" data-go="buddy-ride" aria-label="รถไปโรงพยาบาล"></button>
+      <nav class="appointment-image-nav" aria-label="เมนูล่างนัดหมายหมอ">
+        <button type="button" data-go="buddy-discovery">Buddy</button>
+        <button type="button" data-go="activities">กิจกรรม</button>
+        <button type="button" data-go="health">สุขภาพ</button>
+        <button type="button" data-go="profile">โปรไฟล์</button>
+      </nav>
     </section>
 
       <section class="screen content-screen appointment-subscreen" id="appointment-documents" aria-label="เอกสารนัดหมาย">
@@ -669,7 +607,7 @@
       </section>
 
       <section class="screen image-screen profile-image-screen" id="profile" aria-label="โปรไฟล์">
-        <img src="assets/profile-menu.png?v=121" alt="หน้าจอโปรไฟล์ MyBuddy+ CareLog" />
+        <img src="assets/profile-menu.png?v=126" alt="หน้าจอโปรไฟล์ MyBuddy+ CareLog" />
         <button class="tap-zone profile-settings-tap" type="button" data-toast="เปิดหน้าตั้งค่าแล้ว" aria-label="ตั้งค่า"></button>
         <button class="tap-zone profile-private-tap" type="button" data-toast="เปิดข้อมูลส่วนตัวแล้ว" aria-label="ข้อมูลส่วนตัว"></button>
         <a class="tap-zone profile-health-tap" href="#health" data-go="health" aria-label="สุขภาพของฉัน"></a>
@@ -909,7 +847,7 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=123"></script>
+    <script src="script.js?v=126"></script>
   </body>
 </html>
 

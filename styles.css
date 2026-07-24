@@ -5545,26 +5545,18 @@ a {
 .medicine-image-form {
   position: absolute;
   z-index: 70;
-  left: 18%;
-  top: 53.6%;
-  width: 62%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 112px;
-  gap: 10px;
-  pointer-events: auto;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .medicine-image-form input {
-  min-width: 0;
-  height: 44px;
-  padding: 0 12px;
-  border: 1px solid rgba(0, 115, 255, .26);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, .92);
-  color: #06275d;
-  font-size: 15px;
-  font-weight: 800;
-  box-shadow: 0 8px 18px rgba(0, 88, 180, .08);
+  width: 1px;
+  height: 1px;
 }
 
 .medicine-image-nav {
@@ -5586,18 +5578,107 @@ a {
   cursor: pointer;
 }
 
-@media (max-width: 430px) {
-  .medicine-image-form {
-    left: 17%;
-    top: 53.1%;
-    width: 64%;
-    grid-template-columns: minmax(0, 1fr) 96px;
-    gap: 8px;
-  }
+.appointment-image-screen {
+  --art-h: 100%;
+  background: #eef8ff;
+  overflow: hidden auto;
+}
 
+.appointment-image-screen > img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.appointment-image-form {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.appointment-top-add-tap {
+  left: 83%;
+  top: 7.8%;
+  width: 12%;
+  height: 5.6%;
+  border-radius: 20px;
+}
+
+.appointment-see-all-tap {
+  left: 78%;
+  top: 42.2%;
+  width: 18%;
+  height: 3.2%;
+}
+
+.appointment-first-tap {
+  left: 6%;
+  top: 46.2%;
+  width: 88%;
+  height: 8.6%;
+  border-radius: 24px;
+}
+
+.appointment-second-tap {
+  left: 6%;
+  top: 55.1%;
+  width: 88%;
+  height: 8.6%;
+  border-radius: 24px;
+}
+
+.appointment-add-card-tap {
+  left: 6%;
+  top: 66%;
+  width: 88%;
+  height: 6.5%;
+  border-radius: 24px;
+}
+
+.appointment-alert-tap {
+  left: 6%;
+  top: 74.5%;
+  width: 88%;
+  height: 6.5%;
+  border-radius: 24px;
+}
+
+.appointment-ride-tap {
+  left: 6%;
+  top: 83%;
+  width: 88%;
+  height: 6.5%;
+  border-radius: 24px;
+}
+
+.appointment-image-nav {
+  position: absolute;
+  z-index: 70;
+  left: 4%;
+  bottom: 1.2%;
+  width: 92%;
+  height: 7.6%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: auto;
+}
+
+.appointment-image-nav button {
+  border: 0;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 430px) {
   .medicine-image-form input {
-    height: 40px;
-    font-size: 13px;
-    border-radius: 10px;
+    width: 1px;
+    height: 1px;
   }
 }
