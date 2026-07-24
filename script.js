@@ -812,6 +812,19 @@ document.addEventListener('click', function (event) {
     return
   }
 
+  var medicineTimeButton = closestElement(event.target, '[data-medicine-time]')
+  if (medicineTimeButton) {
+    event.preventDefault()
+    var selectedTime = medicineTimeButton.getAttribute('data-medicine-time') || '09:00'
+    var medicineTimeInput = document.querySelector('[data-medicine-form] input[name="time"]')
+    var timeButtons = document.querySelectorAll('[data-medicine-time]')
+    for (var t = 0; t < timeButtons.length; t += 1) timeButtons[t].classList.remove('active')
+    medicineTimeButton.classList.add('active')
+    if (medicineTimeInput) medicineTimeInput.value = selectedTime
+    showToast('เลือกเวลา ' + selectedTime + ' แล้ว')
+    return
+  }
+
   var passwordButton = closestElement(event.target, '[data-toggle-password]')
   if (passwordButton) {
     event.preventDefault()

@@ -7,7 +7,7 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}.buddy-swipe-screen{background:#061729;overflow:hidden;touch-action:manipulation}.buddy-full-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}.buddy-zone{position:absolute;z-index:999;display:block;border:0;padding:0;background:rgba(255,255,255,0);border-radius:999px;pointer-events:auto;touch-action:manipulation;text-decoration:none;color:transparent}.buddy-zone-filter{left:2%;top:4%;width:15%;height:9%}.buddy-zone-refresh{right:3%;top:12%;width:17%;height:11%}.buddy-zone-skip{left:0;bottom:10%;width:22%;height:13%}.buddy-zone-message{left:21%;bottom:11%;width:39%;height:11%}.buddy-zone-save{right:21%;bottom:11%;width:18%;height:11%}.buddy-zone-like{right:0;bottom:10%;width:23%;height:13%}.buddy-nav-find,.buddy-nav-match,.buddy-nav-group,.buddy-nav-chat,.buddy-nav-ride{bottom:0;width:20%;height:14%}.buddy-nav-find{left:0}.buddy-nav-match{left:20%}.buddy-nav-group{left:40%}.buddy-nav-chat{left:60%}.buddy-nav-ride{left:80%}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=119" />
+    <link rel="stylesheet" href="styles.css?v=120" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
@@ -121,59 +121,124 @@
         </article>
       </section>
 
-    <section class="screen content-screen care-feature medicine-feature" id="medicine" aria-label="Medicine schedule">
-      <header class="feature-topbar">
-        <a class="round-back" href="#home" data-go="home" aria-label="กลับหน้าเมนู">‹</a>
-        <div>
-          <strong>ระบบกินยา</strong>
-          <span>จัดเวลาเตือนและดูรายการยา</span>
-        </div>
-        <a class="mini-home" href="#home" data-go="home">Home</a>
+    <section class="screen content-screen care-feature medicine-feature medicine-menu-screen" id="medicine" aria-label="Medicine schedule">
+      <header class="medicine-menu-header">
+        <button class="medicine-logo-button" type="button" data-go="home" aria-label="กลับหน้าเมนูหลัก">
+          <span>M+</span>
+        </button>
+        <h1>กินยา</h1>
       </header>
 
-      <article class="feature-hero medicine-hero">
-        <div class="feature-hero-copy">
-          <span class="feature-badge">💊 CareLog</span>
-          <h1>ไม่ลืมกินยา<br>ตรงเวลา</h1>
-          <p>เพิ่มชื่อยาและเวลาที่ต้องเตือน ระบบจะนำไปแสดงในช่องการแจ้งเตือนหน้าเมนูหลัก</p>
+      <article class="medicine-summary-card">
+        <div class="medicine-summary-art" aria-hidden="true">
+          <span class="medicine-capsule"></span>
+          <span class="medicine-tablet"></span>
+          <span class="medicine-shield">+</span>
         </div>
-        <div class="feature-hero-art" aria-hidden="true">
-          <span class="hero-pill">💊</span>
-          <span class="hero-clock">⏰</span>
+        <div class="medicine-summary-copy">
+          <strong>ยาวันนี้</strong>
+          <span class="medicine-complete">ครบ 2/3 รายการ</span>
+        </div>
+        <div class="medicine-next-box">
+          <span class="medicine-clock-icon"></span>
+          <small>มื้อต่อไป</small>
+          <strong>18:00 น.</strong>
         </div>
       </article>
 
-      <section class="quick-grid" aria-label="คำแนะนำการกินยา">
-        <div class="info-chip">
-          <strong>ก่อนอาหาร</strong>
-          <span>บันทึกเวลาให้ชัดเจน</span>
-        </div>
-        <div class="info-chip">
-          <strong>หลังอาหาร</strong>
-          <span>เหมาะกับยาประจำ</span>
-        </div>
+      <section class="medicine-section-title">
+        <span class="medicine-title-icon pill"></span>
+        <h2>รายการยา</h2>
       </section>
 
-      <article class="feature-panel">
-        <div class="section-heading">
-          <h2>เพิ่มเวลาเตือน</h2>
-          <span>ข้อมูลตัวอย่าง</span>
+      <article class="medicine-list-card">
+        <div class="medicine-row">
+          <span class="medicine-row-icon heart"></span>
+          <div>
+            <strong>ยาความดัน</strong>
+            <small>1 เม็ด</small>
+          </div>
+          <div class="medicine-time-tags">
+            <span>08:00</span>
+            <span>20:00</span>
+          </div>
+          <span class="medicine-row-status done">กินแล้ว</span>
+          <button type="button" class="medicine-edit-button" data-toast="เปิดแก้ไขยาความดัน">แก้ไข</button>
+          <button type="button" class="medicine-check-button checked" data-toast="บันทึกว่ากินยาแล้ว">เสร็จ</button>
         </div>
-        <form class="demo-form" data-medicine-form onsubmit="return window.submitMedicineForm(this);">
+        <div class="medicine-row">
+          <span class="medicine-row-icon bottle"></span>
+          <div>
+            <strong>วิตามินบีรวม</strong>
+            <small>1 เม็ด</small>
+          </div>
+          <div class="medicine-time-tags wide">
+            <span>หลังอาหารเช้า</span>
+          </div>
+          <span class="medicine-row-status wait">รอกิน</span>
+          <button type="button" class="medicine-edit-button" data-toast="เปิดแก้ไขวิตามินบีรวม">แก้ไข</button>
+          <button type="button" class="medicine-check-button" data-toast="บันทึกว่ากินยาแล้ว">เสร็จ</button>
+        </div>
+        <button class="medicine-view-all" type="button" data-toast="เปิดรายการยาทั้งหมด">ดูยาทั้งหมด</button>
+      </article>
+
+      <article class="medicine-add-card">
+        <button class="medicine-add-head" type="button" data-toast="กรอกข้อมูลยาในช่องด้านล่าง">
+          <span class="medicine-add-icon"></span>
+          <span><strong>เพิ่มหรือแก้ไขยา</strong><small>กรอกชื่อยา ขนาดยา และคำแนะนำ</small></span>
+        </button>
+        <form class="demo-form medicine-inline-form" id="medicine-quick-form" data-medicine-form onsubmit="return window.submitMedicineForm(this);">
           <label>ชื่อยา <input name="name" type="text" value="ยาความดัน" autocomplete="off" /></label>
           <label>เวลา <input name="time" type="time" value="09:00" /></label>
-          <button class="primary-action" type="submit" data-save-medicine>บันทึกเวลาเตือน</button>
         </form>
       </article>
 
-      <article class="feature-panel list-panel">
+      <section class="medicine-section-title">
+        <span class="medicine-title-icon clock"></span>
+        <h2>เลือกเวลากินยา</h2>
+      </section>
+
+      <section class="medicine-time-grid" aria-label="เลือกเวลากินยา">
+        <button class="active" type="button" data-medicine-time="08:00"><span class="time-icon sun"></span><strong>เช้า</strong><small>08:00</small></button>
+        <button type="button" data-medicine-time="12:00"><span class="time-icon day"></span><strong>กลางวัน</strong><small>12:00</small></button>
+        <button type="button" data-medicine-time="18:00"><span class="time-icon evening"></span><strong>เย็น</strong><small>18:00</small></button>
+        <button type="button" data-medicine-time="21:00"><span class="time-icon night"></span><strong>ก่อนนอน</strong><small>21:00</small></button>
+      </section>
+
+      <section class="medicine-section-title">
+        <span class="medicine-title-icon bell"></span>
+        <h2>การแจ้งเตือน</h2>
+      </section>
+
+      <article class="medicine-alert-card">
+        <button type="button" data-toast="เปิดแจ้งเตือนผ่าน LINE แล้ว">
+          <span class="medicine-alert-icon line">LINE</span>
+          <span><strong>แจ้งเตือนผ่าน LINE</strong><small>ส่งการแจ้งเตือนเมื่อถึงเวลากินยา</small></span>
+          <i class="medicine-toggle on"></i>
+        </button>
+        <button type="button" data-toast="เปิดแจ้งครอบครัวแล้ว">
+          <span class="medicine-alert-icon family"></span>
+          <span><strong>แจ้งครอบครัวเมื่อไม่ได้กินยา</strong><small>แจ้งเตือนสมาชิกในครอบครัว</small></span>
+          <i class="medicine-toggle on"></i>
+        </button>
+      </article>
+
+      <button class="medicine-save-main" type="submit" form="medicine-quick-form" data-save-medicine>บันทึกยา</button>
+
+      <article class="feature-panel list-panel medicine-saved-panel">
         <div class="section-heading">
           <h2>รายการที่บันทึก</h2>
           <span>ขึ้นในหน้า Home</span>
         </div>
         <div class="status-list feature-list" data-medicine-list></div>
       </article>
-      <a class="feature-bottom-home" href="#home" data-go="home">กลับหน้าเมนูหลัก</a>
+
+      <nav class="profile-bottom-nav medicine-bottom-nav" aria-label="เมนูล่างกินยา">
+        <button type="button" data-go="buddy-discovery"><span class="nav-icon buddy"></span><strong>Buddy</strong></button>
+        <button type="button" data-go="activities"><span class="nav-icon activity"></span><strong>กิจกรรม</strong></button>
+        <button class="active" type="button" data-go="health"><span class="nav-icon health"></span><strong>สุขภาพ</strong></button>
+        <button type="button" data-go="profile"><span class="nav-icon profile"></span><strong>โปรไฟล์</strong></button>
+      </nav>
     </section>
 
     <section class="screen content-screen care-feature appointment-feature" id="appointments" aria-label="Doctor appointments">
@@ -1026,7 +1091,8 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=119"></script>
+    <script src="script.js?v=120"></script>
   </body>
 </html>
+
 
