@@ -9,6 +9,18 @@ var lastTouchNavTime = 0
 var buddySwipeLock = false
 var buddyDrag = null
 
+var screenAliases = {
+  matches: 'buddy-match',
+  match: 'buddy-match',
+  'buddy-matches': 'buddy-match',
+  'buddy-match-list': 'buddy-match',
+  'buddy-all-matches': 'buddy-match'
+}
+
+function normalizeScreenId(screenId) {
+  return screenAliases[screenId] || screenId
+}
+
 var text = {
   today: '\u0e27\u0e31\u0e19\u0e19\u0e35\u0e49',
   saveError: '\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e43\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49',
@@ -48,6 +60,7 @@ function openMenu() {
 }
 
 function showScreen(screenId, options) {
+  screenId = normalizeScreenId(screenId)
   var target = document.getElementById(screenId)
   if (!target) return false
 
@@ -742,7 +755,7 @@ function activateNavigationFromEvent(event) {
   if (!nav) return false
 
   event.preventDefault()
-  var nextScreen = nav.getAttribute('data-go') || 'home'
+  var nextScreen = normalizeScreenId(nav.getAttribute('data-go') || 'home')
   window.location.hash = nextScreen === 'login' ? '' : nextScreen
   showScreen(nextScreen)
   return true
@@ -861,21 +874,21 @@ var cleanBuddyProfiles = [
   {
     name: 'คุณสมชาย',
     age: '70',
-    image: 'assets/buddy-somchai.png?v=94',
+    image: 'assets/buddy-somchai.jpg?v=109',
     distance: 'ใกล้คุณ 1.8 กม.',
     summary: 'ชอบเดินเล่น เล่นหมากรุก คุยเรื่องข่าว และออกกำลังกายเบา ๆ'
   },
   {
     name: 'คุณมาลี',
     age: '66',
-    image: 'assets/buddy-malee.png?v=94',
+    image: 'assets/buddy-malee.jpg?v=109',
     distance: 'ใกล้คุณ 3.2 กม.',
     summary: 'ชอบทำอาหาร ปลูกต้นไม้ ทำบุญ และเข้ากิจกรรมกลุ่ม'
   },
   {
     name: 'คุณอรุณี',
     age: '68',
-    image: 'assets/buddy-malee.png?v=94',
+    image: 'assets/buddy-malee.jpg?v=109',
     distance: 'เพิ่งเข้าร่วมไม่นานนี้',
     summary: 'ชอบเดินเล่น ทำบุญ ฟังเพลง และคุยตอนเช้า'
   }

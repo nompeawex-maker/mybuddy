@@ -7,23 +7,23 @@
     <style>
       *{box-sizing:border-box}html,body{min-height:100%;margin:0;background:#0488ff}body{display:grid;place-items:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{position:relative;width:min(100vw,calc(100svh * 1080 / 2400));height:min(100svh,calc(100vw * 2400 / 1080));overflow:hidden;background:#068bff}.screen{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#068bff}.screen.active,.screen:target{visibility:visible;opacity:1;pointer-events:auto;z-index:20}.splash-screen{z-index:30;animation:criticalSplash .35s ease 2s forwards}.login-screen{visibility:visible;opacity:1;pointer-events:auto;z-index:1}.splash-screen.leaving{display:none;visibility:hidden;opacity:0;pointer-events:none}.image-screen{--art-h:100%;overflow:hidden}.image-screen>img,.splash-screen>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;user-select:none;pointer-events:none}.tap-zone{position:absolute;z-index:60;display:block;border:0;background:transparent;touch-action:manipulation}.menu-tap{top:calc(var(--art-h)*.012);right:2.5%;width:14%;height:calc(var(--art-h)*.07)}.start-tap{left:10%;top:calc(var(--art-h)*.704);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.family-tap{left:10%;top:calc(var(--art-h)*.795);width:80%;height:calc(var(--art-h)*.092);border-radius:999px}.line-submit-tap{left:10.7%;top:calc(var(--art-h)*.63);width:78.6%;height:calc(var(--art-h)*.066)}.buddy-swipe-screen{background:#061729;overflow:hidden;touch-action:manipulation}.buddy-full-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}.buddy-zone{position:absolute;z-index:999;display:block;border:0;padding:0;background:rgba(255,255,255,0);border-radius:999px;pointer-events:auto;touch-action:manipulation;text-decoration:none;color:transparent}.buddy-zone-filter{left:2%;top:4%;width:15%;height:9%}.buddy-zone-refresh{right:3%;top:12%;width:17%;height:11%}.buddy-zone-skip{left:0;bottom:10%;width:22%;height:13%}.buddy-zone-message{left:21%;bottom:11%;width:39%;height:11%}.buddy-zone-save{right:21%;bottom:11%;width:18%;height:11%}.buddy-zone-like{right:0;bottom:10%;width:23%;height:13%}.buddy-nav-find,.buddy-nav-match,.buddy-nav-group,.buddy-nav-chat,.buddy-nav-ride{bottom:0;width:20%;height:14%}.buddy-nav-find{left:0}.buddy-nav-match{left:20%}.buddy-nav-group{left:40%}.buddy-nav-chat{left:60%}.buddy-nav-ride{left:80%}@keyframes criticalSplash{to{visibility:hidden;opacity:0;pointer-events:none}}
     </style>
-    <link rel="stylesheet" href="styles.css?v=105" />
+    <link rel="stylesheet" href="styles.css?v=109" />
   </head>
   <body>
     <main class="app-shell" aria-label="NEOMYBuddy">
       <section class="screen splash-screen active" id="splash" aria-label="หน้าก่อนเข้าแอป">
-        <img src="assets/splash.png" alt="MyBuddy+ CareLog" />
+        <img src="assets/splash.jpg" alt="MyBuddy+ CareLog" />
       </section>
 
       <section class="screen image-screen login-screen" id="login" aria-label="หน้าแรกหรือล็อกอิน">
-        <img src="assets/landing.png" alt="MyBuddy+ หาเพื่อนวัยเดียวกันและดูแลสุขภาพ" />
+        <img src="assets/landing.jpg" alt="MyBuddy+ หาเพื่อนวัยเดียวกันและดูแลสุขภาพ" />
         <a class="tap-zone menu-tap" href="#menu-page" data-go="menu-page" aria-label="เปิดเมนู"></a>
         <a class="tap-zone start-tap" href="#line-login" data-go="line-login" aria-label="เริ่มต้นใช้งาน"></a>
         <a class="tap-zone family-tap" href="#family-login" data-go="family-login" aria-label="สำหรับครอบครัว"></a>
       </section>
 
       <section class="screen image-screen line-login-screen" id="line-login" aria-label="หน้าเข้าสู่ระบบด้วย LINE">
-        <img src="assets/line-login.png" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
+        <img src="assets/line-login.jpg" alt="เข้าสู่ระบบ MyBuddy+ ด้วย LINE" />
         <button class="tap-zone line-logo-back-tap" type="button" data-go="login" aria-label="ย้อนกลับหน้าแรก"></button>
         <a class="tap-zone line-submit-tap" href="#line-confirm" data-go="line-confirm" aria-label="เข้าสู่ระบบด้วย LINE"></a>
         <a class="tap-zone line-help-tap" href="#support" data-go="support" aria-label="ติดต่อเรา"></a>
@@ -54,7 +54,7 @@
         </div>
       </section>
       <section class="screen image-screen family-login-screen" id="family-login" aria-label="เข้าสู่ระบบสำหรับครอบครัว">
-        <img src="assets/family-login.png" alt="เข้าสู่ระบบ MyBuddy+ สำหรับครอบครัว" />
+        <img src="assets/family-login.jpg" alt="เข้าสู่ระบบ MyBuddy+ สำหรับครอบครัว" />
         <button class="tap-zone family-menu-tap" type="button" data-go="login" aria-label="ย้อนกลับหน้าแรก"></button>
         <input class="image-input family-user-input" type="text" aria-label="ชื่อผู้ใช้หรืออีเมล" autocomplete="username" />
         <input class="image-input family-password-input" type="password" aria-label="รหัสผ่าน" autocomplete="current-password" />
@@ -67,14 +67,14 @@
       </section>
 
       <section class="screen image-screen family-line-login-screen" id="family-line-login" aria-label="Family LINE Login">
-        <img src="assets/family-line-login.png" alt="Family LINE Login" />
+        <img src="assets/family-line-login.jpg" alt="Family LINE Login" />
         <button class="tap-zone family-line-menu-tap" type="button" data-go="family-login" aria-label="Back"></button>
         <a class="tap-zone family-line-approve-tap" href="#family-dashboard" data-go="family-dashboard" aria-label="Allow"></a>
         <a class="tap-zone family-line-cancel-tap" href="#family-login" data-go="family-login" aria-label="Cancel"></a>
       </section>
 
       <section class="screen image-screen home-screen" id="home" aria-label="MyBuddy+ home">
-        <img class="home-main-image" src="assets/home-menu.png?v=91" alt="หน้าเมนูหลัก MyBuddy+" />
+        <img class="home-main-image" src="assets/home-menu.jpg?v=109" alt="หน้าเมนูหลัก MyBuddy+" />
         <span class="home-menu-cover" aria-hidden="true"></span>
         <button class="tap-zone home-alert-tap" type="button" data-go="notifications" aria-label="เปิดการแจ้งเตือน"></button>
         <a class="tap-zone home-med-tap" href="#medicine" data-go="medicine" onclick="window.showScreen('medicine'); return false;" aria-label="เปิดหน้ากินยา"></a>
@@ -91,7 +91,7 @@
           </div>
           <div class="recommend-list">
             <button class="recommend-card" type="button" data-go="recommend-brain-detail">
-              <span class="recommend-cover"><img src="assets/recommend-brain.png" alt="" /></span>
+              <span class="recommend-cover"><img src="assets/recommend-brain.jpg" alt="" /></span>
               <span class="recommend-body">
                 <span class="recommend-tag purple">กิจกรรมแนะนำ</span>
                 <strong>5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม</strong>
@@ -99,7 +99,7 @@
               </span>
             </button>
             <button class="recommend-card" type="button" data-go="recommend-food-detail">
-              <span class="recommend-cover"><img src="assets/recommend-food.png" alt="" /></span>
+              <span class="recommend-cover"><img src="assets/recommend-food.jpg" alt="" /></span>
               <span class="recommend-body">
                 <span class="recommend-tag green">อาหารสุขภาพ</span>
                 <strong>อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก</strong>
@@ -107,7 +107,7 @@
               </span>
             </button>
             <button class="recommend-card" type="button" data-go="recommend-meditation-detail">
-              <span class="recommend-cover"><img src="assets/recommend-meditation.png" alt="" /></span>
+              <span class="recommend-cover"><img src="assets/recommend-meditation.jpg" alt="" /></span>
               <span class="recommend-body">
                 <span class="recommend-tag violet">ฝึกสมาธิ</span>
                 <strong>วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี</strong>
@@ -117,7 +117,7 @@
           </div>
         </section>
         <nav class="home-bottom-nav" aria-label="เมนูล่าง">
-          <img src="assets/home-bottom-nav.png" alt="" />
+          <img src="assets/home-bottom-nav.jpg" alt="" />
           <a class="bottom-nav-hit bottom-buddy" href="#buddy-discovery" data-go="buddy-discovery" aria-label="Buddy"></a>
           <a class="bottom-nav-hit bottom-activities" href="#activities" data-go="activities" aria-label="กิจกรรม"></a>
           <a class="bottom-nav-hit bottom-sos" href="#sos" data-go="sos" aria-label="SOS"></a>
@@ -206,7 +206,7 @@
 
       <article class="appointment-dashboard">
         <section class="appointment-hero-new appointment-hero-image-card" aria-label="ภาพรวมระบบนัดหมาย">
-          <img src="assets/appointment-hero.png?v=91" alt="นัดหมายแพทย์" />
+          <img src="assets/appointment-hero.jpg?v=109" alt="นัดหมายแพทย์" />
         </section>
 
         <section class="appointment-next-card" aria-label="นัดหมายล่าสุด">
@@ -222,7 +222,7 @@
         </section>
 
         <section class="appointment-tools appointment-tools-image" aria-label="เครื่องมือช่วยจัดการ">
-          <img src="assets/appointment-tools.png?v=91" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
+          <img src="assets/appointment-tools.jpg?v=109" alt="เอกสารนัดหมาย ประวัติการนัด สิ่งที่ต้องเตรียม ติดต่อเจ้าหน้าที่" />
           <button class="appointment-tool-hit tool-documents" type="button" data-go="appointment-documents" aria-label="เอกสารนัดหมาย"></button>
           <button class="appointment-tool-hit tool-history" type="button" data-go="appointment-history" aria-label="ประวัติการนัด"></button>
           <button class="appointment-tool-hit tool-prep" type="button" data-go="appointment-prep" aria-label="สิ่งที่ต้องเตรียม"></button>
@@ -410,35 +410,35 @@
       </section>
 
       <section class="screen image-screen buddy-swipe-screen" id="buddy-discovery" aria-label="หาเพื่อน Buddy">
-        <img class="buddy-full-card-image" src="assets/buddy-somchai.png?v=94" alt="หน้าปัดหาเพื่อน Buddy" data-buddy-card-image />
-        <a class="buddy-zone buddy-zone-home" href="#home" aria-label="กลับหน้า Home"></a>
-        <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery" aria-label="ตัวกรอง"></a>
-        <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery-2" aria-label="ดูคนถัดไป"></a>
-        <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery-2" aria-label="ข้าม"></a>
-        <a class="buddy-zone buddy-zone-message" href="#buddy-chat" aria-label="ส่งข้อความ"></a>
-        <a class="buddy-zone buddy-zone-save" href="#buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
-        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery-2" aria-label="ดู Buddy คนถัดไป"></a>
-        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery" aria-label="หาเพื่อน"></a>
-        <a class="buddy-zone buddy-nav-match" href="#buddy-match" aria-label="แมตช์"></a>
-        <a class="buddy-zone buddy-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
-        <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" aria-label="แชท"></a>
-        <a class="buddy-zone buddy-nav-ride" href="#buddy-ride" aria-label="รถ"></a>
+        <img class="buddy-full-card-image" src="assets/buddy-somchai.jpg?v=109" alt="หน้าปัดหาเพื่อน Buddy" data-buddy-card-image />
+        <a class="buddy-zone buddy-zone-home" href="#home" data-go="home" aria-label="กลับหน้า Home"></a>
+        <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery" data-go="buddy-discovery" aria-label="ตัวกรอง"></a>
+        <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery-2" data-go="buddy-discovery-2" aria-label="ดูคนถัดไป"></a>
+        <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery-2" data-go="buddy-discovery-2" aria-label="ข้าม"></a>
+        <a class="buddy-zone buddy-zone-message" href="#buddy-chat" data-go="buddy-chat" aria-label="ส่งข้อความ"></a>
+        <a class="buddy-zone buddy-zone-save" href="#buddy-match" data-go="buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
+        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery-2" data-go="buddy-discovery-2" aria-label="ดู Buddy คนถัดไป"></a>
+        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อน"></a>
+        <a class="buddy-zone buddy-nav-match" href="#buddy-match" data-go="buddy-match" aria-label="แมตช์"></a>
+        <a class="buddy-zone buddy-nav-group" href="#buddy-group" data-go="buddy-group" aria-label="กลุ่ม"></a>
+        <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" data-go="buddy-chat" aria-label="แชท"></a>
+        <a class="buddy-zone buddy-nav-ride" href="#buddy-ride" data-go="buddy-ride" aria-label="รถ"></a>
       </section>
 
       <section class="screen image-screen buddy-swipe-screen" id="buddy-discovery-2" aria-label="หาเพื่อน Buddy">
-        <img class="buddy-full-card-image" src="assets/buddy-malee.png?v=94" alt="หน้าปัดหาเพื่อน Buddy คุณมาลี" />
-        <a class="buddy-zone buddy-zone-home" href="#home" aria-label="กลับหน้า Home"></a>
-        <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery-2" aria-label="ตัวกรอง"></a>
-        <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery" aria-label="ดูคนถัดไป"></a>
-        <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery" aria-label="ข้าม"></a>
-        <a class="buddy-zone buddy-zone-message" href="#buddy-chat" aria-label="ส่งข้อความ"></a>
-        <a class="buddy-zone buddy-zone-save" href="#buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
-        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery" aria-label="ดู Buddy คนถัดไป"></a>
-        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery-2" aria-label="หาเพื่อน"></a>
-        <a class="buddy-zone buddy-nav-match" href="#buddy-match" aria-label="แมตช์"></a>
-        <a class="buddy-zone buddy-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
-        <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" aria-label="แชท"></a>
-        <a class="buddy-zone buddy-nav-ride" href="#buddy-ride" aria-label="รถ"></a>
+        <img class="buddy-full-card-image" src="assets/buddy-malee.jpg?v=109" alt="หน้าปัดหาเพื่อน Buddy คุณมาลี" />
+        <a class="buddy-zone buddy-zone-home" href="#home" data-go="home" aria-label="กลับหน้า Home"></a>
+        <a class="buddy-zone buddy-zone-filter" href="#buddy-discovery-2" data-go="buddy-discovery-2" aria-label="ตัวกรอง"></a>
+        <a class="buddy-zone buddy-zone-refresh" href="#buddy-discovery" data-go="buddy-discovery" aria-label="ดูคนถัดไป"></a>
+        <a class="buddy-zone buddy-zone-skip" href="#buddy-discovery" data-go="buddy-discovery" aria-label="ข้าม"></a>
+        <a class="buddy-zone buddy-zone-message" href="#buddy-chat" data-go="buddy-chat" aria-label="ส่งข้อความ"></a>
+        <a class="buddy-zone buddy-zone-save" href="#buddy-match" data-go="buddy-match" aria-label="บันทึกเป็นคนที่สนใจ"></a>
+        <a class="buddy-zone buddy-zone-like" href="#buddy-discovery" data-go="buddy-discovery" aria-label="ดู Buddy คนถัดไป"></a>
+        <a class="buddy-zone buddy-nav-find" href="#buddy-discovery-2" data-go="buddy-discovery-2" aria-label="หาเพื่อน"></a>
+        <a class="buddy-zone buddy-nav-match" href="#buddy-match" data-go="buddy-match" aria-label="แมตช์"></a>
+        <a class="buddy-zone buddy-nav-group" href="#buddy-group" data-go="buddy-group" aria-label="กลุ่ม"></a>
+        <a class="buddy-zone buddy-nav-chat" href="#buddy-chat" data-go="buddy-chat" aria-label="แชท"></a>
+        <a class="buddy-zone buddy-nav-ride" href="#buddy-ride" data-go="buddy-ride" aria-label="รถ"></a>
       </section>
 
       <section class="screen content-screen buddy-system" id="buddy-profile" aria-label="โปรไฟล์ Buddy">
@@ -447,7 +447,7 @@
           <button class="top-logo-back" type="button" data-go="buddy-discovery" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel buddy-profile-panel">
-          <img src="assets/buddy-somchai.png?v=94" alt="รูปโปรไฟล์ Buddy" data-profile-photo />
+          <img src="assets/buddy-somchai.jpg?v=109" alt="รูปโปรไฟล์ Buddy" data-profile-photo />
           <h1 data-profile-name>คุณกานิน, 64</h1>
           <p data-profile-area>อยู่ใกล้สวนลุมพินี ประมาณ 0.8 กม.</p>
           <div class="buddy-detail-list">
@@ -461,36 +461,40 @@
         </article>
       </section>
 
-      <section class="screen content-screen buddy-system" id="buddy-match" aria-label="แมตช์ Buddy">
-        <header class="topbar">
-          <strong>แมตช์ของฉัน</strong>
-          <button class="top-logo-back" type="button" data-go="buddy" aria-label="กลับ">กลับ</button>
-        </header>
-        <article class="panel buddy-match-panel">
-          <h1>Buddy ที่พร้อมคุย</h1>
-          <div class="buddy-match-list" data-buddy-match-list>
-            <button type="button" data-go="buddy-chat"><span class="buddy-avatar">ก</span><strong>คุณกานิน</strong><small>ใกล้ที่สุด 0.8 กม. พร้อมคุยตอนเช้า</small></button>
-          </div>
-          <button class="primary-action" type="button" data-go="buddy-discovery">หา Buddy เพิ่ม</button>
-        </article>
+      <section class="screen image-screen buddy-match-menu-screen" id="buddy-match" aria-label="บัดดี้แมตช์">
+        <img src="assets/buddy-match-menu.jpg?v=109" alt="หน้าบัดดี้แมตช์" />
+        <a class="match-zone match-tab-all" href="#buddy-match" data-go="buddy-match" aria-label="บัดดี้แมตช์ทั้งหมด"></a>
+        <a class="match-zone match-tab-recommend" href="#buddy-discovery" data-go="buddy-discovery" aria-label="แนะนำสำหรับคุณ"></a>
+        <a class="match-zone match-card-1" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนดูหนัง"></a>
+        <a class="match-zone match-card-2" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนเล่นโยคะ"></a>
+        <a class="match-zone match-card-3" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนออกกำลังกาย"></a>
+        <a class="match-zone match-card-4" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนเล่นหมากรุก"></a>
+        <a class="match-zone match-card-5" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนไปหาหมอ"></a>
+        <a class="match-zone match-card-6" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อนเดินเล่น"></a>
+        <a class="match-zone match-all-button" href="#buddy-chat" data-go="buddy-chat" aria-label="ดูบัดดี้แมตช์ทั้งหมดตอนนี้เลย"></a>
+        <a class="match-zone chat-nav-find" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อน"></a>
+        <a class="match-zone chat-nav-match" href="#buddy-match" data-go="buddy-match" aria-label="บัดดี้แมตช์"></a>
+        <a class="match-zone chat-nav-group" href="#buddy-group" data-go="buddy-group" aria-label="กลุ่ม"></a>
+        <a class="match-zone chat-nav-chat" href="#buddy-chat" data-go="buddy-chat" aria-label="แชท"></a>
+        <a class="match-zone chat-nav-ride" href="#buddy-ride" data-go="buddy-ride" aria-label="รถ"></a>
       </section>
 
       <section class="screen image-screen buddy-chat-menu-screen" id="buddy-chat" aria-label="แชท Buddy">
-        <img src="assets/buddy-chat-menu.png?v=105" alt="หน้าเมนูแชท Buddy" />
-        <a class="chat-zone chat-zone-shield" href="#buddy-tracking" aria-label="ความปลอดภัย"></a>
-        <a class="chat-zone chat-zone-add-group" href="#buddy-group" aria-label="เพิ่มเพื่อนเข้ากลุ่ม"></a>
-        <a class="chat-zone chat-zone-new-match" href="#buddy-match" aria-label="ดูบัดดี้ทั้งหมด"></a>
-        <a class="chat-zone chat-zone-match-1" href="#buddy-chat-room" aria-label="เปิดแชทคุณอรุณี"></a>
-        <a class="chat-zone chat-zone-match-2" href="#buddy-chat-room" aria-label="เปิดแชทคุณสมชาย"></a>
-        <a class="chat-zone chat-zone-row-1" href="#buddy-chat-room" aria-label="เปิดข้อความแรก"></a>
-        <a class="chat-zone chat-zone-row-2" href="#buddy-chat-room" aria-label="เปิดข้อความที่สอง"></a>
-        <a class="chat-zone chat-zone-row-3" href="#buddy-chat-room" aria-label="เปิดข้อความที่สาม"></a>
-        <a class="chat-zone chat-zone-all" href="#buddy-chat-room" aria-label="ดูข้อความทั้งหมด"></a>
-        <a class="chat-zone chat-nav-find" href="#buddy-discovery" aria-label="หาเพื่อน"></a>
-        <a class="chat-zone chat-nav-match" href="#buddy-match" aria-label="บัดดี้แมตช์"></a>
-        <a class="chat-zone chat-nav-group" href="#buddy-group" aria-label="กลุ่ม"></a>
-        <a class="chat-zone chat-nav-chat" href="#buddy-chat" aria-label="แชท"></a>
-        <a class="chat-zone chat-nav-ride" href="#buddy-ride" aria-label="รถ"></a>
+        <img src="assets/buddy-chat-menu.jpg?v=109" alt="หน้าเมนูแชท Buddy" />
+        <a class="chat-zone chat-zone-shield" href="#buddy-tracking" data-go="buddy-tracking" aria-label="ความปลอดภัย"></a>
+        <a class="chat-zone chat-zone-add-group" href="#buddy-group" data-go="buddy-group" aria-label="เพิ่มเพื่อนเข้ากลุ่ม"></a>
+        <a class="chat-zone chat-zone-new-match" href="#buddy-match" data-go="buddy-match" aria-label="ดูบัดดี้ทั้งหมด"></a>
+        <a class="chat-zone chat-zone-match-1" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="เปิดแชทคุณอรุณี"></a>
+        <a class="chat-zone chat-zone-match-2" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="เปิดแชทคุณสมชาย"></a>
+        <a class="chat-zone chat-zone-row-1" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="เปิดข้อความแรก"></a>
+        <a class="chat-zone chat-zone-row-2" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="เปิดข้อความที่สอง"></a>
+        <a class="chat-zone chat-zone-row-3" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="เปิดข้อความที่สาม"></a>
+        <a class="chat-zone chat-zone-all" href="#buddy-chat-room" data-go="buddy-chat-room" aria-label="ดูข้อความทั้งหมด"></a>
+        <a class="chat-zone chat-nav-find" href="#buddy-discovery" data-go="buddy-discovery" aria-label="หาเพื่อน"></a>
+        <a class="chat-zone chat-nav-match" href="#buddy-match" data-go="buddy-match" aria-label="บัดดี้แมตช์"></a>
+        <a class="chat-zone chat-nav-group" href="#buddy-group" data-go="buddy-group" aria-label="กลุ่ม"></a>
+        <a class="chat-zone chat-nav-chat" href="#buddy-chat" data-go="buddy-chat" aria-label="แชท"></a>
+        <a class="chat-zone chat-nav-ride" href="#buddy-ride" data-go="buddy-ride" aria-label="รถ"></a>
       </section>
 
       <section class="screen content-screen buddy-system" id="buddy-chat-room" aria-label="ห้องแชท Buddy">
@@ -499,7 +503,7 @@
           <button class="top-logo-back" type="button" data-go="buddy-chat" aria-label="กลับ">กลับ</button>
         </header>
         <article class="panel buddy-chat-panel">
-          <div class="buddy-chat-head"><img class="buddy-chat-avatar" src="assets/buddy-malee.png?v=94" alt="คุณมาลี" /><div><strong>คุณมาลี</strong><small>ออนไลน์ พร้อมคุย</small></div></div>
+          <div class="buddy-chat-head"><img class="buddy-chat-avatar" src="assets/buddy-malee.jpg?v=109" alt="คุณมาลี" /><div><strong>คุณมาลี</strong><small>ออนไลน์ พร้อมคุย</small></div></div>
           <div class="buddy-message-list" data-buddy-chat-list>
             <span class="incoming">สวัสดีค่ะ วันนี้สะดวกคุยไหมคะ</span>
             <span class="outgoing">สะดวกครับ อยากไปเดินเล่นช่วงเช้า</span>
@@ -661,7 +665,7 @@
           <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
         </header>
         <article class="article-panel">
-          <img class="article-hero-image" src="assets/recommend-brain.png" alt="กิจกรรมฝึกสมอง" />
+          <img class="article-hero-image" src="assets/recommend-brain.jpg" alt="กิจกรรมฝึกสมอง" />
           <span class="recommend-tag purple">กิจกรรมแนะนำ</span>
           <h1>5 กิจกรรมง่าย ๆ ฝึกสมอง ป้องกันความจำเสื่อม</h1>
           <p>กิจกรรมเล็ก ๆ ที่ทำได้ทุกวันช่วยกระตุ้นความจำ สมาธิ และการคิดเป็นลำดับ เหมาะสำหรับผู้สูงอายุที่อยากดูแลสมองอย่างต่อเนื่อง</p>
@@ -682,7 +686,7 @@
           <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
         </header>
         <article class="article-panel">
-          <img class="article-hero-image" src="assets/recommend-food.png" alt="อาหารเช้าเพื่อสุขภาพ" />
+          <img class="article-hero-image" src="assets/recommend-food.jpg" alt="อาหารเช้าเพื่อสุขภาพ" />
           <span class="recommend-tag green">อาหารสุขภาพ</span>
           <h1>อาหารเช้าเพื่อสุขภาพ เคี้ยวง่าย ย่อยสะดวก</h1>
           <p>เลือกอาหารที่นุ่ม ย่อยง่าย และมีโปรตีนพอเหมาะ ช่วยให้เริ่มวันได้สดชื่นและลดภาระการย่อยอาหาร</p>
@@ -702,7 +706,7 @@
           <button class="top-logo-back" type="button" data-go="home" aria-label="กลับ">MyBuddy+</button>
         </header>
         <article class="article-panel">
-          <img class="article-hero-image" src="assets/recommend-meditation.png" alt="ฝึกสมาธิ" />
+          <img class="article-hero-image" src="assets/recommend-meditation.jpg" alt="ฝึกสมาธิ" />
           <span class="recommend-tag violet">ฝึกสมาธิ</span>
           <h1>วิธีฝึกสมาธิเบื้องต้นฉบับวัยเก๋า เพื่อหลับสนิทดี</h1>
           <p>การฝึกหายใจช้า ๆ ช่วยให้ร่างกายผ่อนคลาย ลดความกังวล และเตรียมพร้อมสำหรับการพักผ่อนตอนกลางคืน</p>
@@ -878,6 +882,6 @@
 
       <p class="toast" role="status" aria-live="polite"></p>
     </main>
-    <script src="script.js?v=105"></script>
+    <script src="script.js?v=109"></script>
   </body>
 </html>
